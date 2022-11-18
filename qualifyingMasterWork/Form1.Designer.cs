@@ -37,12 +37,13 @@
             // 
             // readInputData
             // 
-            this.readInputData.Location = new System.Drawing.Point(160, 283);
+            this.readInputData.Location = new System.Drawing.Point(160, 291);
             this.readInputData.Name = "readInputData";
             this.readInputData.Size = new System.Drawing.Size(75, 23);
             this.readInputData.TabIndex = 0;
             this.readInputData.Text = "OK";
             this.readInputData.UseVisualStyleBackColor = true;
+            this.readInputData.Click += new System.EventHandler(this.readInputData_Click);
             // 
             // label1
             // 
@@ -59,8 +60,7 @@
             this.matrix.Location = new System.Drawing.Point(78, 105);
             this.matrix.Name = "matrix";
             this.matrix.Size = new System.Drawing.Size(63, 20);
-            this.matrix.TabIndex = 4;
-            this.matrix.TabStop = true;
+            this.matrix.TabIndex = 1;
             this.matrix.Text = "matrix";
             this.matrix.UseVisualStyleBackColor = true;
             // 
@@ -70,8 +70,7 @@
             this.systemOfEquations.Location = new System.Drawing.Point(78, 154);
             this.systemOfEquations.Name = "systemOfEquations";
             this.systemOfEquations.Size = new System.Drawing.Size(147, 20);
-            this.systemOfEquations.TabIndex = 5;
-            this.systemOfEquations.TabStop = true;
+            this.systemOfEquations.TabIndex = 2;
             this.systemOfEquations.Text = "system of equations";
             this.systemOfEquations.UseVisualStyleBackColor = true;
             // 
@@ -81,8 +80,7 @@
             this.commutativeDiagram.Location = new System.Drawing.Point(78, 203);
             this.commutativeDiagram.Name = "commutativeDiagram";
             this.commutativeDiagram.Size = new System.Drawing.Size(157, 20);
-            this.commutativeDiagram.TabIndex = 6;
-            this.commutativeDiagram.TabStop = true;
+            this.commutativeDiagram.TabIndex = 3;
             this.commutativeDiagram.Text = "commutative diagram";
             this.commutativeDiagram.UseVisualStyleBackColor = true;
             // 
@@ -90,13 +88,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 386);
+            this.ClientSize = new System.Drawing.Size(414, 372);
             this.Controls.Add(this.commutativeDiagram);
             this.Controls.Add(this.systemOfEquations);
             this.Controls.Add(this.matrix);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.readInputData);
             this.Name = "Start";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Start";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);

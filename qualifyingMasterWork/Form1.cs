@@ -21,5 +21,25 @@ namespace qualifyingMasterWork
         {
 
         }
+
+        private void readInputData_Click(object sender, EventArgs e)
+        {
+            if (matrix.Checked)
+            {
+
+            }
+            else if (systemOfEquations.Checked)
+            {
+
+            }
+            else if (commutativeDiagram.Checked)
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Please choose form of data");
+            }
+        }
     }
 }
