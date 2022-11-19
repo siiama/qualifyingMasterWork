@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace qualifyingMasterWork
 {
-    public partial class Start : Form
+    public partial class Form01 : Form
     {
-        public Start()
+        public Form01()
         {
             InitializeComponent();
         }
@@ -22,19 +22,21 @@ namespace qualifyingMasterWork
 
         }
 
-        private void readInputData_Click(object sender, EventArgs e)
+        private void ok_Click(object sender, EventArgs e)
         {
             if (matrix.Checked)
             {
-
+                this.Hide();
+                Form02 okFrom1_1To2 = new Form02();
+                okFrom1_1To2.Show();
             }
             else if (systemOfEquations.Checked)
             {
-
+                this.Hide();
             }
             else if (commutativeDiagram.Checked)
             {
-
+                this.Hide();
             }
             else
             {
