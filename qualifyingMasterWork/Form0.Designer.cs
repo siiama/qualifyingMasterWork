@@ -28,18 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(77, 48);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 16);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "WELCOME!";
             // 
             // button1
             // 
@@ -50,6 +41,15 @@
             this.button1.Text = "START";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(77, 48);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(78, 16);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "WELCOME!";
             // 
             // Form0
             // 
@@ -68,7 +68,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
     }
 }

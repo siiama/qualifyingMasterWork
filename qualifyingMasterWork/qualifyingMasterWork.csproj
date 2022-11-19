@@ -76,6 +76,24 @@
     <Compile Include="Form06.Designer.cs">
       <DependentUpon>Form06.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form03.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form03.Designer.cs">
+      <DependentUpon>Form03.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form04.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form04.Designer.cs">
+      <DependentUpon>Form04.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form05.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form05.Designer.cs">
+      <DependentUpon>Form05.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form0.resx">
@@ -92,6 +110,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form06.resx">
       <DependentUpon>Form06.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form03.resx">
+      <DependentUpon>Form03.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form04.resx">
+      <DependentUpon>Form04.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form05.resx">
+      <DependentUpon>Form05.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

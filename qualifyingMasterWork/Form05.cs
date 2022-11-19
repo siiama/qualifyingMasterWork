@@ -11,25 +11,29 @@ using System.Windows.Forms;
 
 namespace qualifyingMasterWork
 {
-    public partial class Form10 : Form
+    public partial class Form05 : Form
     {
-        Thread thread;
-        public Form10()
+        Thread thread1;
+        public Form05()
         {
             InitializeComponent();
         }
 
         private void back_Click(object sender, EventArgs e)
         {
-            thread = new Thread(openForm1);
-            thread.SetApartmentState(ApartmentState.STA);
-            thread.Start();
+            thread1 = new Thread(openForm2);
+            thread1.SetApartmentState(ApartmentState.STA);
+            thread1.Start();
             this.Close();
         }
-        private void openForm1()
-        {
-            Application.Run(new Form01());
-        }
 
+        private void ok_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void openForm2()
+        {
+            Application.Run(new Form02());
+        }
     }
 }

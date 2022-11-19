@@ -37,10 +37,10 @@
             // 
             // ok
             // 
-            this.ok.Location = new System.Drawing.Point(188, 334);
+            this.ok.Location = new System.Drawing.Point(138, 284);
             this.ok.Name = "ok";
             this.ok.Size = new System.Drawing.Size(75, 23);
-            this.ok.TabIndex = 9;
+            this.ok.TabIndex = 14;
             this.ok.Text = "OK";
             this.ok.UseVisualStyleBackColor = true;
             this.ok.Click += new System.EventHandler(this.ok_Click);
@@ -48,47 +48,47 @@
             // commutativeDiagram
             // 
             this.commutativeDiagram.AutoSize = true;
-            this.commutativeDiagram.Location = new System.Drawing.Point(106, 253);
+            this.commutativeDiagram.Location = new System.Drawing.Point(56, 203);
             this.commutativeDiagram.Name = "commutativeDiagram";
             this.commutativeDiagram.Size = new System.Drawing.Size(157, 20);
-            this.commutativeDiagram.TabIndex = 8;
+            this.commutativeDiagram.TabIndex = 13;
             this.commutativeDiagram.Text = "commutative diagram";
             this.commutativeDiagram.UseVisualStyleBackColor = true;
             // 
             // systemOfEquations
             // 
             this.systemOfEquations.AutoSize = true;
-            this.systemOfEquations.Location = new System.Drawing.Point(106, 204);
+            this.systemOfEquations.Location = new System.Drawing.Point(56, 154);
             this.systemOfEquations.Name = "systemOfEquations";
             this.systemOfEquations.Size = new System.Drawing.Size(147, 20);
-            this.systemOfEquations.TabIndex = 6;
+            this.systemOfEquations.TabIndex = 11;
             this.systemOfEquations.Text = "system of equations";
             this.systemOfEquations.UseVisualStyleBackColor = true;
             // 
             // matrix
             // 
             this.matrix.AutoSize = true;
-            this.matrix.Location = new System.Drawing.Point(106, 155);
+            this.matrix.Location = new System.Drawing.Point(56, 105);
             this.matrix.Name = "matrix";
             this.matrix.Size = new System.Drawing.Size(63, 20);
-            this.matrix.TabIndex = 5;
+            this.matrix.TabIndex = 10;
             this.matrix.Text = "matrix";
             this.matrix.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(103, 96);
+            this.label1.Location = new System.Drawing.Point(53, 46);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(277, 16);
-            this.label1.TabIndex = 7;
+            this.label1.TabIndex = 12;
             this.label1.Text = "Please choose what kind of data do you have";
             // 
             // Form01
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 453);
+            this.ClientSize = new System.Drawing.Size(382, 353);
             this.Controls.Add(this.ok);
             this.Controls.Add(this.commutativeDiagram);
             this.Controls.Add(this.systemOfEquations);
