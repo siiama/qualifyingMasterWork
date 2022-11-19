@@ -20,7 +20,7 @@ namespace qualifyingMasterWork
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
-            Form1 From0To1 = new Form1();
+            Form01 From0To1 = new Form01();
             From0To1.Show();
         }
     }
