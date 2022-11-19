@@ -82,6 +82,7 @@
             this.back.TabIndex = 24;
             this.back.Text = "Back";
             this.back.UseVisualStyleBackColor = true;
+            this.back.Click += new System.EventHandler(this.back_Click);
             // 
             // Form10
             // 
@@ -94,6 +95,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.back);
             this.Name = "Form10";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form10";
             this.ResumeLayout(false);
             this.PerformLayout();

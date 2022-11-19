@@ -82,8 +82,9 @@
             this.back.TabIndex = 9;
             this.back.Text = "Back";
             this.back.UseVisualStyleBackColor = true;
+            this.back.Click += new System.EventHandler(this.back_Click);
             // 
-            // Form2
+            // Form02
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -93,7 +94,8 @@
             this.Controls.Add(this.file);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.back);
-            this.Name = "Form2";
+            this.Name = "Form02";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.ResumeLayout(false);

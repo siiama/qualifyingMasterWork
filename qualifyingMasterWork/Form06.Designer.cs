@@ -84,7 +84,7 @@
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
-            // Form6
+            // Form06
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -94,7 +94,8 @@
             this.Controls.Add(this.file);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.back);
-            this.Name = "Form6";
+            this.Name = "Form06";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form6";
             this.ResumeLayout(false);
             this.PerformLayout();

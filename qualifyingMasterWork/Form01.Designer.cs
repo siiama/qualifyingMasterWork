@@ -43,6 +43,7 @@
             this.ok.TabIndex = 9;
             this.ok.Text = "OK";
             this.ok.UseVisualStyleBackColor = true;
+            this.ok.Click += new System.EventHandler(this.ok_Click);
             // 
             // commutativeDiagram
             // 
@@ -83,7 +84,7 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Please choose what kind of data do you have";
             // 
-            // Form1
+            // Form01
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -93,7 +94,7 @@
             this.Controls.Add(this.systemOfEquations);
             this.Controls.Add(this.matrix);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "Form01";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Start";
             this.Load += new System.EventHandler(this.Form1_Load);
