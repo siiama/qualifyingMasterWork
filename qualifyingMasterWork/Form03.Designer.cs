@@ -84,7 +84,7 @@
             this.Controls.Add(this.back);
             this.Name = "Form03";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form3";
+            this.Text = "Form03";
             this.ResumeLayout(false);
             this.PerformLayout();
 

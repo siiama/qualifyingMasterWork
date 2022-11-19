@@ -58,6 +58,24 @@
     <Compile Include="Form01.Designer.cs">
       <DependentUpon>Form01.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form07.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form07.Designer.cs">
+      <DependentUpon>Form07.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form08.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form08.Designer.cs">
+      <DependentUpon>Form08.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form09.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form09.Designer.cs">
+      <DependentUpon>Form09.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form10.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +112,24 @@
     <Compile Include="Form05.Designer.cs">
       <DependentUpon>Form05.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form11.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form11.Designer.cs">
+      <DependentUpon>Form11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form12.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form12.Designer.cs">
+      <DependentUpon>Form12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form13.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form13.Designer.cs">
+      <DependentUpon>Form13.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form0.resx">
@@ -101,6 +137,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form01.resx">
       <DependentUpon>Form01.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form07.resx">
+      <DependentUpon>Form07.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form08.resx">
+      <DependentUpon>Form08.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form09.resx">
+      <DependentUpon>Form09.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form10.resx">
       <DependentUpon>Form10.cs</DependentUpon>
@@ -119,6 +164,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form05.resx">
       <DependentUpon>Form05.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form11.resx">
+      <DependentUpon>Form11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form12.resx">
+      <DependentUpon>Form12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form13.resx">
+      <DependentUpon>Form13.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

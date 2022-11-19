@@ -1,6 +1,6 @@
 ﻿namespace qualifyingMasterWork
 {
-    partial class Form02
+    partial class Form07
     {
         /// <summary>
         /// Required designer variable.
@@ -29,88 +29,62 @@
         private void InitializeComponent()
         {
             this.ok = new System.Windows.Forms.Button();
-            this.manual = new System.Windows.Forms.RadioButton();
-            this.generate = new System.Windows.Forms.RadioButton();
-            this.file = new System.Windows.Forms.RadioButton();
+            this.choose_file = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ok
             // 
-            this.ok.Location = new System.Drawing.Point(214, 289);
+            this.ok.Location = new System.Drawing.Point(213, 245);
             this.ok.Name = "ok";
             this.ok.Size = new System.Drawing.Size(75, 23);
-            this.ok.TabIndex = 47;
+            this.ok.TabIndex = 63;
             this.ok.Text = "OK";
             this.ok.UseVisualStyleBackColor = true;
             this.ok.UseWaitCursor = true;
             this.ok.Click += new System.EventHandler(this.ok_Click);
             // 
-            // manual
+            // choose_file
             // 
-            this.manual.AutoSize = true;
-            this.manual.Location = new System.Drawing.Point(96, 197);
-            this.manual.Name = "manual";
-            this.manual.Size = new System.Drawing.Size(72, 20);
-            this.manual.TabIndex = 46;
-            this.manual.Text = "manual";
-            this.manual.UseVisualStyleBackColor = true;
-            // 
-            // generate
-            // 
-            this.generate.AutoSize = true;
-            this.generate.Location = new System.Drawing.Point(96, 148);
-            this.generate.Name = "generate";
-            this.generate.Size = new System.Drawing.Size(82, 20);
-            this.generate.TabIndex = 44;
-            this.generate.Text = "generate";
-            this.generate.UseVisualStyleBackColor = true;
-            // 
-            // file
-            // 
-            this.file.AutoSize = true;
-            this.file.Location = new System.Drawing.Point(96, 99);
-            this.file.Name = "file";
-            this.file.Size = new System.Drawing.Size(45, 20);
-            this.file.TabIndex = 43;
-            this.file.Text = "file";
-            this.file.UseVisualStyleBackColor = true;
+            this.choose_file.Location = new System.Drawing.Point(98, 150);
+            this.choose_file.Name = "choose_file";
+            this.choose_file.Size = new System.Drawing.Size(91, 23);
+            this.choose_file.TabIndex = 62;
+            this.choose_file.Text = "choose file";
+            this.choose_file.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(93, 40);
+            this.label1.Location = new System.Drawing.Point(95, 85);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 16);
-            this.label1.TabIndex = 45;
-            this.label1.Text = "Input matrix via";
+            this.label1.Size = new System.Drawing.Size(157, 16);
+            this.label1.TabIndex = 61;
+            this.label1.Text = "Input system of equations";
             // 
             // back
             // 
-            this.back.Location = new System.Drawing.Point(96, 289);
+            this.back.Location = new System.Drawing.Point(98, 245);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(75, 23);
-            this.back.TabIndex = 42;
+            this.back.TabIndex = 60;
             this.back.Text = "Back";
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
-            // Form02
+            // Form07
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 353);
             this.Controls.Add(this.ok);
-            this.Controls.Add(this.manual);
-            this.Controls.Add(this.generate);
-            this.Controls.Add(this.file);
+            this.Controls.Add(this.choose_file);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.back);
-            this.Name = "Form02";
+            this.Name = "Form07";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form02";
-            this.Load += new System.EventHandler(this.Form2_Load);
+            this.Text = "Form07";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,9 +93,7 @@
         #endregion
 
         private System.Windows.Forms.Button ok;
-        private System.Windows.Forms.RadioButton manual;
-        private System.Windows.Forms.RadioButton generate;
-        private System.Windows.Forms.RadioButton file;
+        private System.Windows.Forms.Button choose_file;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button back;
     }

@@ -94,6 +94,7 @@
             this.ok.Text = "OK";
             this.ok.UseVisualStyleBackColor = true;
             this.ok.UseWaitCursor = true;
+            this.ok.Click += new System.EventHandler(this.ok_Click);
             // 
             // Form06
             // 
@@ -108,7 +109,7 @@
             this.Controls.Add(this.back);
             this.Name = "Form06";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form6";
+            this.Text = "Form06";
             this.ResumeLayout(false);
             this.PerformLayout();
 
