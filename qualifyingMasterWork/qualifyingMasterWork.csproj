@@ -246,8 +246,20 @@
     <EmbeddedResource Include="Form17.resx">
       <DependentUpon>Form17.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form18.resx">
+      <DependentUpon>Form18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form19.resx">
+      <DependentUpon>Form19.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form20.resx">
       <DependentUpon>Form20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form21.resx">
+      <DependentUpon>Form21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form22.resx">
+      <DependentUpon>Form22.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form23.resx">
       <DependentUpon>Form23.cs</DependentUpon>
