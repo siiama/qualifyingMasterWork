@@ -96,6 +96,7 @@
             this.Controls.Add(this.systemOfEquations);
             this.Controls.Add(this.label1);
             this.Name = "Form14";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form14";
             this.ResumeLayout(false);
             this.PerformLayout();
