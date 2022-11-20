@@ -11,10 +11,10 @@ using System.Windows.Forms;
 
 namespace qualifyingMasterWork
 {
-    public partial class Form0 : Form
+    public partial class Form23 : Form
     {
         Thread thread;
-        public Form0()
+        public Form23()
         {
             InitializeComponent();
         }
