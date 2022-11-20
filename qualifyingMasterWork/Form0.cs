@@ -18,8 +18,7 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void start_Click(object sender, EventArgs e)
         {
             thread = new Thread(openForm1);
             thread.SetApartmentState(ApartmentState.STA);

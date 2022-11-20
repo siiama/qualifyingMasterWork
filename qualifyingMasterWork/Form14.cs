@@ -19,7 +19,6 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
         }
-
         private void back_Click(object sender, EventArgs e)
         {
             thread1 = new Thread(openForm2);
@@ -27,11 +26,6 @@ namespace qualifyingMasterWork
             thread1.Start();
             this.Close();
         }
-        private void openForm2()
-        {
-            Application.Run(new Form02());
-        }
-
         private void ok_Click(object sender, EventArgs e)
         {
             if (systemOfEquations.Checked)
@@ -52,6 +46,10 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please choose form of data");
             }
+        }
+        private void openForm2()
+        {
+            Application.Run(new Form02());
         }
         private void openForm15()
         {

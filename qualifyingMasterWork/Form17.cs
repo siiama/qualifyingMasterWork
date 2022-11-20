@@ -18,6 +18,13 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
         }
+        private void back_Click(object sender, EventArgs e)
+        {
+            thread1 = new Thread(openForm6);
+            thread1.SetApartmentState(ApartmentState.STA);
+            thread1.Start();
+            this.Close();
+        }
         private void ok_Click(object sender, EventArgs e)
         {
             if (matrix.Checked)
@@ -38,14 +45,6 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please choose form of data");
             }
-        }
-
-        private void back_Click(object sender, EventArgs e)
-        {
-            thread1 = new Thread(openForm6);
-            thread1.SetApartmentState(ApartmentState.STA);
-            thread1.Start();
-            this.Close();
         }
         private void openForm6()
         {

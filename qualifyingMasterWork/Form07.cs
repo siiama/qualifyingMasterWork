@@ -18,7 +18,6 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
         }
-
         private void back_Click(object sender, EventArgs e)
         {
             thread1 = new Thread(openForm6);
@@ -26,17 +25,16 @@ namespace qualifyingMasterWork
             thread1.Start();
             this.Close();
         }
-        private void openForm6()
-        {
-            Application.Run(new Form06());
-        }
-
         private void ok_Click(object sender, EventArgs e)
         {
             thread2 = new Thread(openForm17);
             thread2.SetApartmentState(ApartmentState.STA);
             thread2.Start();
             this.Close();
+        }
+        private void openForm6()
+        {
+            Application.Run(new Form06());
         }
         private void openForm17()
         {

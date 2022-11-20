@@ -20,7 +20,6 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
         }
-
         private void back_Click(object sender, EventArgs e)
         {
             thread1 = new Thread(openForm1);
@@ -28,16 +27,6 @@ namespace qualifyingMasterWork
             thread1.Start();
             this.Close();
         }
-
-        private void Form2_Load(object sender, EventArgs e)
-        {
-            
-        }
-        private void openForm1()
-        {
-            Application.Run(new Form01());
-        }
-
         private void ok_Click(object sender, EventArgs e)
         {
             if (file.Checked)
@@ -66,7 +55,10 @@ namespace qualifyingMasterWork
                 MessageBox.Show("Please choose form of input");
             }
         }
-
+        private void openForm1()
+        {
+            Application.Run(new Form01());
+        }
         private void openForm3()
         {
             Application.Run(new Form03());

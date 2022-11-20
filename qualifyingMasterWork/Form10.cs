@@ -19,7 +19,6 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
         }
-
         private void back_Click(object sender, EventArgs e)
         {
             thread1 = new Thread(openForm1);

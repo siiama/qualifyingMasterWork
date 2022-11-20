@@ -18,20 +18,18 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
         }
-
-        private void ok_Click(object sender, EventArgs e)
-        {
-            thread2 = new Thread(openForm17);
-            thread2.SetApartmentState(ApartmentState.STA);
-            thread2.Start();
-            this.Close();
-        }
-
         private void back_Click(object sender, EventArgs e)
         {
             thread1 = new Thread(openForm6);
             thread1.SetApartmentState(ApartmentState.STA);
             thread1.Start();
+            this.Close();
+        }
+        private void ok_Click(object sender, EventArgs e)
+        {
+            thread2 = new Thread(openForm17);
+            thread2.SetApartmentState(ApartmentState.STA);
+            thread2.Start();
             this.Close();
         }
         private void openForm6()
