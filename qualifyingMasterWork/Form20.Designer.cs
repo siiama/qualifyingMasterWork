@@ -1,6 +1,6 @@
 ﻿namespace qualifyingMasterWork
 {
-    partial class Form17
+    partial class Form20
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.ok = new System.Windows.Forms.Button();
             this.back = new System.Windows.Forms.Button();
-            this.commutativeDiagram = new System.Windows.Forms.RadioButton();
+            this.systemOfEquations = new System.Windows.Forms.RadioButton();
             this.matrix = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -40,7 +40,7 @@
             this.ok.Location = new System.Drawing.Point(164, 262);
             this.ok.Name = "ok";
             this.ok.Size = new System.Drawing.Size(75, 23);
-            this.ok.TabIndex = 75;
+            this.ok.TabIndex = 80;
             this.ok.Text = "OK";
             this.ok.UseVisualStyleBackColor = true;
             this.ok.UseWaitCursor = true;
@@ -51,20 +51,20 @@
             this.back.Location = new System.Drawing.Point(39, 262);
             this.back.Name = "back";
             this.back.Size = new System.Drawing.Size(75, 23);
-            this.back.TabIndex = 74;
+            this.back.TabIndex = 79;
             this.back.Text = "Back";
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
-            // commutativeDiagram
+            // systemOfEquations
             // 
-            this.commutativeDiagram.AutoSize = true;
-            this.commutativeDiagram.Location = new System.Drawing.Point(39, 183);
-            this.commutativeDiagram.Name = "commutativeDiagram";
-            this.commutativeDiagram.Size = new System.Drawing.Size(157, 20);
-            this.commutativeDiagram.TabIndex = 73;
-            this.commutativeDiagram.Text = "commutative diagram";
-            this.commutativeDiagram.UseVisualStyleBackColor = true;
+            this.systemOfEquations.AutoSize = true;
+            this.systemOfEquations.Location = new System.Drawing.Point(39, 183);
+            this.systemOfEquations.Name = "systemOfEquations";
+            this.systemOfEquations.Size = new System.Drawing.Size(147, 20);
+            this.systemOfEquations.TabIndex = 78;
+            this.systemOfEquations.Text = "system of equations";
+            this.systemOfEquations.UseVisualStyleBackColor = true;
             // 
             // matrix
             // 
@@ -72,7 +72,7 @@
             this.matrix.Location = new System.Drawing.Point(39, 134);
             this.matrix.Name = "matrix";
             this.matrix.Size = new System.Drawing.Size(63, 20);
-            this.matrix.TabIndex = 71;
+            this.matrix.TabIndex = 76;
             this.matrix.Text = "matrix";
             this.matrix.UseVisualStyleBackColor = true;
             // 
@@ -82,22 +82,21 @@
             this.label1.Location = new System.Drawing.Point(36, 67);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(310, 16);
-            this.label1.TabIndex = 72;
+            this.label1.TabIndex = 77;
             this.label1.Text = "Please choose what kind of data do you want to get";
             // 
-            // Form17
+            // Form20
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 353);
             this.Controls.Add(this.ok);
             this.Controls.Add(this.back);
-            this.Controls.Add(this.commutativeDiagram);
+            this.Controls.Add(this.systemOfEquations);
             this.Controls.Add(this.matrix);
             this.Controls.Add(this.label1);
-            this.Name = "Form17";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form17";
+            this.Name = "Form20";
+            this.Text = "Form20";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -107,7 +106,7 @@
 
         private System.Windows.Forms.Button ok;
         private System.Windows.Forms.Button back;
-        private System.Windows.Forms.RadioButton commutativeDiagram;
+        private System.Windows.Forms.RadioButton systemOfEquations;
         private System.Windows.Forms.RadioButton matrix;
         private System.Windows.Forms.Label label1;
     }

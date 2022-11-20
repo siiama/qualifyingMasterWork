@@ -11,25 +11,34 @@ using System.Windows.Forms;
 
 namespace qualifyingMasterWork
 {
-    public partial class Form17 : Form
+    public partial class Form20 : Form
     {
         Thread thread1, thread2, thread3;
-        public Form17()
+        public Form20()
         {
             InitializeComponent();
         }
+
+        private void back_Click(object sender, EventArgs e)
+        {
+            thread1 = new Thread(openForm10);
+            thread1.SetApartmentState(ApartmentState.STA);
+            thread1.Start();
+            this.Close();
+        }
+
         private void ok_Click(object sender, EventArgs e)
         {
             if (matrix.Checked)
             {
-                thread2 = new Thread(openForm18);
+                thread2 = new Thread(openForm21);
                 thread2.SetApartmentState(ApartmentState.STA);
                 thread2.Start();
                 this.Close();
             }
-            else if (commutativeDiagram.Checked)
+            else if (systemOfEquations.Checked)
             {
-                thread3 = new Thread(openForm19);
+                thread3 = new Thread(openForm22);
                 thread3.SetApartmentState(ApartmentState.STA);
                 thread3.Start();
                 this.Close();
@@ -39,25 +48,17 @@ namespace qualifyingMasterWork
                 MessageBox.Show("Please choose form of data");
             }
         }
-
-        private void back_Click(object sender, EventArgs e)
+        private void openForm10()
         {
-            thread1 = new Thread(openForm6);
-            thread1.SetApartmentState(ApartmentState.STA);
-            thread1.Start();
-            this.Close();
+            Application.Run(new Form10());
         }
-        private void openForm6()
+        private void openForm21()
         {
-            Application.Run(new Form06());
+            Application.Run(new Form21());
         }
-        private void openForm18()
+        private void openForm22()
         {
-            Application.Run(new Form18());
-        }
-        private void openForm19()
-        {
-            Application.Run(new Form19());
+            Application.Run(new Form22());
         }
     }
 }
