@@ -30,12 +30,11 @@
         {
             this.size = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.data = new System.Windows.Forms.DataGridView();
             this.generate = new System.Windows.Forms.Button();
             this.ok = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
+            this.data = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // size
@@ -53,16 +52,6 @@
             this.label2.TabIndex = 65;
             this.label2.Text = "Size";
             // 
-            // data
-            // 
-            this.data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.data.Location = new System.Drawing.Point(196, 85);
-            this.data.Name = "data";
-            this.data.RowHeadersWidth = 51;
-            this.data.RowTemplate.Height = 24;
-            this.data.Size = new System.Drawing.Size(240, 150);
-            this.data.TabIndex = 70;
-            // 
             // generate
             // 
             this.generate.Location = new System.Drawing.Point(46, 161);
@@ -71,6 +60,7 @@
             this.generate.TabIndex = 69;
             this.generate.Text = "Generate";
             this.generate.UseVisualStyleBackColor = true;
+            this.generate.Click += new System.EventHandler(this.generate_Click);
             // 
             // ok
             // 
@@ -102,14 +92,22 @@
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
+            // data
+            // 
+            this.data.AutoSize = true;
+            this.data.Location = new System.Drawing.Point(246, 50);
+            this.data.Name = "data";
+            this.data.Size = new System.Drawing.Size(0, 16);
+            this.data.TabIndex = 72;
+            // 
             // Form08
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 353);
+            this.Controls.Add(this.data);
             this.Controls.Add(this.size);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.data);
             this.Controls.Add(this.generate);
             this.Controls.Add(this.ok);
             this.Controls.Add(this.label1);
@@ -117,7 +115,6 @@
             this.Name = "Form08";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form08";
-            ((System.ComponentModel.ISupportInitialize)(this.data)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,10 +124,10 @@
 
         private System.Windows.Forms.TextBox size;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView data;
         private System.Windows.Forms.Button generate;
         private System.Windows.Forms.Button ok;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button back;
+        private System.Windows.Forms.Label data;
     }
 }

@@ -55,7 +55,7 @@ namespace qualifyingMasterWork
                 {
                     for (int j = 0; j < size_of_matrix; j++)
                     {
-                        output += matrix[i, j].ToString() + " ";
+                        output += matrix[i, j].ToString() + "   ";
                     }
                     output += "\n";
                 }

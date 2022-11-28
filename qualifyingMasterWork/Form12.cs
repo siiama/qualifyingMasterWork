@@ -32,6 +32,36 @@ namespace qualifyingMasterWork
             thread2.Start();
             this.Close();
         }
+        private void generate_Click(object sender, EventArgs e)
+        {
+            if (size.Text == "")
+            {
+                MessageBox.Show("Please enter size");
+            }
+            else
+            {
+                int size_of_matrix = Convert.ToInt32(size.Text);
+                int[,] matrix = new int[size_of_matrix, size_of_matrix];
+                Random random = new Random();
+                for (int i = 0; i < size_of_matrix; i++)
+                {
+                    for (int j = 0; j < size_of_matrix; j++)
+                    {
+                        matrix[i, j] = random.Next(0, 2);
+                    }
+                }
+                string output = "";
+                for (int i = 0; i < size_of_matrix; i++)
+                {
+                    for (int j = 0; j < size_of_matrix; j++)
+                    {
+                        output += matrix[i, j].ToString() + "   ";
+                    }
+                    output += "\n";
+                }
+                data.Text = output;
+            }
+        }
         private void openForm10()
         {
             Application.Run(new Form10());
