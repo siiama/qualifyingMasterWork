@@ -53,11 +53,13 @@ namespace qualifyingMasterWork
                 string output = "";
                 for (int i = 0; i < size_of_matrix; i++)
                 {
+                    output += "f_" + (i + 1) + " = (   ";
                     for (int j = 0; j < size_of_matrix; j++)
                     {
-                        output += matrix[i, j].ToString() + "   ";
+                        if (matrix[i, j] == 1)
+                        output += "x_" + (j+1) + "   ";
                     }
-                    output += "\n";
+                    output += ")\n";
                 }
                 data.Text = output;
             }
