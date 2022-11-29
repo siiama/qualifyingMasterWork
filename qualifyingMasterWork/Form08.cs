@@ -41,28 +41,33 @@ namespace qualifyingMasterWork
             else
             {
                 int num_of_equations = Convert.ToInt32(size.Text);
-                SortedDictionary<int, int[]> equations = new SortedDictionary<int, int[]>();
+                SortedDictionary<int, List<int>> equations = new SortedDictionary<int, List<int>>();
                 Random random = new Random();
                 for (int i = 0; i < num_of_equations; i++)
                 {
-                    int[] equation = new int[num_of_equations];
+                    int[] element = new int[num_of_equations];
                     for (int j = 0; j < num_of_equations; j++)
                     {
-                        equation[j] = random.Next(0, 2);
+                        element[j] = random.Next(0, 2);
+                    }
+                    List<int> equation = new List<int>();
+                    for (int j = 0; j < element.Length; j++)
+                    {
+                        if (element[j] == 1)
+                        {
+                            equation.Add(j);
+                        }
                     }
                     equations.Add(i + 1, equation);
                 }
                 string output = "";
-                foreach (KeyValuePair<int, int[]> pair in equations)
+                foreach (KeyValuePair<int, List<int>> pair in equations)
                 {
                     output += "f_" + pair.Key.ToString() + " = (   ";
-                    for (int i = 0; i < pair.Value.Length; i++)
+                    pair.Value.ForEach(delegate (int value)
                     {
-                        if (pair.Value[i] == 1)
-                        {
-                            output += "x_" + (i + 1) + "   ";
-                        } 
-                    }
+                        output += "x_" + (value + 1) + "   ";
+                    });
                     output += ")\n";
                 }
                 data.Text = output;
