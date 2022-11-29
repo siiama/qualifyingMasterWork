@@ -40,24 +40,28 @@ namespace qualifyingMasterWork
             }
             else
             {
-                int size_of_matrix = Convert.ToInt32(size.Text);
-                int[,] matrix = new int[size_of_matrix, size_of_matrix];
+                int num_of_equations = Convert.ToInt32(size.Text);
+                SortedDictionary<int, int[]> equations = new SortedDictionary<int, int[]>();
                 Random random = new Random();
-                for (int i = 0; i < size_of_matrix; i++)
+                for (int i = 0; i < num_of_equations; i++)
                 {
-                    for (int j = 0; j < size_of_matrix; j++)
+                    int[] equation = new int[num_of_equations];
+                    for (int j = 0; j < num_of_equations; j++)
                     {
-                        matrix[i, j] = random.Next(0, 2);
+                        equation[j] = random.Next(0, 2);
                     }
+                    equations.Add(i + 1, equation);
                 }
                 string output = "";
-                for (int i = 0; i < size_of_matrix; i++)
+                foreach (KeyValuePair<int, int[]> pair in equations)
                 {
-                    output += "f_" + (i + 1) + " = (   ";
-                    for (int j = 0; j < size_of_matrix; j++)
+                    output += "f_" + pair.Key.ToString() + " = (   ";
+                    for (int i = 0; i < pair.Value.Length; i++)
                     {
-                        if (matrix[i, j] == 1)
-                        output += "x_" + (j+1) + "   ";
+                        if (pair.Value[i] == 1)
+                        {
+                            output += "x_" + (i + 1) + "   ";
+                        } 
                     }
                     output += ")\n";
                 }
