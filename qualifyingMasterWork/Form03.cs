@@ -18,6 +18,7 @@ namespace qualifyingMasterWork
         public Form03()
         {
             InitializeComponent();
+            open_file.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
         }
         private void back_Click(object sender, EventArgs e)
         {
@@ -32,6 +33,15 @@ namespace qualifyingMasterWork
             thread2.SetApartmentState(ApartmentState.STA);
             thread2.Start();
             this.Close();
+        }
+        private void choose_file_Click(object sender, EventArgs e)
+        {
+            if (open_file.ShowDialog() == DialogResult.Cancel)
+                return;
+            string fileName = open_file.FileName;
+            string fileData = System.IO.File.ReadAllText(fileName);
+            file.Text = fileName;
+            MessageBox.Show(fileData);
         }
         private void openForm2()
         {

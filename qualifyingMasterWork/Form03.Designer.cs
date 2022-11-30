@@ -32,6 +32,8 @@
             this.choose_file = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
+            this.open_file = new System.Windows.Forms.OpenFileDialog();
+            this.file = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ok
@@ -53,6 +55,7 @@
             this.choose_file.TabIndex = 54;
             this.choose_file.Text = "choose file";
             this.choose_file.UseVisualStyleBackColor = true;
+            this.choose_file.Click += new System.EventHandler(this.choose_file_Click);
             // 
             // label1
             // 
@@ -73,11 +76,20 @@
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
+            // file
+            // 
+            this.file.AutoSize = true;
+            this.file.Location = new System.Drawing.Point(210, 153);
+            this.file.Name = "file";
+            this.file.Size = new System.Drawing.Size(0, 16);
+            this.file.TabIndex = 56;
+            // 
             // Form03
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 353);
+            this.Controls.Add(this.file);
             this.Controls.Add(this.ok);
             this.Controls.Add(this.choose_file);
             this.Controls.Add(this.label1);
@@ -96,5 +108,7 @@
         private System.Windows.Forms.Button choose_file;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button back;
+        private System.Windows.Forms.OpenFileDialog open_file;
+        private System.Windows.Forms.Label file;
     }
 }
