@@ -28,23 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.data = new System.Windows.Forms.DataGridView();
             this.save = new System.Windows.Forms.Button();
             this.ok = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
+            this.data = new System.Windows.Forms.Label();
+            this.save_file = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
-            // 
-            // data
-            // 
-            this.data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.data.Location = new System.Drawing.Point(117, 91);
-            this.data.Name = "data";
-            this.data.RowHeadersWidth = 51;
-            this.data.RowTemplate.Height = 24;
-            this.data.Size = new System.Drawing.Size(240, 150);
-            this.data.TabIndex = 77;
             // 
             // save
             // 
@@ -54,6 +44,7 @@
             this.save.TabIndex = 76;
             this.save.Text = "Save";
             this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
             // 
             // ok
             // 
@@ -85,6 +76,18 @@
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
+            // data
+            // 
+            this.data.AutoSize = true;
+            this.data.Location = new System.Drawing.Point(153, 70);
+            this.data.Name = "data";
+            this.data.Size = new System.Drawing.Size(0, 16);
+            this.data.TabIndex = 77;
+            // 
+            // save_file
+            // 
+            this.save_file.FileName = "result";
+            // 
             // Form15
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -98,18 +101,18 @@
             this.Name = "Form15";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form15";
-            ((System.ComponentModel.ISupportInitialize)(this.data)).EndInit();
+            this.Load += new System.EventHandler(this.Form15_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView data;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Button ok;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button back;
+        private System.Windows.Forms.Label data;
+        private System.Windows.Forms.SaveFileDialog save_file;
     }
 }

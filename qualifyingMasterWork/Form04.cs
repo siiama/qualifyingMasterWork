@@ -14,7 +14,6 @@ namespace qualifyingMasterWork
 {
     public partial class Form04 : Form
     {
-        //Thread thread1, thread2;
         Form14 form14;
         public int size_of_matrix;
         public int[,] matrix;
@@ -22,6 +21,7 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
             this.form14 = form14;
+            //Form.ActiveForm.Visible = false;
         }
         public int[,] fillMatrix(int[,] matrix)
         {
@@ -50,10 +50,7 @@ namespace qualifyingMasterWork
         }
         private void back_Click(object sender, EventArgs e)
         {
-            /*thread1 = new Thread(openForm2);
-            thread1.SetApartmentState(ApartmentState.STA);
-            thread1.Start();*/
-            this.Close();
+            /*thread1 = new Thread(openForm2);*/
         }
         private void ok_Click(object sender, EventArgs e)
         {
@@ -61,10 +58,7 @@ namespace qualifyingMasterWork
             {
                 form14.sendData(matrix);
                 form14.ShowDialog();
-                /*thread2 = new Thread(openForm14);
-                thread2.SetApartmentState(ApartmentState.STA);
-                thread2.Start();
-                this.Close();*/
+                /*thread2 = new Thread(openForm14);*/
             }
             else
             {
@@ -94,13 +88,5 @@ namespace qualifyingMasterWork
                 generateClicked = true;
             }
         }
-        /*private void openForm2()
-        {
-            Application.Run(new Form02());
-        }
-        private void openForm14()
-        {
-            Application.Run(new Form14());
-        }*/
     }
 }

@@ -16,59 +16,40 @@ namespace qualifyingMasterWork
     {
         Form15 form15;
         Form16 form16;
-        //Thread thread1, thread2, thread3;
+        public int[,] matrix;
         public Form14(Form15 form15, Form16 form16)
         {
             InitializeComponent();
             this.form15 = form15;
             this.form16 = form16;
+            //Form.ActiveForm.Visible = false;
         }
         public void sendData(int[,] data)
         {
-            int[,] matrix = new int[data.GetLength(0), data.GetLength(1)];
+            matrix = new int[data.GetLength(0), data.GetLength(1)];
             matrix = data;
         }
         private void back_Click(object sender, EventArgs e)
         {
-            /*thread1 = new Thread(openForm2);
-            thread1.SetApartmentState(ApartmentState.STA);
-            thread1.Start();*/
-            this.Close();
+            /*thread1 = new Thread(openForm2);*/
         }
         private void ok_Click(object sender, EventArgs e)
         {
             if (systemOfEquations.Checked)
             {
+                form15.sendData(matrix);
                 form15.ShowDialog();
-                /*thread2 = new Thread(openForm15);
-                thread2.SetApartmentState(ApartmentState.STA);
-                thread2.Start();
-                this.Close();*/
+                /*thread2 = new Thread(openForm15);*/
             }
             else if (commutativeDiagram.Checked)
             {
                 form16.ShowDialog();
-                /*thread3 = new Thread(openForm16);
-                thread3.SetApartmentState(ApartmentState.STA);
-                thread3.Start();
-                this.Close();*/
+                /*thread3 = new Thread(openForm16);*/
             }
             else
             {
                 MessageBox.Show("Please choose form of data");
             }
         }
-        /*private void openForm2()
-        {
-            Application.Run(new Form02());
-        }
-        private void openForm15()
-        {
-            Application.Run(new Form15());
-        }
-        private void openForm16()
-        {
-            Application.Run(new Form16());
-        }*/
     }
 }
