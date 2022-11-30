@@ -61,6 +61,13 @@ namespace qualifyingMasterWork
             thread2.Start();
             this.Close();
         }
+        private void size_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
+            {
+                e.Handled = true;
+            }
+        }
         private void generate_Click(object sender, EventArgs e)
         {
             if (size.Text == "")

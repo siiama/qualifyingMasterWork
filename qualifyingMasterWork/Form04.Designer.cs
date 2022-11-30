@@ -43,6 +43,7 @@
             this.size.Name = "size";
             this.size.Size = new System.Drawing.Size(22, 22);
             this.size.TabIndex = 64;
+            this.size.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.size_KeyPress);
             // 
             // label2
             // 
