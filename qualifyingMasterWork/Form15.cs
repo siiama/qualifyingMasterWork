@@ -32,7 +32,7 @@ namespace qualifyingMasterWork
             matrix = new int[data.GetLength(0), data.GetLength(1)];
             matrix = data;
         }
-        public SortedDictionary<int, List<int>> fill_equations(int num_of_equations, SortedDictionary<int, List<int>> equations)
+        private SortedDictionary<int, List<int>> fill_equations(int num_of_equations, SortedDictionary<int, List<int>> equations)
         {
             for (int i = 0; i < num_of_equations; i++)
             {
@@ -53,7 +53,7 @@ namespace qualifyingMasterWork
             }
             return equations;
         }
-        public void show_equations(SortedDictionary<int, List<int>> equations)
+        private void show_equations(SortedDictionary<int, List<int>> equations)
         {
             output = "";
             foreach (KeyValuePair<int, List<int>> pair in equations)
@@ -67,7 +67,7 @@ namespace qualifyingMasterWork
             }
             data.Text = output;
         }
-        public void save_equations(SortedDictionary<int, List<int>> equations)
+        private void save_equations(SortedDictionary<int, List<int>> equations)
         {
             result = "";
             foreach (KeyValuePair<int, List<int>> pair in equations)

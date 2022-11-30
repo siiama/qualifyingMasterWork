@@ -14,7 +14,6 @@ namespace qualifyingMasterWork
 {
     public partial class Form03 : Form
     {
-        //Thread thread1, thread2;
         Form14 form14;
         public int size_of_matrix;
         public int[,] matrix;
@@ -24,24 +23,44 @@ namespace qualifyingMasterWork
             InitializeComponent();
             this.form14 = form14;
             open_file.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            //Form.ActiveForm.Visible = false;
+        }
+        private int[,] fillMatrix(int[,] matrix)
+        {
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    //matrix[i, j] = random.Next(0, 2);
+                }
+            }
+            return matrix;
         }
         private void back_Click(object sender, EventArgs e)
         {
-            /*thread1 = new Thread(openForm2);
-            thread1.SetApartmentState(ApartmentState.STA);
-            thread1.Start();*/
-            this.Close();
+            /*thread1 = new Thread(openForm2);*/
         }
         private void ok_Click(object sender, EventArgs e)
         {
             if(chooseFileClicked == true)
             {
-                form14.sendData(matrix);
-                form14.ShowDialog();
-                /*thread2 = new Thread(openForm14);
-                thread2.SetApartmentState(ApartmentState.STA);
-                thread2.Start();
-                this.Close();*/
+                if (!string.IsNullOrEmpty(fileData))
+                {
+                    size_of_matrix = fileData.Split('\n').Length;
+                    matrix = new int[size_of_matrix, size_of_matrix];
+                    fillMatrix(matrix);
+                    form14.sendData(matrix);
+                    form14.ShowDialog();
+                    /*thread2 = new Thread(openForm14);*/
+                }
+                else
+                {
+                    MessageBox.Show("Empty file");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please choose file");
             }
         }
         private bool chooseFileClicked = false;
@@ -53,15 +72,6 @@ namespace qualifyingMasterWork
             fileData = System.IO.File.ReadAllText(fileName);
             file.Text = fileName;
             chooseFileClicked = true;
-            MessageBox.Show(fileData);
         }
-        /*private void openForm2()
-        {
-            Application.Run(new Form02());
-        }
-        private void openForm14()
-        {
-            Application.Run(new Form14());
-        }*/
     }
 }

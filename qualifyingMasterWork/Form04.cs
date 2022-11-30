@@ -23,7 +23,7 @@ namespace qualifyingMasterWork
             this.form14 = form14;
             //Form.ActiveForm.Visible = false;
         }
-        public int[,] fillMatrix(int[,] matrix)
+        private int[,] fillMatrix(int[,] matrix)
         {
             Random random = new Random();
             for (int i = 0; i < matrix.GetLength(0); i++)
@@ -35,7 +35,7 @@ namespace qualifyingMasterWork
             }
             return matrix;
         }
-        public void showMatix(int[,] matrix)
+        private void showMatix(int[,] matrix)
         {
             string output = "";
             for (int i = 0; i < matrix.GetLength(0); i++)
