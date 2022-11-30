@@ -26,7 +26,6 @@ namespace qualifyingMasterWork
             //Form01.ActiveForm.Visible = true;
             /*Form01 form01 = new Form01();
             form01.ShowDialog();*/
-            //Form0.ActiveForm.Close();
             /*thread1 = new Thread(openForm1);*/
         }
         private void ok_Click(object sender, EventArgs e)

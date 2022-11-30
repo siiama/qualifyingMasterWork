@@ -63,6 +63,7 @@ namespace qualifyingMasterWork
             else
             {
                 MessageBox.Show("Please generate data");
+                //WHY CLOSES THE APP?
             }
         }
         private void size_KeyPress(object sender, KeyPressEventArgs e)

@@ -31,7 +31,7 @@ namespace qualifyingMasterWork
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    //matrix[i, j] = random.Next(0, 2);
+                    //matrix[i, j] = random.Next(0, 2); CONTINUE HERE
                 }
             }
             return matrix;
