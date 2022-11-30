@@ -13,21 +13,23 @@ namespace qualifyingMasterWork
 {
     public partial class Form0 : Form
     {
-        Thread thread;
+        //Thread thread;
         public Form0()
         {
             InitializeComponent();
         }
         private void start_Click(object sender, EventArgs e)
         {
-            thread = new Thread(openForm1);
+            Form01 form01 = new Form01();
+            form01.ShowDialog();
+            /*thread = new Thread(openForm1);
             thread.SetApartmentState(ApartmentState.STA);
             thread.Start();
-            this.Close();
+            this.Close();*/
         }
-        private void openForm1()
+        /*private void openForm1()
         {
             Application.Run(new Form01());
-        }
+        }*/
     }
 }

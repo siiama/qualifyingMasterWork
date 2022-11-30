@@ -14,10 +14,14 @@ namespace qualifyingMasterWork
 {
     public partial class Form04 : Form
     {
-        Thread thread1, thread2;
-        public Form04()
+        //Thread thread1, thread2;
+        Form14 form14;
+        public int size_of_matrix;
+        public int[,] matrix;
+        public Form04(Form14 form14)
         {
             InitializeComponent();
+            this.form14 = form14;
         }
         public int[,] fillMatrix(int[,] matrix)
         {
@@ -46,20 +50,26 @@ namespace qualifyingMasterWork
         }
         private void back_Click(object sender, EventArgs e)
         {
-            thread1 = new Thread(openForm2);
+            /*thread1 = new Thread(openForm2);
             thread1.SetApartmentState(ApartmentState.STA);
-            thread1.Start();
+            thread1.Start();*/
             this.Close();
         }
         private void ok_Click(object sender, EventArgs e)
         {
-            /*Form14 form14 = new Form14();
-            form14.data.Text = "Hello";
-            form14.Show();*/
-            thread2 = new Thread(openForm14);
-            thread2.SetApartmentState(ApartmentState.STA);
-            thread2.Start();
-            this.Close();
+            if (generateClicked == true && size_of_matrix >=2)
+            {
+                form14.sendData(matrix);
+                form14.ShowDialog();
+                /*thread2 = new Thread(openForm14);
+                thread2.SetApartmentState(ApartmentState.STA);
+                thread2.Start();
+                this.Close();*/
+            }
+            else
+            {
+                MessageBox.Show("Please generate data");
+            }
         }
         private void size_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -68,6 +78,7 @@ namespace qualifyingMasterWork
                 e.Handled = true;
             }
         }
+        private bool generateClicked = false;
         private void generate_Click(object sender, EventArgs e)
         {
             if (size.Text == "")
@@ -76,19 +87,20 @@ namespace qualifyingMasterWork
             }
             else
             {
-                int size_of_matrix = Convert.ToInt32(size.Text);
-                int[,] matrix = new int[size_of_matrix, size_of_matrix];
+                size_of_matrix = Convert.ToInt32(size.Text);
+                matrix = new int[size_of_matrix, size_of_matrix];
                 fillMatrix(matrix);
                 showMatix(matrix);
+                generateClicked = true;
             }
         }
-        private void openForm2()
+        /*private void openForm2()
         {
             Application.Run(new Form02());
         }
         private void openForm14()
         {
-            Application.Run();
-        }
+            Application.Run(new Form14());
+        }*/
     }
 }

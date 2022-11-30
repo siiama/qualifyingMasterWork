@@ -65,6 +65,7 @@
             // 
             // ok
             // 
+            this.ok.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.ok.Location = new System.Drawing.Point(171, 280);
             this.ok.Name = "ok";
             this.ok.Size = new System.Drawing.Size(75, 23);

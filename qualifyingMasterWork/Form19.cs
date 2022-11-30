@@ -34,7 +34,7 @@ namespace qualifyingMasterWork
         }
         private void openForm17()
         {
-            Application.Run(new Form14());
+            Application.Run(new Form17());
         }
         private void openForm23()
         {

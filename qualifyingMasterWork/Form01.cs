@@ -14,7 +14,7 @@ namespace qualifyingMasterWork
 {
     public partial class Form01 : Form
     {
-        Thread thread1, thread2, thread3;
+        //Thread thread1, thread2, thread3;
         public Form01()
         {
             InitializeComponent();
@@ -23,31 +23,37 @@ namespace qualifyingMasterWork
         {
             if (matrix.Checked)
             {
-                thread1 = new Thread(openForm2);
+                Form02 form02 = new Form02();
+                form02.ShowDialog();
+                /*thread1 = new Thread(openForm2);
                 thread1.SetApartmentState(ApartmentState.STA);
                 thread1.Start();
-                this.Close();
+                this.Close();*/
             }
             else if (systemOfEquations.Checked)
             {
-                thread2 = new Thread(openForm6);
+                Form06 form06 = new Form06();
+                form06.ShowDialog();
+                /*thread2 = new Thread(openForm6);
                 thread2.SetApartmentState(ApartmentState.STA);
                 thread2.Start();
-                this.Close();
+                this.Close();*/
             }
             else if (commutativeDiagram.Checked)
             {
-                thread3 = new Thread(openForm10);
+                Form10 form10 = new Form10();
+                form10.ShowDialog();
+                /*thread3 = new Thread(openForm10);
                 thread3.SetApartmentState(ApartmentState.STA);
                 thread3.Start();
-                this.Close();
+                this.Close();*/
             }
             else
             {
                 MessageBox.Show("Please choose form of data");
             }
         }
-        private void openForm2()
+        /*private void openForm2()
         {
             Application.Run(new Form02());
         }
@@ -58,6 +64,6 @@ namespace qualifyingMasterWork
         private void openForm10()
         {
             Application.Run(new Form10());
-        }
+        }*/
     }
 }
