@@ -18,6 +18,42 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
         }
+        public SortedDictionary<int, List<int>> fill_equations(int num_of_equations, SortedDictionary<int, List<int>> equations)
+        {
+            Random random = new Random();
+            for (int i = 0; i < num_of_equations; i++)
+            {
+                int[] element = new int[num_of_equations];
+                for (int j = 0; j < num_of_equations; j++)
+                {
+                    element[j] = random.Next(0, 2);
+                }
+                List<int> equation = new List<int>();
+                for (int j = 0; j < element.Length; j++)
+                {
+                    if (element[j] == 1)
+                    {
+                        equation.Add(j);
+                    }
+                }
+                equations.Add(i + 1, equation);
+            }
+            return equations;
+        }
+        public void show_equations(SortedDictionary<int, List<int>> equations)
+        {
+            string output = "";
+            foreach (KeyValuePair<int, List<int>> pair in equations)
+            {
+                output += "f_" + pair.Key.ToString() + " = (   ";
+                pair.Value.ForEach(delegate (int value)
+                {
+                    output += "x_" + (value + 1) + "   ";
+                });
+                output += ")\n";
+            }
+            data.Text = output;
+        }
         private void back_Click(object sender, EventArgs e)
         {
             thread1 = new Thread(openForm6);
@@ -42,35 +78,8 @@ namespace qualifyingMasterWork
             {
                 int num_of_equations = Convert.ToInt32(size.Text);
                 SortedDictionary<int, List<int>> equations = new SortedDictionary<int, List<int>>();
-                Random random = new Random();
-                for (int i = 0; i < num_of_equations; i++)
-                {
-                    int[] element = new int[num_of_equations];
-                    for (int j = 0; j < num_of_equations; j++)
-                    {
-                        element[j] = random.Next(0, 2);
-                    }
-                    List<int> equation = new List<int>();
-                    for (int j = 0; j < element.Length; j++)
-                    {
-                        if (element[j] == 1)
-                        {
-                            equation.Add(j);
-                        }
-                    }
-                    equations.Add(i + 1, equation);
-                }
-                string output = "";
-                foreach (KeyValuePair<int, List<int>> pair in equations)
-                {
-                    output += "f_" + pair.Key.ToString() + " = (   ";
-                    pair.Value.ForEach(delegate (int value)
-                    {
-                        output += "x_" + (value + 1) + "   ";
-                    });
-                    output += ")\n";
-                }
-                data.Text = output;
+                fill_equations(num_of_equations, equations);
+                show_equations(equations);
             }
         }
         private void openForm6()

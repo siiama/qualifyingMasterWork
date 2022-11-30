@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -18,6 +19,31 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
         }
+        public int[,] fillMatrix(int[,] matrix)
+        {
+            Random random = new Random();
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    matrix[i, j] = random.Next(0, 2);
+                }
+            }
+            return matrix;
+        }
+        public void showMatix(int[,] matrix)
+        {
+            string output = "";
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    output += matrix[i, j].ToString() + "   ";
+                }
+                output += "\n";
+            }
+            data.Text = output;
+        }
         private void back_Click(object sender, EventArgs e)
         {
             thread1 = new Thread(openForm2);
@@ -27,6 +53,9 @@ namespace qualifyingMasterWork
         }
         private void ok_Click(object sender, EventArgs e)
         {
+            /*Form14 form14 = new Form14();
+            form14.data.Text = "Hello";
+            form14.Show();*/
             thread2 = new Thread(openForm14);
             thread2.SetApartmentState(ApartmentState.STA);
             thread2.Start();
@@ -42,24 +71,8 @@ namespace qualifyingMasterWork
             {
                 int size_of_matrix = Convert.ToInt32(size.Text);
                 int[,] matrix = new int[size_of_matrix, size_of_matrix];
-                Random random = new Random();
-                for (int i = 0; i < size_of_matrix; i++)
-                {
-                    for (int j = 0; j < size_of_matrix; j++)
-                    {
-                        matrix[i, j] = random.Next(0, 2);
-                    }
-                }
-                string output = "";
-                for (int i = 0; i < size_of_matrix; i++)
-                {
-                    for (int j = 0; j < size_of_matrix; j++)
-                    {
-                        output += matrix[i, j].ToString() + "   ";
-                    }
-                    output += "\n";
-                }
-                data.Text = output;
+                fillMatrix(matrix);
+                showMatix(matrix);
             }
         }
         private void openForm2()
@@ -68,7 +81,7 @@ namespace qualifyingMasterWork
         }
         private void openForm14()
         {
-            Application.Run(new Form14());
+            Application.Run();
         }
     }
 }
