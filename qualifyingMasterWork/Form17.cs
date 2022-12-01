@@ -15,7 +15,7 @@ namespace qualifyingMasterWork
     {
         Form18 form18;
         Form19 form19;
-        public SortedDictionary<int, List<int>> equations;
+        public SortedDictionary<int, HashSet<int>> equations;
         public Form17(Form18 form18, Form19 form19)
         {
             InitializeComponent();
@@ -23,9 +23,9 @@ namespace qualifyingMasterWork
             this.form19 = form19;
             //Form.ActiveForm.Visible = false;
         }
-        public void sendData(SortedDictionary<int, List<int>> data)
+        public void sendData(SortedDictionary<int, HashSet<int>> data)
         {
-            equations = new SortedDictionary<int, List<int>>();
+            equations = new SortedDictionary<int, HashSet<int>>();
             equations = data;
         }
         private void back_Click(object sender, EventArgs e)

@@ -18,7 +18,7 @@ namespace qualifyingMasterWork
         Form23 form23;
         public int[,] matrix;
         public int num_of_equations;
-        public SortedDictionary<int, List<int>> equations;
+        public SortedDictionary<int, HashSet<int>> equations;
         public string output, result;
         public Form15(Form23 form23)
         {
@@ -32,7 +32,7 @@ namespace qualifyingMasterWork
             matrix = new int[data.GetLength(0), data.GetLength(1)];
             matrix = data;
         }
-        private SortedDictionary<int, List<int>> fill_equations(int num_of_equations, SortedDictionary<int, List<int>> equations)
+        private SortedDictionary<int, HashSet<int>> fill_equations(int num_of_equations, SortedDictionary<int, HashSet<int>> equations)
         {
             for (int i = 0; i < num_of_equations; i++)
             {
@@ -41,7 +41,7 @@ namespace qualifyingMasterWork
                 {
                     element[j] = matrix[i, j];
                 }
-                List<int> equation = new List<int>();
+                HashSet<int> equation = new HashSet<int>();
                 for (int j = 0; j < element.Length; j++)
                 {
                     if (element[j] == 1)
@@ -53,37 +53,37 @@ namespace qualifyingMasterWork
             }
             return equations;
         }
-        private void show_equations(SortedDictionary<int, List<int>> equations)
+        private void show_equations(SortedDictionary<int, HashSet<int>> equations)
         {
             output = "";
-            foreach (KeyValuePair<int, List<int>> pair in equations)
+            foreach (KeyValuePair<int, HashSet<int>> pair in equations)
             {
                 output += "f_" + pair.Key.ToString() + " = (   ";
-                pair.Value.ForEach(delegate (int value)
+                foreach (int value in pair.Value)
                 {
                     output += "x_" + (value + 1) + "   ";
-                });
+                }
                 output += ")\n";
             }
             data.Text = output;
         }
-        private void save_equations(SortedDictionary<int, List<int>> equations)
+        private void save_equations(SortedDictionary<int, HashSet<int>> equations)
         {
             result = "";
-            foreach (KeyValuePair<int, List<int>> pair in equations)
+            foreach (KeyValuePair<int, HashSet<int>> pair in equations)
             {
                 result += "f_" + pair.Key.ToString() + ": ";
-                pair.Value.ForEach(delegate (int value)
+                foreach (int value in pair.Value)
                 {
                     result += "x_" + (value + 1) + " ";
-                });
+                }
                 result += "\n";
             }
         }
         private void Form15_Load(object sender, EventArgs e)
         {
             num_of_equations = matrix.GetLength(0);
-            equations = new SortedDictionary<int, List<int>>();
+            equations = new SortedDictionary<int, HashSet<int>>();
             fill_equations(num_of_equations, equations);
             show_equations(equations);
         }

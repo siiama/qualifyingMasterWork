@@ -15,7 +15,7 @@ namespace qualifyingMasterWork
     {
         Form17 form17;
         public int num_of_equations;
-        public SortedDictionary<int, List<int>> equations;
+        public SortedDictionary<int, HashSet<int>> equations;
         public string fileData;
         public Form07(Form17 form17)
         {
@@ -24,7 +24,7 @@ namespace qualifyingMasterWork
             open_file.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
             //Form.ActiveForm.Visible = false;
         }
-        private SortedDictionary<int, List<int>> fill_equations(int num_of_equations, SortedDictionary<int, List<int>> equations)
+        private SortedDictionary<int, HashSet<int>> fill_equations(int num_of_equations, SortedDictionary<int, HashSet<int>> equations)
         {
             for (int i = 0; i < num_of_equations; i++)
             {
@@ -33,7 +33,7 @@ namespace qualifyingMasterWork
                 {
                     //element[j] = random.Next(0, 2);
                 }
-                List<int> equation = new List<int>();
+                HashSet<int> equation = new HashSet<int>();
                 for (int j = 0; j < element.Length; j++)
                 {
                     if (element[j] == 1)
@@ -56,7 +56,7 @@ namespace qualifyingMasterWork
                 if (!string.IsNullOrEmpty(fileData))
                 {
                     num_of_equations = fileData.Split('\n').Length;
-                    equations = new SortedDictionary<int, List<int>>();
+                    equations = new SortedDictionary<int, HashSet<int>>();
                     fill_equations(num_of_equations, equations);
                     form17.sendData(equations);
                     form17.ShowDialog();

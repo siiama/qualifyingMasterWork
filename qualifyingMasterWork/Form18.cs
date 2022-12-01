@@ -16,7 +16,7 @@ namespace qualifyingMasterWork
         Form23 form23;
         public int[,] matrix;
         public int num_of_equations;
-        public SortedDictionary<int, List<int>> equations;
+        public SortedDictionary<int, HashSet<int>> equations;
         public Form18(Form23 form23)
         {
             InitializeComponent();
@@ -24,9 +24,9 @@ namespace qualifyingMasterWork
             //Form.ActiveForm.Visible = false;
             save_file.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        public void sendData(SortedDictionary<int, List<int>> data)
+        public void sendData(SortedDictionary<int, HashSet<int>> data)
         {
-            equations = new SortedDictionary<int, List<int>>();
+            equations = new SortedDictionary<int, HashSet<int>>();
             equations = data;
         }
         private void back_Click(object sender, EventArgs e)

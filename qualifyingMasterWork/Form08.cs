@@ -16,14 +16,14 @@ namespace qualifyingMasterWork
     {
         Form17 form17;
         public int num_of_equations;
-        public SortedDictionary<int, List<int>> equations;
+        public SortedDictionary<int, HashSet<int>> equations;
         public Form08(Form17 form17)
         {
             InitializeComponent();
             this.form17 = form17;
             //Form.ActiveForm.Visible = false;
         }
-        private SortedDictionary<int, List<int>> fill_equations(int num_of_equations, SortedDictionary<int, List<int>> equations)
+        private SortedDictionary<int, HashSet<int>> fill_equations(int num_of_equations, SortedDictionary<int, HashSet<int>> equations)
         {
             Random random = new Random();
             for (int i = 0; i < num_of_equations; i++)
@@ -33,7 +33,7 @@ namespace qualifyingMasterWork
                 {
                     element[j] = random.Next(0, 2);
                 }
-                List<int> equation = new List<int>();
+                HashSet<int> equation = new HashSet<int>();
                 for (int j = 0; j < element.Length; j++)
                 {
                     if (element[j] == 1)
@@ -45,16 +45,20 @@ namespace qualifyingMasterWork
             }
             return equations;
         }
-        private void show_equations(SortedDictionary<int, List<int>> equations)
+        private void show_equations(SortedDictionary<int, HashSet<int>> equations)
         {
             string output = "";
-            foreach (KeyValuePair<int, List<int>> pair in equations)
+            foreach (KeyValuePair<int, HashSet<int>> pair in equations)
             {
                 output += "f_" + pair.Key.ToString() + " = (   ";
-                pair.Value.ForEach(delegate (int value)
+                foreach (int value in pair.Value)
                 {
                     output += "x_" + (value + 1) + "   ";
-                });
+                }
+                /*pair.Value.ForEach(delegate (int value)
+                {
+                    output += "x_" + (value + 1) + "   ";
+                });*/
                 output += ")\n";
             }
             data.Text = output;
@@ -94,7 +98,7 @@ namespace qualifyingMasterWork
             else
             {
                 num_of_equations = Convert.ToInt32(size.Text);
-                equations = new SortedDictionary<int, List<int>>();
+                equations = new SortedDictionary<int, HashSet<int>>();
                 fill_equations(num_of_equations, equations);
                 show_equations(equations);
                 generateClicked = true;
