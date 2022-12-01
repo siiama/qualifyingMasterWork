@@ -17,31 +17,24 @@ namespace qualifyingMasterWork
         public Form01()
         {
             InitializeComponent();
-            //Form02.ActiveForm.Visible = false;
-            //Form.ActiveForm.Close();
+            //Form.ActiveForm.Visible = false;
         }
         private void next_Click(object sender, EventArgs e)
         {
             if (matrix.Checked)
             {
-                //Form.ActiveForm.Close();
                 Form02 form02 = new Form02();
                 form02.ShowDialog();
-                /*thread1 = new Thread(openForm2);*/
             }
             else if (systemOfEquations.Checked)
             {
-                //Form.ActiveForm.Close();
                 Form06 form06 = new Form06();
                 form06.ShowDialog();
-                /*thread2 = new Thread(openForm6);*/
             }
             else if (commutativeDiagram.Checked)
             {
-                //Form.ActiveForm.Close();
                 Form10 form10 = new Form10();
                 form10.ShowDialog();
-                /*thread3 = new Thread(openForm10);*/
             }
             else
             {

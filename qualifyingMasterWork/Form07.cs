@@ -31,17 +31,17 @@ namespace qualifyingMasterWork
                 int[] element = new int[num_of_equations];
                 for (int j = 0; j < num_of_equations; j++)
                 {
-                    //element[j] = random.Next(0, 2);
+                    //FILL EQUATIONS
                 }
                 HashSet<int> equation = new HashSet<int>();
                 for (int j = 0; j < element.Length; j++)
                 {
                     if (element[j] == 1)
                     {
-                        //equation.Add(j);
+                        //
                     }
                 }
-                //equations.Add(i + 1, equation);
+                //
             }
             return equations;
         }
@@ -60,7 +60,6 @@ namespace qualifyingMasterWork
                     fill_equations(num_of_equations, equations);
                     form17.sendData(equations);
                     form17.ShowDialog();
-                    /*thread2 = new Thread(openForm17);*/
                 }
                 else
                 {

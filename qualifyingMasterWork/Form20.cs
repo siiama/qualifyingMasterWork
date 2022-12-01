@@ -38,13 +38,11 @@ namespace qualifyingMasterWork
             {
                 form21.sendData(commutativeDiagram);
                 form21.ShowDialog();
-                //thread2 = new Thread(openForm21);
             }
             else if (systemOfEquations.Checked)
             {
                 form22.sendData(commutativeDiagram);
                 form22.ShowDialog();
-                //thread3 = new Thread(openForm22);
             }
             else
             {

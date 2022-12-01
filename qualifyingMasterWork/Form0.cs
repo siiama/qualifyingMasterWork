@@ -24,7 +24,6 @@ namespace qualifyingMasterWork
             this.Opacity = 0.0;*/
             Form01 form01 = new Form01();
             form01.ShowDialog();
-            /*thread = new Thread(openForm1);*/
         }
         private void exit_Click(object sender, EventArgs e)
         {

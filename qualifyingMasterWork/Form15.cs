@@ -89,12 +89,11 @@ namespace qualifyingMasterWork
         }
         private void back_Click(object sender, EventArgs e)
         {
-            /*thread1 = new Thread(openForm14);*/
+            //thread1 = new Thread(openForm14);
         }
         private void finish_Click(object sender, EventArgs e)
         {
             form23.ShowDialog();
-            /*thread2 = new Thread(openForm23);*/
         }
         private void save_Click(object sender, EventArgs e)
         {

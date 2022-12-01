@@ -29,11 +29,10 @@ namespace qualifyingMasterWork
                 int[] element = new int[numOfVertexesInEachPart];
                 for (int j = 0; j < numOfVertexesInEachPart; j++)
                 {
-                    //element[j] = random.Next(0, 2);
+                    //FILL COMMUTATIVE DIAGRAM
                     if (element[j] == 1)
                     {
-                        //Tuple<int, int> edge = new Tuple<int, int>(i, j);
-                        //commutativeDiagram.Add(edge);
+                        //
                     }
                 }
             }
@@ -49,7 +48,6 @@ namespace qualifyingMasterWork
             {
                 form20.sendData(commutativeDiagram);
                 form20.ShowDialog();
-                /*thread2 = new Thread(openForm20);*/
             }
             else
             {

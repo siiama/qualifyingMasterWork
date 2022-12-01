@@ -16,7 +16,6 @@ namespace qualifyingMasterWork
     {
         Form23 form23;
         public HashSet<Tuple<int, int>> commutativeDiagram;
-        public int num_of_equations;
         public SortedDictionary<int, HashSet<int>> equations;
         public string output, result;
         public Form22(Form23 form23)
@@ -31,7 +30,7 @@ namespace qualifyingMasterWork
             commutativeDiagram = new HashSet<Tuple<int, int>>();
             commutativeDiagram = data;
         }
-        private SortedDictionary<int, HashSet<int>> fill_equations(int num_of_equations, SortedDictionary<int, HashSet<int>> equations)
+        private SortedDictionary<int, HashSet<int>> fill_equations(SortedDictionary<int, HashSet<int>> equations)
         {
             int previousFunction = 0;
             HashSet<int> equation = new HashSet<int>();
@@ -85,9 +84,8 @@ namespace qualifyingMasterWork
         }
         private void Form22_Load(object sender, EventArgs e)
         {
-            //num_of_equations = matrix.GetLength(0);
             equations = new SortedDictionary<int, HashSet<int>>();
-            fill_equations(num_of_equations, equations);
+            fill_equations(equations);
             show_equations(equations);
         }
         private void save_Click(object sender, EventArgs e)
@@ -101,7 +99,6 @@ namespace qualifyingMasterWork
         private void finish_Click(object sender, EventArgs e)
         {
             form23.ShowDialog();
-            //thread2 = new Thread(openForm23);
         }
     }
 }

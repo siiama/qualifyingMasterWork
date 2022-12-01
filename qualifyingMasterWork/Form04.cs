@@ -50,7 +50,7 @@ namespace qualifyingMasterWork
         }
         private void back_Click(object sender, EventArgs e)
         {
-            /*thread1 = new Thread(openForm2);*/
+            //thread1 = new Thread(openForm2);
         }
         private void next_Click(object sender, EventArgs e)
         {
@@ -58,7 +58,6 @@ namespace qualifyingMasterWork
             {
                 form14.sendData(matrix);
                 form14.ShowDialog();
-                /*thread2 = new Thread(openForm14);*/
             }
             else
             {

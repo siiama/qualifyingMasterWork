@@ -77,7 +77,7 @@ namespace qualifyingMasterWork
         }
         private void Form21_Load(object sender, EventArgs e)
         {
-            //sizeOfMatrix = commutativeDiagram.Aggregate((val1, val2) => val1.Item1 > val2.Item1 ? val1 : val2);
+            //sizeOfMatrix =
             matrix = new int[sizeOfMatrix, sizeOfMatrix];
             fillMatrix(matrix);
             showMatrix(matrix);
@@ -97,7 +97,6 @@ namespace qualifyingMasterWork
         private void finish_Click(object sender, EventArgs e)
         {
             form23.ShowDialog();
-            //thread2 = new Thread(openForm23);
         }
     }
 }

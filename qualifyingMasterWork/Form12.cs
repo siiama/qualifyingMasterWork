@@ -55,7 +55,6 @@ namespace qualifyingMasterWork
             {
                 form20.sendData(commutativeDiagram);
                 form20.ShowDialog();
-                /*thread2 = new Thread(openForm20);*/
             }
             else
             {

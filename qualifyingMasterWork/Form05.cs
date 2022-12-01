@@ -28,7 +28,7 @@ namespace qualifyingMasterWork
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    //matrix[i, j] = random.Next(0, 2);
+                    //FILL MATRIX
                 }
             }
             return matrix;
@@ -43,7 +43,6 @@ namespace qualifyingMasterWork
             {
                 form14.sendData(matrix);
                 form14.ShowDialog();
-                /*thread2 = new Thread(openForm14);*/
             }
             else
             {

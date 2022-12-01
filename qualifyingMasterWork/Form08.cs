@@ -69,7 +69,6 @@ namespace qualifyingMasterWork
             {
                 form17.sendData(equations);
                 form17.ShowDialog();
-                /*thread2 = new Thread(openForm17);*/
             }
             else
             {

@@ -31,7 +31,7 @@ namespace qualifyingMasterWork
         }
         private void back_Click(object sender, EventArgs e)
         {
-            /*thread1 = new Thread(openForm2);*/
+            //thread1 = new Thread(openForm2);
         }
         private void next_Click(object sender, EventArgs e)
         {
@@ -39,13 +39,11 @@ namespace qualifyingMasterWork
             {
                 form15.sendData(matrix);
                 form15.ShowDialog();
-                /*thread2 = new Thread(openForm15);*/
             }
             else if (commutativeDiagram.Checked)
             {
                 form16.sendData(matrix);
                 form16.ShowDialog();
-                /*thread3 = new Thread(openForm16);*/
             }
             else
             {

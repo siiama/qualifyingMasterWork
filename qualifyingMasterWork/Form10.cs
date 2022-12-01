@@ -33,7 +33,6 @@ namespace qualifyingMasterWork
                 Form20 form20 = new Form20(form21, form22);
                 Form11 form11 = new Form11(form20);
                 form11.ShowDialog();
-                //thread2 = new Thread(openForm11);
             }
             else if (generate.Checked)
             {
@@ -43,7 +42,6 @@ namespace qualifyingMasterWork
                 Form20 form20 = new Form20(form21, form22);
                 Form12 form12 = new Form12(form20);
                 form12.ShowDialog();
-                //thread3 = new Thread(openForm12);
             }
             else if (manual.Checked)
             {
@@ -53,7 +51,6 @@ namespace qualifyingMasterWork
                 Form20 form20 = new Form20(form21, form22);
                 Form13 form13 = new Form13(form20);
                 form13.ShowDialog();
-                //thread4 = new Thread(openForm13);
             }
             else
             {
