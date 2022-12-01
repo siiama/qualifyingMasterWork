@@ -42,6 +42,7 @@ namespace qualifyingMasterWork
                 Form18 form18 = new Form18(form23);
                 Form17 form17 = new Form17(form18, form19);
                 Form08 form08 = new Form08(form17);
+                form08.ShowDialog();
                 //thread3 = new Thread(openForm8);
             }
             else if (manual.Checked)
@@ -51,6 +52,7 @@ namespace qualifyingMasterWork
                 Form18 form18 = new Form18(form23);
                 Form17 form17 = new Form17(form18, form19);
                 Form09 form09 = new Form09(form17);
+                form09.ShowDialog();
                 //thread4 = new Thread(openForm9);
             }
             else

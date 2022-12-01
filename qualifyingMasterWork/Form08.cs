@@ -41,7 +41,7 @@ namespace qualifyingMasterWork
                         equation.Add(j);
                     }
                 }
-                equations.Add(i + 1, equation);
+                equations.Add(i, equation);
             }
             return equations;
         }
@@ -50,15 +50,11 @@ namespace qualifyingMasterWork
             string output = "";
             foreach (KeyValuePair<int, HashSet<int>> pair in equations)
             {
-                output += "f_" + pair.Key.ToString() + " = (   ";
+                output += "f_" + (pair.Key+1).ToString() + " = (   ";
                 foreach (int value in pair.Value)
                 {
                     output += "x_" + (value + 1) + "   ";
                 }
-                /*pair.Value.ForEach(delegate (int value)
-                {
-                    output += "x_" + (value + 1) + "   ";
-                });*/
                 output += ")\n";
             }
             data.Text = output;
@@ -78,7 +74,6 @@ namespace qualifyingMasterWork
             else
             {
                 MessageBox.Show("Please generate data");
-                //WHY CLOSES THE APP?
             }
         }
         private void size_KeyPress(object sender, KeyPressEventArgs e)

@@ -84,6 +84,10 @@
             this.label2.Size = new System.Drawing.Size(0, 16);
             this.label2.TabIndex = 89;
             // 
+            // save_file
+            // 
+            this.save_file.FileName = "result";
+            // 
             // Form19
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);

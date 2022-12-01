@@ -76,6 +76,10 @@
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
+            // save_file
+            // 
+            this.save_file.FileName = "result";
+            // 
             // data
             // 
             this.data.AutoSize = true;
