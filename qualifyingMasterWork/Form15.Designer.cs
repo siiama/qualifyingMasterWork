@@ -79,7 +79,7 @@
             // data
             // 
             this.data.AutoSize = true;
-            this.data.Location = new System.Drawing.Point(153, 70);
+            this.data.Location = new System.Drawing.Point(153, 77);
             this.data.Name = "data";
             this.data.Size = new System.Drawing.Size(0, 16);
             this.data.TabIndex = 77;

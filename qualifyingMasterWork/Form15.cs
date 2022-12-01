@@ -90,7 +90,6 @@ namespace qualifyingMasterWork
         private void back_Click(object sender, EventArgs e)
         {
             /*thread1 = new Thread(openForm14);*/
-            this.Close();
         }
         private void ok_Click(object sender, EventArgs e)
         {

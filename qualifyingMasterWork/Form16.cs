@@ -13,35 +13,40 @@ namespace qualifyingMasterWork
 {
     public partial class Form16 : Form
     {
-        //Thread thread1, thread2;
         Form23 form23;
+        public int[,] matrix;
         public Form16(Form23 form23)
         {
             InitializeComponent();
             this.form23 = form23;
+            //Form.ActiveForm.Visible = false;
+            save_file.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+        }
+        public void sendData(int[,] data)
+        {
+            matrix = new int[data.GetLength(0), data.GetLength(1)];
+            matrix = data;
+        }
+        private void Form16_Load(object sender, EventArgs e)
+        {
+
         }
         private void back_Click(object sender, EventArgs e)
         {
-            /*thread1 = new Thread(openForm14);
-            thread1.SetApartmentState(ApartmentState.STA);
-            thread1.Start();*/
-            this.Close();
+            /*thread1 = new Thread(openForm14);*/
         }
         private void ok_Click(object sender, EventArgs e)
         {
             form23.ShowDialog();
-            /*thread2 = new Thread(openForm23);
-            thread2.SetApartmentState(ApartmentState.STA);
-            thread2.Start();
-            this.Close();*/
+            /*thread2 = new Thread(openForm23);*/
         }
-        /*private void openForm14()
+        private void save_Click(object sender, EventArgs e)
         {
-            Application.Run(new Form14());
+            /*if (save_file.ShowDialog() == DialogResult.Cancel)
+                return;
+            //save_commutativeDiagram(commutativeDiagram);
+            string filename = save_file.FileName;
+            System.IO.File.WriteAllText(filename, result);*/
         }
-        private void openForm23()
-        {
-            Application.Run(new Form23());
-        }*/
     }
 }

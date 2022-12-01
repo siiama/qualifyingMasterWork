@@ -30,48 +30,37 @@
         {
             this.size = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.data = new System.Windows.Forms.DataGridView();
-            this.ok = new System.Windows.Forms.Button();
+            this.next = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
+            this.ok = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // size
             // 
-            this.size.Location = new System.Drawing.Point(99, 146);
+            this.size.Location = new System.Drawing.Point(99, 117);
             this.size.Name = "size";
             this.size.Size = new System.Drawing.Size(22, 22);
             this.size.TabIndex = 77;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(48, 149);
+            this.label2.Location = new System.Drawing.Point(48, 120);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 16);
             this.label2.TabIndex = 72;
             this.label2.Text = "Size";
             // 
-            // data
+            // next
             // 
-            this.data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.data.Location = new System.Drawing.Point(196, 85);
-            this.data.Name = "data";
-            this.data.RowHeadersWidth = 51;
-            this.data.RowTemplate.Height = 24;
-            this.data.Size = new System.Drawing.Size(240, 150);
-            this.data.TabIndex = 76;
-            // 
-            // ok
-            // 
-            this.ok.Location = new System.Drawing.Point(171, 280);
-            this.ok.Name = "ok";
-            this.ok.Size = new System.Drawing.Size(75, 23);
-            this.ok.TabIndex = 75;
-            this.ok.Text = "OK";
-            this.ok.UseVisualStyleBackColor = true;
-            this.ok.UseWaitCursor = true;
-            this.ok.Click += new System.EventHandler(this.ok_Click);
+            this.next.Location = new System.Drawing.Point(171, 280);
+            this.next.Name = "next";
+            this.next.Size = new System.Drawing.Size(75, 23);
+            this.next.TabIndex = 75;
+            this.next.Text = "Next";
+            this.next.UseVisualStyleBackColor = true;
+            this.next.UseWaitCursor = true;
+            this.next.Click += new System.EventHandler(this.next_Click);
             // 
             // label1
             // 
@@ -92,21 +81,30 @@
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
+            // ok
+            // 
+            this.ok.Location = new System.Drawing.Point(46, 161);
+            this.ok.Name = "ok";
+            this.ok.Size = new System.Drawing.Size(75, 23);
+            this.ok.TabIndex = 78;
+            this.ok.Text = "OK";
+            this.ok.UseVisualStyleBackColor = true;
+            this.ok.Click += new System.EventHandler(this.ok_Click);
+            // 
             // Form09
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 353);
+            this.Controls.Add(this.ok);
             this.Controls.Add(this.size);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.data);
-            this.Controls.Add(this.ok);
+            this.Controls.Add(this.next);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.back);
             this.Name = "Form09";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form09";
-            ((System.ComponentModel.ISupportInitialize)(this.data)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -116,9 +114,9 @@
 
         private System.Windows.Forms.TextBox size;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView data;
-        private System.Windows.Forms.Button ok;
+        private System.Windows.Forms.Button next;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button back;
+        private System.Windows.Forms.Button ok;
     }
 }

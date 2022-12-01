@@ -43,6 +43,7 @@ namespace qualifyingMasterWork
             }
             else if (commutativeDiagram.Checked)
             {
+                form16.sendData(matrix);
                 form16.ShowDialog();
                 /*thread3 = new Thread(openForm16);*/
             }

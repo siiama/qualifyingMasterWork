@@ -13,50 +13,43 @@ namespace qualifyingMasterWork
 {
     public partial class Form17 : Form
     {
-        Thread thread1, thread2, thread3;
-        public Form17()
+        Form18 form18;
+        Form19 form19;
+        public SortedDictionary<int, List<int>> equations;
+        public Form17(Form18 form18, Form19 form19)
         {
             InitializeComponent();
+            this.form18 = form18;
+            this.form19 = form19;
+            //Form.ActiveForm.Visible = false;
+        }
+        public void sendData(SortedDictionary<int, List<int>> data)
+        {
+            equations = new SortedDictionary<int, List<int>>();
+            equations = data;
         }
         private void back_Click(object sender, EventArgs e)
         {
-            thread1 = new Thread(openForm6);
-            thread1.SetApartmentState(ApartmentState.STA);
-            thread1.Start();
-            this.Close();
+            //thread1 = new Thread(openForm6);
         }
         private void ok_Click(object sender, EventArgs e)
         {
             if (matrix.Checked)
             {
-                thread2 = new Thread(openForm18);
-                thread2.SetApartmentState(ApartmentState.STA);
-                thread2.Start();
-                this.Close();
+                form18.sendData(equations);
+                form18.ShowDialog();
+                //thread2 = new Thread(openForm18);
             }
             else if (commutativeDiagram.Checked)
             {
-                thread3 = new Thread(openForm19);
-                thread3.SetApartmentState(ApartmentState.STA);
-                thread3.Start();
-                this.Close();
+                form19.sendData(equations);
+                form19.ShowDialog();
+                //thread3 = new Thread(openForm19);
             }
             else
             {
                 MessageBox.Show("Please choose form of data");
             }
-        }
-        private void openForm6()
-        {
-            Application.Run(new Form06());
-        }
-        private void openForm18()
-        {
-            Application.Run(new Form18());
-        }
-        private void openForm19()
-        {
-            Application.Run(new Form19());
         }
     }
 }

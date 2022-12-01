@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,32 +14,73 @@ namespace qualifyingMasterWork
 {
     public partial class Form09 : Form
     {
-        Thread thread1, thread2;
-        public Form09()
+        Form17 form17;
+        public int num_of_equations;
+        public SortedDictionary<int, List<int>> equations;
+        public Form09(Form17 form17)
         {
             InitializeComponent();
+            this.form17 = form17;
+            //Form.ActiveForm.Visible = false;
+        }
+        private SortedDictionary<int, List<int>> fill_equations(int num_of_equations, SortedDictionary<int, List<int>> equations)
+        {
+            for (int i = 0; i < num_of_equations; i++)
+            {
+                int[] element = new int[num_of_equations];
+                for (int j = 0; j < num_of_equations; j++)
+                {
+                    //element[j] = random.Next(0, 2);
+                }
+                List<int> equation = new List<int>();
+                for (int j = 0; j < element.Length; j++)
+                {
+                    if (element[j] == 1)
+                    {
+                        //equation.Add(j);
+                    }
+                }
+                //equations.Add(i + 1, equation);
+            }
+            return equations;
         }
         private void back_Click(object sender, EventArgs e)
         {
-            thread1 = new Thread(openForm6);
-            thread1.SetApartmentState(ApartmentState.STA);
-            thread1.Start();
-            this.Close();
+            //thread1 = new Thread(openForm6);
         }
+        private void next_Click(object sender, EventArgs e)
+        {
+            if (okClicked == true)// && INPUT IS NOT NULL
+            {
+                form17.sendData(equations);
+                form17.ShowDialog();
+                /*thread2 = new Thread(openForm17);*/
+            }
+            else
+            {
+                MessageBox.Show("Please input data");
+            }
+        }
+        bool okClicked = false;
         private void ok_Click(object sender, EventArgs e)
         {
-            thread2 = new Thread(openForm17);
-            thread2.SetApartmentState(ApartmentState.STA);
-            thread2.Start();
-            this.Close();
-        }
-        private void openForm6()
-        {
-            Application.Run(new Form06());
-        }
-        private void openForm17()
-        {
-            Application.Run(new Form17());
+            if (size.Text == "")
+            {
+                MessageBox.Show("Please enter size");
+            }
+            else if (Convert.ToInt32(size.Text) > 10)
+            {
+                MessageBox.Show("Are you patient enough to input data manually?");
+                //LET USER INPUT DATA ANYWAY
+            }
+            else
+            {
+                num_of_equations = Convert.ToInt32(size.Text);
+                equations = new SortedDictionary<int, List<int>>();
+                //DO BUTTONS TO INPUT MANUALLY
+                fill_equations(num_of_equations, equations);
+                okClicked = true;
+            }
         }
     }
 }

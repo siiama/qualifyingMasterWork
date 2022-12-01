@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,12 +14,16 @@ namespace qualifyingMasterWork
 {
     public partial class Form08 : Form
     {
-        Thread thread1, thread2;
-        public Form08()
+        Form17 form17;
+        public int num_of_equations;
+        public SortedDictionary<int, List<int>> equations;
+        public Form08(Form17 form17)
         {
             InitializeComponent();
+            this.form17 = form17;
+            //Form.ActiveForm.Visible = false;
         }
-        public SortedDictionary<int, List<int>> fill_equations(int num_of_equations, SortedDictionary<int, List<int>> equations)
+        private SortedDictionary<int, List<int>> fill_equations(int num_of_equations, SortedDictionary<int, List<int>> equations)
         {
             Random random = new Random();
             for (int i = 0; i < num_of_equations; i++)
@@ -40,7 +45,7 @@ namespace qualifyingMasterWork
             }
             return equations;
         }
-        public void show_equations(SortedDictionary<int, List<int>> equations)
+        private void show_equations(SortedDictionary<int, List<int>> equations)
         {
             string output = "";
             foreach (KeyValuePair<int, List<int>> pair in equations)
@@ -56,17 +61,21 @@ namespace qualifyingMasterWork
         }
         private void back_Click(object sender, EventArgs e)
         {
-            thread1 = new Thread(openForm6);
-            thread1.SetApartmentState(ApartmentState.STA);
-            thread1.Start();
-            this.Close();
+            //thread1 = new Thread(openForm6);
         }
         private void ok_Click(object sender, EventArgs e)
         {
-            thread2 = new Thread(openForm17);
-            thread2.SetApartmentState(ApartmentState.STA);
-            thread2.Start();
-            this.Close();
+            if (generateClicked == true && num_of_equations >= 2)
+            {
+                form17.sendData(equations);
+                form17.ShowDialog();
+                /*thread2 = new Thread(openForm17);*/
+            }
+            else
+            {
+                MessageBox.Show("Please generate data");
+                //WHY CLOSES THE APP?
+            }
         }
         private void size_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -75,6 +84,7 @@ namespace qualifyingMasterWork
                 e.Handled = true;
             }
         }
+        private bool generateClicked = false;
         private void generate_Click(object sender, EventArgs e)
         {
             if (size.Text == "")
@@ -83,19 +93,12 @@ namespace qualifyingMasterWork
             }
             else
             {
-                int num_of_equations = Convert.ToInt32(size.Text);
-                SortedDictionary<int, List<int>> equations = new SortedDictionary<int, List<int>>();
+                num_of_equations = Convert.ToInt32(size.Text);
+                equations = new SortedDictionary<int, List<int>>();
                 fill_equations(num_of_equations, equations);
                 show_equations(equations);
+                generateClicked = true;
             }
-        }
-        private void openForm6()
-        {
-            Application.Run(new Form06());
-        }
-        private void openForm17()
-        {
-            Application.Run(new Form17());
         }
     }
 }
