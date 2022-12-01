@@ -13,26 +13,62 @@ namespace qualifyingMasterWork
 {
     public partial class Form11 : Form
     {
-        Thread thread1, thread2;
-        public Form11()
+        Form20 form20;
+        public int numOfVertexesInEachPart;
+        public HashSet<Tuple<int, int>> commutativeDiagram;
+        public string fileData;
+        public Form11(Form20 form20)
         {
             InitializeComponent();
+            this.form20 = form20;
             open_file.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            //Form.ActiveForm.Visible = false;
+        }
+        private HashSet<Tuple<int, int>> fillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
+        {
+            for (int i = 0; i < numOfVertexesInEachPart; i++)
+            {
+                int[] element = new int[numOfVertexesInEachPart];
+                for (int j = 0; j < numOfVertexesInEachPart; j++)
+                {
+                    //element[j] = random.Next(0, 2);
+                    if (element[j] == 1)
+                    {
+                        //Tuple<int, int> edge = new Tuple<int, int>(i, j);
+                        //commutativeDiagram.Add(edge);
+                    }
+                }
+            }
+            return commutativeDiagram;
         }
         private void back_Click(object sender, EventArgs e)
         {
-            thread1 = new Thread(openForm10);
-            thread1.SetApartmentState(ApartmentState.STA);
-            thread1.Start();
-            this.Close();
+            //thread1 = new Thread(openForm10);
         }
         private void next_Click(object sender, EventArgs e)
         {
-            thread2 = new Thread(openForm20);
-            thread2.SetApartmentState(ApartmentState.STA);
-            thread2.Start();
-            this.Close();
+            if (chooseFileClicked == true)
+            {
+                if (!string.IsNullOrEmpty(fileData))
+                {
+                    //numOfVertexesInEachPart = fileData.Split('\n').Length;
+                    commutativeDiagram = new HashSet<Tuple<int, int>>();
+                    fillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
+                    form20.sendData(commutativeDiagram);
+                    form20.ShowDialog();
+                    /*thread2 = new Thread(openForm20);*/
+                }
+                else
+                {
+                    MessageBox.Show("Empty file");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please choose file");
+            }
         }
+        private bool chooseFileClicked = false;
         private void choose_file_Click(object sender, EventArgs e)
         {
             if (open_file.ShowDialog() == DialogResult.Cancel)
@@ -40,15 +76,7 @@ namespace qualifyingMasterWork
             string fileName = open_file.FileName;
             string fileData = System.IO.File.ReadAllText(fileName);
             file.Text = fileName;
-            MessageBox.Show(fileData);
-        }
-        private void openForm10()
-        {
-            Application.Run(new Form10());
-        }
-        private void openForm20()
-        {
-            Application.Run(new Form20());
+            chooseFileClicked = true;
         }
     }
 }

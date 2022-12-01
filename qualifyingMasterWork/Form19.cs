@@ -17,7 +17,6 @@ namespace qualifyingMasterWork
         Form23 form23;
         public int num_of_equations;
         public SortedDictionary<int, HashSet<int>> equations;
-        public int numOfVertexesInEachPart;
         public HashSet<Tuple<int, int>> commutativeDiagram;
         public string output, result;
         public Form19(Form23 form23)
@@ -32,7 +31,7 @@ namespace qualifyingMasterWork
             equations = new SortedDictionary<int, HashSet<int>>();
             equations = data;
         }
-        private HashSet<Tuple<int, int>> fillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
+        private HashSet<Tuple<int, int>> fillCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
         {
             foreach (KeyValuePair<int, HashSet<int>> equation in equations)
             {
@@ -60,9 +59,8 @@ namespace qualifyingMasterWork
         }
         private void Form19_Load(object sender, EventArgs e)
         {
-            numOfVertexesInEachPart = equations.Count;
             commutativeDiagram = new HashSet<Tuple<int, int>>();
-            fillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
+            fillCommutativeDiagram(commutativeDiagram);
             showCommutativeDiagram(commutativeDiagram);
         }
         private void back_Click(object sender, EventArgs e)

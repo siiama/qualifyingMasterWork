@@ -14,61 +14,51 @@ namespace qualifyingMasterWork
 {
     public partial class Form10 : Form
     {
-        Thread thread1, thread2, thread3, thread4;
         public Form10()
         {
             InitializeComponent();
+            Form.ActiveForm.Visible = false;
         }
         private void back_Click(object sender, EventArgs e)
         {
-            thread1 = new Thread(openForm1);
-            thread1.SetApartmentState(ApartmentState.STA);
-            thread1.Start();
-            this.Close();
+            //thread1 = new Thread(openForm1);
         }
         private void next_Click(object sender, EventArgs e)
         {
             if (file.Checked)
             {
-                thread2 = new Thread(openForm11);
-                thread2.SetApartmentState(ApartmentState.STA);
-                thread2.Start();
-                this.Close();
+                Form23 form23 = new Form23();
+                Form22 form22 = new Form22(form23);
+                Form21 form21 = new Form21(form23);
+                Form20 form20 = new Form20(form21, form22);
+                Form11 form11 = new Form11(form20);
+                form11.ShowDialog();
+                //thread2 = new Thread(openForm11);
             }
             else if (generate.Checked)
             {
-                thread3 = new Thread(openForm12);
-                thread3.SetApartmentState(ApartmentState.STA);
-                thread3.Start();
-                this.Close();
+                Form23 form23 = new Form23();
+                Form22 form22 = new Form22(form23);
+                Form21 form21 = new Form21(form23);
+                Form20 form20 = new Form20(form21, form22);
+                Form12 form12 = new Form12(form20);
+                form12.ShowDialog();
+                //thread3 = new Thread(openForm12);
             }
             else if (manual.Checked)
             {
-                thread4 = new Thread(openForm13);
-                thread4.SetApartmentState(ApartmentState.STA);
-                thread4.Start();
-                this.Close();
+                Form23 form23 = new Form23();
+                Form22 form22 = new Form22(form23);
+                Form21 form21 = new Form21(form23);
+                Form20 form20 = new Form20(form21, form22);
+                Form13 form13 = new Form13(form20);
+                form13.ShowDialog();
+                //thread4 = new Thread(openForm13);
             }
             else
             {
                 MessageBox.Show("Please choose form of input");
             }
-        }
-        private void openForm1()
-        {
-            Application.Run(new Form01());
-        }
-        private void openForm11()
-        {
-            Application.Run(new Form11());
-        }
-        private void openForm12()
-        {
-            Application.Run(new Form12());
-        }
-        private void openForm13()
-        {
-            Application.Run(new Form13());
         }
     }
 }
