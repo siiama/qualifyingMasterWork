@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -16,6 +17,9 @@ namespace qualifyingMasterWork
         Form23 form23;
         public int num_of_equations;
         public SortedDictionary<int, HashSet<int>> equations;
+        public int numOfVertexesInEachPart;
+        public HashSet<Tuple<int, int>> commutativeDiagram;
+        public string output, result;
         public Form19(Form23 form23)
         {
             InitializeComponent();
@@ -28,6 +32,39 @@ namespace qualifyingMasterWork
             equations = new SortedDictionary<int, HashSet<int>>();
             equations = data;
         }
+        private HashSet<Tuple<int, int>> fillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
+        {
+            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
+            {
+                int function = equation.Key;
+                foreach (int argument in equation.Value)
+                {
+                    Tuple<int, int> edge = new Tuple<int, int>(function, argument);
+                    commutativeDiagram.Add(edge);
+                }
+            }
+            return commutativeDiagram;
+        }
+        private void showCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        {
+            output = "";
+            data.Text = output;
+        }
+        private void saveCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        {
+            result = "";
+            foreach (Tuple<int, int> edge in commutativeDiagram)
+            {
+                result += "g_" + (edge.Item1 + 1) + ", x_" + (edge.Item2 + 1) + "\n";
+            }
+        }
+        private void Form19_Load(object sender, EventArgs e)
+        {
+            numOfVertexesInEachPart = equations.Count;
+            commutativeDiagram = new HashSet<Tuple<int, int>>();
+            fillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
+            showCommutativeDiagram(commutativeDiagram);
+        }
         private void back_Click(object sender, EventArgs e)
         {
             //thread1 = new Thread(openForm17);
@@ -37,14 +74,13 @@ namespace qualifyingMasterWork
             form23.ShowDialog();
             //thread2 = new Thread(openForm23);
         }
-
         private void save_Click(object sender, EventArgs e)
         {
-            /*if (save_file.ShowDialog() == DialogResult.Cancel)
+            if (save_file.ShowDialog() == DialogResult.Cancel)
                 return;
-            save_commutativeDiagram(commutativeDiagram);
+            saveCommutativeDiagram(commutativeDiagram);
             string filename = save_file.FileName;
-            System.IO.File.WriteAllText(filename, result);*/
+            System.IO.File.WriteAllText(filename, result);
         }
     }
 }

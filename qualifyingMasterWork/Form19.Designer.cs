@@ -32,7 +32,7 @@
             this.finish = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
+            this.data = new System.Windows.Forms.Label();
             this.save_file = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
@@ -76,13 +76,13 @@
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
-            // label2
+            // data
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(149, 83);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(0, 16);
-            this.label2.TabIndex = 89;
+            this.data.AutoSize = true;
+            this.data.Location = new System.Drawing.Point(149, 83);
+            this.data.Name = "data";
+            this.data.Size = new System.Drawing.Size(0, 16);
+            this.data.TabIndex = 89;
             // 
             // save_file
             // 
@@ -93,7 +93,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 353);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.data);
             this.Controls.Add(this.save);
             this.Controls.Add(this.finish);
             this.Controls.Add(this.label1);
@@ -101,6 +101,7 @@
             this.Name = "Form19";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form19";
+            this.Load += new System.EventHandler(this.Form19_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -111,7 +112,7 @@
         private System.Windows.Forms.Button finish;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button back;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label data;
         private System.Windows.Forms.SaveFileDialog save_file;
     }
 }
