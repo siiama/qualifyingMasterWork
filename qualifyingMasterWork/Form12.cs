@@ -25,7 +25,7 @@ namespace qualifyingMasterWork
             thread1.Start();
             this.Close();
         }
-        private void ok_Click(object sender, EventArgs e)
+        private void next_Click(object sender, EventArgs e)
         {
             thread2 = new Thread(openForm20);
             thread2.SetApartmentState(ApartmentState.STA);

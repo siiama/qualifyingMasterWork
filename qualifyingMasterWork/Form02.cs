@@ -28,7 +28,7 @@ namespace qualifyingMasterWork
             form01.ShowDialog();*/
             /*thread1 = new Thread(openForm1);*/
         }
-        private void ok_Click(object sender, EventArgs e)
+        private void next_Click(object sender, EventArgs e)
         {
             if (file.Checked)
             {

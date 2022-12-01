@@ -32,7 +32,7 @@ namespace qualifyingMasterWork
         {
             //thread1 = new Thread(openForm17);
         }
-        private void ok_Click(object sender, EventArgs e)
+        private void finish_Click(object sender, EventArgs e)
         {
             form23.ShowDialog();
             //thread2 = new Thread(openForm23);

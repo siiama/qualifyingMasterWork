@@ -28,23 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.data = new System.Windows.Forms.DataGridView();
             this.save = new System.Windows.Forms.Button();
-            this.ok = new System.Windows.Forms.Button();
+            this.finish = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // data
-            // 
-            this.data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.data.Location = new System.Drawing.Point(122, 97);
-            this.data.Name = "data";
-            this.data.RowHeadersWidth = 51;
-            this.data.RowTemplate.Height = 24;
-            this.data.Size = new System.Drawing.Size(240, 150);
-            this.data.TabIndex = 82;
             // 
             // save
             // 
@@ -55,16 +44,16 @@
             this.save.Text = "Save";
             this.save.UseVisualStyleBackColor = true;
             // 
-            // ok
+            // finish
             // 
-            this.ok.Location = new System.Drawing.Point(339, 286);
-            this.ok.Name = "ok";
-            this.ok.Size = new System.Drawing.Size(75, 23);
-            this.ok.TabIndex = 80;
-            this.ok.Text = "OK";
-            this.ok.UseVisualStyleBackColor = true;
-            this.ok.UseWaitCursor = true;
-            this.ok.Click += new System.EventHandler(this.ok_Click);
+            this.finish.Location = new System.Drawing.Point(339, 286);
+            this.finish.Name = "finish";
+            this.finish.Size = new System.Drawing.Size(75, 23);
+            this.finish.TabIndex = 80;
+            this.finish.Text = "Finish";
+            this.finish.UseVisualStyleBackColor = true;
+            this.finish.UseWaitCursor = true;
+            this.finish.Click += new System.EventHandler(this.finish_Click);
             // 
             // label1
             // 
@@ -85,31 +74,37 @@
             this.back.UseVisualStyleBackColor = true;
             this.back.Click += new System.EventHandler(this.back_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(158, 91);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(0, 16);
+            this.label2.TabIndex = 90;
+            // 
             // Form22
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 353);
-            this.Controls.Add(this.data);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.save);
-            this.Controls.Add(this.ok);
+            this.Controls.Add(this.finish);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.back);
             this.Name = "Form22";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form22";
-            ((System.ComponentModel.ISupportInitialize)(this.data)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridView data;
         private System.Windows.Forms.Button save;
-        private System.Windows.Forms.Button ok;
+        private System.Windows.Forms.Button finish;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button back;
+        private System.Windows.Forms.Label label2;
     }
 }

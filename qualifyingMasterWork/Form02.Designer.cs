@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ok = new System.Windows.Forms.Button();
+            this.next = new System.Windows.Forms.Button();
             this.manual = new System.Windows.Forms.RadioButton();
             this.generate = new System.Windows.Forms.RadioButton();
             this.file = new System.Windows.Forms.RadioButton();
@@ -36,16 +36,16 @@
             this.back = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // ok
+            // next
             // 
-            this.ok.Location = new System.Drawing.Point(214, 289);
-            this.ok.Name = "ok";
-            this.ok.Size = new System.Drawing.Size(75, 23);
-            this.ok.TabIndex = 47;
-            this.ok.Text = "OK";
-            this.ok.UseVisualStyleBackColor = true;
-            this.ok.UseWaitCursor = true;
-            this.ok.Click += new System.EventHandler(this.ok_Click);
+            this.next.Location = new System.Drawing.Point(214, 289);
+            this.next.Name = "next";
+            this.next.Size = new System.Drawing.Size(75, 23);
+            this.next.TabIndex = 47;
+            this.next.Text = "Next";
+            this.next.UseVisualStyleBackColor = true;
+            this.next.UseWaitCursor = true;
+            this.next.Click += new System.EventHandler(this.next_Click);
             // 
             // manual
             // 
@@ -101,7 +101,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 353);
-            this.Controls.Add(this.ok);
+            this.Controls.Add(this.next);
             this.Controls.Add(this.manual);
             this.Controls.Add(this.generate);
             this.Controls.Add(this.file);
@@ -117,7 +117,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button ok;
+        private System.Windows.Forms.Button next;
         private System.Windows.Forms.RadioButton manual;
         private System.Windows.Forms.RadioButton generate;
         private System.Windows.Forms.RadioButton file;

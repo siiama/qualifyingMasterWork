@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ok = new System.Windows.Forms.Button();
+            this.next = new System.Windows.Forms.Button();
             this.choose_file = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
@@ -36,16 +36,16 @@
             this.file = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // ok
+            // next
             // 
-            this.ok.Location = new System.Drawing.Point(213, 245);
-            this.ok.Name = "ok";
-            this.ok.Size = new System.Drawing.Size(75, 23);
-            this.ok.TabIndex = 55;
-            this.ok.Text = "OK";
-            this.ok.UseVisualStyleBackColor = true;
-            this.ok.UseWaitCursor = true;
-            this.ok.Click += new System.EventHandler(this.ok_Click);
+            this.next.Location = new System.Drawing.Point(213, 245);
+            this.next.Name = "next";
+            this.next.Size = new System.Drawing.Size(75, 23);
+            this.next.TabIndex = 55;
+            this.next.Text = "Next";
+            this.next.UseVisualStyleBackColor = true;
+            this.next.UseWaitCursor = true;
+            this.next.Click += new System.EventHandler(this.next_Click);
             // 
             // choose_file
             // 
@@ -90,7 +90,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 353);
             this.Controls.Add(this.file);
-            this.Controls.Add(this.ok);
+            this.Controls.Add(this.next);
             this.Controls.Add(this.choose_file);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.back);
@@ -104,7 +104,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button ok;
+        private System.Windows.Forms.Button next;
         private System.Windows.Forms.Button choose_file;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button back;

@@ -63,7 +63,7 @@ namespace qualifyingMasterWork
         {
             //thread1 = new Thread(openForm6);
         }
-        private void ok_Click(object sender, EventArgs e)
+        private void next_Click(object sender, EventArgs e)
         {
             if (generateClicked == true && num_of_equations >= 2)
             {

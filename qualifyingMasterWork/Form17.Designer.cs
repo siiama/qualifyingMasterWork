@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ok = new System.Windows.Forms.Button();
+            this.next = new System.Windows.Forms.Button();
             this.back = new System.Windows.Forms.Button();
             this.commutativeDiagram = new System.Windows.Forms.RadioButton();
             this.matrix = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // ok
+            // next
             // 
-            this.ok.Location = new System.Drawing.Point(164, 262);
-            this.ok.Name = "ok";
-            this.ok.Size = new System.Drawing.Size(75, 23);
-            this.ok.TabIndex = 75;
-            this.ok.Text = "OK";
-            this.ok.UseVisualStyleBackColor = true;
-            this.ok.UseWaitCursor = true;
-            this.ok.Click += new System.EventHandler(this.ok_Click);
+            this.next.Location = new System.Drawing.Point(164, 262);
+            this.next.Name = "next";
+            this.next.Size = new System.Drawing.Size(75, 23);
+            this.next.TabIndex = 75;
+            this.next.Text = "Next";
+            this.next.UseVisualStyleBackColor = true;
+            this.next.UseWaitCursor = true;
+            this.next.Click += new System.EventHandler(this.next_Click);
             // 
             // back
             // 
@@ -90,7 +90,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 353);
-            this.Controls.Add(this.ok);
+            this.Controls.Add(this.next);
             this.Controls.Add(this.back);
             this.Controls.Add(this.commutativeDiagram);
             this.Controls.Add(this.matrix);
@@ -105,7 +105,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button ok;
+        private System.Windows.Forms.Button next;
         private System.Windows.Forms.Button back;
         private System.Windows.Forms.RadioButton commutativeDiagram;
         private System.Windows.Forms.RadioButton matrix;

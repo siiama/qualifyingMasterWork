@@ -33,7 +33,7 @@ namespace qualifyingMasterWork
         {
             /*thread1 = new Thread(openForm2);*/
         }
-        private void ok_Click(object sender, EventArgs e)
+        private void next_Click(object sender, EventArgs e)
         {
             if (systemOfEquations.Checked)
             {

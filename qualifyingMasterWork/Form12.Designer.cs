@@ -31,7 +31,7 @@
             this.size = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.generate = new System.Windows.Forms.Button();
-            this.ok = new System.Windows.Forms.Button();
+            this.next = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
             this.data = new System.Windows.Forms.Label();
@@ -63,16 +63,16 @@
             this.generate.UseVisualStyleBackColor = true;
             this.generate.Click += new System.EventHandler(this.generate_Click);
             // 
-            // ok
+            // next
             // 
-            this.ok.Location = new System.Drawing.Point(171, 280);
-            this.ok.Name = "ok";
-            this.ok.Size = new System.Drawing.Size(75, 23);
-            this.ok.TabIndex = 75;
-            this.ok.Text = "OK";
-            this.ok.UseVisualStyleBackColor = true;
-            this.ok.UseWaitCursor = true;
-            this.ok.Click += new System.EventHandler(this.ok_Click);
+            this.next.Location = new System.Drawing.Point(171, 280);
+            this.next.Name = "next";
+            this.next.Size = new System.Drawing.Size(75, 23);
+            this.next.TabIndex = 75;
+            this.next.Text = "Next";
+            this.next.UseVisualStyleBackColor = true;
+            this.next.UseWaitCursor = true;
+            this.next.Click += new System.EventHandler(this.next_Click);
             // 
             // label1
             // 
@@ -110,7 +110,7 @@
             this.Controls.Add(this.size);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.generate);
-            this.Controls.Add(this.ok);
+            this.Controls.Add(this.next);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.back);
             this.Name = "Form12";
@@ -126,7 +126,7 @@
         private System.Windows.Forms.TextBox size;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button generate;
-        private System.Windows.Forms.Button ok;
+        private System.Windows.Forms.Button next;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button back;
         private System.Windows.Forms.Label data;

@@ -20,7 +20,7 @@ namespace qualifyingMasterWork
             //Form02.ActiveForm.Visible = false;
             //Form.ActiveForm.Close();
         }
-        private void ok_Click(object sender, EventArgs e)
+        private void next_Click(object sender, EventArgs e)
         {
             if (matrix.Checked)
             {

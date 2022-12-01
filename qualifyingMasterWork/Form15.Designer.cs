@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.save = new System.Windows.Forms.Button();
-            this.ok = new System.Windows.Forms.Button();
+            this.finish = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.back = new System.Windows.Forms.Button();
             this.data = new System.Windows.Forms.Label();
@@ -46,16 +46,16 @@
             this.save.UseVisualStyleBackColor = true;
             this.save.Click += new System.EventHandler(this.save_Click);
             // 
-            // ok
+            // finish
             // 
-            this.ok.Location = new System.Drawing.Point(334, 280);
-            this.ok.Name = "ok";
-            this.ok.Size = new System.Drawing.Size(75, 23);
-            this.ok.TabIndex = 75;
-            this.ok.Text = "OK";
-            this.ok.UseVisualStyleBackColor = true;
-            this.ok.UseWaitCursor = true;
-            this.ok.Click += new System.EventHandler(this.ok_Click);
+            this.finish.Location = new System.Drawing.Point(334, 280);
+            this.finish.Name = "finish";
+            this.finish.Size = new System.Drawing.Size(75, 23);
+            this.finish.TabIndex = 75;
+            this.finish.Text = "Finish";
+            this.finish.UseVisualStyleBackColor = true;
+            this.finish.UseWaitCursor = true;
+            this.finish.Click += new System.EventHandler(this.finish_Click);
             // 
             // label1
             // 
@@ -95,7 +95,7 @@
             this.ClientSize = new System.Drawing.Size(482, 353);
             this.Controls.Add(this.data);
             this.Controls.Add(this.save);
-            this.Controls.Add(this.ok);
+            this.Controls.Add(this.finish);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.back);
             this.Name = "Form15";
@@ -109,7 +109,7 @@
 
         #endregion
         private System.Windows.Forms.Button save;
-        private System.Windows.Forms.Button ok;
+        private System.Windows.Forms.Button finish;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button back;
         private System.Windows.Forms.Label data;
