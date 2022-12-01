@@ -48,10 +48,10 @@ namespace qualifyingMasterWork
         private void show_equations(SortedDictionary<int, HashSet<int>> equations)
         {
             string output = "";
-            foreach (KeyValuePair<int, HashSet<int>> pair in equations)
+            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
             {
-                output += "f_" + (pair.Key+1).ToString() + " = (   ";
-                foreach (int value in pair.Value)
+                output += "f_" + (equation.Key+1).ToString() + " = (   ";
+                foreach (int value in equation.Value)
                 {
                     output += "x_" + (value + 1) + "   ";
                 }

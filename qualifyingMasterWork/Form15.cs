@@ -56,10 +56,10 @@ namespace qualifyingMasterWork
         private void show_equations(SortedDictionary<int, HashSet<int>> equations)
         {
             output = "";
-            foreach (KeyValuePair<int, HashSet<int>> pair in equations)
+            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
             {
-                output += "f_" + pair.Key.ToString() + " = (   ";
-                foreach (int value in pair.Value)
+                output += "f_" + equation.Key.ToString() + " = (   ";
+                foreach (int value in equation.Value)
                 {
                     output += "x_" + (value + 1) + "   ";
                 }
@@ -70,10 +70,10 @@ namespace qualifyingMasterWork
         private void save_equations(SortedDictionary<int, HashSet<int>> equations)
         {
             result = "";
-            foreach (KeyValuePair<int, HashSet<int>> pair in equations)
+            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
             {
-                result += "f_" + pair.Key.ToString() + ": ";
-                foreach (int value in pair.Value)
+                result += "f_" + equation.Key.ToString() + ": ";
+                foreach (int value in equation.Value)
                 {
                     result += "x_" + (value + 1) + " ";
                 }
