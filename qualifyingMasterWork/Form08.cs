@@ -7,9 +7,12 @@ namespace qualifyingMasterWork
     public partial class Form08 : Form
     {
         readonly Form17 form17;
+        private int[] element;
+        private HashSet<int> equation;
         private SortedDictionary<int, HashSet<int>> equations;
         private bool generateClicked = false;
         private int numOfEquations;
+        private string output;
         public Form08(Form17 form17)
         {
             InitializeComponent();
@@ -26,12 +29,12 @@ namespace qualifyingMasterWork
             Random random = new Random();
             for (int i = 0; i < numOfEquations; i++)
             {
-                int[] element = new int[numOfEquations];
+                element = new int[numOfEquations];
                 for (int j = 0; j < numOfEquations; j++)
                 {
                     element[j] = random.Next(0, 2);
                 }
-                HashSet<int> equation = new HashSet<int>();
+                equation = new HashSet<int>();
                 for (int j = 0; j < element.Length; j++)
                 {
                     if (element[j] == 1)
@@ -73,7 +76,7 @@ namespace qualifyingMasterWork
         }
         private void ShowEquations(SortedDictionary<int, HashSet<int>> equations)
         {
-            string output = "";
+            output = "";
             foreach (KeyValuePair<int, HashSet<int>> equation in equations)
             {
                 output += "f_" + (equation.Key+1).ToString() + " = (   ";
