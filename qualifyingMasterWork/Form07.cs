@@ -7,10 +7,13 @@ namespace qualifyingMasterWork
     public partial class Form07 : Form
     {
         readonly Form17 form17;
+        private string[] argumentFromFile;
+        private HashSet<int> argumentsFromFile;
         private bool chooseFileClicked = false;
         private string[] elementInRow;
         private SortedDictionary<int, HashSet<int>> equations;
         private string fileData;
+        private int functionFromFile;
         private int numOfEquations;
         private string[] equationFromFile;
         public Form07(Form17 form17)
@@ -41,9 +44,9 @@ namespace qualifyingMasterWork
             for (int i = 0; i < equationFromFile.Length; i++)
             {
                 elementInRow = equationFromFile[i].Split(':');
-                int functionFromFile = Convert.ToInt32(elementInRow[0].Substring(elementInRow[0].IndexOf('f') + 2)) - 1;
-                HashSet<int> argumentsFromFile = new HashSet<int>();
-                string[] argumentFromFile = elementInRow[1].Split(' ');
+                functionFromFile = Convert.ToInt32(elementInRow[0].Substring(elementInRow[0].IndexOf('f') + 2)) - 1;
+                argumentsFromFile = new HashSet<int>();
+                argumentFromFile = elementInRow[1].Split(' ');
                 for (int j = 0; j < argumentFromFile.Length; j++)
                 {
                     argumentsFromFile.Add(Convert.ToInt32(argumentFromFile[j].Substring(argumentFromFile[j].IndexOf('x') + 2)) - 1);
