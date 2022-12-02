@@ -21,7 +21,6 @@ namespace qualifyingMasterWork
             InitializeComponent();
             this.form18 = form18;
             this.form19 = form19;
-            //Form.ActiveForm.Visible = false;
         }
         public void sendData(SortedDictionary<int, HashSet<int>> data)
         {
@@ -36,11 +35,13 @@ namespace qualifyingMasterWork
         {
             if (matrix.Checked)
             {
+                Form.ActiveForm.Visible = false;
                 form18.sendData(equations);
                 form18.ShowDialog();
             }
             else if (commutativeDiagram.Checked)
             {
+                Form.ActiveForm.Visible = false;
                 form19.sendData(equations);
                 form19.ShowDialog();
             }

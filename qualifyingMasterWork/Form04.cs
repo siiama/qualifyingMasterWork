@@ -21,7 +21,6 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
             this.form14 = form14;
-            //Form.ActiveForm.Visible = false;
         }
         private int[,] fillMatrix(int[,] matrix)
         {
@@ -56,6 +55,7 @@ namespace qualifyingMasterWork
         {
             if (generateClicked == true && size_of_matrix >=2)
             {
+                Form.ActiveForm.Visible = false;
                 form14.sendData(matrix);
                 form14.ShowDialog();
             }

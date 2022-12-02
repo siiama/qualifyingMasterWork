@@ -23,7 +23,6 @@ namespace qualifyingMasterWork
             InitializeComponent();
             this.form14 = form14;
             open_file.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            //Form.ActiveForm.Visible = false;
         }
         private int[,] fillMatrix(int[,] matrix)
         {
@@ -49,6 +48,7 @@ namespace qualifyingMasterWork
                     size_of_matrix = fileData.Split('\n').Length;
                     matrix = new int[size_of_matrix, size_of_matrix];
                     fillMatrix(matrix);
+                    Form.ActiveForm.Visible = false;
                     form14.sendData(matrix);
                     form14.ShowDialog();
                 }

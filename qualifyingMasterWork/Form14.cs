@@ -22,7 +22,6 @@ namespace qualifyingMasterWork
             InitializeComponent();
             this.form15 = form15;
             this.form16 = form16;
-            //Form.ActiveForm.Visible = false;
         }
         public void sendData(int[,] data)
         {
@@ -37,11 +36,13 @@ namespace qualifyingMasterWork
         {
             if (systemOfEquations.Checked)
             {
+                Form.ActiveForm.Visible = false;
                 form15.sendData(matrix);
                 form15.ShowDialog();
             }
             else if (commutativeDiagram.Checked)
             {
+                Form.ActiveForm.Visible = false;
                 form16.sendData(matrix);
                 form16.ShowDialog();
             }

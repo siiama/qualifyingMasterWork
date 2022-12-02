@@ -22,7 +22,6 @@ namespace qualifyingMasterWork
             InitializeComponent();
             this.form17 = form17;
             open_file.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            //Form.ActiveForm.Visible = false;
         }
         private SortedDictionary<int, HashSet<int>> fill_equations(int num_of_equations, SortedDictionary<int, HashSet<int>> equations)
         {
@@ -58,6 +57,7 @@ namespace qualifyingMasterWork
                     num_of_equations = fileData.Split('\n').Length;
                     equations = new SortedDictionary<int, HashSet<int>>();
                     fill_equations(num_of_equations, equations);
+                    Form.ActiveForm.Visible = false;
                     form17.sendData(equations);
                     form17.ShowDialog();
                 }

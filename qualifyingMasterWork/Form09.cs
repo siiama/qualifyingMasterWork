@@ -21,7 +21,6 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
             this.form17 = form17;
-            //Form.ActiveForm.Visible = false;
         }
         private SortedDictionary<int, HashSet<int>> fill_equations(int num_of_equations, SortedDictionary<int, HashSet<int>> equations)
         {
@@ -52,6 +51,7 @@ namespace qualifyingMasterWork
         {
             if (okClicked == true)// && INPUT IS NOT NULL
             {
+                Form.ActiveForm.Visible = false;
                 form17.sendData(equations);
                 form17.ShowDialog();
             }

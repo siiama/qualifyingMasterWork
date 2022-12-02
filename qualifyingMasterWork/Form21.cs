@@ -22,7 +22,6 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
             this.form23 = form23;
-            //Form.ActiveForm.Visible = false;
             saveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
         public void sendData(HashSet<Tuple<int, int>> data)
@@ -96,6 +95,7 @@ namespace qualifyingMasterWork
         }
         private void finish_Click(object sender, EventArgs e)
         {
+            Form.ActiveForm.Visible = false;
             form23.ShowDialog();
         }
     }

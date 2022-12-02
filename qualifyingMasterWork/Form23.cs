@@ -16,11 +16,10 @@ namespace qualifyingMasterWork
         public Form23()
         {
             InitializeComponent();
-            Form.ActiveForm.Visible = false;
         }
         private void restart_Click(object sender, EventArgs e)
         {
-            Close();
+            Form.ActiveForm.Visible = false;
         }
     }
 }

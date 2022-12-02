@@ -20,7 +20,6 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
             this.form20 = form20;
-            //Form.ActiveForm.Visible = false;
         }
         private HashSet<Tuple<int, int>> fillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
         {
@@ -53,6 +52,7 @@ namespace qualifyingMasterWork
         {
             if (generateClicked == true && numOfVertexesInEachPart >= 1)
             {
+                Form.ActiveForm.Visible = false;
                 form20.sendData(commutativeDiagram);
                 form20.ShowDialog();
             }

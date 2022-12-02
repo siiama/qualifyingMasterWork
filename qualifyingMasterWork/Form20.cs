@@ -21,7 +21,6 @@ namespace qualifyingMasterWork
             InitializeComponent();
             this.form21 = form21;
             this.form22 = form22;
-            //Form.ActiveForm.Visible = false;
         }
         public void sendData(HashSet<Tuple<int, int>> data)
         {
@@ -36,11 +35,13 @@ namespace qualifyingMasterWork
         {
             if (matrix.Checked)
             {
+                Form.ActiveForm.Visible = false;
                 form21.sendData(commutativeDiagram);
                 form21.ShowDialog();
             }
             else if (systemOfEquations.Checked)
             {
+                Form.ActiveForm.Visible = false;
                 form22.sendData(commutativeDiagram);
                 form22.ShowDialog();
             }

@@ -22,7 +22,6 @@ namespace qualifyingMasterWork
             InitializeComponent();
             this.form20 = form20;
             open_file.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            //Form.ActiveForm.Visible = false;
         }
         private HashSet<Tuple<int, int>> fillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
         {
@@ -53,6 +52,7 @@ namespace qualifyingMasterWork
                     //numOfVertexesInEachPart = 
                     commutativeDiagram = new HashSet<Tuple<int, int>>();
                     fillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
+                    Form.ActiveForm.Visible = false;
                     form20.sendData(commutativeDiagram);
                     form20.ShowDialog();
                 }

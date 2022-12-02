@@ -17,22 +17,24 @@ namespace qualifyingMasterWork
         public Form01()
         {
             InitializeComponent();
-            //Form.ActiveForm.Visible = false;
         }
         private void next_Click(object sender, EventArgs e)
         {
             if (matrix.Checked)
             {
+                Form.ActiveForm.Visible = false;
                 Form02 form02 = new Form02();
                 form02.ShowDialog();
             }
             else if (systemOfEquations.Checked)
             {
+                Form.ActiveForm.Visible = false;
                 Form06 form06 = new Form06();
                 form06.ShowDialog();
             }
             else if (commutativeDiagram.Checked)
             {
+                Form.ActiveForm.Visible = false;
                 Form10 form10 = new Form10();
                 form10.ShowDialog();
             }

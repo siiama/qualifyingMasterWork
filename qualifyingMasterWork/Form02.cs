@@ -18,7 +18,6 @@ namespace qualifyingMasterWork
         public Form02()
         {
             InitializeComponent();
-            Form.ActiveForm.Visible = false;
         }
         private void back_Click(object sender, EventArgs e)
         {
@@ -28,6 +27,7 @@ namespace qualifyingMasterWork
         {
             if (file.Checked)
             {
+                Form.ActiveForm.Visible = false;
                 Form23 form23 = new Form23();
                 Form16 form16 = new Form16(form23);
                 Form15 form15 = new Form15(form23);
@@ -37,6 +37,7 @@ namespace qualifyingMasterWork
             }
             else if (generate.Checked)
             {
+                Form.ActiveForm.Visible = false;
                 Form23 form23 = new Form23();
                 Form16 form16 = new Form16(form23);
                 Form15 form15 = new Form15(form23);
@@ -46,6 +47,7 @@ namespace qualifyingMasterWork
             }
             else if (manual.Checked)
             {
+                Form.ActiveForm.Visible = false;
                 Form23 form23 = new Form23();
                 Form16 form16 = new Form16(form23);
                 Form15 form15 = new Form15(form23);

@@ -19,9 +19,6 @@ namespace qualifyingMasterWork
         }
         private void start_Click(object sender, EventArgs e)
         {
-            /*this.ShowIcon = false;
-            this.ShowInTaskbar = false;
-            this.Opacity = 0.0;*/
             Form01 form01 = new Form01();
             form01.ShowDialog();
         }
