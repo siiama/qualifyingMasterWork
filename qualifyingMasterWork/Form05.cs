@@ -1,27 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
 {
     public partial class Form05 : Form
     {
-        Form14 form14;
-        public int size_of_matrix;
-        public int[,] matrix;
+        readonly Form14 form14;
+        private int[,] matrix;
+        private bool okClicked = false;
+        private int sizeOfMatrix;
         public Form05(Form14 form14)
         {
             InitializeComponent();
             this.form14 = form14;
         }
-        private int[,] fillMatrix(int[,] matrix)
+        private void Back_Click(object sender, EventArgs e)
+        {
+            /*thread1 = new Thread(openForm2);*/
+        }
+        private int[,] FillMatrix(int[,] matrix)
         {
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
@@ -32,16 +29,12 @@ namespace qualifyingMasterWork
             }
             return matrix;
         }
-        private void back_Click(object sender, EventArgs e)
-        {
-            /*thread1 = new Thread(openForm2);*/
-        }
-        private void next_Click(object sender, EventArgs e)
+        private void Next_Click(object sender, EventArgs e)
         {
             if (okClicked == true)// && INPUT IS NOT NULL
             {
                 Form.ActiveForm.Visible = false;
-                form14.sendData(matrix);
+                form14.SendData(matrix);
                 form14.ShowDialog();
             }
             else
@@ -49,24 +42,24 @@ namespace qualifyingMasterWork
                 MessageBox.Show("Please input data");
             }
         }
-        bool okClicked = false;
-        private void ok_Click(object sender, EventArgs e)
+        
+        private void Ok_Click(object sender, EventArgs e)
         {
-            if (size.Text == "")
+            if (Size.Text == "")
             {
                 MessageBox.Show("Please enter size");
             }
-            else if (Convert.ToInt32(size.Text) > 10)
+            else if (Convert.ToInt32(Size.Text) > 10)
             {
                 MessageBox.Show("Are you patient enough to input data manually?");
                 //LET USER INPUT DATA ANYWAY
             }
             else
             {
-                size_of_matrix = Convert.ToInt32(size.Text);
-                matrix = new int[size_of_matrix, size_of_matrix];
+                sizeOfMatrix = Convert.ToInt32(Size.Text);
+                matrix = new int[sizeOfMatrix, sizeOfMatrix];
                 //DO BUTTONS TO INPUT MANUALLY
-                fillMatrix(matrix);
+                FillMatrix(matrix);
                 okClicked = true;
             }
         }

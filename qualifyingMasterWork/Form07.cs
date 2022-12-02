@@ -1,34 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
 {
     public partial class Form07 : Form
     {
-        Form17 form17;
-        public int num_of_equations;
-        public SortedDictionary<int, HashSet<int>> equations;
-        public string fileData;
+        readonly Form17 form17;
+        private bool chooseFileClicked = false;
+        private SortedDictionary<int, HashSet<int>> equations;
+        private string fileData;
+        private int numOfEquations;
         public Form07(Form17 form17)
         {
             InitializeComponent();
             this.form17 = form17;
-            open_file.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            OpenFile.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
         }
-        private SortedDictionary<int, HashSet<int>> fill_equations(int num_of_equations, SortedDictionary<int, HashSet<int>> equations)
+        private void Back_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < num_of_equations; i++)
+            //thread1 = new Thread(openForm6);
+        }
+        private void ChooseFile_Click(object sender, EventArgs e)
+        {
+            if (OpenFile.ShowDialog() == DialogResult.Cancel)
+                return;
+            string fileName = OpenFile.FileName;
+            fileData = System.IO.File.ReadAllText(fileName);
+            File.Text = fileName;
+            chooseFileClicked = true;
+        }
+        private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)
+        {
+            for (int i = 0; i < numOfEquations; i++)
             {
-                int[] element = new int[num_of_equations];
-                for (int j = 0; j < num_of_equations; j++)
+                int[] element = new int[numOfEquations];
+                for (int j = 0; j < numOfEquations; j++)
                 {
                     //FILL EQUATIONS
                 }
@@ -44,21 +51,17 @@ namespace qualifyingMasterWork
             }
             return equations;
         }
-        private void back_Click(object sender, EventArgs e)
-        {
-            //thread1 = new Thread(openForm6);
-        }
-        private void next_Click(object sender, EventArgs e)
+        private void Next_Click(object sender, EventArgs e)
         {
             if (chooseFileClicked == true)
             {
                 if (!string.IsNullOrEmpty(fileData))
                 {
-                    num_of_equations = fileData.Split('\n').Length;
+                    numOfEquations = fileData.Split('\n').Length;
                     equations = new SortedDictionary<int, HashSet<int>>();
-                    fill_equations(num_of_equations, equations);
+                    FillEquations(numOfEquations, equations);
                     Form.ActiveForm.Visible = false;
-                    form17.sendData(equations);
+                    form17.SendData(equations);
                     form17.ShowDialog();
                 }
                 else
@@ -70,16 +73,6 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please choose file");
             }
-        }
-        private bool chooseFileClicked = false;
-        private void choose_file_Click(object sender, EventArgs e)
-        {
-            if (open_file.ShowDialog() == DialogResult.Cancel)
-                return;
-            string fileName = open_file.FileName;
-            fileData = System.IO.File.ReadAllText(fileName);
-            file.Text = fileName;
-            chooseFileClicked = true;
         }
     }
 }

@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -18,13 +9,13 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
         }
-        private void back_Click(object sender, EventArgs e)
+        private void Back_Click(object sender, EventArgs e)
         {
             //thread1 = new Thread(openForm1);
         }
-        private void next_Click(object sender, EventArgs e)
+        private void Next_Click(object sender, EventArgs e)
         {
-            if (file.Checked)
+            if (File.Checked)
             {
                 Form.ActiveForm.Visible = false;
                 Form23 form23 = new Form23();
@@ -34,7 +25,7 @@ namespace qualifyingMasterWork
                 Form11 form11 = new Form11(form20);
                 form11.ShowDialog();
             }
-            else if (generate.Checked)
+            else if (Generate.Checked)
             {
                 Form.ActiveForm.Visible = false;
                 Form23 form23 = new Form23();
@@ -44,7 +35,7 @@ namespace qualifyingMasterWork
                 Form12 form12 = new Form12(form20);
                 form12.ShowDialog();
             }
-            else if (manual.Checked)
+            else if (Manual.Checked)
             {
                 Form.ActiveForm.Visible = false;
                 Form23 form23 = new Form23();

@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.save = new System.Windows.Forms.Button();
-            this.finish = new System.Windows.Forms.Button();
+            this.Save = new System.Windows.Forms.Button();
+            this.Finish = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.back = new System.Windows.Forms.Button();
-            this.data = new System.Windows.Forms.Label();
-            this.save_file = new System.Windows.Forms.SaveFileDialog();
+            this.Back = new System.Windows.Forms.Button();
+            this.Data = new System.Windows.Forms.Label();
+            this.SaveFile = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
-            // save
+            // Save
             // 
-            this.save.Location = new System.Drawing.Point(203, 285);
-            this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(75, 23);
-            this.save.TabIndex = 86;
-            this.save.Text = "Save";
-            this.save.UseVisualStyleBackColor = true;
-            this.save.Click += new System.EventHandler(this.save_Click);
+            this.Save.Location = new System.Drawing.Point(203, 285);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(75, 23);
+            this.Save.TabIndex = 86;
+            this.Save.Text = "Save";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
             // 
-            // finish
+            // Finish
             // 
-            this.finish.Location = new System.Drawing.Point(339, 285);
-            this.finish.Name = "finish";
-            this.finish.Size = new System.Drawing.Size(75, 23);
-            this.finish.TabIndex = 85;
-            this.finish.Text = "Finish";
-            this.finish.UseVisualStyleBackColor = true;
-            this.finish.UseWaitCursor = true;
-            this.finish.Click += new System.EventHandler(this.finish_Click);
+            this.Finish.Location = new System.Drawing.Point(339, 285);
+            this.Finish.Name = "Finish";
+            this.Finish.Size = new System.Drawing.Size(75, 23);
+            this.Finish.TabIndex = 85;
+            this.Finish.Text = "Finish";
+            this.Finish.UseVisualStyleBackColor = true;
+            this.Finish.UseWaitCursor = true;
+            this.Finish.Click += new System.EventHandler(this.Finish_Click);
             // 
             // label1
             // 
@@ -66,38 +66,38 @@
             this.label1.TabIndex = 84;
             this.label1.Text = "Result: matrix";
             // 
-            // back
+            // Back
             // 
-            this.back.Location = new System.Drawing.Point(68, 285);
-            this.back.Name = "back";
-            this.back.Size = new System.Drawing.Size(75, 23);
-            this.back.TabIndex = 83;
-            this.back.Text = "Back";
-            this.back.UseVisualStyleBackColor = true;
-            this.back.Click += new System.EventHandler(this.back_Click);
+            this.Back.Location = new System.Drawing.Point(68, 285);
+            this.Back.Name = "Back";
+            this.Back.Size = new System.Drawing.Size(75, 23);
+            this.Back.TabIndex = 83;
+            this.Back.Text = "Back";
+            this.Back.UseVisualStyleBackColor = true;
+            this.Back.Click += new System.EventHandler(this.Back_Click);
             // 
-            // data
+            // Data
             // 
-            this.data.AutoSize = true;
-            this.data.Location = new System.Drawing.Point(192, 86);
-            this.data.Name = "data";
-            this.data.Size = new System.Drawing.Size(0, 16);
-            this.data.TabIndex = 88;
+            this.Data.AutoSize = true;
+            this.Data.Location = new System.Drawing.Point(192, 86);
+            this.Data.Name = "Data";
+            this.Data.Size = new System.Drawing.Size(0, 16);
+            this.Data.TabIndex = 88;
             // 
-            // save_file
+            // SaveFile
             // 
-            this.save_file.FileName = "result";
+            this.SaveFile.FileName = "result";
             // 
             // Form18
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 353);
-            this.Controls.Add(this.data);
-            this.Controls.Add(this.save);
-            this.Controls.Add(this.finish);
+            this.Controls.Add(this.Data);
+            this.Controls.Add(this.Save);
+            this.Controls.Add(this.Finish);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.back);
+            this.Controls.Add(this.Back);
             this.Name = "Form18";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form18";
@@ -108,11 +108,11 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button save;
-        private System.Windows.Forms.Button finish;
+        private System.Windows.Forms.Button Save;
+        private System.Windows.Forms.Button Finish;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button back;
-        private System.Windows.Forms.Label data;
-        private System.Windows.Forms.SaveFileDialog save_file;
+        private System.Windows.Forms.Button Back;
+        private System.Windows.Forms.Label Data;
+        private System.Windows.Forms.SaveFileDialog SaveFile;
     }
 }

@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
 {
     public partial class Form12 : Form
     {
-        Form20 form20;
-        public int numOfVertexesInEachPart;
-        public HashSet<Tuple<int, int>> commutativeDiagram;
+        readonly Form20 form20;
+        private HashSet<Tuple<int, int>> commutativeDiagram;
+        private bool generateClicked = false;
+        private int numOfVertexesInEachPart;
+        private string output;
         public Form12(Form20 form20)
         {
             InitializeComponent();
             this.form20 = form20;
         }
-        private HashSet<Tuple<int, int>> fillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
+        private void Back_Click(object sender, EventArgs e)
+        {
+            //thread1 = new Thread(openForm10);
+        }
+        private HashSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
         {
             Random random = new Random();
             for (int i = 0; i < numOfVertexesInEachPart; i++)
@@ -39,21 +38,27 @@ namespace qualifyingMasterWork
             }
             return commutativeDiagram;
         }
-        private void showCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        private void Generate_Click(object sender, EventArgs e)
         {
-            string output = "";
-            data.Text = output;
+            if (Size.Text == "")
+            {
+                MessageBox.Show("Please enter size");
+            }
+            else
+            {
+                numOfVertexesInEachPart = Convert.ToInt32(Size.Text);
+                commutativeDiagram = new HashSet<Tuple<int, int>>();
+                FillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
+                ShowCommutativeDiagram(commutativeDiagram);
+                generateClicked = true;
+            }
         }
-        private void back_Click(object sender, EventArgs e)
-        {
-            //thread1 = new Thread(openForm10);
-        }
-        private void next_Click(object sender, EventArgs e)
+        private void Next_Click(object sender, EventArgs e)
         {
             if (generateClicked == true && numOfVertexesInEachPart >= 1)
             {
                 Form.ActiveForm.Visible = false;
-                form20.sendData(commutativeDiagram);
+                form20.SendData(commutativeDiagram);
                 form20.ShowDialog();
             }
             else
@@ -61,27 +66,16 @@ namespace qualifyingMasterWork
                 MessageBox.Show("Please generate data");
             }
         }
-        private void size_KeyPress(object sender, KeyPressEventArgs e)
+        private void ShowCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        {
+            output = "";
+            Data.Text = output;
+        }
+        private void Size_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
             {
                 e.Handled = true;
-            }
-        }
-        private bool generateClicked = false;
-        private void generate_Click(object sender, EventArgs e)
-        {
-            if (size.Text == "")
-            {
-                MessageBox.Show("Please enter size");
-            }
-            else
-            {
-                numOfVertexesInEachPart = Convert.ToInt32(size.Text);
-                commutativeDiagram = new HashSet<Tuple<int, int>>();
-                fillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
-                showCommutativeDiagram(commutativeDiagram);
-                generateClicked = true;
             }
         }
     }

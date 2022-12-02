@@ -1,29 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
 {
     public partial class Form11 : Form
     {
-        Form20 form20;
-        public int numOfVertexesInEachPart;
-        public HashSet<Tuple<int, int>> commutativeDiagram;
-        public string fileData;
+        readonly Form20 form20;
+        private bool chooseFileClicked = false;
+        private HashSet<Tuple<int, int>> commutativeDiagram;
+        private readonly string fileData;
+        private readonly int numOfVertexesInEachPart;
         public Form11(Form20 form20)
         {
             InitializeComponent();
             this.form20 = form20;
-            open_file.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            OpenFile.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
         }
-        private HashSet<Tuple<int, int>> fillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
+        private void Back_Click(object sender, EventArgs e)
+        {
+            //thread1 = new Thread(openForm10);
+        }
+        private void ChooseFile_Click(object sender, EventArgs e)
+        {
+            if (OpenFile.ShowDialog() == DialogResult.Cancel)
+                return;
+            string fileName = OpenFile.FileName;
+            string fileData = System.IO.File.ReadAllText(fileName);
+            File.Text = fileName;
+            chooseFileClicked = true;
+        }
+        private HashSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
         {
             for (int i = 0; i < numOfVertexesInEachPart; i++)
             {
@@ -39,11 +46,7 @@ namespace qualifyingMasterWork
             }
             return commutativeDiagram;
         }
-        private void back_Click(object sender, EventArgs e)
-        {
-            //thread1 = new Thread(openForm10);
-        }
-        private void next_Click(object sender, EventArgs e)
+        private void Next_Click(object sender, EventArgs e)
         {
             if (chooseFileClicked == true)
             {
@@ -51,9 +54,9 @@ namespace qualifyingMasterWork
                 {
                     //numOfVertexesInEachPart = 
                     commutativeDiagram = new HashSet<Tuple<int, int>>();
-                    fillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
+                    FillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
                     Form.ActiveForm.Visible = false;
-                    form20.sendData(commutativeDiagram);
+                    form20.SendData(commutativeDiagram);
                     form20.ShowDialog();
                 }
                 else
@@ -65,16 +68,6 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please choose file");
             }
-        }
-        private bool chooseFileClicked = false;
-        private void choose_file_Click(object sender, EventArgs e)
-        {
-            if (open_file.ShowDialog() == DialogResult.Cancel)
-                return;
-            string fileName = open_file.FileName;
-            string fileData = System.IO.File.ReadAllText(fileName);
-            file.Text = fileName;
-            chooseFileClicked = true;
         }
     }
 }

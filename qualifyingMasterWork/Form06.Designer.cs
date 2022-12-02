@@ -28,43 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.manual = new System.Windows.Forms.RadioButton();
-            this.generate = new System.Windows.Forms.RadioButton();
-            this.file = new System.Windows.Forms.RadioButton();
+            this.Manual = new System.Windows.Forms.RadioButton();
+            this.Generate = new System.Windows.Forms.RadioButton();
+            this.File = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.back = new System.Windows.Forms.Button();
-            this.next = new System.Windows.Forms.Button();
+            this.Back = new System.Windows.Forms.Button();
+            this.Next = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // manual
+            // Manual
             // 
-            this.manual.AutoSize = true;
-            this.manual.Location = new System.Drawing.Point(105, 197);
-            this.manual.Name = "manual";
-            this.manual.Size = new System.Drawing.Size(72, 20);
-            this.manual.TabIndex = 23;
-            this.manual.Text = "manual";
-            this.manual.UseVisualStyleBackColor = true;
+            this.Manual.AutoSize = true;
+            this.Manual.Location = new System.Drawing.Point(105, 197);
+            this.Manual.Name = "Manual";
+            this.Manual.Size = new System.Drawing.Size(72, 20);
+            this.Manual.TabIndex = 23;
+            this.Manual.Text = "Manual";
+            this.Manual.UseVisualStyleBackColor = true;
             // 
-            // generate
+            // Generate
             // 
-            this.generate.AutoSize = true;
-            this.generate.Location = new System.Drawing.Point(105, 148);
-            this.generate.Name = "generate";
-            this.generate.Size = new System.Drawing.Size(82, 20);
-            this.generate.TabIndex = 21;
-            this.generate.Text = "generate";
-            this.generate.UseVisualStyleBackColor = true;
+            this.Generate.AutoSize = true;
+            this.Generate.Location = new System.Drawing.Point(105, 148);
+            this.Generate.Name = "Generate";
+            this.Generate.Size = new System.Drawing.Size(84, 20);
+            this.Generate.TabIndex = 21;
+            this.Generate.Text = "Generate";
+            this.Generate.UseVisualStyleBackColor = true;
             // 
-            // file
+            // File
             // 
-            this.file.AutoSize = true;
-            this.file.Location = new System.Drawing.Point(105, 99);
-            this.file.Name = "file";
-            this.file.Size = new System.Drawing.Size(45, 20);
-            this.file.TabIndex = 20;
-            this.file.Text = "file";
-            this.file.UseVisualStyleBackColor = true;
+            this.File.AutoSize = true;
+            this.File.Location = new System.Drawing.Point(105, 99);
+            this.File.Name = "File";
+            this.File.Size = new System.Drawing.Size(50, 20);
+            this.File.TabIndex = 20;
+            this.File.Text = "File";
+            this.File.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -75,38 +75,38 @@
             this.label1.TabIndex = 22;
             this.label1.Text = "Input system of equations via";
             // 
-            // back
+            // Back
             // 
-            this.back.Location = new System.Drawing.Point(105, 289);
-            this.back.Name = "back";
-            this.back.Size = new System.Drawing.Size(75, 23);
-            this.back.TabIndex = 19;
-            this.back.Text = "Back";
-            this.back.UseVisualStyleBackColor = true;
-            this.back.Click += new System.EventHandler(this.back_Click);
+            this.Back.Location = new System.Drawing.Point(105, 289);
+            this.Back.Name = "Back";
+            this.Back.Size = new System.Drawing.Size(75, 23);
+            this.Back.TabIndex = 19;
+            this.Back.Text = "Back";
+            this.Back.UseVisualStyleBackColor = true;
+            this.Back.Click += new System.EventHandler(this.Back_Click);
             // 
-            // next
+            // Next
             // 
-            this.next.Location = new System.Drawing.Point(223, 289);
-            this.next.Name = "next";
-            this.next.Size = new System.Drawing.Size(75, 23);
-            this.next.TabIndex = 49;
-            this.next.Text = "Next";
-            this.next.UseVisualStyleBackColor = true;
-            this.next.UseWaitCursor = true;
-            this.next.Click += new System.EventHandler(this.next_Click);
+            this.Next.Location = new System.Drawing.Point(223, 289);
+            this.Next.Name = "Next";
+            this.Next.Size = new System.Drawing.Size(75, 23);
+            this.Next.TabIndex = 49;
+            this.Next.Text = "Next";
+            this.Next.UseVisualStyleBackColor = true;
+            this.Next.UseWaitCursor = true;
+            this.Next.Click += new System.EventHandler(this.Next_Click);
             // 
             // Form06
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 353);
-            this.Controls.Add(this.next);
-            this.Controls.Add(this.manual);
-            this.Controls.Add(this.generate);
-            this.Controls.Add(this.file);
+            this.Controls.Add(this.Next);
+            this.Controls.Add(this.Manual);
+            this.Controls.Add(this.Generate);
+            this.Controls.Add(this.File);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.back);
+            this.Controls.Add(this.Back);
             this.Name = "Form06";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form06";
@@ -117,11 +117,11 @@
 
         #endregion
 
-        private System.Windows.Forms.RadioButton manual;
-        private System.Windows.Forms.RadioButton generate;
-        private System.Windows.Forms.RadioButton file;
+        private System.Windows.Forms.RadioButton Manual;
+        private System.Windows.Forms.RadioButton Generate;
+        private System.Windows.Forms.RadioButton File;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button back;
-        private System.Windows.Forms.Button next;
+        private System.Windows.Forms.Button Back;
+        private System.Windows.Forms.Button Next;
     }
 }

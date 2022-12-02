@@ -1,13 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -18,21 +9,21 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
         }
-        private void next_Click(object sender, EventArgs e)
+        private void Next_Click(object sender, EventArgs e)
         {
-            if (matrix.Checked)
+            if (Matrix.Checked)
             {
                 Form.ActiveForm.Visible = false;
                 Form02 form02 = new Form02();
                 form02.ShowDialog();
             }
-            else if (systemOfEquations.Checked)
+            else if (SystemOfEquations.Checked)
             {
                 Form.ActiveForm.Visible = false;
                 Form06 form06 = new Form06();
                 form06.ShowDialog();
             }
-            else if (commutativeDiagram.Checked)
+            else if (CommutativeDiagram.Checked)
             {
                 Form.ActiveForm.Visible = false;
                 Form10 form10 = new Form10();

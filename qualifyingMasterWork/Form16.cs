@@ -1,35 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
 {
     public partial class Form16 : Form
     {
-        Form23 form23;
-        public int[,] matrix;
-        public int numOfVertexesInEachPart;
-        public HashSet<Tuple<int, int>> commutativeDiagram;
-        public string output, result;
+        readonly Form23 form23;
+        private HashSet<Tuple<int, int>> commutativeDiagram;
+        private int[,] matrix;
+        private int numOfVertexesInEachPart;
+        private string output;
+        private string result;
         public Form16(Form23 form23)
         {
             InitializeComponent();
             this.form23 = form23;
-            save_file.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        public void sendData(int[,] data)
+        private void Back_Click(object sender, EventArgs e)
         {
-            matrix = new int[data.GetLength(0), data.GetLength(1)];
-            matrix = data;
+            //thread1 = new Thread(openForm14);
         }
-        private HashSet<Tuple<int, int>> fillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
+        private HashSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
         {
             for (int i=0; i<numOfVertexesInEachPart; i++)
             {
@@ -44,42 +37,43 @@ namespace qualifyingMasterWork
             }
             return commutativeDiagram;
         }
-        private void showCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        private void Finish_Click(object sender, EventArgs e)
         {
-            output = "";
-            data.Text = output;
-        }
-        private void saveCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
-        {
-            result = "";
-            foreach (Tuple<int, int> edge in commutativeDiagram)
-            {
-                result += "g_" + (edge.Item1+1) + ", x_" + (edge.Item2+1) + "\n";
-            }
+            Form.ActiveForm.Visible = false;
+            form23.ShowDialog();
         }
         private void Form16_Load(object sender, EventArgs e)
         {
             numOfVertexesInEachPart = matrix.GetLength(0);
             commutativeDiagram = new HashSet<Tuple<int, int>>();
-            fillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
-            showCommutativeDiagram(commutativeDiagram);
+            FillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
+            ShowCommutativeDiagram(commutativeDiagram);
         }
-        private void back_Click(object sender, EventArgs e)
+        private void SaveCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
         {
-            //thread1 = new Thread(openForm14);
+            result = "";
+            foreach (Tuple<int, int> edge in commutativeDiagram)
+            {
+                result += "g_" + (edge.Item1 + 1) + ", x_" + (edge.Item2 + 1) + "\n";
+            }
         }
-        private void finish_Click(object sender, EventArgs e)
+        private void Save_Click(object sender, EventArgs e)
         {
-            Form.ActiveForm.Visible = false;
-            form23.ShowDialog();
-        }
-        private void save_Click(object sender, EventArgs e)
-        {
-            if (save_file.ShowDialog() == DialogResult.Cancel)
+            if (SaveFile.ShowDialog() == DialogResult.Cancel)
                 return;
-            saveCommutativeDiagram(commutativeDiagram);
-            string filename = save_file.FileName;
+            SaveCommutativeDiagram(commutativeDiagram);
+            string filename = SaveFile.FileName;
             System.IO.File.WriteAllText(filename, result);
+        }
+        public void SendData(int[,] data)
+        {
+            matrix = new int[data.GetLength(0), data.GetLength(1)];
+            matrix = data;
+        }
+        private void ShowCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        {
+            output = "";
+            Data.Text = output;
         }
     }
 }

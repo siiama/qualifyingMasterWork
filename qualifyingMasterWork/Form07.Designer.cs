@@ -28,34 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.next = new System.Windows.Forms.Button();
-            this.choose_file = new System.Windows.Forms.Button();
+            this.Next = new System.Windows.Forms.Button();
+            this.ChooseFile = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.back = new System.Windows.Forms.Button();
-            this.open_file = new System.Windows.Forms.OpenFileDialog();
-            this.file = new System.Windows.Forms.Label();
+            this.Back = new System.Windows.Forms.Button();
+            this.OpenFile = new System.Windows.Forms.OpenFileDialog();
+            this.File = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // next
+            // Next
             // 
-            this.next.Location = new System.Drawing.Point(213, 245);
-            this.next.Name = "next";
-            this.next.Size = new System.Drawing.Size(75, 23);
-            this.next.TabIndex = 63;
-            this.next.Text = "Next";
-            this.next.UseVisualStyleBackColor = true;
-            this.next.UseWaitCursor = true;
-            this.next.Click += new System.EventHandler(this.next_Click);
+            this.Next.Location = new System.Drawing.Point(213, 245);
+            this.Next.Name = "Next";
+            this.Next.Size = new System.Drawing.Size(75, 23);
+            this.Next.TabIndex = 63;
+            this.Next.Text = "Next";
+            this.Next.UseVisualStyleBackColor = true;
+            this.Next.UseWaitCursor = true;
+            this.Next.Click += new System.EventHandler(this.Next_Click);
             // 
-            // choose_file
+            // ChooseFile
             // 
-            this.choose_file.Location = new System.Drawing.Point(98, 150);
-            this.choose_file.Name = "choose_file";
-            this.choose_file.Size = new System.Drawing.Size(91, 23);
-            this.choose_file.TabIndex = 62;
-            this.choose_file.Text = "choose file";
-            this.choose_file.UseVisualStyleBackColor = true;
-            this.choose_file.Click += new System.EventHandler(this.choose_file_Click);
+            this.ChooseFile.Location = new System.Drawing.Point(98, 150);
+            this.ChooseFile.Name = "ChooseFile";
+            this.ChooseFile.Size = new System.Drawing.Size(91, 23);
+            this.ChooseFile.TabIndex = 62;
+            this.ChooseFile.Text = "Choose file";
+            this.ChooseFile.UseVisualStyleBackColor = true;
+            this.ChooseFile.Click += new System.EventHandler(this.ChooseFile_Click);
             // 
             // label1
             // 
@@ -66,34 +66,34 @@
             this.label1.TabIndex = 61;
             this.label1.Text = "Input system of equations";
             // 
-            // back
+            // Back
             // 
-            this.back.Location = new System.Drawing.Point(98, 245);
-            this.back.Name = "back";
-            this.back.Size = new System.Drawing.Size(75, 23);
-            this.back.TabIndex = 60;
-            this.back.Text = "Back";
-            this.back.UseVisualStyleBackColor = true;
-            this.back.Click += new System.EventHandler(this.back_Click);
+            this.Back.Location = new System.Drawing.Point(98, 245);
+            this.Back.Name = "Back";
+            this.Back.Size = new System.Drawing.Size(75, 23);
+            this.Back.TabIndex = 60;
+            this.Back.Text = "Back";
+            this.Back.UseVisualStyleBackColor = true;
+            this.Back.Click += new System.EventHandler(this.Back_Click);
             // 
-            // file
+            // File
             // 
-            this.file.AutoSize = true;
-            this.file.Location = new System.Drawing.Point(210, 157);
-            this.file.Name = "file";
-            this.file.Size = new System.Drawing.Size(0, 16);
-            this.file.TabIndex = 64;
+            this.File.AutoSize = true;
+            this.File.Location = new System.Drawing.Point(210, 157);
+            this.File.Name = "File";
+            this.File.Size = new System.Drawing.Size(0, 16);
+            this.File.TabIndex = 64;
             // 
             // Form07
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 353);
-            this.Controls.Add(this.file);
-            this.Controls.Add(this.next);
-            this.Controls.Add(this.choose_file);
+            this.Controls.Add(this.File);
+            this.Controls.Add(this.Next);
+            this.Controls.Add(this.ChooseFile);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.back);
+            this.Controls.Add(this.Back);
             this.Name = "Form07";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form07";
@@ -104,11 +104,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button next;
-        private System.Windows.Forms.Button choose_file;
+        private System.Windows.Forms.Button Next;
+        private System.Windows.Forms.Button ChooseFile;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button back;
-        private System.Windows.Forms.OpenFileDialog open_file;
-        private System.Windows.Forms.Label file;
+        private System.Windows.Forms.Button Back;
+        private System.Windows.Forms.OpenFileDialog OpenFile;
+        private System.Windows.Forms.Label File;
     }
 }

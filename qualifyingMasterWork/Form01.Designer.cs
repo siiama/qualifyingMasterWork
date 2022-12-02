@@ -28,52 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.next = new System.Windows.Forms.Button();
-            this.commutativeDiagram = new System.Windows.Forms.RadioButton();
-            this.systemOfEquations = new System.Windows.Forms.RadioButton();
-            this.matrix = new System.Windows.Forms.RadioButton();
+            this.Next = new System.Windows.Forms.Button();
+            this.CommutativeDiagram = new System.Windows.Forms.RadioButton();
+            this.SystemOfEquations = new System.Windows.Forms.RadioButton();
+            this.Matrix = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // next
+            // Next
             // 
-            this.next.Location = new System.Drawing.Point(138, 284);
-            this.next.Name = "next";
-            this.next.Size = new System.Drawing.Size(75, 23);
-            this.next.TabIndex = 14;
-            this.next.Text = "Next";
-            this.next.UseVisualStyleBackColor = true;
-            this.next.Click += new System.EventHandler(this.next_Click);
+            this.Next.Location = new System.Drawing.Point(138, 284);
+            this.Next.Name = "Next";
+            this.Next.Size = new System.Drawing.Size(75, 23);
+            this.Next.TabIndex = 14;
+            this.Next.Text = "Next";
+            this.Next.UseVisualStyleBackColor = true;
+            this.Next.Click += new System.EventHandler(this.Next_Click);
             // 
-            // commutativeDiagram
+            // CommutativeDiagram
             // 
-            this.commutativeDiagram.AutoSize = true;
-            this.commutativeDiagram.Location = new System.Drawing.Point(56, 203);
-            this.commutativeDiagram.Name = "commutativeDiagram";
-            this.commutativeDiagram.Size = new System.Drawing.Size(157, 20);
-            this.commutativeDiagram.TabIndex = 13;
-            this.commutativeDiagram.Text = "commutative diagram";
-            this.commutativeDiagram.UseVisualStyleBackColor = true;
+            this.CommutativeDiagram.AutoSize = true;
+            this.CommutativeDiagram.Location = new System.Drawing.Point(56, 203);
+            this.CommutativeDiagram.Name = "CommutativeDiagram";
+            this.CommutativeDiagram.Size = new System.Drawing.Size(159, 20);
+            this.CommutativeDiagram.TabIndex = 13;
+            this.CommutativeDiagram.Text = "Commutative diagram";
+            this.CommutativeDiagram.UseVisualStyleBackColor = true;
             // 
-            // systemOfEquations
+            // SystemOfEquations
             // 
-            this.systemOfEquations.AutoSize = true;
-            this.systemOfEquations.Location = new System.Drawing.Point(56, 154);
-            this.systemOfEquations.Name = "systemOfEquations";
-            this.systemOfEquations.Size = new System.Drawing.Size(147, 20);
-            this.systemOfEquations.TabIndex = 11;
-            this.systemOfEquations.Text = "system of equations";
-            this.systemOfEquations.UseVisualStyleBackColor = true;
+            this.SystemOfEquations.AutoSize = true;
+            this.SystemOfEquations.Location = new System.Drawing.Point(56, 154);
+            this.SystemOfEquations.Name = "SystemOfEquations";
+            this.SystemOfEquations.Size = new System.Drawing.Size(149, 20);
+            this.SystemOfEquations.TabIndex = 11;
+            this.SystemOfEquations.Text = "System of equations";
+            this.SystemOfEquations.UseVisualStyleBackColor = true;
             // 
-            // matrix
+            // Matrix
             // 
-            this.matrix.AutoSize = true;
-            this.matrix.Location = new System.Drawing.Point(56, 105);
-            this.matrix.Name = "matrix";
-            this.matrix.Size = new System.Drawing.Size(63, 20);
-            this.matrix.TabIndex = 10;
-            this.matrix.Text = "matrix";
-            this.matrix.UseVisualStyleBackColor = true;
+            this.Matrix.AutoSize = true;
+            this.Matrix.Location = new System.Drawing.Point(56, 105);
+            this.Matrix.Name = "Matrix";
+            this.Matrix.Size = new System.Drawing.Size(63, 20);
+            this.Matrix.TabIndex = 10;
+            this.Matrix.Text = "Matrix";
+            this.Matrix.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -89,10 +89,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 353);
-            this.Controls.Add(this.next);
-            this.Controls.Add(this.commutativeDiagram);
-            this.Controls.Add(this.systemOfEquations);
-            this.Controls.Add(this.matrix);
+            this.Controls.Add(this.Next);
+            this.Controls.Add(this.CommutativeDiagram);
+            this.Controls.Add(this.SystemOfEquations);
+            this.Controls.Add(this.Matrix);
             this.Controls.Add(this.label1);
             this.Name = "Form01";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -104,10 +104,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button next;
-        private System.Windows.Forms.RadioButton commutativeDiagram;
-        private System.Windows.Forms.RadioButton systemOfEquations;
-        private System.Windows.Forms.RadioButton matrix;
+        private System.Windows.Forms.Button Next;
+        private System.Windows.Forms.RadioButton CommutativeDiagram;
+        private System.Windows.Forms.RadioButton SystemOfEquations;
+        private System.Windows.Forms.RadioButton Matrix;
         private System.Windows.Forms.Label label1;
     }
 }

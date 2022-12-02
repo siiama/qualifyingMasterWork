@@ -1,28 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
 {
     public partial class Form04 : Form
     {
-        Form14 form14;
-        public int size_of_matrix;
-        public int[,] matrix;
+        readonly Form14 form14;
+        private bool generateClicked = false;
+        private int[,] matrix;
+        private string output;
+        private int sizeOfMatrix;
         public Form04(Form14 form14)
         {
             InitializeComponent();
             this.form14 = form14;
         }
-        private int[,] fillMatrix(int[,] matrix)
+        private void Back_Click(object sender, EventArgs e)
+        {
+            //thread1 = new Thread(openForm2);
+        }
+        private int[,] FillMatrix(int[,] matrix)
         {
             Random random = new Random();
             for (int i = 0; i < matrix.GetLength(0); i++)
@@ -34,29 +31,27 @@ namespace qualifyingMasterWork
             }
             return matrix;
         }
-        private void showMatix(int[,] matrix)
+        private void Generate_Click(object sender, EventArgs e)
         {
-            string output = "";
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            if (Size.Text == "")
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    output += matrix[i, j].ToString() + "   ";
-                }
-                output += "\n";
+                MessageBox.Show("Please enter size");
             }
-            data.Text = output;
+            else
+            {
+                sizeOfMatrix = Convert.ToInt32(Size.Text);
+                matrix = new int[sizeOfMatrix, sizeOfMatrix];
+                FillMatrix(matrix);
+                ShowMatix(matrix);
+                generateClicked = true;
+            }
         }
-        private void back_Click(object sender, EventArgs e)
+        private void Next_Click(object sender, EventArgs e)
         {
-            //thread1 = new Thread(openForm2);
-        }
-        private void next_Click(object sender, EventArgs e)
-        {
-            if (generateClicked == true && size_of_matrix >=2)
+            if (generateClicked == true && sizeOfMatrix >= 2)
             {
                 Form.ActiveForm.Visible = false;
-                form14.sendData(matrix);
+                form14.SendData(matrix);
                 form14.ShowDialog();
             }
             else
@@ -65,27 +60,24 @@ namespace qualifyingMasterWork
                 //WHY CLOSES THE APP?
             }
         }
-        private void size_KeyPress(object sender, KeyPressEventArgs e)
+        private void ShowMatix(int[,] matrix)
+        {
+            output = "";
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    output += matrix[i, j].ToString() + "   ";
+                }
+                output += "\n";
+            }
+            Data.Text = output;
+        }
+        private void Size_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8))
             {
                 e.Handled = true;
-            }
-        }
-        private bool generateClicked = false;
-        private void generate_Click(object sender, EventArgs e)
-        {
-            if (size.Text == "")
-            {
-                MessageBox.Show("Please enter size");
-            }
-            else
-            {
-                size_of_matrix = Convert.ToInt32(size.Text);
-                matrix = new int[size_of_matrix, size_of_matrix];
-                fillMatrix(matrix);
-                showMatix(matrix);
-                generateClicked = true;
             }
         }
     }

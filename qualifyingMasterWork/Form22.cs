@@ -1,35 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
 {
     public partial class Form22 : Form
     {
-        Form23 form23;
-        public HashSet<Tuple<int, int>> commutativeDiagram;
-        public SortedDictionary<int, HashSet<int>> equations;
-        public string output, result;
+        readonly Form23 form23;
+        private HashSet<Tuple<int, int>> commutativeDiagram;
+        private SortedDictionary<int, HashSet<int>> equations;
+        private string output;
+        private string result;
         public Form22(Form23 form23)
         {
             InitializeComponent();
             this.form23 = form23;
-            saveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        public void sendData(HashSet<Tuple<int, int>> data)
+        private void Back_Click(object sender, EventArgs e)
         {
-            commutativeDiagram = new HashSet<Tuple<int, int>>();
-            commutativeDiagram = data;
+            //thread1 = new Thread(openForm20);
         }
-        private SortedDictionary<int, HashSet<int>> fill_equations(SortedDictionary<int, HashSet<int>> equations)
+        private SortedDictionary<int, HashSet<int>> FillEquations(SortedDictionary<int, HashSet<int>> equations)
         {
             int previousFunction = 0;
             HashSet<int> equation = new HashSet<int>();
@@ -50,21 +42,26 @@ namespace qualifyingMasterWork
             }
             return equations;
         }
-        private void show_equations(SortedDictionary<int, HashSet<int>> equations)
+        private void Finish_Click(object sender, EventArgs e)
         {
-            output = "";
-            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
-            {
-                output += "f_" + equation.Key.ToString() + " = (   ";
-                foreach (int value in equation.Value)
-                {
-                    output += "x_" + (value + 1) + "   ";
-                }
-                output += ")\n";
-            }
-            data.Text = output;
+            Form.ActiveForm.Visible = false;
+            form23.ShowDialog();
         }
-        private void save_equations(SortedDictionary<int, HashSet<int>> equations)
+        private void Form22_Load(object sender, EventArgs e)
+        {
+            equations = new SortedDictionary<int, HashSet<int>>();
+            FillEquations(equations);
+            ShowEquations(equations);
+        }
+        private void Save_Click(object sender, EventArgs e)
+        {
+            if (SaveFile.ShowDialog() == DialogResult.Cancel)
+                return;
+            SaveEquations(equations);
+            string filename = SaveFile.FileName;
+            System.IO.File.WriteAllText(filename, result);
+        }
+        private void SaveEquations(SortedDictionary<int, HashSet<int>> equations)
         {
             result = "";
             foreach (KeyValuePair<int, HashSet<int>> equation in equations)
@@ -77,28 +74,24 @@ namespace qualifyingMasterWork
                 result += "\n";
             }
         }
-        private void back_Click(object sender, EventArgs e)
+        public void SendData(HashSet<Tuple<int, int>> data)
         {
-            //thread1 = new Thread(openForm20);
+            commutativeDiagram = new HashSet<Tuple<int, int>>();
+            commutativeDiagram = data;
         }
-        private void Form22_Load(object sender, EventArgs e)
+        private void ShowEquations(SortedDictionary<int, HashSet<int>> equations)
         {
-            equations = new SortedDictionary<int, HashSet<int>>();
-            fill_equations(equations);
-            show_equations(equations);
-        }
-        private void save_Click(object sender, EventArgs e)
-        {
-            if (saveFile.ShowDialog() == DialogResult.Cancel)
-                return;
-            save_equations(equations);
-            string filename = saveFile.FileName;
-            System.IO.File.WriteAllText(filename, result);
-        }
-        private void finish_Click(object sender, EventArgs e)
-        {
-            Form.ActiveForm.Visible = false;
-            form23.ShowDialog();
+            output = "";
+            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
+            {
+                output += "f_" + equation.Key.ToString() + " = (   ";
+                foreach (int value in equation.Value)
+                {
+                    output += "x_" + (value + 1) + "   ";
+                }
+                output += ")\n";
+            }
+            Data.Text = output;
         }
     }
 }

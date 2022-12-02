@@ -1,42 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace qualifyingMasterWork
 {
     public partial class Form15 : Form
     {
-        Form23 form23;
-        public int[,] matrix;
-        public int num_of_equations;
-        public SortedDictionary<int, HashSet<int>> equations;
-        public string output, result;
+        readonly Form23 form23;
+        private SortedDictionary<int, HashSet<int>> equations;
+        private int[,] matrix;
+        private int numOfEquations;
+        private string output;
+        private string result;
         public Form15(Form23 form23)
         {
             InitializeComponent();
             this.form23 = form23;
-            save_file.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        public void sendData(int[,] data)
+        private void Back_Click(object sender, EventArgs e)
         {
-            matrix = new int[data.GetLength(0), data.GetLength(1)];
-            matrix = data;
+            //thread1 = new Thread(openForm14);
         }
-        private SortedDictionary<int, HashSet<int>> fill_equations(int num_of_equations, SortedDictionary<int, HashSet<int>> equations)
+        private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)
         {
-            for (int i = 0; i < num_of_equations; i++)
+            for (int i = 0; i < numOfEquations; i++)
             {
-                int[] element = new int[num_of_equations];
-                for (int j = 0; j < num_of_equations; j++)
+                int[] element = new int[numOfEquations];
+                for (int j = 0; j < numOfEquations; j++)
                 {
                     element[j] = matrix[i, j];
                 }
@@ -48,25 +39,31 @@ namespace qualifyingMasterWork
                         equation.Add(j);
                     }
                 }
-                equations.Add(i + 1, equation);
+                equations.Add(i, equation);
             }
             return equations;
         }
-        private void show_equations(SortedDictionary<int, HashSet<int>> equations)
+        private void Finish_Click(object sender, EventArgs e)
         {
-            output = "";
-            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
-            {
-                output += "f_" + equation.Key.ToString() + " = (   ";
-                foreach (int value in equation.Value)
-                {
-                    output += "x_" + (value + 1) + "   ";
-                }
-                output += ")\n";
-            }
-            data.Text = output;
+            Form.ActiveForm.Visible = false;
+            form23.ShowDialog();
         }
-        private void save_equations(SortedDictionary<int, HashSet<int>> equations)
+        private void Form15_Load(object sender, EventArgs e)
+        {
+            numOfEquations = matrix.GetLength(0);
+            equations = new SortedDictionary<int, HashSet<int>>();
+            FillEquations(numOfEquations, equations);
+            ShowEquations(equations);
+        }
+        private void Save_Click(object sender, EventArgs e)
+        {
+            if (SaveFile.ShowDialog() == DialogResult.Cancel)
+                return;
+            SaveEquations(equations);
+            string filename = SaveFile.FileName;
+            System.IO.File.WriteAllText(filename, result);
+        }
+        private void SaveEquations(SortedDictionary<int, HashSet<int>> equations)
         {
             result = "";
             foreach (KeyValuePair<int, HashSet<int>> equation in equations)
@@ -79,29 +76,24 @@ namespace qualifyingMasterWork
                 result += "\n";
             }
         }
-        private void Form15_Load(object sender, EventArgs e)
+        public void SendData(int[,] data)
         {
-            num_of_equations = matrix.GetLength(0);
-            equations = new SortedDictionary<int, HashSet<int>>();
-            fill_equations(num_of_equations, equations);
-            show_equations(equations);
+            matrix = new int[data.GetLength(0), data.GetLength(1)];
+            matrix = data;
         }
-        private void back_Click(object sender, EventArgs e)
+        private void ShowEquations(SortedDictionary<int, HashSet<int>> equations)
         {
-            //thread1 = new Thread(openForm14);
-        }
-        private void finish_Click(object sender, EventArgs e)
-        {
-            Form.ActiveForm.Visible = false;
-            form23.ShowDialog();
-        }
-        private void save_Click(object sender, EventArgs e)
-        {
-            if (save_file.ShowDialog() == DialogResult.Cancel)
-                return;
-            save_equations(equations);
-            string filename = save_file.FileName;
-            System.IO.File.WriteAllText(filename, result);
+            output = "";
+            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
+            {
+                output += "f_" + (equation.Key + 1).ToString() + " = (   ";
+                foreach (int value in equation.Value)
+                {
+                    output += "x_" + (value + 1) + "   ";
+                }
+                output += ")\n";
+            }
+            Data.Text = output;
         }
     }
 }

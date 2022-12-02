@@ -1,36 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
 {
     public partial class Form19 : Form
     {
-        Form23 form23;
-        public int num_of_equations;
-        public SortedDictionary<int, HashSet<int>> equations;
-        public HashSet<Tuple<int, int>> commutativeDiagram;
-        public string output, result;
+        readonly Form23 form23;
+        private HashSet<Tuple<int, int>> commutativeDiagram;
+        private SortedDictionary<int, HashSet<int>> equations;
+        private string output;
+        private string result;
         public Form19(Form23 form23)
         {
             InitializeComponent();
             this.form23 = form23;
-            save_file.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
+            SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        public void sendData(SortedDictionary<int, HashSet<int>> data)
+        private void Back_Click(object sender, EventArgs e)
         {
-            equations = new SortedDictionary<int, HashSet<int>>();
-            equations = data;
+            //thread1 = new Thread(openForm17);
         }
-        private HashSet<Tuple<int, int>> fillCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        private HashSet<Tuple<int, int>> FillCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
         {
             foreach (KeyValuePair<int, HashSet<int>> equation in equations)
             {
@@ -43,12 +34,26 @@ namespace qualifyingMasterWork
             }
             return commutativeDiagram;
         }
-        private void showCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        private void Finish_Click(object sender, EventArgs e)
         {
-            output = "";
-            data.Text = output;
+            Form.ActiveForm.Visible = false;
+            form23.ShowDialog();
         }
-        private void saveCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        private void Form19_Load(object sender, EventArgs e)
+        {
+            commutativeDiagram = new HashSet<Tuple<int, int>>();
+            FillCommutativeDiagram(commutativeDiagram);
+            ShowCommutativeDiagram(commutativeDiagram);
+        }
+        private void Save_Click(object sender, EventArgs e)
+        {
+            if (SaveFile.ShowDialog() == DialogResult.Cancel)
+                return;
+            SaveCommutativeDiagram(commutativeDiagram);
+            string filename = SaveFile.FileName;
+            System.IO.File.WriteAllText(filename, result);
+        }
+        private void SaveCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
         {
             result = "";
             foreach (Tuple<int, int> edge in commutativeDiagram)
@@ -56,28 +61,15 @@ namespace qualifyingMasterWork
                 result += "g_" + (edge.Item1 + 1) + ", x_" + (edge.Item2 + 1) + "\n";
             }
         }
-        private void Form19_Load(object sender, EventArgs e)
+        public void SendData(SortedDictionary<int, HashSet<int>> data)
         {
-            commutativeDiagram = new HashSet<Tuple<int, int>>();
-            fillCommutativeDiagram(commutativeDiagram);
-            showCommutativeDiagram(commutativeDiagram);
+            equations = new SortedDictionary<int, HashSet<int>>();
+            equations = data;
         }
-        private void back_Click(object sender, EventArgs e)
+        private void ShowCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
         {
-            //thread1 = new Thread(openForm17);
-        }
-        private void finish_Click(object sender, EventArgs e)
-        {
-            Form.ActiveForm.Visible = false;
-            form23.ShowDialog();
-        }
-        private void save_Click(object sender, EventArgs e)
-        {
-            if (save_file.ShowDialog() == DialogResult.Cancel)
-                return;
-            saveCommutativeDiagram(commutativeDiagram);
-            string filename = save_file.FileName;
-            System.IO.File.WriteAllText(filename, result);
+            output = "";
+            Data.Text = output;
         }
     }
 }

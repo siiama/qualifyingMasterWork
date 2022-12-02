@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.size = new System.Windows.Forms.TextBox();
+            this.Size = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.next = new System.Windows.Forms.Button();
+            this.Next = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.back = new System.Windows.Forms.Button();
-            this.ok = new System.Windows.Forms.Button();
+            this.Back = new System.Windows.Forms.Button();
+            this.Ok = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // size
+            // Size
             // 
-            this.size.Location = new System.Drawing.Point(99, 117);
-            this.size.Name = "size";
-            this.size.Size = new System.Drawing.Size(22, 22);
-            this.size.TabIndex = 71;
+            this.Size.Location = new System.Drawing.Point(99, 117);
+            this.Size.Name = "Size";
+            this.Size.Size = new System.Drawing.Size(22, 22);
+            this.Size.TabIndex = 71;
             // 
             // label2
             // 
@@ -51,16 +51,16 @@
             this.label2.TabIndex = 65;
             this.label2.Text = "Size";
             // 
-            // next
+            // Next
             // 
-            this.next.Location = new System.Drawing.Point(171, 280);
-            this.next.Name = "next";
-            this.next.Size = new System.Drawing.Size(75, 23);
-            this.next.TabIndex = 68;
-            this.next.Text = "Next";
-            this.next.UseVisualStyleBackColor = true;
-            this.next.UseWaitCursor = true;
-            this.next.Click += new System.EventHandler(this.next_Click);
+            this.Next.Location = new System.Drawing.Point(171, 280);
+            this.Next.Name = "Next";
+            this.Next.Size = new System.Drawing.Size(75, 23);
+            this.Next.TabIndex = 68;
+            this.Next.Text = "Next";
+            this.Next.UseVisualStyleBackColor = true;
+            this.Next.UseWaitCursor = true;
+            this.Next.Click += new System.EventHandler(this.Next_Click);
             // 
             // label1
             // 
@@ -71,37 +71,37 @@
             this.label1.TabIndex = 67;
             this.label1.Text = "Input matrix";
             // 
-            // back
+            // Back
             // 
-            this.back.Location = new System.Drawing.Point(46, 280);
-            this.back.Name = "back";
-            this.back.Size = new System.Drawing.Size(75, 23);
-            this.back.TabIndex = 66;
-            this.back.Text = "Back";
-            this.back.UseVisualStyleBackColor = true;
-            this.back.Click += new System.EventHandler(this.back_Click);
+            this.Back.Location = new System.Drawing.Point(46, 280);
+            this.Back.Name = "Back";
+            this.Back.Size = new System.Drawing.Size(75, 23);
+            this.Back.TabIndex = 66;
+            this.Back.Text = "Back";
+            this.Back.UseVisualStyleBackColor = true;
+            this.Back.Click += new System.EventHandler(this.Back_Click);
             // 
-            // ok
+            // Ok
             // 
-            this.ok.Location = new System.Drawing.Point(46, 161);
-            this.ok.Name = "ok";
-            this.ok.Size = new System.Drawing.Size(75, 23);
-            this.ok.TabIndex = 72;
-            this.ok.Text = "OK";
-            this.ok.UseVisualStyleBackColor = true;
-            this.ok.Click += new System.EventHandler(this.ok_Click);
+            this.Ok.Location = new System.Drawing.Point(46, 161);
+            this.Ok.Name = "Ok";
+            this.Ok.Size = new System.Drawing.Size(75, 23);
+            this.Ok.TabIndex = 72;
+            this.Ok.Text = "OK";
+            this.Ok.UseVisualStyleBackColor = true;
+            this.Ok.Click += new System.EventHandler(this.Ok_Click);
             // 
             // Form05
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 353);
-            this.Controls.Add(this.ok);
-            this.Controls.Add(this.size);
+            this.Controls.Add(this.Ok);
+            this.Controls.Add(this.Size);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.next);
+            this.Controls.Add(this.Next);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.back);
+            this.Controls.Add(this.Back);
             this.Name = "Form05";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form05";
@@ -112,11 +112,11 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox size;
+        private new System.Windows.Forms.TextBox Size;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button next;
+        private System.Windows.Forms.Button Next;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button back;
-        private System.Windows.Forms.Button ok;
+        private System.Windows.Forms.Button Back;
+        private System.Windows.Forms.Button Ok;
     }
 }
