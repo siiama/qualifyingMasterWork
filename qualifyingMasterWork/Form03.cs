@@ -7,8 +7,10 @@ namespace qualifyingMasterWork
     {
         readonly Form14 form14;
         private bool chooseFileClicked = false;
+        private string[] elementInRow;
         private string fileData;
         private int[,] matrix;
+        private string[] row;
         private int sizeOfMatrix;
         public Form03(Form14 form14)
         {
@@ -33,11 +35,15 @@ namespace qualifyingMasterWork
         }
         private int[,] FillMatrix(int[,] matrix)
         {
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            row = new string[matrix.GetLength(0)];
+            row = fileData.Split('\n');
+            for (int i = 0; i < row.Length; i++)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+                elementInRow = new string[matrix.GetLength(1)];
+                elementInRow = row[i].Split(' ');
+                for (int j = 0; j < elementInRow.Length; j++)
                 {
-                    //FILL MATRIX
+                    matrix[i, j] = Convert.ToInt32(elementInRow[j]);
                 }
             }
             return matrix;
