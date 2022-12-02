@@ -8,9 +8,11 @@ namespace qualifyingMasterWork
     {
         readonly Form17 form17;
         private bool chooseFileClicked = false;
+        private string[] elementInRow;
         private SortedDictionary<int, HashSet<int>> equations;
         private string fileData;
         private int numOfEquations;
+        private string[] equationFromFile;
         public Form07(Form17 form17)
         {
             InitializeComponent();
@@ -34,22 +36,19 @@ namespace qualifyingMasterWork
         }
         private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)
         {
-            for (int i = 0; i < numOfEquations; i++)
+            equationFromFile = new string[numOfEquations];
+            equationFromFile = fileData.Split('\n');
+            for (int i = 0; i < equationFromFile.Length; i++)
             {
-                int[] element = new int[numOfEquations];
-                for (int j = 0; j < numOfEquations; j++)
+                elementInRow = equationFromFile[i].Split(':');
+                int functionFromFile = Convert.ToInt32(elementInRow[0].Substring(elementInRow[0].IndexOf('f') + 2)) - 1;
+                HashSet<int> argumentsFromFile = new HashSet<int>();
+                string[] argumentFromFile = elementInRow[1].Split(' ');
+                for (int j = 0; j < argumentFromFile.Length; j++)
                 {
-                    //FILL EQUATIONS
+                    argumentsFromFile.Add(Convert.ToInt32(argumentFromFile[j].Substring(argumentFromFile[j].IndexOf('x') + 2)) - 1);
                 }
-                HashSet<int> equation = new HashSet<int>();
-                for (int j = 0; j < element.Length; j++)
-                {
-                    if (element[j] == 1)
-                    {
-                        //
-                    }
-                }
-                //
+                equations.Add(functionFromFile, argumentsFromFile);
             }
             return equations;
         }
