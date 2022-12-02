@@ -74,7 +74,7 @@ namespace qualifyingMasterWork
             result = "";
             foreach (KeyValuePair<int, HashSet<int>> equation in equations)
             {
-                result += "f_" + equation.Key.ToString() + ": ";
+                result += "f_" + (equation.Key+1).ToString() + ": ";
                 foreach (int value in equation.Value)
                 {
                     result += "x_" + (value + 1) + " ";
