@@ -19,7 +19,9 @@ namespace qualifyingMasterWork
         }
         private void Back_Click(object sender, EventArgs e)
         {
-            //thread1 = new Thread(openForm6);
+            Form.ActiveForm.Visible = false;
+            Form06 form06 = new Form06();
+            form06.ShowDialog();
         }
         private void ChooseFile_Click(object sender, EventArgs e)
         {

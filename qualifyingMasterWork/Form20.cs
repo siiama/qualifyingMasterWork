@@ -17,7 +17,9 @@ namespace qualifyingMasterWork
         }
         private void Back_Click(object sender, EventArgs e)
         {
-            //thread1 = new Thread(openForm10);
+            Form.ActiveForm.Visible = false;
+            Form10 form10 = new Form10();
+            form10.ShowDialog();
         }
         private void Next_Click(object sender, EventArgs e)
         {

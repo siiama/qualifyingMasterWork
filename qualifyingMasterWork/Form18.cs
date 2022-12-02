@@ -21,7 +21,13 @@ namespace qualifyingMasterWork
         }
         private void Back_Click(object sender, EventArgs e)
         {
-            //thread1 = new Thread(openForm17);
+            Form.ActiveForm.Visible = false;
+            Form23 form23 = new Form23();
+            Form19 form19 = new Form19(form23);
+            Form18 form18 = new Form18(form23);
+            Form17 form17 = new Form17(form18, form19);
+            form17.SendData(equations);
+            form17.ShowDialog();
         }
         private int[,] FillMatrix(int[,] matrix)
         {

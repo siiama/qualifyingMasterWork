@@ -20,7 +20,13 @@ namespace qualifyingMasterWork
         }
         private void Back_Click(object sender, EventArgs e)
         {
-            //thread1 = new Thread(openForm14);
+            Form.ActiveForm.Visible = false;
+            Form23 form23 = new Form23();
+            Form16 form16 = new Form16(form23);
+            Form15 form15 = new Form15(form23);
+            Form14 form14 = new Form14(form15, form16);
+            form14.SendData(matrix);
+            form14.ShowDialog();
         }
         private HashSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
         {
