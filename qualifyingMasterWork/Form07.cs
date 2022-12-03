@@ -13,6 +13,7 @@ namespace qualifyingMasterWork
         private string[] elementInRow;
         private SortedDictionary<int, HashSet<int>> equations;
         private string fileData;
+        private string fileName;
         private int functionFromFile;
         private int numOfEquations;
         private string[] equationFromFile;
@@ -32,7 +33,7 @@ namespace qualifyingMasterWork
         {
             if (OpenFile.ShowDialog() == DialogResult.Cancel)
                 return;
-            string fileName = OpenFile.FileName;
+            fileName = OpenFile.FileName;
             fileData = System.IO.File.ReadAllText(fileName);
             File.Text = fileName;
             chooseFileClicked = true;

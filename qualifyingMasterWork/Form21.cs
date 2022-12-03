@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -55,7 +56,7 @@ namespace qualifyingMasterWork
         }
         private void Form21_Load(object sender, EventArgs e)
         {
-            //sizeOfMatrix = 
+            sizeOfMatrix = commutativeDiagram.Max(v => v.Item1) + 1;
             matrix = new int[sizeOfMatrix, sizeOfMatrix];
             FillMatrix(matrix);
             ShowMatrix(matrix);

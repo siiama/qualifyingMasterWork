@@ -9,8 +9,11 @@ namespace qualifyingMasterWork
         readonly Form20 form20;
         private bool chooseFileClicked = false;
         private HashSet<Tuple<int, int>> commutativeDiagram;
-        private readonly string fileData;
-        private readonly int numOfVertexesInEachPart;
+        private Tuple<int, int> edgeFromFile;
+        private string[] edgesFromFile;
+        private string fileData;
+        private string fileName;
+        private string[] vertexInEdges;
         public Form11(Form20 form20)
         {
             InitializeComponent();
@@ -27,24 +30,19 @@ namespace qualifyingMasterWork
         {
             if (OpenFile.ShowDialog() == DialogResult.Cancel)
                 return;
-            string fileName = OpenFile.FileName;
-            string fileData = System.IO.File.ReadAllText(fileName);
+            fileName = OpenFile.FileName;
+            fileData = System.IO.File.ReadAllText(fileName);
             File.Text = fileName;
             chooseFileClicked = true;
         }
-        private HashSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
+        private HashSet<Tuple<int, int>> FillCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
         {
-            for (int i = 0; i < numOfVertexesInEachPart; i++)
+            edgesFromFile = fileData.Split('\n');
+            for (int i = 0; i < edgesFromFile.Length; i++)
             {
-                int[] element = new int[numOfVertexesInEachPart];
-                for (int j = 0; j < numOfVertexesInEachPart; j++)
-                {
-                    //FILL COMMUTATIVE DIAGRAM
-                    if (element[j] == 1)
-                    {
-                        //
-                    }
-                }
+                vertexInEdges = edgesFromFile[i].Split(',');
+                edgeFromFile = new Tuple<int, int>(Convert.ToInt32(vertexInEdges[0].Substring(vertexInEdges[0].IndexOf('g') + 2)) - 1, Convert.ToInt32(vertexInEdges[1].Substring(vertexInEdges[1].IndexOf('x') + 2)) - 1);
+                commutativeDiagram.Add(edgeFromFile);
             }
             return commutativeDiagram;
         }
@@ -54,9 +52,8 @@ namespace qualifyingMasterWork
             {
                 if (!string.IsNullOrEmpty(fileData))
                 {
-                    //numOfVertexesInEachPart = 
                     commutativeDiagram = new HashSet<Tuple<int, int>>();
-                    FillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
+                    FillCommutativeDiagram(commutativeDiagram);
                     Form.ActiveForm.Visible = false;
                     form20.SendData(commutativeDiagram);
                     form20.ShowDialog();

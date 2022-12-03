@@ -29,6 +29,7 @@ namespace qualifyingMasterWork
         }
         private SortedDictionary<int, HashSet<int>> FillEquations(SortedDictionary<int, HashSet<int>> equations)
         {
+            //FIX
             int previousFunction = 0;
             HashSet<int> equation = new HashSet<int>();
             foreach (Tuple<int, int> edge in commutativeDiagram)

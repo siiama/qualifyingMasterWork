@@ -9,6 +9,7 @@ namespace qualifyingMasterWork
         private bool chooseFileClicked = false;
         private string[] elementInRow;
         private string fileData;
+        private string fileName;
         private int[,] matrix;
         private string[] row;
         private int sizeOfMatrix;
@@ -28,7 +29,7 @@ namespace qualifyingMasterWork
         {
             if (OpenFile.ShowDialog() == DialogResult.Cancel)
                 return;
-            string fileName = OpenFile.FileName;
+            fileName = OpenFile.FileName;
             fileData = System.IO.File.ReadAllText(fileName);
             file.Text = fileName;
             chooseFileClicked = true;
