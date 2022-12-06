@@ -80,8 +80,10 @@ namespace qualifyingMasterWork
                 {
                     result += matrix[i, j].ToString() + " ";
                 }
+                result = result.Remove(result.Length - 1);
                 result += "\n";
             }
+            result = result.Remove(result.Length - 1);
         }
         public void SendData(SortedDictionary<int, HashSet<int>> data)
         {

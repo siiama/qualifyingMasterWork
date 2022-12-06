@@ -62,6 +62,7 @@ namespace qualifyingMasterWork
             {
                 result += "g_" + (edge.Item1 + 1) + ", x_" + (edge.Item2 + 1) + "\n";
             }
+            result = result.Remove(result.Length - 1);
         }
         private void Save_Click(object sender, EventArgs e)
         {
