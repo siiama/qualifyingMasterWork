@@ -35,9 +35,9 @@ namespace qualifyingMasterWork
         {
             if (okClicked == true)// && INPUT IS NOT NULL
             {
-                Form.ActiveForm.Visible = false;
+                /*Form.ActiveForm.Visible = false;
                 form14.SendData(matrix);
-                form14.ShowDialog();
+                form14.ShowDialog();*/
             }
             else
             {
@@ -51,18 +51,19 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please enter size");
             }
-            else if (Convert.ToInt32(Size.Text) > 10)
+            else if (Convert.ToInt32(Size.Text) > 1)
             {
-                MessageBox.Show("Are you patient enough to input data manually?");
-                //LET USER INPUT DATA ANYWAY
-            }
-            else
-            {
+                if (Convert.ToInt32(Size.Text) > 10)
+                    MessageBox.Show("Are you patient enough to input data manually?");
                 sizeOfMatrix = Convert.ToInt32(Size.Text);
                 matrix = new int[sizeOfMatrix, sizeOfMatrix];
                 //DO BUTTONS TO INPUT MANUALLY
                 FillMatrix(matrix);
                 okClicked = true;
+            }
+            else
+            {
+                MessageBox.Show("Size should be > 1");
             }
         }
     }

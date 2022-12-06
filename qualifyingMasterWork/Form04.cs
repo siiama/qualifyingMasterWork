@@ -39,7 +39,7 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please enter size");
             }
-            else
+            else if (Convert.ToInt32(Size.Text) > 1)
             {
                 sizeOfMatrix = Convert.ToInt32(Size.Text);
                 matrix = new int[sizeOfMatrix, sizeOfMatrix];
@@ -47,10 +47,14 @@ namespace qualifyingMasterWork
                 ShowMatix(matrix);
                 generateClicked = true;
             }
+            else
+            {
+                MessageBox.Show("Size should be > 1");
+            }
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            if (generateClicked == true && sizeOfMatrix >= 2)
+            if (generateClicked == true)
             {
                 Form.ActiveForm.Visible = false;
                 form14.SendData(matrix);
@@ -59,7 +63,6 @@ namespace qualifyingMasterWork
             else
             {
                 MessageBox.Show("Please generate data");
-                //WHY CLOSES THE APP?
             }
         }
         private void ShowMatix(int[,] matrix)

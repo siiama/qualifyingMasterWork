@@ -46,7 +46,7 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please enter size");
             }
-            else
+            else if (Convert.ToInt32(Size.Text) > 1)
             {
                 numOfVertexesInEachPart = Convert.ToInt32(Size.Text);
                 commutativeDiagram = new HashSet<Tuple<int, int>>();
@@ -54,10 +54,14 @@ namespace qualifyingMasterWork
                 ShowCommutativeDiagram(commutativeDiagram);
                 generateClicked = true;
             }
+            else
+            {
+                MessageBox.Show("Size should be > 1");
+            }
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            if (generateClicked == true && numOfVertexesInEachPart >= 2)
+            if (generateClicked == true)
             {
                 Form.ActiveForm.Visible = false;
                 form20.SendData(commutativeDiagram);

@@ -52,7 +52,7 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please enter size");
             }
-            else
+            else if (Convert.ToInt32(Size.Text) > 1)
             {
                 numOfEquations = Convert.ToInt32(Size.Text);
                 equations = new SortedDictionary<int, HashSet<int>>();
@@ -60,10 +60,14 @@ namespace qualifyingMasterWork
                 ShowEquations(equations);
                 generateClicked = true;
             }
+            else
+            {
+                MessageBox.Show("Size should be > 1");
+            }
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            if (generateClicked == true && numOfEquations >= 2)
+            if (generateClicked == true)
             {
                 Form.ActiveForm.Visible = false;
                 form17.SendData(equations);

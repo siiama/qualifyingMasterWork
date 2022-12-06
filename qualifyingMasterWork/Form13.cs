@@ -41,9 +41,9 @@ namespace qualifyingMasterWork
         {
             if (okClicked == true)// && INPUT IS NOT NULL
             {
-                Form.ActiveForm.Visible = false;
+                /*Form.ActiveForm.Visible = false;
                 form20.SendData(commutativeDiagram);
-                form20.ShowDialog();
+                form20.ShowDialog();*/
             }
             else
             {
@@ -57,18 +57,19 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please enter size");
             }
-            else if (Convert.ToInt32(Size.Text) > 10)
+            else if (Convert.ToInt32(Size.Text) > 1)
             {
-                MessageBox.Show("Are you patient enough to input data manually?");
-                //LET USER INPUT DATA ANYWAY
-            }
-            else
-            {
+                if (Convert.ToInt32(Size.Text) > 10)
+                    MessageBox.Show("Are you patient enough to input data manually?");
                 numOfVertexesInEachPart = Convert.ToInt32(Size.Text);
                 commutativeDiagram = new HashSet<Tuple<int, int>>();
                 //DO BUTTONS TO INPUT MANUALLY
                 FillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
                 okClicked = true;
+            }
+            else
+            {
+                MessageBox.Show("Size should be > 1");
             }
         }
     }

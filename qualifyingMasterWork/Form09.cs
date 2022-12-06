@@ -46,9 +46,9 @@ namespace qualifyingMasterWork
         {
             if (okClicked == true)// && INPUT IS NOT NULL
             {
-                Form.ActiveForm.Visible = false;
+                /*Form.ActiveForm.Visible = false;
                 form17.SendData(equations);
-                form17.ShowDialog();
+                form17.ShowDialog();*/
             }
             else
             {
@@ -61,18 +61,19 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please enter size");
             }
-            else if (Convert.ToInt32(Size.Text) > 10)
+            else if (Convert.ToInt32(Size.Text) > 1)
             {
-                MessageBox.Show("Are you patient enough to input data manually?");
-                //LET USER INPUT DATA ANYWAY
-            }
-            else
-            {
+                if (Convert.ToInt32(Size.Text) > 10)
+                    MessageBox.Show("Are you patient enough to input data manually?");
                 numOfEquations = Convert.ToInt32(Size.Text);
                 equations = new SortedDictionary<int, HashSet<int>>();
                 //DO BUTTONS TO INPUT MANUALLY
                 FillEquations(numOfEquations, equations);
                 okClicked = true;
+            }
+            else
+            {
+                MessageBox.Show("Size should be > 1");
             }
         }
     }
