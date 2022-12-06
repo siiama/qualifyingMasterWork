@@ -96,7 +96,7 @@
             this.Controls.Add(this.Matrix);
             this.Controls.Add(this.label1);
             this.Name = "Form20";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form20";
             this.ResumeLayout(false);
             this.PerformLayout();
