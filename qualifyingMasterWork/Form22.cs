@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -9,6 +10,7 @@ namespace qualifyingMasterWork
         readonly Form23 form23;
         private HashSet<Tuple<int, int>> commutativeDiagram;
         private SortedDictionary<int, HashSet<int>> equations;
+        private int numOfVertexesInEachPart;
         private string output;
         private string result;
         public Form22(Form23 form23)
@@ -27,24 +29,21 @@ namespace qualifyingMasterWork
             form20.SendData(commutativeDiagram);
             form20.ShowDialog();
         }
-        private SortedDictionary<int, HashSet<int>> FillEquations(SortedDictionary<int, HashSet<int>> equations)
+        private SortedDictionary<int, HashSet<int>> FillEquations(int numOfVertexesInEachPart, SortedDictionary<int, HashSet<int>> equations)
         {
-            //FIX
-            int previousFunction = 0;
-            HashSet<int> equation = new HashSet<int>();
-            foreach (Tuple<int, int> edge in commutativeDiagram)
+            for (int i = 0; i < numOfVertexesInEachPart; i++)
             {
-                int function = edge.Item1;
-                int argument = edge.Item2;
-                if (function == previousFunction)
+                HashSet<int> equation = new HashSet<int>();
+                foreach (Tuple<int, int> edge in commutativeDiagram)
                 {
-                    equation.Add(argument);
+                    if (edge.Item1 == i)
+                    {
+                        equation.Add(edge.Item2);
+                    }
                 }
-                else
+                if (equation.Count != 0)
                 {
-                    equations.Add(function, equation);
-                    equation.Clear();
-                    previousFunction++;
+                    equations.Add(i, equation);
                 }
             }
             return equations;
@@ -56,8 +55,9 @@ namespace qualifyingMasterWork
         }
         private void Form22_Load(object sender, EventArgs e)
         {
+            numOfVertexesInEachPart = commutativeDiagram.Max(v => v.Item1) + 1;
             equations = new SortedDictionary<int, HashSet<int>>();
-            FillEquations(equations);
+            FillEquations(numOfVertexesInEachPart, equations);
             ShowEquations(equations);
         }
         private void Save_Click(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace qualifyingMasterWork
             output = "";
             foreach (KeyValuePair<int, HashSet<int>> equation in equations)
             {
-                output += "f_" + equation.Key.ToString() + " = (   ";
+                output += "f_" + (equation.Key + 1).ToString() + " = (   ";
                 foreach (int value in equation.Value)
                 {
                     output += "x_" + (value + 1) + "   ";

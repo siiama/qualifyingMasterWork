@@ -57,7 +57,7 @@ namespace qualifyingMasterWork
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            if (generateClicked == true && numOfVertexesInEachPart >= 1)
+            if (generateClicked == true && numOfVertexesInEachPart >= 2)
             {
                 Form.ActiveForm.Visible = false;
                 form20.SendData(commutativeDiagram);
@@ -71,6 +71,10 @@ namespace qualifyingMasterWork
         private void ShowCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
         {
             output = "";
+            foreach (Tuple<int, int> edge in commutativeDiagram)
+            {
+                output += "g_" + (edge.Item1 + 1) + " -> x_" + (edge.Item2 + 1) + "\n";
+            }
             Data.Text = output;
         }
         private void Size_KeyPress(object sender, KeyPressEventArgs e)
