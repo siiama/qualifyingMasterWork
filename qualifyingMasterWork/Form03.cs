@@ -31,7 +31,7 @@ namespace qualifyingMasterWork
                 return;
             fileName = OpenFile.FileName;
             fileData = System.IO.File.ReadAllText(fileName);
-            file.Text = fileName;
+            file.Text = System.IO.Path.GetFileName(fileName);
             chooseFileClicked = true;
         }
         private int[,] FillMatrix(int[,] matrix)

@@ -35,7 +35,7 @@ namespace qualifyingMasterWork
                 return;
             fileName = OpenFile.FileName;
             fileData = System.IO.File.ReadAllText(fileName);
-            File.Text = fileName;
+            File.Text = System.IO.Path.GetFileName(fileName);
             chooseFileClicked = true;
         }
         private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)

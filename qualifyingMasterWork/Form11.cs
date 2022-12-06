@@ -32,7 +32,7 @@ namespace qualifyingMasterWork
                 return;
             fileName = OpenFile.FileName;
             fileData = System.IO.File.ReadAllText(fileName);
-            File.Text = fileName;
+            File.Text = System.IO.Path.GetFileName(fileName);
             chooseFileClicked = true;
         }
         private HashSet<Tuple<int, int>> FillCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
