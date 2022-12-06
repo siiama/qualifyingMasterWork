@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form23));
             this.label1 = new System.Windows.Forms.Label();
             this.Finish = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -35,7 +36,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(68, 49);
+            this.label1.Location = new System.Drawing.Point(100, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 16);
             this.label1.TabIndex = 9;
@@ -43,9 +44,9 @@
             // 
             // Finish
             // 
-            this.Finish.Location = new System.Drawing.Point(71, 131);
+            this.Finish.Location = new System.Drawing.Point(100, 175);
             this.Finish.Name = "Finish";
-            this.Finish.Size = new System.Drawing.Size(93, 23);
+            this.Finish.Size = new System.Drawing.Size(100, 30);
             this.Finish.TabIndex = 8;
             this.Finish.Text = "FINISH";
             this.Finish.UseVisualStyleBackColor = true;
@@ -55,12 +56,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(232, 203);
+            this.ClientSize = new System.Drawing.Size(282, 253);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Finish);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form23";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form23";
+            this.Text = "Switch";
             this.ResumeLayout(false);
             this.PerformLayout();
 

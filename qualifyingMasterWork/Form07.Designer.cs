@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form07));
             this.Next = new System.Windows.Forms.Button();
             this.ChooseFile = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,9 +39,9 @@
             // 
             // Next
             // 
-            this.Next.Location = new System.Drawing.Point(213, 245);
+            this.Next.Location = new System.Drawing.Point(200, 275);
             this.Next.Name = "Next";
-            this.Next.Size = new System.Drawing.Size(75, 23);
+            this.Next.Size = new System.Drawing.Size(100, 30);
             this.Next.TabIndex = 63;
             this.Next.Text = "Next";
             this.Next.UseVisualStyleBackColor = true;
@@ -49,9 +50,9 @@
             // 
             // ChooseFile
             // 
-            this.ChooseFile.Location = new System.Drawing.Point(98, 150);
+            this.ChooseFile.Location = new System.Drawing.Point(50, 125);
             this.ChooseFile.Name = "ChooseFile";
-            this.ChooseFile.Size = new System.Drawing.Size(91, 23);
+            this.ChooseFile.Size = new System.Drawing.Size(100, 30);
             this.ChooseFile.TabIndex = 62;
             this.ChooseFile.Text = "Choose file";
             this.ChooseFile.UseVisualStyleBackColor = true;
@@ -60,7 +61,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(95, 85);
+            this.label1.Location = new System.Drawing.Point(50, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(157, 16);
             this.label1.TabIndex = 61;
@@ -68,9 +69,9 @@
             // 
             // Back
             // 
-            this.Back.Location = new System.Drawing.Point(98, 245);
+            this.Back.Location = new System.Drawing.Point(50, 275);
             this.Back.Name = "Back";
-            this.Back.Size = new System.Drawing.Size(75, 23);
+            this.Back.Size = new System.Drawing.Size(100, 30);
             this.Back.TabIndex = 60;
             this.Back.Text = "Back";
             this.Back.UseVisualStyleBackColor = true;
@@ -79,7 +80,7 @@
             // File
             // 
             this.File.AutoSize = true;
-            this.File.Location = new System.Drawing.Point(210, 157);
+            this.File.Location = new System.Drawing.Point(50, 200);
             this.File.Name = "File";
             this.File.Size = new System.Drawing.Size(0, 16);
             this.File.TabIndex = 64;
@@ -94,9 +95,10 @@
             this.Controls.Add(this.ChooseFile);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Back);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form07";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form07";
+            this.Text = "Switch";
             this.ResumeLayout(false);
             this.PerformLayout();
 

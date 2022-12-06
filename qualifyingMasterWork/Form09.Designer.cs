@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form09));
             this.Size = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.Next = new System.Windows.Forms.Button();
@@ -38,14 +39,14 @@
             // 
             // Size
             // 
-            this.Size.Location = new System.Drawing.Point(99, 117);
+            this.Size.Location = new System.Drawing.Point(100, 125);
             this.Size.Name = "Size";
             this.Size.Size = new System.Drawing.Size(22, 22);
             this.Size.TabIndex = 77;
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(48, 120);
+            this.label2.Location = new System.Drawing.Point(50, 125);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 16);
             this.label2.TabIndex = 72;
@@ -53,9 +54,9 @@
             // 
             // Next
             // 
-            this.Next.Location = new System.Drawing.Point(171, 280);
+            this.Next.Location = new System.Drawing.Point(200, 275);
             this.Next.Name = "Next";
-            this.Next.Size = new System.Drawing.Size(75, 23);
+            this.Next.Size = new System.Drawing.Size(100, 30);
             this.Next.TabIndex = 75;
             this.Next.Text = "Next";
             this.Next.UseVisualStyleBackColor = true;
@@ -65,7 +66,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(48, 50);
+            this.label1.Location = new System.Drawing.Point(50, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(157, 16);
             this.label1.TabIndex = 74;
@@ -73,9 +74,9 @@
             // 
             // Back
             // 
-            this.Back.Location = new System.Drawing.Point(46, 280);
+            this.Back.Location = new System.Drawing.Point(50, 275);
             this.Back.Name = "Back";
-            this.Back.Size = new System.Drawing.Size(75, 23);
+            this.Back.Size = new System.Drawing.Size(100, 30);
             this.Back.TabIndex = 73;
             this.Back.Text = "Back";
             this.Back.UseVisualStyleBackColor = true;
@@ -83,9 +84,9 @@
             // 
             // Ok
             // 
-            this.Ok.Location = new System.Drawing.Point(46, 161);
+            this.Ok.Location = new System.Drawing.Point(50, 175);
             this.Ok.Name = "Ok";
-            this.Ok.Size = new System.Drawing.Size(75, 23);
+            this.Ok.Size = new System.Drawing.Size(100, 30);
             this.Ok.TabIndex = 78;
             this.Ok.Text = "OK";
             this.Ok.UseVisualStyleBackColor = true;
@@ -102,9 +103,10 @@
             this.Controls.Add(this.Next);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Back);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form09";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form09";
+            this.Text = "Switch";
             this.ResumeLayout(false);
             this.PerformLayout();
 

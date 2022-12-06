@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form14));
             this.CommutativeDiagram = new System.Windows.Forms.RadioButton();
             this.SystemOfEquations = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
@@ -38,7 +39,7 @@
             // CommutativeDiagram
             // 
             this.CommutativeDiagram.AutoSize = true;
-            this.CommutativeDiagram.Location = new System.Drawing.Point(39, 182);
+            this.CommutativeDiagram.Location = new System.Drawing.Point(50, 175);
             this.CommutativeDiagram.Name = "CommutativeDiagram";
             this.CommutativeDiagram.Size = new System.Drawing.Size(159, 20);
             this.CommutativeDiagram.TabIndex = 22;
@@ -48,7 +49,7 @@
             // SystemOfEquations
             // 
             this.SystemOfEquations.AutoSize = true;
-            this.SystemOfEquations.Location = new System.Drawing.Point(39, 133);
+            this.SystemOfEquations.Location = new System.Drawing.Point(50, 125);
             this.SystemOfEquations.Name = "SystemOfEquations";
             this.SystemOfEquations.Size = new System.Drawing.Size(149, 20);
             this.SystemOfEquations.TabIndex = 20;
@@ -58,7 +59,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 66);
+            this.label1.Location = new System.Drawing.Point(50, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(310, 16);
             this.label1.TabIndex = 21;
@@ -66,9 +67,9 @@
             // 
             // Next
             // 
-            this.Next.Location = new System.Drawing.Point(164, 261);
+            this.Next.Location = new System.Drawing.Point(200, 275);
             this.Next.Name = "Next";
-            this.Next.Size = new System.Drawing.Size(75, 23);
+            this.Next.Size = new System.Drawing.Size(100, 30);
             this.Next.TabIndex = 70;
             this.Next.Text = "Next";
             this.Next.UseVisualStyleBackColor = true;
@@ -77,9 +78,9 @@
             // 
             // Back
             // 
-            this.Back.Location = new System.Drawing.Point(39, 261);
+            this.Back.Location = new System.Drawing.Point(50, 275);
             this.Back.Name = "Back";
-            this.Back.Size = new System.Drawing.Size(75, 23);
+            this.Back.Size = new System.Drawing.Size(100, 30);
             this.Back.TabIndex = 69;
             this.Back.Text = "Back";
             this.Back.UseVisualStyleBackColor = true;
@@ -89,15 +90,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(382, 353);
+            this.ClientSize = new System.Drawing.Size(482, 353);
             this.Controls.Add(this.Next);
             this.Controls.Add(this.Back);
             this.Controls.Add(this.CommutativeDiagram);
             this.Controls.Add(this.SystemOfEquations);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form14";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form14";
+            this.Text = "Switch";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form04));
             this.Size = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.Generate = new System.Windows.Forms.Button();
@@ -39,7 +40,7 @@
             // 
             // Size
             // 
-            this.Size.Location = new System.Drawing.Point(99, 117);
+            this.Size.Location = new System.Drawing.Point(100, 125);
             this.Size.Name = "Size";
             this.Size.Size = new System.Drawing.Size(22, 22);
             this.Size.TabIndex = 64;
@@ -47,7 +48,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(48, 120);
+            this.label2.Location = new System.Drawing.Point(50, 125);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 16);
             this.label2.TabIndex = 58;
@@ -55,9 +56,9 @@
             // 
             // Generate
             // 
-            this.Generate.Location = new System.Drawing.Point(46, 161);
+            this.Generate.Location = new System.Drawing.Point(50, 175);
             this.Generate.Name = "Generate";
-            this.Generate.Size = new System.Drawing.Size(82, 23);
+            this.Generate.Size = new System.Drawing.Size(100, 30);
             this.Generate.TabIndex = 62;
             this.Generate.Text = "Generate";
             this.Generate.UseVisualStyleBackColor = true;
@@ -65,9 +66,9 @@
             // 
             // Next
             // 
-            this.Next.Location = new System.Drawing.Point(171, 280);
+            this.Next.Location = new System.Drawing.Point(200, 275);
             this.Next.Name = "Next";
-            this.Next.Size = new System.Drawing.Size(75, 23);
+            this.Next.Size = new System.Drawing.Size(100, 30);
             this.Next.TabIndex = 61;
             this.Next.Text = "Next";
             this.Next.UseVisualStyleBackColor = true;
@@ -77,7 +78,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(48, 50);
+            this.label1.Location = new System.Drawing.Point(50, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(73, 16);
             this.label1.TabIndex = 60;
@@ -85,9 +86,9 @@
             // 
             // Back
             // 
-            this.Back.Location = new System.Drawing.Point(46, 280);
+            this.Back.Location = new System.Drawing.Point(50, 275);
             this.Back.Name = "Back";
-            this.Back.Size = new System.Drawing.Size(75, 23);
+            this.Back.Size = new System.Drawing.Size(100, 30);
             this.Back.TabIndex = 59;
             this.Back.Text = "Back";
             this.Back.UseVisualStyleBackColor = true;
@@ -96,7 +97,7 @@
             // Data
             // 
             this.Data.AutoSize = true;
-            this.Data.Location = new System.Drawing.Point(246, 50);
+            this.Data.Location = new System.Drawing.Point(300, 50);
             this.Data.Name = "Data";
             this.Data.Size = new System.Drawing.Size(0, 16);
             this.Data.TabIndex = 65;
@@ -113,9 +114,10 @@
             this.Controls.Add(this.Next);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Back);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form04";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form04";
+            this.Text = "Switch";
             this.ResumeLayout(false);
             this.PerformLayout();
 

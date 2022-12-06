@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form01));
             this.Next = new System.Windows.Forms.Button();
             this.CommutativeDiagram = new System.Windows.Forms.RadioButton();
             this.SystemOfEquations = new System.Windows.Forms.RadioButton();
@@ -37,9 +38,9 @@
             // 
             // Next
             // 
-            this.Next.Location = new System.Drawing.Point(138, 284);
+            this.Next.Location = new System.Drawing.Point(150, 275);
             this.Next.Name = "Next";
-            this.Next.Size = new System.Drawing.Size(75, 23);
+            this.Next.Size = new System.Drawing.Size(100, 30);
             this.Next.TabIndex = 14;
             this.Next.Text = "Next";
             this.Next.UseVisualStyleBackColor = true;
@@ -48,7 +49,7 @@
             // CommutativeDiagram
             // 
             this.CommutativeDiagram.AutoSize = true;
-            this.CommutativeDiagram.Location = new System.Drawing.Point(56, 203);
+            this.CommutativeDiagram.Location = new System.Drawing.Point(50, 200);
             this.CommutativeDiagram.Name = "CommutativeDiagram";
             this.CommutativeDiagram.Size = new System.Drawing.Size(159, 20);
             this.CommutativeDiagram.TabIndex = 13;
@@ -58,7 +59,7 @@
             // SystemOfEquations
             // 
             this.SystemOfEquations.AutoSize = true;
-            this.SystemOfEquations.Location = new System.Drawing.Point(56, 154);
+            this.SystemOfEquations.Location = new System.Drawing.Point(50, 150);
             this.SystemOfEquations.Name = "SystemOfEquations";
             this.SystemOfEquations.Size = new System.Drawing.Size(149, 20);
             this.SystemOfEquations.TabIndex = 11;
@@ -68,7 +69,7 @@
             // Matrix
             // 
             this.Matrix.AutoSize = true;
-            this.Matrix.Location = new System.Drawing.Point(56, 105);
+            this.Matrix.Location = new System.Drawing.Point(50, 100);
             this.Matrix.Name = "Matrix";
             this.Matrix.Size = new System.Drawing.Size(63, 20);
             this.Matrix.TabIndex = 10;
@@ -78,7 +79,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(53, 46);
+            this.label1.Location = new System.Drawing.Point(50, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(277, 16);
             this.label1.TabIndex = 12;
@@ -94,9 +95,10 @@
             this.Controls.Add(this.SystemOfEquations);
             this.Controls.Add(this.Matrix);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form01";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form01";
+            this.Text = "Switch";
             this.ResumeLayout(false);
             this.PerformLayout();
 

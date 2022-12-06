@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form0));
             this.Start = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Exit = new System.Windows.Forms.Button();
@@ -35,9 +36,9 @@
             // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(27, 133);
+            this.Start.Location = new System.Drawing.Point(150, 250);
             this.Start.Name = "Start";
-            this.Start.Size = new System.Drawing.Size(75, 23);
+            this.Start.Size = new System.Drawing.Size(100, 30);
             this.Start.TabIndex = 2;
             this.Start.Text = "START";
             this.Start.UseVisualStyleBackColor = true;
@@ -46,17 +47,19 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(77, 48);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(55, 30);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 16);
+            this.label1.Size = new System.Drawing.Size(260, 180);
             this.label1.TabIndex = 3;
-            this.label1.Text = "WELCOME!";
+            this.label1.Text = resources.GetString("label1.Text");
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Exit
             // 
-            this.Exit.Location = new System.Drawing.Point(135, 133);
+            this.Exit.Location = new System.Drawing.Point(150, 300);
             this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(75, 23);
+            this.Exit.Size = new System.Drawing.Size(100, 30);
             this.Exit.TabIndex = 4;
             this.Exit.Text = "EXIT";
             this.Exit.UseVisualStyleBackColor = true;
@@ -66,13 +69,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(232, 203);
+            this.ClientSize = new System.Drawing.Size(382, 353);
             this.Controls.Add(this.Exit);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Start);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form0";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form0";
+            this.Text = "Switch";
             this.ResumeLayout(false);
             this.PerformLayout();
 
