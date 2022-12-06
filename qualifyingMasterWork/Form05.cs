@@ -58,6 +58,7 @@ namespace qualifyingMasterWork
                 sizeOfMatrix = Convert.ToInt32(Size.Text);
                 matrix = new int[sizeOfMatrix, sizeOfMatrix];
                 //DO BUTTONS TO INPUT MANUALLY
+
                 FillMatrix(matrix);
                 okClicked = true;
             }
