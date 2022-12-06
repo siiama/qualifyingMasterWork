@@ -65,7 +65,6 @@
             // 
             // Next
             // 
-            this.Next.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Next.Location = new System.Drawing.Point(171, 280);
             this.Next.Name = "Next";
             this.Next.Size = new System.Drawing.Size(75, 23);
