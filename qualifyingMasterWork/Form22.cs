@@ -7,11 +7,14 @@ namespace qualifyingMasterWork
 {
     public partial class Form22 : Form
     {
+        readonly Form21 form21;
+        readonly Form22 form22;
         readonly Form23 form23;
         private HashSet<Tuple<int, int>> commutativeDiagram;
         private SortedDictionary<int, HashSet<int>> equations;
         private int numOfVertexesInEachPart;
         private string output;
+        private string problemName;
         private string result;
         public Form22(Form23 form23)
         {
@@ -22,9 +25,6 @@ namespace qualifyingMasterWork
         private void Back_Click(object sender, EventArgs e)
         {
             Form.ActiveForm.Visible = false;
-            Form23 form23 = new Form23();
-            Form22 form22 = new Form22(form23);
-            Form21 form21 = new Form21(form23);
             Form20 form20 = new Form20(form21, form22);
             form20.SendData(commutativeDiagram);
             form20.ShowDialog();
@@ -51,6 +51,8 @@ namespace qualifyingMasterWork
         private void Finish_Click(object sender, EventArgs e)
         {
             Form.ActiveForm.Visible = false;
+            Form23 form23 = new Form23();
+            form23.SendProblem(problemName);
             form23.ShowDialog();
         }
         private void Form22_Load(object sender, EventArgs e)
@@ -87,6 +89,10 @@ namespace qualifyingMasterWork
         {
             commutativeDiagram = new HashSet<Tuple<int, int>>();
             commutativeDiagram = data;
+        }
+        public void SendProblem(string problem)
+        {
+            problemName = problem;
         }
         private void ShowEquations(SortedDictionary<int, HashSet<int>> equations)
         {

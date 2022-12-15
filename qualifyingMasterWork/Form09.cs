@@ -6,10 +6,16 @@ namespace qualifyingMasterWork
 {
     public partial class Form09 : Form
     {
+        readonly Form07 form07;
+        readonly Form08 form08;
+        readonly Form09 form09;
         readonly Form17 form17;
+        readonly Form18 form18;
+        readonly Form19 form19;
         private SortedDictionary<int, HashSet<int>> equations;
         private int numOfEquations;
         private bool okClicked = false;
+        private string problemName;
         public Form09(Form17 form17)
         {
             InitializeComponent();
@@ -18,7 +24,7 @@ namespace qualifyingMasterWork
         private void Back_Click(object sender, EventArgs e)
         {
             Form.ActiveForm.Visible = false;
-            Form06 form06 = new Form06();
+            Form06 form06 = new Form06(form07, form08, form09);
             form06.ShowDialog();
         }
         private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)
@@ -47,7 +53,9 @@ namespace qualifyingMasterWork
             if (okClicked == true)// && INPUT IS NOT NULL
             {
                 /*Form.ActiveForm.Visible = false;
+                Form17 form17 = new Form17(form18, form19);
                 form17.SendData(equations);
+                form17.SendProblem(problemName);
                 form17.ShowDialog();*/
             }
             else
@@ -75,6 +83,10 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Size should be > 1");
             }
+        }
+        public void SendProblem(string problem)
+        {
+            problemName = problem;
         }
     }
 }

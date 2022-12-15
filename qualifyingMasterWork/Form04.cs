@@ -5,10 +5,16 @@ namespace qualifyingMasterWork
 {
     public partial class Form04 : Form
     {
+        readonly Form03 form03;
+        readonly Form04 form04;
+        readonly Form05 form05;
         readonly Form14 form14;
+        readonly Form15 form15;
+        readonly Form16 form16;
         private bool generateClicked = false;
         private int[,] matrix;
         private string output;
+        private string problemName;
         private int sizeOfMatrix;
         public Form04(Form14 form14)
         {
@@ -18,7 +24,7 @@ namespace qualifyingMasterWork
         private void Back_Click(object sender, EventArgs e)
         {
             Form.ActiveForm.Visible = false;
-            Form02 form02 = new Form02();
+            Form02 form02 = new Form02(form03, form04, form05);
             form02.ShowDialog();
         }
         private int[,] FillMatrix(int[,] matrix)
@@ -57,13 +63,19 @@ namespace qualifyingMasterWork
             if (generateClicked == true)
             {
                 Form.ActiveForm.Visible = false;
+                Form14 form14 = new Form14(form15, form16);
                 form14.SendData(matrix);
+                form14.SendProblem(problemName);
                 form14.ShowDialog();
             }
             else
             {
                 MessageBox.Show("Please generate data");
             }
+        }
+        public void SendProblem(string problem)
+        {
+            problemName = problem;
         }
         private void ShowMatix(int[,] matrix)
         {

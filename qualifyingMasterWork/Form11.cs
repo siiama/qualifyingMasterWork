@@ -6,13 +6,19 @@ namespace qualifyingMasterWork
 {
     public partial class Form11 : Form
     {
+        readonly Form11 form11;
+        readonly Form12 form12;
+        readonly Form13 form13;
         readonly Form20 form20;
+        readonly Form21 form21;
+        readonly Form22 form22;
         private bool chooseFileClicked = false;
         private HashSet<Tuple<int, int>> commutativeDiagram;
         private Tuple<int, int> edgeFromFile;
         private string[] edgesFromFile;
         private string fileData;
         private string fileName;
+        private string problemName;
         private string[] vertexInEdges;
         public Form11(Form20 form20)
         {
@@ -23,7 +29,7 @@ namespace qualifyingMasterWork
         private void Back_Click(object sender, EventArgs e)
         {
             Form.ActiveForm.Visible = false;
-            Form10 form10 = new Form10();
+            Form10 form10 = new Form10(form11, form12, form13);
             form10.ShowDialog();
         }
         private void ChooseFile_Click(object sender, EventArgs e)
@@ -55,7 +61,9 @@ namespace qualifyingMasterWork
                     commutativeDiagram = new HashSet<Tuple<int, int>>();
                     FillCommutativeDiagram(commutativeDiagram);
                     Form.ActiveForm.Visible = false;
+                    Form20 form20 = new Form20(form21, form22);
                     form20.SendData(commutativeDiagram);
+                    form20.SendProblem(problemName);
                     form20.ShowDialog();
                 }
                 else
@@ -67,6 +75,10 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please choose file");
             }
+        }
+        public void SendProblem(string problem)
+        {
+            problemName = problem;
         }
     }
 }

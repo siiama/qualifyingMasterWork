@@ -6,11 +6,14 @@ namespace qualifyingMasterWork
 {
     public partial class Form15 : Form
     {
+        readonly Form15 form15;
+        readonly Form16 form16;
         readonly Form23 form23;
         private SortedDictionary<int, HashSet<int>> equations;
         private int[,] matrix;
         private int numOfEquations;
         private string output;
+        private string problemName;
         private string result;
         public Form15(Form23 form23)
         {
@@ -21,9 +24,6 @@ namespace qualifyingMasterWork
         private void Back_Click(object sender, EventArgs e)
         {
             Form.ActiveForm.Visible = false;
-            Form23 form23 = new Form23();
-            Form16 form16 = new Form16(form23);
-            Form15 form15 = new Form15(form23);
             Form14 form14 = new Form14(form15, form16);
             form14.SendData(matrix);
             form14.ShowDialog();
@@ -52,6 +52,8 @@ namespace qualifyingMasterWork
         private void Finish_Click(object sender, EventArgs e)
         {
             Form.ActiveForm.Visible = false;
+            Form23 form23 = new Form23();
+            form23.SendProblem(problemName);
             form23.ShowDialog();
         }
         private void Form15_Load(object sender, EventArgs e)
@@ -88,6 +90,10 @@ namespace qualifyingMasterWork
         {
             matrix = new int[data.GetLength(0), data.GetLength(1)];
             matrix = data;
+        }
+        public void SendProblem(string problem)
+        {
+            problemName = problem;
         }
         private void ShowEquations(SortedDictionary<int, HashSet<int>> equations)
         {

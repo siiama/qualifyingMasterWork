@@ -6,11 +6,17 @@ namespace qualifyingMasterWork
 {
     public partial class Form12 : Form
     {
+        readonly Form11 form11;
+        readonly Form12 form12;
+        readonly Form13 form13;
         readonly Form20 form20;
+        readonly Form21 form21;
+        readonly Form22 form22;
         private HashSet<Tuple<int, int>> commutativeDiagram;
         private bool generateClicked = false;
         private int numOfVertexesInEachPart;
         private string output;
+        private string problemName;
         public Form12(Form20 form20)
         {
             InitializeComponent();
@@ -19,7 +25,7 @@ namespace qualifyingMasterWork
         private void Back_Click(object sender, EventArgs e)
         {
             Form.ActiveForm.Visible = false;
-            Form10 form10 = new Form10();
+            Form10 form10 = new Form10(form11, form12, form13);
             form10.ShowDialog();
         }
         private HashSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
@@ -64,13 +70,19 @@ namespace qualifyingMasterWork
             if (generateClicked == true)
             {
                 Form.ActiveForm.Visible = false;
+                Form20 form20 = new Form20(form21, form22);
                 form20.SendData(commutativeDiagram);
+                form20.SendProblem(problemName);
                 form20.ShowDialog();
             }
             else
             {
                 MessageBox.Show("Please generate data");
             }
+        }
+        public void SendProblem(string problem)
+        {
+            problemName = problem;
         }
         private void ShowCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
         {

@@ -31,20 +31,28 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form23));
             this.label1 = new System.Windows.Forms.Label();
             this.Finish = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.Problem = new System.Windows.Forms.Label();
+            this.DataForm = new System.Windows.Forms.Label();
+            this.Time = new System.Windows.Forms.Label();
+            this.Memory = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(100, 50);
+            this.label1.Location = new System.Drawing.Point(50, 50);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(88, 16);
+            this.label1.Size = new System.Drawing.Size(193, 16);
             this.label1.TabIndex = 9;
-            this.label1.Text = "THANK YOU!";
+            this.label1.Text = "Solution of the chosen problem:";
             // 
             // Finish
             // 
-            this.Finish.Location = new System.Drawing.Point(100, 175);
+            this.Finish.Location = new System.Drawing.Point(150, 275);
             this.Finish.Name = "Finish";
             this.Finish.Size = new System.Drawing.Size(100, 30);
             this.Finish.TabIndex = 8;
@@ -52,17 +60,94 @@
             this.Finish.UseVisualStyleBackColor = true;
             this.Finish.Click += new System.EventHandler(this.Finish_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(50, 100);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 16);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Problem";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(50, 135);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 16);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Data form";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(50, 170);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 16);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Time";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(50, 205);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 16);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "Memory";
+            // 
+            // Problem
+            // 
+            this.Problem.AutoSize = true;
+            this.Problem.Location = new System.Drawing.Point(150, 100);
+            this.Problem.Name = "Problem";
+            this.Problem.Size = new System.Drawing.Size(0, 16);
+            this.Problem.TabIndex = 14;
+            // 
+            // DataForm
+            // 
+            this.DataForm.AutoSize = true;
+            this.DataForm.Location = new System.Drawing.Point(150, 130);
+            this.DataForm.Name = "DataForm";
+            this.DataForm.Size = new System.Drawing.Size(0, 16);
+            this.DataForm.TabIndex = 15;
+            // 
+            // Time
+            // 
+            this.Time.AutoSize = true;
+            this.Time.Location = new System.Drawing.Point(150, 170);
+            this.Time.Name = "Time";
+            this.Time.Size = new System.Drawing.Size(0, 16);
+            this.Time.TabIndex = 16;
+            // 
+            // Memory
+            // 
+            this.Memory.AutoSize = true;
+            this.Memory.Location = new System.Drawing.Point(150, 205);
+            this.Memory.Name = "Memory";
+            this.Memory.Size = new System.Drawing.Size(0, 16);
+            this.Memory.TabIndex = 17;
+            // 
             // Form23
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(282, 253);
+            this.ClientSize = new System.Drawing.Size(482, 353);
+            this.Controls.Add(this.Memory);
+            this.Controls.Add(this.Time);
+            this.Controls.Add(this.DataForm);
+            this.Controls.Add(this.Problem);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Finish);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form23";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Switch";
+            this.Load += new System.EventHandler(this.Form23_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -72,5 +157,13 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Finish;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label Problem;
+        private System.Windows.Forms.Label DataForm;
+        private System.Windows.Forms.Label Time;
+        private System.Windows.Forms.Label Memory;
     }
 }

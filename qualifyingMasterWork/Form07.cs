@@ -6,7 +6,12 @@ namespace qualifyingMasterWork
 {
     public partial class Form07 : Form
     {
+        readonly Form07 form07;
+        readonly Form08 form08;
+        readonly Form09 form09;
         readonly Form17 form17;
+        readonly Form18 form18;
+        readonly Form19 form19;
         private string[] argumentFromFile;
         private HashSet<int> argumentsFromFile;
         private bool chooseFileClicked = false;
@@ -16,6 +21,7 @@ namespace qualifyingMasterWork
         private string fileName;
         private int functionFromFile;
         private int numOfEquations;
+        private string problemName;
         private string[] equationFromFile;
         public Form07(Form17 form17)
         {
@@ -26,7 +32,7 @@ namespace qualifyingMasterWork
         private void Back_Click(object sender, EventArgs e)
         {
             Form.ActiveForm.Visible = false;
-            Form06 form06 = new Form06();
+            Form06 form06 = new Form06(form07, form08, form09);
             form06.ShowDialog();
         }
         private void ChooseFile_Click(object sender, EventArgs e)
@@ -66,7 +72,9 @@ namespace qualifyingMasterWork
                     equations = new SortedDictionary<int, HashSet<int>>();
                     FillEquations(numOfEquations, equations);
                     Form.ActiveForm.Visible = false;
+                    Form17 form17 = new Form17(form18, form19);
                     form17.SendData(equations);
+                    form17.SendProblem(problemName);
                     form17.ShowDialog();
                 }
                 else
@@ -78,6 +86,10 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please choose file");
             }
+        }
+        public void SendProblem(string problem)
+        {
+            problemName = problem;
         }
     }
 }
