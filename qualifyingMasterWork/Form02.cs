@@ -25,6 +25,7 @@ namespace qualifyingMasterWork
         {
             Form.ActiveForm.Visible = false;
             Form01 form01 = new Form01(form02, form06, form10);
+            form01.SendProblem(problemName);
             form01.ShowDialog();
         }
         private void Next_Click(object sender, EventArgs e)

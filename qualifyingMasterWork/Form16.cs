@@ -22,13 +22,6 @@ namespace qualifyingMasterWork
             this.form23 = form23;
             SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        private void Back_Click(object sender, EventArgs e)
-        {
-            Form.ActiveForm.Visible = false;
-            Form14 form14 = new Form14(form15, form16);
-            form14.SendData(matrix);
-            form14.ShowDialog();
-        }
         private HashSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
         {
             for (int i=0; i<numOfVertexesInEachPart; i++)

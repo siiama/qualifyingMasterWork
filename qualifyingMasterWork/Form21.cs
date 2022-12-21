@@ -23,13 +23,6 @@ namespace qualifyingMasterWork
             this.form23 = form23;
             SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        private void Back_Click(object sender, EventArgs e)
-        {
-            Form.ActiveForm.Visible = false;
-            Form20 form20 = new Form20(form21, form22);
-            form20.SendData(commutativeDiagram);
-            form20.ShowDialog();
-        }
         private int[,] FillMatrix(int[,] matrix)
         {
             foreach (Tuple<int, int> edge in commutativeDiagram)

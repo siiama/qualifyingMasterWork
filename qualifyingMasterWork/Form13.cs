@@ -27,6 +27,8 @@ namespace qualifyingMasterWork
         {
             Form.ActiveForm.Visible = false;
             Form10 form10 = new Form10(form11, form12, form13);
+            form10.SendDataForm(dataFormName);
+            form10.SendProblem(problemName);
             form10.ShowDialog();
         }
         private HashSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)

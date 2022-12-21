@@ -22,13 +22,6 @@ namespace qualifyingMasterWork
             this.form23 = form23;
             SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        private void Back_Click(object sender, EventArgs e)
-        {
-            Form.ActiveForm.Visible = false;
-            Form14 form14 = new Form14(form15, form16);
-            form14.SendData(matrix);
-            form14.ShowDialog();
-        }
         private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)
         {
             for (int i = 0; i < numOfEquations; i++)

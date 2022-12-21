@@ -27,6 +27,8 @@ namespace qualifyingMasterWork
         {
             Form.ActiveForm.Visible = false;
             Form06 form06 = new Form06(form07, form08, form09);
+            form06.SendDataForm(dataFormName);
+            form06.SendProblem(problemName);
             form06.ShowDialog();
         }
         private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)
