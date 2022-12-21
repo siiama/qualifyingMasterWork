@@ -13,9 +13,11 @@ namespace qualifyingMasterWork
         readonly Form16 form16;
         readonly Form23 form23;
         private string dataFormName;
+        private string[] elementInRow;
         private int[,] matrix;
         private bool okClicked = false;
         private string problemName;
+        private string[] row;
         private int sizeOfMatrix;
         public Form05(Form14 form14)
         {
@@ -32,20 +34,27 @@ namespace qualifyingMasterWork
         }
         private int[,] FillMatrix(int[,] matrix)
         {
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            row = new string[matrix.GetLength(0)];
+            row = Data.Text.Trim(' ').Split(';');
+            for (int i = 0; i < row.Length; i++)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+                elementInRow = new string[matrix.GetLength(1)];
+                elementInRow = row[i].Split(',');
+                for (int j = 0; j < elementInRow.Length; j++)
                 {
-                    //FILL MATRIX
+                    matrix[i, j] = Convert.ToInt32(elementInRow[j]);
                 }
             }
             return matrix;
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            if (okClicked == true)// && INPUT IS NOT NULL
+            sizeOfMatrix = Data.Text.Trim(' ').Split(';').Length;
+            if (Data.Text.Length == sizeOfMatrix* sizeOfMatrix)// && INPUT IS NOT NULL
             {
-                /*switch (problemName.Trim())
+                matrix = new int[sizeOfMatrix, sizeOfMatrix];
+                FillMatrix(matrix);
+                switch (problemName.Trim())
                 {
                     case "Finding the shortest path":
                         Form.ActiveForm.Visible = false;
@@ -78,33 +87,11 @@ namespace qualifyingMasterWork
                         form14.SendProblem(problemName);
                         form14.ShowDialog();
                         break;
-                }*/
+                }
             }
             else
             {
-                MessageBox.Show("Please input data");
-            }
-        }
-        private void Ok_Click(object sender, EventArgs e)
-        {
-            if (Size.Text == "")
-            {
-                MessageBox.Show("Please enter size");
-            }
-            else if (Convert.ToInt32(Size.Text) > 1)
-            {
-                if (Convert.ToInt32(Size.Text) > 10)
-                    MessageBox.Show("Are you patient enough to input data manually?");
-                sizeOfMatrix = Convert.ToInt32(Size.Text);
-                matrix = new int[sizeOfMatrix, sizeOfMatrix];
-                //DO BUTTONS TO INPUT MANUALLY
-
-                FillMatrix(matrix);
-                okClicked = true;
-            }
-            else
-            {
-                MessageBox.Show("Size should be > 1");
+                MessageBox.Show("Incorrect data!");
             }
         }
         public void SendDataForm(string dataForm)
