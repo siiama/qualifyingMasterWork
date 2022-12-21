@@ -11,6 +11,8 @@ namespace qualifyingMasterWork
         readonly Form14 form14;
         readonly Form15 form15;
         readonly Form16 form16;
+        readonly Form23 form23;
+        private string dataFormName;
         private bool chooseFileClicked = false;
         private string[] elementInRow;
         private string fileData;
@@ -64,11 +66,40 @@ namespace qualifyingMasterWork
                     sizeOfMatrix = fileData.Split('\n').Length;
                     matrix = new int[sizeOfMatrix, sizeOfMatrix];
                     FillMatrix(matrix);
-                    Form.ActiveForm.Visible = false;
-                    Form14 form14 = new Form14(form15, form16);
-                    form14.SendData(matrix);
-                    form14.SendProblem(problemName);
-                    form14.ShowDialog();
+                    switch (problemName.Trim())
+                    {
+                        case "Finding the shortest path":
+                            Form.ActiveForm.Visible = false;
+                            Form23 form23_ = new Form23();
+                            form23_.SendDataForm(dataFormName);
+                            form23_.SendMatrixData(matrix);
+                            form23_.SendProblem(problemName);
+                            form23_.ShowDialog();
+                            break;
+                        case "Finding probabilities of system states":
+                            Form.ActiveForm.Visible = false;
+                            Form15 form15_ = new Form15(form23);
+                            form15_.SendData(matrix);
+                            form15_.SendDataForm(dataFormName);
+                            form15_.SendProblem(problemName);
+                            form15_.ShowDialog();
+                            break;
+                        case "Finding the minimum weight spanning tree":
+                            Form.ActiveForm.Visible = false;
+                            Form16 form16_ = new Form16(form23);
+                            form16_.SendData(matrix);
+                            form16_.SendDataForm(dataFormName);
+                            form16_.SendProblem(problemName);
+                            form16_.ShowDialog();
+                            break;
+                        case "skip":
+                            Form.ActiveForm.Visible = false;
+                            Form14 form14 = new Form14(form15, form16);
+                            form14.SendData(matrix);
+                            form14.SendProblem(problemName);
+                            form14.ShowDialog();
+                            break;
+                    }
                 }
                 else
                 {
@@ -79,6 +110,10 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please choose file");
             }
+        }
+        public void SendDataForm(string dataForm)
+        {
+            dataFormName = dataForm;
         }
         public void SendProblem(string problem)
         {

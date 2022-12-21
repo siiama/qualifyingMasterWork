@@ -38,6 +38,7 @@ namespace qualifyingMasterWork
             {
                 Form.ActiveForm.Visible = false;
                 Form02 form02 = new Form02(form03, form04, form05);
+                form02.SendDataForm("Matrix");
                 form02.SendProblem(problemName);
                 form02.ShowDialog();
             }
@@ -45,6 +46,7 @@ namespace qualifyingMasterWork
             {
                 Form.ActiveForm.Visible = false;
                 Form06 form06 = new Form06(form07, form08, form09);
+                form06.SendDataForm("System of equations");
                 form06.SendProblem(problemName);
                 form06.ShowDialog();
             }
@@ -52,6 +54,7 @@ namespace qualifyingMasterWork
             {
                 Form.ActiveForm.Visible = false;
                 Form10 form10 = new Form10(form11, form12, form13);
+                form10.SendDataForm("Commutative diagram");
                 form10.SendProblem(problemName);
                 form10.ShowDialog();
             }

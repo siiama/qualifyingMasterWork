@@ -9,6 +9,7 @@ namespace qualifyingMasterWork
         readonly Form18 form18;
         readonly Form19 form19;
         readonly Form23 form23;
+        private string dataFormName;
         private HashSet<Tuple<int, int>> commutativeDiagram;
         private SortedDictionary<int, HashSet<int>> equations;
         private string output;
@@ -42,10 +43,20 @@ namespace qualifyingMasterWork
         }
         private void Finish_Click(object sender, EventArgs e)
         {
-            Form.ActiveForm.Visible = false;
-            Form23 form23 = new Form23();
-            form23.SendProblem(problemName);
-            form23.ShowDialog();
+            switch (problemName)
+            {
+                case "skip":
+                    Form.ActiveForm.Visible = false;
+                    break;
+                default:
+                    Form.ActiveForm.Visible = false;
+                    Form23 form23 = new Form23();
+                    form23.SendDataForm(dataFormName);
+                    form23.SendSystemOfEquationsData(equations);
+                    form23.SendProblem(problemName);
+                    form23.ShowDialog();
+                    break;
+            }
         }
         private void Form19_Load(object sender, EventArgs e)
         {
@@ -74,6 +85,10 @@ namespace qualifyingMasterWork
         {
             equations = new SortedDictionary<int, HashSet<int>>();
             equations = data;
+        }
+        public void SendDataForm(string dataForm)
+        {
+            dataFormName = dataForm;
         }
         public void SendProblem(string problem)
         {

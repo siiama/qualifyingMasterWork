@@ -39,6 +39,7 @@
             this.DataForm = new System.Windows.Forms.Label();
             this.Time = new System.Windows.Forms.Label();
             this.Memory = new System.Windows.Forms.Label();
+            this.solution = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -65,36 +66,36 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(50, 100);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 16);
+            this.label2.Size = new System.Drawing.Size(61, 16);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Problem";
+            this.label2.Text = "Problem:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(50, 135);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 16);
+            this.label3.Size = new System.Drawing.Size(68, 16);
             this.label3.TabIndex = 11;
-            this.label3.Text = "Data form";
+            this.label3.Text = "Data form:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(50, 170);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 16);
+            this.label4.Size = new System.Drawing.Size(41, 16);
             this.label4.TabIndex = 12;
-            this.label4.Text = "Time";
+            this.label4.Text = "Time:";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(50, 205);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 16);
+            this.label5.Size = new System.Drawing.Size(59, 16);
             this.label5.TabIndex = 13;
-            this.label5.Text = "Memory";
+            this.label5.Text = "Memory:";
             // 
             // Problem
             // 
@@ -128,11 +129,20 @@
             this.Memory.Size = new System.Drawing.Size(0, 16);
             this.Memory.TabIndex = 17;
             // 
+            // solution
+            // 
+            this.solution.AutoSize = true;
+            this.solution.Location = new System.Drawing.Point(275, 50);
+            this.solution.Name = "solution";
+            this.solution.Size = new System.Drawing.Size(0, 16);
+            this.solution.TabIndex = 18;
+            // 
             // Form23
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 353);
+            this.Controls.Add(this.solution);
             this.Controls.Add(this.Memory);
             this.Controls.Add(this.Time);
             this.Controls.Add(this.DataForm);
@@ -165,5 +175,6 @@
         private System.Windows.Forms.Label DataForm;
         private System.Windows.Forms.Label Time;
         private System.Windows.Forms.Label Memory;
+        private System.Windows.Forms.Label solution;
     }
 }

@@ -5,6 +5,7 @@ namespace qualifyingMasterWork
 {
     public partial class Form06 : Form
     {
+        private string dataFormName;
         private string problemName;
         readonly Form02 form02;
         readonly Form06 form06;
@@ -32,6 +33,7 @@ namespace qualifyingMasterWork
             {
                 Form.ActiveForm.Visible = false;
                 Form07 form07 = new Form07(form17);
+                form07.SendDataForm(dataFormName);
                 form07.SendProblem(problemName);
                 form07.ShowDialog();
             }
@@ -39,6 +41,7 @@ namespace qualifyingMasterWork
             {
                 Form.ActiveForm.Visible = false;
                 Form08 form08 = new Form08(form17);
+                form08.SendDataForm(dataFormName);
                 form08.SendProblem(problemName);
                 form08.ShowDialog();
             }
@@ -46,6 +49,7 @@ namespace qualifyingMasterWork
             {
                 Form.ActiveForm.Visible = false;
                 Form09 form09 = new Form09(form17);
+                form09.SendDataForm(dataFormName);
                 form09.SendProblem(problemName);
                 form09.ShowDialog();
             }
@@ -53,6 +57,10 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please choose form of input");
             }
+        }
+        public void SendDataForm(string dataForm)
+        {
+            dataFormName = dataForm;
         }
         public void SendProblem(string problem)
         {

@@ -12,6 +12,8 @@ namespace qualifyingMasterWork
         readonly Form17 form17;
         readonly Form18 form18;
         readonly Form19 form19;
+        readonly Form23 form23;
+        private string dataFormName;
         private int[] element;
         private HashSet<int> equation;
         private SortedDictionary<int, HashSet<int>> equations;
@@ -75,16 +77,49 @@ namespace qualifyingMasterWork
         {
             if (generateClicked == true)
             {
-                Form.ActiveForm.Visible = false;
-                Form17 form17 = new Form17(form18, form19);
-                form17.SendData(equations);
-                form17.SendProblem(problemName);
-                form17.ShowDialog();
+                switch (problemName.Trim())
+                {
+                    case "Finding the shortest path":
+                        Form.ActiveForm.Visible = false;
+                        Form18 form18_ = new Form18(form23);
+                        form18_.SendData(equations);
+                        form18_.SendDataForm(dataFormName);
+                        form18_.SendProblem(problemName);
+                        form18_.ShowDialog();
+                        break;
+                    case "Finding probabilities of system states":
+                        Form.ActiveForm.Visible = false;
+                        Form23 form23_ = new Form23();
+                        form23_.SendSystemOfEquationsData(equations);
+                        form23_.SendDataForm(dataFormName);
+                        form23_.SendProblem(problemName);
+                        form23_.ShowDialog();
+                        break;
+                    case "Finding the minimum weight spanning tree":
+                        Form.ActiveForm.Visible = false;
+                        Form19 form19_ = new Form19(form23);
+                        form19_.SendData(equations);
+                        form19_.SendDataForm(dataFormName);
+                        form19_.SendProblem(problemName);
+                        form19_.ShowDialog();
+                        break;
+                    case "skip":
+                        Form.ActiveForm.Visible = false;
+                        Form17 form17 = new Form17(form18, form19);
+                        form17.SendData(equations);
+                        form17.SendProblem(problemName);
+                        form17.ShowDialog();
+                        break;
+                }
             }
             else
             {
                 MessageBox.Show("Please generate data");
             }
+        }
+        public void SendDataForm(string dataForm)
+        {
+            dataFormName = dataForm;
         }
         public void SendProblem(string problem)
         {

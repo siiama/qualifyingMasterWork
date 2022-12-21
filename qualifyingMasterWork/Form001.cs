@@ -47,5 +47,12 @@ namespace qualifyingMasterWork
                 MessageBox.Show("Please choose problem");
             }
         }
+        private void Skip_Click(object sender, EventArgs e)
+        {
+            Form01 form01 = new Form01(form02, form06, form10);
+            Form.ActiveForm.Visible = false;
+            form01.SendProblem("skip");
+            form01.ShowDialog();
+        }
     }
 }

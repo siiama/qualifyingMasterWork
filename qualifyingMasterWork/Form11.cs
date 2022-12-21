@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -12,6 +13,8 @@ namespace qualifyingMasterWork
         readonly Form20 form20;
         readonly Form21 form21;
         readonly Form22 form22;
+        readonly Form23 form23;
+        private string dataFormName;
         private bool chooseFileClicked = false;
         private HashSet<Tuple<int, int>> commutativeDiagram;
         private Tuple<int, int> edgeFromFile;
@@ -60,11 +63,40 @@ namespace qualifyingMasterWork
                 {
                     commutativeDiagram = new HashSet<Tuple<int, int>>();
                     FillCommutativeDiagram(commutativeDiagram);
-                    Form.ActiveForm.Visible = false;
-                    Form20 form20 = new Form20(form21, form22);
-                    form20.SendData(commutativeDiagram);
-                    form20.SendProblem(problemName);
-                    form20.ShowDialog();
+                    switch (problemName.Trim())
+                    {
+                        case "Finding the shortest path":
+                            Form.ActiveForm.Visible = false;
+                            Form21 form21_ = new Form21(form23);
+                            form21_.SendData(commutativeDiagram);
+                            form21_.SendDataForm(dataFormName);
+                            form21_.SendProblem(problemName);
+                            form21_.ShowDialog();
+                            break;
+                        case "Finding probabilities of system states":
+                            Form.ActiveForm.Visible = false;
+                            Form22 form22_ = new Form22(form23);
+                            form22_.SendData(commutativeDiagram);
+                            form22_.SendDataForm(dataFormName);
+                            form22_.SendProblem(problemName);
+                            form22_.ShowDialog();
+                            break;
+                        case "Finding the minimum weight spanning tree":
+                            Form.ActiveForm.Visible = false;
+                            Form23 form23_ = new Form23();
+                            form23_.SendDataForm(dataFormName);
+                            form23_.SendCommutativeDiagramData(commutativeDiagram);
+                            form23_.SendProblem(problemName);
+                            form23_.ShowDialog();
+                            break;
+                        case "skip":
+                            Form.ActiveForm.Visible = false;
+                            Form20 form20 = new Form20(form21, form22);
+                            form20.SendData(commutativeDiagram);
+                            form20.SendProblem(problemName);
+                            form20.ShowDialog();
+                            break;
+                    }
                 }
                 else
                 {
@@ -75,6 +107,10 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please choose file");
             }
+        }
+        public void SendDataForm(string dataForm)
+        {
+            dataFormName = dataForm;
         }
         public void SendProblem(string problem)
         {

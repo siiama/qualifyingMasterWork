@@ -34,11 +34,12 @@
             this.Problem2 = new System.Windows.Forms.RadioButton();
             this.Problem1 = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.Skip = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Next
             // 
-            this.Next.Location = new System.Drawing.Point(153, 274);
+            this.Next.Location = new System.Drawing.Point(200, 275);
             this.Next.Name = "Next";
             this.Next.Size = new System.Drawing.Size(100, 30);
             this.Next.TabIndex = 19;
@@ -49,7 +50,7 @@
             // Problem3
             // 
             this.Problem3.AutoSize = true;
-            this.Problem3.Location = new System.Drawing.Point(53, 199);
+            this.Problem3.Location = new System.Drawing.Point(50, 200);
             this.Problem3.Name = "Problem3";
             this.Problem3.Size = new System.Drawing.Size(274, 20);
             this.Problem3.TabIndex = 18;
@@ -59,7 +60,7 @@
             // Problem2
             // 
             this.Problem2.AutoSize = true;
-            this.Problem2.Location = new System.Drawing.Point(53, 149);
+            this.Problem2.Location = new System.Drawing.Point(50, 150);
             this.Problem2.Name = "Problem2";
             this.Problem2.Size = new System.Drawing.Size(248, 20);
             this.Problem2.TabIndex = 16;
@@ -69,7 +70,7 @@
             // Problem1
             // 
             this.Problem1.AutoSize = true;
-            this.Problem1.Location = new System.Drawing.Point(53, 99);
+            this.Problem1.Location = new System.Drawing.Point(50, 100);
             this.Problem1.Name = "Problem1";
             this.Problem1.Size = new System.Drawing.Size(172, 20);
             this.Problem1.TabIndex = 15;
@@ -79,17 +80,28 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(53, 49);
+            this.label1.Location = new System.Drawing.Point(50, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(305, 16);
             this.label1.TabIndex = 17;
             this.label1.Text = "Please choose what problem do you want to solve";
+            // 
+            // Skip
+            // 
+            this.Skip.Location = new System.Drawing.Point(50, 275);
+            this.Skip.Name = "Skip";
+            this.Skip.Size = new System.Drawing.Size(100, 30);
+            this.Skip.TabIndex = 20;
+            this.Skip.Text = "SKIP";
+            this.Skip.UseVisualStyleBackColor = true;
+            this.Skip.Click += new System.EventHandler(this.Skip_Click);
             // 
             // Form001
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 353);
+            this.Controls.Add(this.Skip);
             this.Controls.Add(this.Next);
             this.Controls.Add(this.Problem3);
             this.Controls.Add(this.Problem2);
@@ -111,5 +123,6 @@
         private System.Windows.Forms.RadioButton Problem2;
         private System.Windows.Forms.RadioButton Problem1;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button Skip;
     }
 }

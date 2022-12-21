@@ -6,6 +6,7 @@ namespace qualifyingMasterWork
 {
     public partial class Form16 : Form
     {
+        private string dataFormName;
         readonly Form15 form15;
         readonly Form16 form16;
         readonly Form23 form23;
@@ -47,6 +48,7 @@ namespace qualifyingMasterWork
         {
             Form.ActiveForm.Visible = false;
             Form23 form23 = new Form23();
+            form23.SendDataForm(dataFormName);
             form23.SendProblem(problemName);
             form23.ShowDialog();
         }
@@ -78,6 +80,10 @@ namespace qualifyingMasterWork
         {
             matrix = new int[data.GetLength(0), data.GetLength(1)];
             matrix = data;
+        }
+        public void SendDataForm(string dataForm)
+        {
+            dataFormName = dataForm;
         }
         public void SendProblem(string problem)
         {

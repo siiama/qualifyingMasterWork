@@ -10,6 +10,7 @@ namespace qualifyingMasterWork
         readonly Form21 form21;
         readonly Form22 form22;
         readonly Form23 form23;
+        private string dataFormName;
         private HashSet<Tuple<int, int>> commutativeDiagram;
         private SortedDictionary<int, HashSet<int>> equations;
         private int numOfVertexesInEachPart;
@@ -50,10 +51,20 @@ namespace qualifyingMasterWork
         }
         private void Finish_Click(object sender, EventArgs e)
         {
-            Form.ActiveForm.Visible = false;
-            Form23 form23 = new Form23();
-            form23.SendProblem(problemName);
-            form23.ShowDialog();
+            switch (problemName)
+            {
+                case "skip":
+                    Form.ActiveForm.Visible = false;
+                    break;
+                default:
+                    Form.ActiveForm.Visible = false;
+                    Form23 form23 = new Form23();
+                    form23.SendDataForm(dataFormName);
+                    form23.SendCommutativeDiagramData(commutativeDiagram);
+                    form23.SendProblem(problemName);
+                    form23.ShowDialog();
+                    break;
+            }
         }
         private void Form22_Load(object sender, EventArgs e)
         {
@@ -89,6 +100,10 @@ namespace qualifyingMasterWork
         {
             commutativeDiagram = new HashSet<Tuple<int, int>>();
             commutativeDiagram = data;
+        }
+        public void SendDataForm(string dataForm)
+        {
+            dataFormName = dataForm;
         }
         public void SendProblem(string problem)
         {
