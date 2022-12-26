@@ -68,7 +68,7 @@ namespace qualifyingMasterWork
                     sizeOfMatrix = fileData.Split('\n').Length;
                     matrix = new int[sizeOfMatrix, sizeOfMatrix];
                     FillMatrix(matrix);
-                    switch (problemName.Trim())
+                    switch (problemName)
                     {
                         case "Finding the shortest path":
                             Form.ActiveForm.Visible = false;

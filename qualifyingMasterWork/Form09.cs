@@ -76,7 +76,7 @@ namespace qualifyingMasterWork
             {
                 equations = new SortedDictionary<int, HashSet<int>>();
                 FillEquations(numOfEquations, equations);
-                switch (problemName.Trim())
+                switch (problemName)
                 {
                     case "Finding the shortest path":
                         Form.ActiveForm.Visible = false;

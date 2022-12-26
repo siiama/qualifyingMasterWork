@@ -66,7 +66,7 @@ namespace qualifyingMasterWork
         {
             if (generateClicked == true)
             {
-                switch (problemName.Trim())
+                switch (problemName)
                 {
                     case "Finding the shortest path":
                         Form.ActiveForm.Visible = false;

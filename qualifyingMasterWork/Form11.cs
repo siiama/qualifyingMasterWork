@@ -65,7 +65,7 @@ namespace qualifyingMasterWork
                 {
                     commutativeDiagram = new HashSet<Tuple<int, int>>();
                     FillCommutativeDiagram(commutativeDiagram);
-                    switch (problemName.Trim())
+                    switch (problemName)
                     {
                         case "Finding the shortest path":
                             Form.ActiveForm.Visible = false;
