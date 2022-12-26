@@ -72,7 +72,7 @@
             this.Data.Name = "Data";
             this.Data.Size = new System.Drawing.Size(150, 150);
             this.Data.TabIndex = 73;
-            this.Data.Text = "1, 0;\r\n0, 1;";
+            this.Data.Text = "1, 0;\r\n0, 1.";
             // 
             // Form05
             // 

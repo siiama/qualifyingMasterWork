@@ -15,7 +15,6 @@ namespace qualifyingMasterWork
         private string dataFormName;
         private string[] elementInRow;
         private int[,] matrix;
-        private bool okClicked = false;
         private string problemName;
         private string[] row;
         private int sizeOfMatrix;
@@ -35,10 +34,15 @@ namespace qualifyingMasterWork
         private int[,] FillMatrix(int[,] matrix)
         {
             row = new string[matrix.GetLength(0)];
-            row = Data.Text.Trim(' ').Split(';');
+            row = Data.Text.Split(';');
             for (int i = 0; i < row.Length; i++)
             {
                 elementInRow = new string[matrix.GetLength(1)];
+                var charsToRemove = new string[] { " ", "." };
+                foreach (var c in charsToRemove)
+                {
+                    row[i] = row[i].Replace(c, string.Empty);
+                }
                 elementInRow = row[i].Split(',');
                 for (int j = 0; j < elementInRow.Length; j++)
                 {
@@ -49,8 +53,15 @@ namespace qualifyingMasterWork
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            sizeOfMatrix = Data.Text.Trim(' ').Split(';').Length;
-            if (Data.Text.Length == sizeOfMatrix* sizeOfMatrix)// && INPUT IS NOT NULL
+            var charsToRemove = new string[] { ",", " ", ";", "." };
+            string matrixNumbers = Data.Text;
+            foreach (var c in charsToRemove)
+            {
+                matrixNumbers = matrixNumbers.Replace(c, string.Empty);
+            }
+            matrixNumbers = matrixNumbers.Replace(Environment.NewLine, string.Empty);
+            sizeOfMatrix = Data.Text.Split(';').Length;
+            if (matrixNumbers.Length == sizeOfMatrix * sizeOfMatrix)
             {
                 matrix = new int[sizeOfMatrix, sizeOfMatrix];
                 FillMatrix(matrix);
