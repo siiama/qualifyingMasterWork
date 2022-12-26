@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -16,7 +17,6 @@ namespace qualifyingMasterWork
         private string dataFormName;
         private SortedDictionary<int, HashSet<int>> equations;
         private int numOfEquations;
-        private bool okClicked = false;
         private string problemName;
         public Form09(Form17 form17)
         {
@@ -54,9 +54,29 @@ namespace qualifyingMasterWork
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            if (okClicked == true)// && INPUT IS NOT NULL
+            numOfEquations = Data.Text.Split(';').Length;
+            string[] equation = new string[numOfEquations];
+            equation = Data.Text.Split(';');
+            int maxNumOfElements = 0;
+            for (int i = 0; i < equation.Length; i++)
             {
-                /*switch (problemName.Trim())
+                var charsToRemove = new string[] { ",", " ", ".", ":", "f", "x", "_" };
+                string equationElements = equation[i];
+                foreach (var c in charsToRemove)
+                {
+                    equationElements = equationElements.Replace(c, string.Empty);
+                }
+                equationElements = equationElements.Replace(Environment.NewLine, string.Empty);
+                if ((equationElements.Length - 1) > maxNumOfElements)
+                {
+                    maxNumOfElements = equationElements.Length - 1;
+                }
+            }
+            if (numOfEquations >= maxNumOfElements)
+            {
+                equations = new SortedDictionary<int, HashSet<int>>();
+                FillEquations(numOfEquations, equations);
+                switch (problemName.Trim())
                 {
                     case "Finding the shortest path":
                         Form.ActiveForm.Visible = false;
@@ -89,32 +109,11 @@ namespace qualifyingMasterWork
                         form17.SendProblem(problemName);
                         form17.ShowDialog();
                         break;
-                }*/
+                }
             }
             else
             {
-                MessageBox.Show("Please input data");
-            }
-        }
-        private void Ok_Click(object sender, EventArgs e)
-        {
-            if (Size.Text == "")
-            {
-                MessageBox.Show("Please enter size");
-            }
-            else if (Convert.ToInt32(Size.Text) > 1)
-            {
-                if (Convert.ToInt32(Size.Text) > 10)
-                    MessageBox.Show("Are you patient enough to input data manually?");
-                numOfEquations = Convert.ToInt32(Size.Text);
-                equations = new SortedDictionary<int, HashSet<int>>();
-                //DO BUTTONS TO INPUT MANUALLY
-                FillEquations(numOfEquations, equations);
-                okClicked = true;
-            }
-            else
-            {
-                MessageBox.Show("Size should be > 1");
+                MessageBox.Show("Incorrect data!");
             }
         }
         public void SendDataForm(string dataForm)
