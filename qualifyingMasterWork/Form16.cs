@@ -39,11 +39,20 @@ namespace qualifyingMasterWork
         }
         private void Finish_Click(object sender, EventArgs e)
         {
-            Form.ActiveForm.Visible = false;
-            Form23 form23 = new Form23();
-            form23.SendDataForm(dataFormName);
-            form23.SendProblem(problemName);
-            form23.ShowDialog();
+            switch (problemName)
+            {
+                case "skip":
+                    Form.ActiveForm.Visible = false;
+                    break;
+                default:
+                    Form.ActiveForm.Visible = false;
+                    Form23 form23 = new Form23();
+                    form23.SendDataForm(dataFormName);
+                    form23.SendCommutativeDiagramData(commutativeDiagram);
+                    form23.SendProblem(problemName);
+                    form23.ShowDialog();
+                    break;
+            }
         }
         private void Form16_Load(object sender, EventArgs e)
         {
