@@ -39,7 +39,7 @@
             this.DataForm = new System.Windows.Forms.Label();
             this.Time = new System.Windows.Forms.Label();
             this.Memory = new System.Windows.Forms.Label();
-            this.solution = new System.Windows.Forms.Label();
+            this.Solution = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -108,7 +108,7 @@
             // DataForm
             // 
             this.DataForm.AutoSize = true;
-            this.DataForm.Location = new System.Drawing.Point(150, 130);
+            this.DataForm.Location = new System.Drawing.Point(150, 135);
             this.DataForm.Name = "DataForm";
             this.DataForm.Size = new System.Drawing.Size(0, 16);
             this.DataForm.TabIndex = 15;
@@ -129,20 +129,20 @@
             this.Memory.Size = new System.Drawing.Size(0, 16);
             this.Memory.TabIndex = 17;
             // 
-            // solution
+            // Solution
             // 
-            this.solution.AutoSize = true;
-            this.solution.Location = new System.Drawing.Point(275, 50);
-            this.solution.Name = "solution";
-            this.solution.Size = new System.Drawing.Size(0, 16);
-            this.solution.TabIndex = 18;
+            this.Solution.AutoSize = true;
+            this.Solution.Location = new System.Drawing.Point(275, 50);
+            this.Solution.Name = "Solution";
+            this.Solution.Size = new System.Drawing.Size(0, 16);
+            this.Solution.TabIndex = 18;
             // 
             // Form23
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 353);
-            this.Controls.Add(this.solution);
+            this.Controls.Add(this.Solution);
             this.Controls.Add(this.Memory);
             this.Controls.Add(this.Time);
             this.Controls.Add(this.DataForm);
@@ -175,6 +175,6 @@
         private System.Windows.Forms.Label DataForm;
         private System.Windows.Forms.Label Time;
         private System.Windows.Forms.Label Memory;
-        private System.Windows.Forms.Label solution;
+        private System.Windows.Forms.Label Solution;
     }
 }

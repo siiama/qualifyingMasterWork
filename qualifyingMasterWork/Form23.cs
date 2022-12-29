@@ -11,6 +11,7 @@ namespace qualifyingMasterWork
         private int[,] matrix;
         private string problemName;
         private SortedDictionary<int, HashSet<int>> equations;
+        public string result;
         public Form23()
         {
             InitializeComponent();
@@ -39,10 +40,37 @@ namespace qualifyingMasterWork
         {
             problemName = problem;
         }
+        public string SolveFindingProbabilitiesOfSystemStates()
+        {
+            //system of equations
+            return result;
+        }
+        public string SolveFindingTheMinimumWeightSpanningTree()
+        {
+            //commutative diagram
+            return result;
+        }
+        public string SolveFindingTheShortestPath()
+        {
+            //matrix
+            return result;
+        }
         private void Form23_Load(object sender, EventArgs e)
         {
             Problem.Text = problemName;
             DataForm.Text = dataFormName;
+            switch (problemName)
+            {
+                case "Finding the shortest path":
+                    Solution.Text = SolveFindingTheShortestPath();
+                    break;
+                case "Finding probabilities of system states":
+                    Solution.Text = SolveFindingProbabilitiesOfSystemStates();
+                    break;
+                case "Finding the minimum weight spanning tree":
+                    Solution.Text = SolveFindingTheMinimumWeightSpanningTree();
+                    break;
+            }
         }
     }
 }
