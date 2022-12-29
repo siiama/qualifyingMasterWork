@@ -13,11 +13,13 @@ namespace qualifyingMasterWork
         readonly Form21 form21;
         readonly Form22 form22;
         readonly Form23 form23;
+        private Tuple<int, int> edgeFromTextbox;
+        private string[] edgesFromTextbox;
         private string dataFormName;
         private HashSet<Tuple<int, int>> commutativeDiagram;
-        private bool okClicked = false;
         private int numOfVertexesInEachPart;
         private string problemName;
+        private string[] vertexInEdges;
         public Form13(Form20 form20)
         {
             InitializeComponent();
@@ -31,27 +33,53 @@ namespace qualifyingMasterWork
             form10.SendProblem(problemName);
             form10.ShowDialog();
         }
-        private HashSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
+        private HashSet<Tuple<int, int>> FillCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
         {
-            for (int i = 0; i < numOfVertexesInEachPart; i++)
+            edgesFromTextbox = Data.Text.Split(';');
+            for (int i = 0; i < edgesFromTextbox.Length; i++)
             {
-                int[] element = new int[numOfVertexesInEachPart];
-                for (int j = 0; j < numOfVertexesInEachPart; j++)
+                string edgesElements = edgesFromTextbox[i];
+                var charsToRemove = new string[] { " ", ".", "g", "x", "_" };
+                foreach (var c in charsToRemove)
                 {
-                    //FILL COMMUTATIVE DIAGRAM
-                    if (element[j] == 1)
-                    {
-                        //
-                    }
+                    edgesElements = edgesElements.Replace(c, string.Empty);
                 }
+                edgesElements = edgesElements.Replace(Environment.NewLine, string.Empty);
+                vertexInEdges = edgesElements.Split(',');
+                edgeFromTextbox = new Tuple<int, int> (Convert.ToInt32(vertexInEdges[0]) - 1, Convert.ToInt32(vertexInEdges[1]) - 1);
+                commutativeDiagram.Add(edgeFromTextbox);
             }
             return commutativeDiagram;
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            if (okClicked == true)// && INPUT IS NOT NULL
+            string[] edges = Data.Text.Split(';');
+            int maxNumOfElementsInLeftPart = 0;
+            int maxNumOfElementsInRightPart = 0;
+            for (int i = 0; i < edges.Length; i++)
             {
-                /*switch (problemName)
+                var charsToRemove = new string[] { " ", ".", "g", "x", "_" };
+                string edgesElements = edges[i];
+                foreach (var c in charsToRemove)
+                {
+                    edgesElements = edgesElements.Replace(c, string.Empty);
+                }
+                edgesElements = edgesElements.Replace(Environment.NewLine, string.Empty);
+                string[] edge = edgesElements.Split(',');
+                if ((Convert.ToInt32(edge[0]) - 1) > maxNumOfElementsInLeftPart)
+                {
+                    maxNumOfElementsInLeftPart = Convert.ToInt32(edge[0]) - 1;
+                }
+                if ((Convert.ToInt32(edge[1]) - 1) > maxNumOfElementsInRightPart)
+                {
+                    maxNumOfElementsInRightPart = Convert.ToInt32(edge[1]) - 1;
+                }
+            }
+            if (maxNumOfElementsInLeftPart >= maxNumOfElementsInRightPart)
+            {
+                commutativeDiagram = new HashSet<Tuple<int, int>>();
+                FillCommutativeDiagram(commutativeDiagram);
+                switch (problemName)
                 {
                     case "Finding the shortest path":
                         Form.ActiveForm.Visible = false;
@@ -84,33 +112,11 @@ namespace qualifyingMasterWork
                         form20.SendProblem(problemName);
                         form20.ShowDialog();
                         break;
-                }*/
+                }
             }
             else
             {
-                MessageBox.Show("Please input data");
-            }
-        }
-        
-        private void Ok_Click(object sender, EventArgs e)
-        {
-            if (Size.Text == "")
-            {
-                MessageBox.Show("Please enter size");
-            }
-            else if (Convert.ToInt32(Size.Text) > 1)
-            {
-                if (Convert.ToInt32(Size.Text) > 10)
-                    MessageBox.Show("Are you patient enough to input data manually?");
-                numOfVertexesInEachPart = Convert.ToInt32(Size.Text);
-                commutativeDiagram = new HashSet<Tuple<int, int>>();
-                //DO BUTTONS TO INPUT MANUALLY
-                FillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
-                okClicked = true;
-            }
-            else
-            {
-                MessageBox.Show("Size should be > 1");
+                MessageBox.Show("Incorrect data!");
             }
         }
         public void SendDataForm(string dataForm)
