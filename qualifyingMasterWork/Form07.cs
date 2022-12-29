@@ -40,6 +40,11 @@ namespace qualifyingMasterWork
             form06.SendProblem(problemName);
             form06.ShowDialog();
         }
+        private bool CheckDataFromFile()
+        {
+            //check data from file
+            return true;
+        }
         private void ChooseFile_Click(object sender, EventArgs e)
         {
             if (OpenFile.ShowDialog() == DialogResult.Cancel)
@@ -73,42 +78,45 @@ namespace qualifyingMasterWork
             {
                 if (!string.IsNullOrEmpty(fileData))
                 {
-                    numOfEquations = fileData.Split('\n').Length;
-                    equations = new SortedDictionary<int, HashSet<int>>();
-                    FillEquations(numOfEquations, equations);
-                    switch (problemName)
+                    if (CheckDataFromFile())
                     {
-                        case "Finding the shortest path":
-                            Form.ActiveForm.Visible = false;
-                            Form18 form18_ = new Form18(form23);
-                            form18_.SendData(equations);
-                            form18_.SendDataForm(dataFormName);
-                            form18_.SendProblem(problemName);
-                            form18_.ShowDialog();
-                            break;
-                        case "Finding probabilities of system states":
-                            Form.ActiveForm.Visible = false;
-                            Form23 form23_ = new Form23();
-                            form23_.SendSystemOfEquationsData(equations);
-                            form23_.SendDataForm(dataFormName);
-                            form23_.SendProblem(problemName);
-                            form23_.ShowDialog();
-                            break;
-                        case "Finding the minimum weight spanning tree":
-                            Form.ActiveForm.Visible = false;
-                            Form19 form19_ = new Form19(form23);
-                            form19_.SendData(equations);
-                            form19_.SendDataForm(dataFormName);
-                            form19_.SendProblem(problemName);
-                            form19_.ShowDialog();
-                            break;
-                        case "skip":
-                            Form.ActiveForm.Visible = false;
-                            Form17 form17 = new Form17(form18, form19);
-                            form17.SendData(equations);
-                            form17.SendProblem(problemName);
-                            form17.ShowDialog();
-                            break;
+                        numOfEquations = fileData.Split('\n').Length;
+                        equations = new SortedDictionary<int, HashSet<int>>();
+                        FillEquations(numOfEquations, equations);
+                        switch (problemName)
+                        {
+                            case "Finding the shortest path":
+                                Form.ActiveForm.Visible = false;
+                                Form18 form18_ = new Form18(form23);
+                                form18_.SendData(equations);
+                                form18_.SendDataForm(dataFormName);
+                                form18_.SendProblem(problemName);
+                                form18_.ShowDialog();
+                                break;
+                            case "Finding probabilities of system states":
+                                Form.ActiveForm.Visible = false;
+                                Form23 form23_ = new Form23();
+                                form23_.SendSystemOfEquationsData(equations);
+                                form23_.SendDataForm(dataFormName);
+                                form23_.SendProblem(problemName);
+                                form23_.ShowDialog();
+                                break;
+                            case "Finding the minimum weight spanning tree":
+                                Form.ActiveForm.Visible = false;
+                                Form19 form19_ = new Form19(form23);
+                                form19_.SendData(equations);
+                                form19_.SendDataForm(dataFormName);
+                                form19_.SendProblem(problemName);
+                                form19_.ShowDialog();
+                                break;
+                            case "skip":
+                                Form.ActiveForm.Visible = false;
+                                Form17 form17 = new Form17(form18, form19);
+                                form17.SendData(equations);
+                                form17.SendProblem(problemName);
+                                form17.ShowDialog();
+                                break;
+                        }
                     }
                 }
                 else
