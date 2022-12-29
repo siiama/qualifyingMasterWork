@@ -14,10 +14,15 @@ namespace qualifyingMasterWork
         readonly Form18 form18;
         readonly Form19 form19;
         readonly Form23 form23;
+        private string[] argumentFromTextbox;
+        private HashSet<int> argumentsFromTextbox;
         private string dataFormName;
+        private string[] equationFromTextbox;
+        private int functionFromTextbox;
         private SortedDictionary<int, HashSet<int>> equations;
         private int numOfEquations;
         private string problemName;
+        private string[] elementInRow;
         public Form09(Form17 form17)
         {
             InitializeComponent();
@@ -33,22 +38,26 @@ namespace qualifyingMasterWork
         }
         private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)
         {
+            equationFromTextbox = new string[numOfEquations];
+            equationFromTextbox = Data.Text.Split(';');
             for (int i = 0; i < numOfEquations; i++)
             {
-                int[] element = new int[numOfEquations];
-                for (int j = 0; j < numOfEquations; j++)
+                var charsToRemove = new string[] { " ", ".", "f", "x", "_" };
+                string equationElements = equationFromTextbox[i];
+                foreach (var c in charsToRemove)
                 {
-                    //FILL EQUATIONS
+                    equationElements = equationElements.Replace(c, string.Empty);
                 }
-                HashSet<int> equation = new HashSet<int>();
-                for (int j = 0; j < element.Length; j++)
+                equationElements = equationElements.Replace(Environment.NewLine, string.Empty);
+                elementInRow = equationElements.Split(':');
+                functionFromTextbox = Convert.ToInt32(elementInRow[0]) - 1;
+                argumentsFromTextbox = new HashSet<int>();
+                argumentFromTextbox = elementInRow[1].Split(',');
+                for (int j = 0; j < argumentFromTextbox.Length; j++)
                 {
-                    if (element[j] == 1)
-                    {
-                        //
-                    }
+                    argumentsFromTextbox.Add(Convert.ToInt32(argumentFromTextbox[j]) - 1);
                 }
-                //
+                equations.Add(functionFromTextbox, argumentsFromTextbox);
             }
             return equations;
         }
