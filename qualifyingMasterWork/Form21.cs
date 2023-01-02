@@ -7,10 +7,14 @@ namespace qualifyingMasterWork
 {
     public partial class Form21 : Form
     {
+        readonly Form21 form21;
+        readonly Form22 form22;
         readonly Form23 form23;
-        private HashSet<Tuple<int, int>> commutativeDiagram;
+        private string dataFormName;
+        private SortedSet<Tuple<int, int>> commutativeDiagram;
         private int[,] matrix;
         private string output;
+        private string problemName;
         private int sizeOfMatrix;
         private string result;
         public Form21(Form23 form23)
@@ -18,16 +22,6 @@ namespace qualifyingMasterWork
             InitializeComponent();
             this.form23 = form23;
             SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
-        }
-        private void Back_Click(object sender, EventArgs e)
-        {
-            Form.ActiveForm.Visible = false;
-            Form23 form23 = new Form23();
-            Form22 form22 = new Form22(form23);
-            Form21 form21 = new Form21(form23);
-            Form20 form20 = new Form20(form21, form22);
-            form20.SendData(commutativeDiagram);
-            form20.ShowDialog();
         }
         private int[,] FillMatrix(int[,] matrix)
         {
@@ -51,8 +45,20 @@ namespace qualifyingMasterWork
         }
         private void Finish_Click(object sender, EventArgs e)
         {
-            Form.ActiveForm.Visible = false;
-            form23.ShowDialog();
+            switch (problemName)
+            {
+                case "skip":
+                    Form.ActiveForm.Visible = false;
+                    break;
+                default:
+                    Form.ActiveForm.Visible = false;
+                    Form23 form23 = new Form23();
+                    form23.SendDataForm(dataFormName);
+                    form23.SendCommutativeDiagramData(commutativeDiagram);
+                    form23.SendProblem(problemName);
+                    form23.ShowDialog();
+                    break;
+            }
         }
         private void Form21_Load(object sender, EventArgs e)
         {
@@ -76,17 +82,26 @@ namespace qualifyingMasterWork
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    result += matrix[i, j].ToString() + " ";
+                    result += matrix[i, j].ToString() + ", ";
                 }
-                result = result.Remove(result.Length - 1);
-                result += "\n";
+                result = result.Remove(result.Length - 2);
+                result += ";\n";
             }
-            result = result.Remove(result.Length - 1);
+            result = result.Remove(result.Length - 2);
+            result += ".";
         }
-        public void SendData(HashSet<Tuple<int, int>> data)
+        public void SendData(SortedSet<Tuple<int, int>> data)
         {
-            commutativeDiagram = new HashSet<Tuple<int, int>>();
+            commutativeDiagram = new SortedSet<Tuple<int, int>>();
             commutativeDiagram = data;
+        }
+        public void SendDataForm(string dataForm)
+        {
+            dataFormName = dataForm;
+        }
+        public void SendProblem(string problem)
+        {
+            problemName = problem;
         }
         private void ShowMatrix(int[,] matrix)
         {

@@ -7,11 +7,15 @@ namespace qualifyingMasterWork
 {
     public partial class Form22 : Form
     {
+        readonly Form21 form21;
+        readonly Form22 form22;
         readonly Form23 form23;
-        private HashSet<Tuple<int, int>> commutativeDiagram;
-        private SortedDictionary<int, HashSet<int>> equations;
+        private string dataFormName;
+        private SortedSet<Tuple<int, int>> commutativeDiagram;
+        private SortedDictionary<int, SortedSet<int>> equations;
         private int numOfVertexesInEachPart;
         private string output;
+        private string problemName;
         private string result;
         public Form22(Form23 form23)
         {
@@ -19,21 +23,11 @@ namespace qualifyingMasterWork
             this.form23 = form23;
             SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        private void Back_Click(object sender, EventArgs e)
-        {
-            Form.ActiveForm.Visible = false;
-            Form23 form23 = new Form23();
-            Form22 form22 = new Form22(form23);
-            Form21 form21 = new Form21(form23);
-            Form20 form20 = new Form20(form21, form22);
-            form20.SendData(commutativeDiagram);
-            form20.ShowDialog();
-        }
-        private SortedDictionary<int, HashSet<int>> FillEquations(int numOfVertexesInEachPart, SortedDictionary<int, HashSet<int>> equations)
+        private SortedDictionary<int, SortedSet<int>> FillEquations(int numOfVertexesInEachPart, SortedDictionary<int, SortedSet<int>> equations)
         {
             for (int i = 0; i < numOfVertexesInEachPart; i++)
             {
-                HashSet<int> equation = new HashSet<int>();
+                SortedSet<int> equation = new SortedSet<int>();
                 foreach (Tuple<int, int> edge in commutativeDiagram)
                 {
                     if (edge.Item1 == i)
@@ -50,13 +44,25 @@ namespace qualifyingMasterWork
         }
         private void Finish_Click(object sender, EventArgs e)
         {
-            Form.ActiveForm.Visible = false;
-            form23.ShowDialog();
+            switch (problemName)
+            {
+                case "skip":
+                    Form.ActiveForm.Visible = false;
+                    break;
+                default:
+                    Form.ActiveForm.Visible = false;
+                    Form23 form23 = new Form23();
+                    form23.SendDataForm(dataFormName);
+                    form23.SendCommutativeDiagramData(commutativeDiagram);
+                    form23.SendProblem(problemName);
+                    form23.ShowDialog();
+                    break;
+            }
         }
         private void Form22_Load(object sender, EventArgs e)
         {
             numOfVertexesInEachPart = commutativeDiagram.Max(v => v.Item1) + 1;
-            equations = new SortedDictionary<int, HashSet<int>>();
+            equations = new SortedDictionary<int, SortedSet<int>>();
             FillEquations(numOfVertexesInEachPart, equations);
             ShowEquations(equations);
         }
@@ -68,30 +74,39 @@ namespace qualifyingMasterWork
             string filename = SaveFile.FileName;
             System.IO.File.WriteAllText(filename, result);
         }
-        private void SaveEquations(SortedDictionary<int, HashSet<int>> equations)
+        private void SaveEquations(SortedDictionary<int, SortedSet<int>> equations)
         {
             result = "";
-            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
+            foreach (KeyValuePair<int, SortedSet<int>> equation in equations)
             {
-                result += "f_" + (equation.Key + 1).ToString() + ":";
+                result += "f_" + (equation.Key + 1).ToString() + ": ";
                 foreach (int value in equation.Value)
                 {
-                    result += "x_" + (value + 1) + " ";
+                    result += "x_" + (value + 1) + ", ";
                 }
-                result = result.Remove(result.Length - 1);
-                result += "\n";
+                result = result.Remove(result.Length - 2);
+                result += ";\n";
             }
-            result = result.Remove(result.Length - 1);
+            result = result.Remove(result.Length - 2);
+            result += ".";
         }
-        public void SendData(HashSet<Tuple<int, int>> data)
+        public void SendData(SortedSet<Tuple<int, int>> data)
         {
-            commutativeDiagram = new HashSet<Tuple<int, int>>();
+            commutativeDiagram = new SortedSet<Tuple<int, int>>();
             commutativeDiagram = data;
         }
-        private void ShowEquations(SortedDictionary<int, HashSet<int>> equations)
+        public void SendDataForm(string dataForm)
+        {
+            dataFormName = dataForm;
+        }
+        public void SendProblem(string problem)
+        {
+            problemName = problem;
+        }
+        private void ShowEquations(SortedDictionary<int, SortedSet<int>> equations)
         {
             output = "";
-            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
+            foreach (KeyValuePair<int, SortedSet<int>> equation in equations)
             {
                 output += "f_" + (equation.Key + 1).ToString() + " = (   ";
                 foreach (int value in equation.Value)

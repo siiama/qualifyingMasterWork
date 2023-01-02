@@ -29,28 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form05));
-            this.Size = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.Next = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Back = new System.Windows.Forms.Button();
-            this.Ok = new System.Windows.Forms.Button();
+            this.Data = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // Size
-            // 
-            this.Size.Location = new System.Drawing.Point(100, 125);
-            this.Size.Name = "Size";
-            this.Size.Size = new System.Drawing.Size(22, 22);
-            this.Size.TabIndex = 71;
-            // 
-            // label2
-            // 
-            this.label2.Location = new System.Drawing.Point(50, 125);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 16);
-            this.label2.TabIndex = 65;
-            this.label2.Text = "Size";
             // 
             // Next
             // 
@@ -82,24 +65,22 @@
             this.Back.UseVisualStyleBackColor = true;
             this.Back.Click += new System.EventHandler(this.Back_Click);
             // 
-            // Ok
+            // Data
             // 
-            this.Ok.Location = new System.Drawing.Point(50, 175);
-            this.Ok.Name = "Ok";
-            this.Ok.Size = new System.Drawing.Size(100, 30);
-            this.Ok.TabIndex = 72;
-            this.Ok.Text = "OK";
-            this.Ok.UseVisualStyleBackColor = true;
-            this.Ok.Click += new System.EventHandler(this.Ok_Click);
+            this.Data.Location = new System.Drawing.Point(50, 100);
+            this.Data.Multiline = true;
+            this.Data.Name = "Data";
+            this.Data.Size = new System.Drawing.Size(150, 150);
+            this.Data.TabIndex = 73;
+            this.Data.Text = "1, 0;\r\n0, 1.";
+            this.Data.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Data_KeyPress);
             // 
             // Form05
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(482, 353);
-            this.Controls.Add(this.Ok);
-            this.Controls.Add(this.Size);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(382, 353);
+            this.Controls.Add(this.Data);
             this.Controls.Add(this.Next);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.Back);
@@ -113,12 +94,9 @@
         }
 
         #endregion
-
-        private new System.Windows.Forms.TextBox Size;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button Next;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Back;
-        private System.Windows.Forms.Button Ok;
+        private System.Windows.Forms.TextBox Data;
     }
 }

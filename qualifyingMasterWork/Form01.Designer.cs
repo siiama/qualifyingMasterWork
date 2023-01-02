@@ -34,11 +34,12 @@
             this.SystemOfEquations = new System.Windows.Forms.RadioButton();
             this.Matrix = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
+            this.Back = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Next
             // 
-            this.Next.Location = new System.Drawing.Point(150, 275);
+            this.Next.Location = new System.Drawing.Point(200, 275);
             this.Next.Name = "Next";
             this.Next.Size = new System.Drawing.Size(100, 30);
             this.Next.TabIndex = 14;
@@ -85,11 +86,22 @@
             this.label1.TabIndex = 12;
             this.label1.Text = "Please choose what kind of data do you have";
             // 
+            // Back
+            // 
+            this.Back.Location = new System.Drawing.Point(50, 275);
+            this.Back.Name = "Back";
+            this.Back.Size = new System.Drawing.Size(100, 30);
+            this.Back.TabIndex = 15;
+            this.Back.Text = "Back";
+            this.Back.UseVisualStyleBackColor = true;
+            this.Back.Click += new System.EventHandler(this.Back_Click);
+            // 
             // Form01
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 353);
+            this.Controls.Add(this.Back);
             this.Controls.Add(this.Next);
             this.Controls.Add(this.CommutativeDiagram);
             this.Controls.Add(this.SystemOfEquations);
@@ -111,6 +123,7 @@
         private System.Windows.Forms.RadioButton SystemOfEquations;
         private System.Windows.Forms.RadioButton Matrix;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button Back;
     }
 }
 

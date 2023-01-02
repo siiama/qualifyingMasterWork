@@ -7,10 +7,14 @@ namespace qualifyingMasterWork
 {
     public partial class Form18 : Form
     {
+        readonly Form18 form18;
+        readonly Form19 form19;
         readonly Form23 form23;
-        private SortedDictionary<int, HashSet<int>> equations;
+        private string dataFormName;
+        private SortedDictionary<int, SortedSet<int>> equations;
         private int[,] matrix;
         private string output;
+        private string problemName;
         private string result;
         private int sizeOfMatrix;
         public Form18(Form23 form23)
@@ -19,19 +23,9 @@ namespace qualifyingMasterWork
             this.form23 = form23;
             SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        private void Back_Click(object sender, EventArgs e)
-        {
-            Form.ActiveForm.Visible = false;
-            Form23 form23 = new Form23();
-            Form19 form19 = new Form19(form23);
-            Form18 form18 = new Form18(form23);
-            Form17 form17 = new Form17(form18, form19);
-            form17.SendData(equations);
-            form17.ShowDialog();
-        }
         private int[,] FillMatrix(int[,] matrix)
         {
-            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
+            foreach (KeyValuePair<int, SortedSet<int>> equation in equations)
             {
                 int function = equation.Key;
                 foreach (int argument in equation.Value)
@@ -53,8 +47,20 @@ namespace qualifyingMasterWork
         }
         private void Finish_Click(object sender, EventArgs e)
         {
-            Form.ActiveForm.Visible = false;
-            form23.ShowDialog();
+            switch (problemName)
+            {
+                case "skip":
+                    Form.ActiveForm.Visible = false;
+                    break;
+                default:
+                    Form.ActiveForm.Visible = false;
+                    Form23 form23 = new Form23();
+                    form23.SendDataForm(dataFormName);
+                    form23.SendSystemOfEquationsData(equations);
+                    form23.SendProblem(problemName);
+                    form23.ShowDialog();
+                    break;
+            }
         }
         private void Form18_Load(object sender, EventArgs e)
         {
@@ -78,17 +84,26 @@ namespace qualifyingMasterWork
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    result += matrix[i, j].ToString() + " ";
+                    result += matrix[i, j].ToString() + ", ";
                 }
-                result = result.Remove(result.Length - 1);
-                result += "\n";
+                result = result.Remove(result.Length - 2);
+                result += ";\n";
             }
-            result = result.Remove(result.Length - 1);
+            result = result.Remove(result.Length - 2);
+            result += ".";
         }
-        public void SendData(SortedDictionary<int, HashSet<int>> data)
+        public void SendData(SortedDictionary<int, SortedSet<int>> data)
         {
-            equations = new SortedDictionary<int, HashSet<int>>();
+            equations = new SortedDictionary<int, SortedSet<int>>();
             equations = data;
+        }
+        public void SendDataForm(string dataForm)
+        {
+            dataFormName = dataForm;
+        }
+        public void SendProblem(string problem)
+        {
+            problemName = problem;
         }
         private void ShowMatrix(int[,] matrix)
         {

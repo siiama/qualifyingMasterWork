@@ -32,8 +32,6 @@
             this.Save = new System.Windows.Forms.Button();
             this.Finish = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.Back = new System.Windows.Forms.Button();
-            this.Data = new System.Windows.Forms.Label();
             this.SaveFile = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
@@ -49,7 +47,7 @@
             // 
             // Finish
             // 
-            this.Finish.Location = new System.Drawing.Point(200, 275);
+            this.Finish.Location = new System.Drawing.Point(50, 275);
             this.Finish.Name = "Finish";
             this.Finish.Size = new System.Drawing.Size(100, 30);
             this.Finish.TabIndex = 85;
@@ -67,24 +65,6 @@
             this.label1.TabIndex = 84;
             this.label1.Text = "Result: commutative diagram";
             // 
-            // Back
-            // 
-            this.Back.Location = new System.Drawing.Point(50, 275);
-            this.Back.Name = "Back";
-            this.Back.Size = new System.Drawing.Size(100, 30);
-            this.Back.TabIndex = 83;
-            this.Back.Text = "Back";
-            this.Back.UseVisualStyleBackColor = true;
-            this.Back.Click += new System.EventHandler(this.Back_Click);
-            // 
-            // Data
-            // 
-            this.Data.AutoSize = true;
-            this.Data.Location = new System.Drawing.Point(300, 50);
-            this.Data.Name = "Data";
-            this.Data.Size = new System.Drawing.Size(0, 16);
-            this.Data.TabIndex = 89;
-            // 
             // SaveFile
             // 
             this.SaveFile.FileName = "result";
@@ -94,11 +74,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 353);
-            this.Controls.Add(this.Data);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.Finish);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.Back);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form19";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -113,8 +91,6 @@
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.Button Finish;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button Back;
-        private System.Windows.Forms.Label Data;
         private System.Windows.Forms.SaveFileDialog SaveFile;
     }
 }
