@@ -15,6 +15,7 @@ namespace qualifyingMasterWork
         private string output;
         private string problemName;
         private string result;
+        Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
         public Form19(Form23 form23)
         {
             InitializeComponent();
@@ -55,6 +56,7 @@ namespace qualifyingMasterWork
         {
             commutativeDiagram = new SortedSet<Tuple<int, int>>();
             FillCommutativeDiagram(commutativeDiagram);
+            this.Controls.Remove(viewer);
             ShowCommutativeDiagram(commutativeDiagram);
         }
         private void Save_Click(object sender, EventArgs e)
@@ -90,13 +92,15 @@ namespace qualifyingMasterWork
         }
         private void ShowCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
         {
-            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
             foreach (Tuple<int, int> edge in commutativeDiagram)
             {
                 graph.AddEdge("g_" + Convert.ToString(edge.Item1 + 1), "x_" + Convert.ToString(edge.Item2 + 1));
+                Microsoft.Msagl.Drawing.Node g = graph.FindNode("g_" + Convert.ToString(edge.Item1 + 1));
+                g.Attr.FillColor = Microsoft.Msagl.Drawing.Color.MintCream;
+                Microsoft.Msagl.Drawing.Node x = graph.FindNode("x_" + Convert.ToString(edge.Item2 + 1));
+                x.Attr.FillColor = Microsoft.Msagl.Drawing.Color.MintCream;
             }
-
             viewer.Graph = graph;
             this.SuspendLayout();
             this.Controls.Add(viewer);
