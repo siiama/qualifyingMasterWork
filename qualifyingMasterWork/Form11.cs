@@ -84,11 +84,19 @@ namespace qualifyingMasterWork
         }
         private HashSet<Tuple<int, int>> FillCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
         {
-            edgesFromFile = fileData.Split('\n');
+            edgesFromFile = fileData.Substring(0, fileData.IndexOf('.')).Split(';');
             for (int i = 0; i < edgesFromFile.Length; i++)
             {
-                vertexInEdges = edgesFromFile[i].Split(',');
-                edgeFromFile = new Tuple<int, int>(Convert.ToInt32(vertexInEdges[0].Substring(vertexInEdges[0].IndexOf('g') + 2)) - 1, Convert.ToInt32(vertexInEdges[1].Substring(vertexInEdges[1].IndexOf('x') + 2)) - 1);
+                string edgesElements = edgesFromFile[i];
+                var charsToRemove = new string[] { " ", ".", "_" };
+                foreach (var c in charsToRemove)
+                {
+                    edgesElements = edgesElements.Replace(c, string.Empty);
+                }
+                edgesElements = Regex.Replace(edgesElements, "[A-Za-z]", string.Empty);
+                edgesElements = edgesElements.Replace(Environment.NewLine, string.Empty);
+                vertexInEdges = edgesElements.Split(',');
+                edgeFromFile = new Tuple<int, int>(Convert.ToInt32(vertexInEdges[0]) - 1, Convert.ToInt32(vertexInEdges[1]) - 1);
                 commutativeDiagram.Add(edgeFromFile);
             }
             return commutativeDiagram;

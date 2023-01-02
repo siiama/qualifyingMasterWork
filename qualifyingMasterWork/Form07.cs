@@ -84,16 +84,24 @@ namespace qualifyingMasterWork
         private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)
         {
             equationFromFile = new string[numOfEquations];
-            equationFromFile = fileData.Split('\n');
-            for (int i = 0; i < equationFromFile.Length; i++)
+            equationFromFile = fileData.Substring(0, fileData.IndexOf('.')).Split(';');
+            for (int i = 0; i < numOfEquations; i++)
             {
-                elementInRow = equationFromFile[i].Split(':');
-                functionFromFile = Convert.ToInt32(elementInRow[0].Substring(elementInRow[0].IndexOf('f') + 2)) - 1;
+                var charsToRemove = new string[] { " ", "." };
+                string equationElements = equationFromFile[i];
+                foreach (var c in charsToRemove)
+                {
+                    equationElements = equationElements.Replace(c, string.Empty);
+                }
+                equationElements = Regex.Replace(equationElements, "[A-Za-z]", string.Empty);
+                equationElements = equationElements.Replace(Environment.NewLine, string.Empty);
+                elementInRow = equationElements.Split(':');
+                functionFromFile = Convert.ToInt32(elementInRow[0].Substring(elementInRow[0].IndexOf('_') + 1)) - 1;
                 argumentsFromFile = new HashSet<int>();
-                argumentFromFile = elementInRow[1].Split(' ');
+                argumentFromFile = elementInRow[1].Split(',');
                 for (int j = 0; j < argumentFromFile.Length; j++)
                 {
-                    argumentsFromFile.Add(Convert.ToInt32(argumentFromFile[j].Substring(argumentFromFile[j].IndexOf('x') + 2)) - 1);
+                    argumentsFromFile.Add(Convert.ToInt32(argumentFromFile[j].Substring(argumentFromFile[j].IndexOf('_') + 1)) - 1);
                 }
                 equations.Add(functionFromFile, argumentsFromFile);
             }
