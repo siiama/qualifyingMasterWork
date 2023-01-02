@@ -80,15 +80,16 @@ namespace qualifyingMasterWork
             result = "";
             foreach (KeyValuePair<int, HashSet<int>> equation in equations)
             {
-                result += "f_" + (equation.Key+1).ToString() + ":";
+                result += "f_" + (equation.Key + 1).ToString() + ": ";
                 foreach (int value in equation.Value)
                 {
-                    result += "x_" + (value + 1) + " ";
+                    result += "x_" + (value + 1) + ", ";
                 }
-                result = result.Remove(result.Length - 1);
-                result += "\n";
+                result = result.Remove(result.Length - 2);
+                result += ";\n";
             }
-            result = result.Remove(result.Length - 1);
+            result = result.Remove(result.Length - 2);
+            result += ".";
         }
         public void SendData(int[,] data)
         {

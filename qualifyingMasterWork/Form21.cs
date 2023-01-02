@@ -82,12 +82,13 @@ namespace qualifyingMasterWork
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    result += matrix[i, j].ToString() + " ";
+                    result += matrix[i, j].ToString() + ", ";
                 }
-                result = result.Remove(result.Length - 1);
-                result += "\n";
+                result = result.Remove(result.Length - 2);
+                result += ";\n";
             }
-            result = result.Remove(result.Length - 1);
+            result = result.Remove(result.Length - 2);
+            result += ".";
         }
         public void SendData(HashSet<Tuple<int, int>> data)
         {

@@ -66,9 +66,10 @@ namespace qualifyingMasterWork
             result = "";
             foreach (Tuple<int, int> edge in commutativeDiagram)
             {
-                result += "g_" + (edge.Item1 + 1) + ", x_" + (edge.Item2 + 1) + "\n";
+                result += "g_" + (edge.Item1 + 1) + ", x_" + (edge.Item2 + 1) + ";\n";
             }
-            result = result.Remove(result.Length - 1);
+            result = result.Remove(result.Length - 2);
+            result += ".";
         }
         private void Save_Click(object sender, EventArgs e)
         {

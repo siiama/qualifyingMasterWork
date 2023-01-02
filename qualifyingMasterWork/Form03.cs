@@ -37,8 +37,24 @@ namespace qualifyingMasterWork
         }
         private bool CheckDataFromFile()
         {
-            //check data from file
-            return true;
+            var charsToRemove = new string[] { " ", "." };
+            string matrixNumbers = fileData.Substring(0, fileData.IndexOf('.'));
+            foreach (var c in charsToRemove)
+            {
+                matrixNumbers = matrixNumbers.Replace(c, string.Empty);
+            }
+            matrixNumbers = matrixNumbers.Replace(";", ",");
+            matrixNumbers = matrixNumbers.Replace(Environment.NewLine, string.Empty);
+            sizeOfMatrix = fileData.Substring(0, fileData.IndexOf('.')).Split(';').Length;
+            if (matrixNumbers.Split(',').Length != sizeOfMatrix * sizeOfMatrix)
+            {
+                MessageBox.Show("Your matrix is not square!");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         private void ChooseFile_Click(object sender, EventArgs e)
         {
@@ -52,11 +68,17 @@ namespace qualifyingMasterWork
         private int[,] FillMatrix(int[,] matrix)
         {
             row = new string[matrix.GetLength(0)];
-            row = fileData.Split('\n');
+            row = fileData.Substring(0, fileData.IndexOf('.')).Split(';');
             for (int i = 0; i < row.Length; i++)
             {
                 elementInRow = new string[matrix.GetLength(1)];
-                elementInRow = row[i].Split(' ');
+                var charsToRemove = new string[] { " ", "." };
+                foreach (var c in charsToRemove)
+                {
+                    row[i] = row[i].Replace(c, string.Empty);
+                }
+                row[i] = row[i].Replace(Environment.NewLine, string.Empty);
+                elementInRow = row[i].Split(',');
                 for (int j = 0; j < elementInRow.Length; j++)
                 {
                     matrix[i, j] = Convert.ToInt32(elementInRow[j]);
@@ -72,7 +94,6 @@ namespace qualifyingMasterWork
                 {
                     if (CheckDataFromFile())
                     {
-                        sizeOfMatrix = fileData.Split('\n').Length;
                         matrix = new int[sizeOfMatrix, sizeOfMatrix];
                         FillMatrix(matrix);
                         switch (problemName)

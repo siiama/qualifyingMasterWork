@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -42,8 +43,34 @@ namespace qualifyingMasterWork
         }
         private bool CheckDataFromFile()
         {
-            //check data from file
-            return true;
+            numOfEquations = fileData.Substring(0, fileData.IndexOf('.')).Split(';').Length;
+            string[] equation = new string[numOfEquations];
+            equation = fileData.Substring(0, fileData.IndexOf('.')).Split(';');
+            int maxNumOfElements = 0;
+            for (int i = 0; i < equation.Length; i++)
+            {
+                var charsToRemove = new string[] { " ", ".", "_" };
+                string equationElements = equation[i];
+                foreach (var c in charsToRemove)
+                {
+                    equationElements = equationElements.Replace(c, string.Empty);
+                }
+                equationElements = Regex.Replace(equationElements, "[A-Za-z]", string.Empty);
+                equationElements = equationElements.Replace(Environment.NewLine, string.Empty);
+                if ((equationElements.Split(':')[1].Split(',').Length) > maxNumOfElements)
+                {
+                    maxNumOfElements = equationElements.Split(':')[1].Split(',').Length;
+                }
+            }
+            if (numOfEquations < maxNumOfElements)
+            {
+                MessageBox.Show("Number of equations can not be less then number of variables!");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         private void ChooseFile_Click(object sender, EventArgs e)
         {

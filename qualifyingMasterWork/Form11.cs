@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -39,8 +40,38 @@ namespace qualifyingMasterWork
         }
         private bool CheckDataFromFile()
         {
-            //check data from file
-            return true;
+            string[] edges = fileData.Substring(0, fileData.IndexOf('.')).Split(';');
+            int maxNumOfElementsInLeftPart = 0;
+            int maxNumOfElementsInRightPart = 0;
+            for (int i = 0; i < edges.Length; i++)
+            {
+                var charsToRemove = new string[] { " ", ".", "_" };
+                string edgesElements = edges[i];
+                foreach (var c in charsToRemove)
+                {
+                    edgesElements = edgesElements.Replace(c, string.Empty);
+                }
+                edgesElements = Regex.Replace(edgesElements, "[A-Za-z]", string.Empty);
+                edgesElements = edgesElements.Replace(Environment.NewLine, string.Empty);
+                string[] edge = edgesElements.Split(',');
+                if ((Convert.ToInt32(edge[0]) - 1) > maxNumOfElementsInLeftPart)
+                {
+                    maxNumOfElementsInLeftPart = Convert.ToInt32(edge[0]) - 1;
+                }
+                if ((Convert.ToInt32(edge[1]) - 1) > maxNumOfElementsInRightPart)
+                {
+                    maxNumOfElementsInRightPart = Convert.ToInt32(edge[1]) - 1;
+                }
+            }
+            if (maxNumOfElementsInLeftPart < maxNumOfElementsInRightPart)
+            {
+                MessageBox.Show("Number of vertexes in left part can not be less\nthen number of vertexes in rigth part!");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
         private void ChooseFile_Click(object sender, EventArgs e)
         {
