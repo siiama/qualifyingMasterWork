@@ -65,7 +65,7 @@ namespace qualifyingMasterWork
             }
             if (maxNumOfElementsInLeftPart < maxNumOfElementsInRightPart)
             {
-                MessageBox.Show("Number of vertexes in left part can not be less\nthen number of vertexes in rigth part!");
+                MessageBox.Show("Number of vertexes in left part can not be less\nthen number of vertexes in right part!");
                 return false;
             }
             else
