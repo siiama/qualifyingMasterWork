@@ -2,7 +2,7 @@
 
 ### What given work is about
 
-### How do install app
+### How to install app
 
 Clone repository to your local machine (via https, ssh or download zip archive).
 Open cloned project via Microsoft Visual Studio.
