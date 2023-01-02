@@ -10,8 +10,8 @@ namespace qualifyingMasterWork
         readonly Form19 form19;
         readonly Form23 form23;
         private string dataFormName;
-        private HashSet<Tuple<int, int>> commutativeDiagram;
-        private SortedDictionary<int, HashSet<int>> equations;
+        private SortedSet<Tuple<int, int>> commutativeDiagram;
+        private SortedDictionary<int, SortedSet<int>> equations;
         private string output;
         private string problemName;
         private string result;
@@ -21,9 +21,9 @@ namespace qualifyingMasterWork
             this.form23 = form23;
             SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        private HashSet<Tuple<int, int>> FillCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        private SortedSet<Tuple<int, int>> FillCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
         {
-            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
+            foreach (KeyValuePair<int, SortedSet<int>> equation in equations)
             {
                 int function = equation.Key;
                 foreach (int argument in equation.Value)
@@ -53,7 +53,7 @@ namespace qualifyingMasterWork
         }
         private void Form19_Load(object sender, EventArgs e)
         {
-            commutativeDiagram = new HashSet<Tuple<int, int>>();
+            commutativeDiagram = new SortedSet<Tuple<int, int>>();
             FillCommutativeDiagram(commutativeDiagram);
             ShowCommutativeDiagram(commutativeDiagram);
         }
@@ -65,7 +65,7 @@ namespace qualifyingMasterWork
             string filename = SaveFile.FileName;
             System.IO.File.WriteAllText(filename, result);
         }
-        private void SaveCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        private void SaveCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
         {
             result = "";
             foreach (Tuple<int, int> edge in commutativeDiagram)
@@ -75,9 +75,9 @@ namespace qualifyingMasterWork
             result = result.Remove(result.Length - 2);
             result += ".";
         }
-        public void SendData(SortedDictionary<int, HashSet<int>> data)
+        public void SendData(SortedDictionary<int, SortedSet<int>> data)
         {
-            equations = new SortedDictionary<int, HashSet<int>>();
+            equations = new SortedDictionary<int, SortedSet<int>>();
             equations = data;
         }
         public void SendDataForm(string dataForm)
@@ -88,10 +88,18 @@ namespace qualifyingMasterWork
         {
             problemName = problem;
         }
-        private void ShowCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        private void ShowCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
         {
-            output = "";
-            Data.Text = output;
+            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+            foreach (Tuple<int, int> edge in commutativeDiagram)
+            {
+                graph.AddEdge("g_" + Convert.ToString(edge.Item1 + 1), "x_" + Convert.ToString(edge.Item2 + 1));
+            }
+
+            viewer.Graph = graph;
+            this.SuspendLayout();
+            this.Controls.Add(viewer);
         }
     }
 }

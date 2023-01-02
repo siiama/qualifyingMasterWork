@@ -14,7 +14,7 @@ namespace qualifyingMasterWork
         readonly Form22 form22;
         readonly Form23 form23;
         private string dataFormName;
-        private HashSet<Tuple<int, int>> commutativeDiagram;
+        private SortedSet<Tuple<int, int>> commutativeDiagram;
         private bool generateClicked = false;
         private int numOfVertexesInEachPart;
         private string output;
@@ -32,7 +32,7 @@ namespace qualifyingMasterWork
             form10.SendProblem(problemName);
             form10.ShowDialog();
         }
-        private HashSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
+        private SortedSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, SortedSet<Tuple<int, int>> commutativeDiagram)
         {
             Random random = new Random();
             for (int i = 0; i < numOfVertexesInEachPart; i++)
@@ -59,7 +59,7 @@ namespace qualifyingMasterWork
             else if (Convert.ToInt32(Size.Text) > 1)
             {
                 numOfVertexesInEachPart = Convert.ToInt32(Size.Text);
-                commutativeDiagram = new HashSet<Tuple<int, int>>();
+                commutativeDiagram = new SortedSet<Tuple<int, int>>();
                 FillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
                 ShowCommutativeDiagram(commutativeDiagram);
                 generateClicked = true;
@@ -121,14 +121,18 @@ namespace qualifyingMasterWork
         {
             problemName = problem;
         }
-        private void ShowCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        private void ShowCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
         {
-            output = "";
+            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
             foreach (Tuple<int, int> edge in commutativeDiagram)
             {
-                output += "g_" + (edge.Item1 + 1) + " -> x_" + (edge.Item2 + 1) + "\n";
+                graph.AddEdge("g_" + Convert.ToString(edge.Item1 + 1), "x_" + Convert.ToString(edge.Item2 + 1));
             }
-            Data.Text = output;
+
+            viewer.Graph = graph;
+            this.SuspendLayout();
+            this.Controls.Add(viewer);
         }
         private void Size_KeyPress(object sender, KeyPressEventArgs e)
         {

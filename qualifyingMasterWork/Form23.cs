@@ -7,10 +7,10 @@ namespace qualifyingMasterWork
     public partial class Form23 : Form
     {
         private string dataFormName;
-        private HashSet<Tuple<int, int>> commutativeDiagram;
+        private SortedSet<Tuple<int, int>> commutativeDiagram;
         private int[,] matrix;
         private string problemName;
-        private SortedDictionary<int, HashSet<int>> equations;
+        private SortedDictionary<int, SortedSet<int>> equations;
         public string result;
         public Form23()
         {
@@ -20,7 +20,7 @@ namespace qualifyingMasterWork
         {
             Form.ActiveForm.Visible = false;
         }
-        public void SendCommutativeDiagramData(HashSet<Tuple<int, int>> commutativeDiagramData)
+        public void SendCommutativeDiagramData(SortedSet<Tuple<int, int>> commutativeDiagramData)
         {
             commutativeDiagram = commutativeDiagramData;
         }
@@ -32,7 +32,7 @@ namespace qualifyingMasterWork
         {
             matrix = matrixData;
         }
-        public void SendSystemOfEquationsData(SortedDictionary<int, HashSet<int>> equationsData)
+        public void SendSystemOfEquationsData(SortedDictionary<int, SortedSet<int>> equationsData)
         {
             equations = equationsData;
         }

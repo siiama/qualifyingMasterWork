@@ -10,7 +10,7 @@ namespace qualifyingMasterWork
         readonly Form15 form15;
         readonly Form16 form16;
         readonly Form23 form23;
-        private HashSet<Tuple<int, int>> commutativeDiagram;
+        private SortedSet<Tuple<int, int>> commutativeDiagram;
         private int[,] matrix;
         private int numOfVertexesInEachPart;
         private string output;
@@ -22,7 +22,7 @@ namespace qualifyingMasterWork
             this.form23 = form23;
             SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        private HashSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, HashSet<Tuple<int, int>> commutativeDiagram)
+        private SortedSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, SortedSet<Tuple<int, int>> commutativeDiagram)
         {
             for (int i=0; i<numOfVertexesInEachPart; i++)
             {
@@ -57,11 +57,11 @@ namespace qualifyingMasterWork
         private void Form16_Load(object sender, EventArgs e)
         {
             numOfVertexesInEachPart = matrix.GetLength(0);
-            commutativeDiagram = new HashSet<Tuple<int, int>>();
+            commutativeDiagram = new SortedSet<Tuple<int, int>>();
             FillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
             ShowCommutativeDiagram(commutativeDiagram);
         }
-        private void SaveCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        private void SaveCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
         {
             result = "";
             foreach (Tuple<int, int> edge in commutativeDiagram)
@@ -92,10 +92,18 @@ namespace qualifyingMasterWork
         {
             problemName = problem;
         }
-        private void ShowCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        private void ShowCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
         {
-            output = "";
-            Data.Text = output;
+            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+            foreach (Tuple<int, int> edge in commutativeDiagram)
+            {
+                graph.AddEdge("g_" + Convert.ToString(edge.Item1 + 1), "x_" + Convert.ToString(edge.Item2 + 1));
+            }
+
+            viewer.Graph = graph;
+            this.SuspendLayout();
+            this.Controls.Add(viewer);
         }
     }
 }

@@ -15,8 +15,8 @@ namespace qualifyingMasterWork
         readonly Form23 form23;
         private string dataFormName;
         private int[] element;
-        private HashSet<int> equation;
-        private SortedDictionary<int, HashSet<int>> equations;
+        private SortedSet<int> equation;
+        private SortedDictionary<int, SortedSet<int>> equations;
         private bool generateClicked = false;
         private int numOfEquations;
         private string output;
@@ -34,7 +34,7 @@ namespace qualifyingMasterWork
             form06.SendProblem(problemName);
             form06.ShowDialog();
         }
-        private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)
+        private SortedDictionary<int, SortedSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, SortedSet<int>> equations)
         {
             Random random = new Random();
             for (int i = 0; i < numOfEquations; i++)
@@ -44,7 +44,7 @@ namespace qualifyingMasterWork
                 {
                     element[j] = random.Next(0, 2);
                 }
-                equation = new HashSet<int>();
+                equation = new SortedSet<int>();
                 for (int j = 0; j < element.Length; j++)
                 {
                     if (element[j] == 1)
@@ -65,7 +65,7 @@ namespace qualifyingMasterWork
             else if (Convert.ToInt32(Size.Text) > 1)
             {
                 numOfEquations = Convert.ToInt32(Size.Text);
-                equations = new SortedDictionary<int, HashSet<int>>();
+                equations = new SortedDictionary<int, SortedSet<int>>();
                 FillEquations(numOfEquations, equations);
                 ShowEquations(equations);
                 generateClicked = true;
@@ -127,10 +127,10 @@ namespace qualifyingMasterWork
         {
             problemName = problem;
         }
-        private void ShowEquations(SortedDictionary<int, HashSet<int>> equations)
+        private void ShowEquations(SortedDictionary<int, SortedSet<int>> equations)
         {
             output = "";
-            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
+            foreach (KeyValuePair<int, SortedSet<int>> equation in equations)
             {
                 output += "f_" + (equation.Key+1).ToString() + " = (   ";
                 foreach (int value in equation.Value)

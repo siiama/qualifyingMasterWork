@@ -16,11 +16,11 @@ namespace qualifyingMasterWork
         readonly Form19 form19;
         readonly Form23 form23;
         private string[] argumentFromTextbox;
-        private HashSet<int> argumentsFromTextbox;
+        private SortedSet<int> argumentsFromTextbox;
         private string dataFormName;
         private string[] equationFromTextbox;
         private int functionFromTextbox;
-        private SortedDictionary<int, HashSet<int>> equations;
+        private SortedDictionary<int, SortedSet<int>> equations;
         private int numOfEquations;
         private string problemName;
         private string[] elementInRow;
@@ -78,7 +78,7 @@ namespace qualifyingMasterWork
                 e.Handled = true;
             }
         }
-        private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)
+        private SortedDictionary<int, SortedSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, SortedSet<int>> equations)
         {
             equationFromTextbox = new string[numOfEquations];
             equationFromTextbox = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
@@ -94,7 +94,7 @@ namespace qualifyingMasterWork
                 equationElements = equationElements.Replace(Environment.NewLine, string.Empty);
                 elementInRow = equationElements.Split(':');
                 functionFromTextbox = Convert.ToInt32(elementInRow[0].Substring(elementInRow[0].IndexOf('_') + 1)) - 1;
-                argumentsFromTextbox = new HashSet<int>();
+                argumentsFromTextbox = new SortedSet<int>();
                 argumentFromTextbox = elementInRow[1].Split(',');
                 for (int j = 0; j < argumentFromTextbox.Length; j++)
                 {
@@ -108,7 +108,7 @@ namespace qualifyingMasterWork
         {
             if (CheckDataFromManualInput())
             {
-                equations = new SortedDictionary<int, HashSet<int>>();
+                equations = new SortedDictionary<int, SortedSet<int>>();
                 FillEquations(numOfEquations, equations);
                 switch (problemName)
                 {

@@ -17,10 +17,10 @@ namespace qualifyingMasterWork
         readonly Form23 form23;
         private string dataFormName;
         private string[] argumentFromFile;
-        private HashSet<int> argumentsFromFile;
+        private SortedSet<int> argumentsFromFile;
         private bool chooseFileClicked = false;
         private string[] elementInRow;
-        private SortedDictionary<int, HashSet<int>> equations;
+        private SortedDictionary<int, SortedSet<int>> equations;
         private string fileData;
         private string fileName;
         private int functionFromFile;
@@ -81,7 +81,7 @@ namespace qualifyingMasterWork
             File.Text = System.IO.Path.GetFileName(fileName);
             chooseFileClicked = true;
         }
-        private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)
+        private SortedDictionary<int, SortedSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, SortedSet<int>> equations)
         {
             equationFromFile = new string[numOfEquations];
             equationFromFile = fileData.Substring(0, fileData.IndexOf('.')).Split(';');
@@ -97,7 +97,7 @@ namespace qualifyingMasterWork
                 equationElements = equationElements.Replace(Environment.NewLine, string.Empty);
                 elementInRow = equationElements.Split(':');
                 functionFromFile = Convert.ToInt32(elementInRow[0].Substring(elementInRow[0].IndexOf('_') + 1)) - 1;
-                argumentsFromFile = new HashSet<int>();
+                argumentsFromFile = new SortedSet<int>();
                 argumentFromFile = elementInRow[1].Split(',');
                 for (int j = 0; j < argumentFromFile.Length; j++)
                 {
@@ -116,7 +116,7 @@ namespace qualifyingMasterWork
                     if (CheckDataFromFile())
                     {
                         numOfEquations = fileData.Split('\n').Length;
-                        equations = new SortedDictionary<int, HashSet<int>>();
+                        equations = new SortedDictionary<int, SortedSet<int>>();
                         FillEquations(numOfEquations, equations);
                         switch (problemName)
                         {

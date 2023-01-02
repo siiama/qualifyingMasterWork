@@ -11,7 +11,7 @@ namespace qualifyingMasterWork
         readonly Form19 form19;
         readonly Form23 form23;
         private string dataFormName;
-        private SortedDictionary<int, HashSet<int>> equations;
+        private SortedDictionary<int, SortedSet<int>> equations;
         private int[,] matrix;
         private string output;
         private string problemName;
@@ -25,7 +25,7 @@ namespace qualifyingMasterWork
         }
         private int[,] FillMatrix(int[,] matrix)
         {
-            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
+            foreach (KeyValuePair<int, SortedSet<int>> equation in equations)
             {
                 int function = equation.Key;
                 foreach (int argument in equation.Value)
@@ -92,9 +92,9 @@ namespace qualifyingMasterWork
             result = result.Remove(result.Length - 2);
             result += ".";
         }
-        public void SendData(SortedDictionary<int, HashSet<int>> data)
+        public void SendData(SortedDictionary<int, SortedSet<int>> data)
         {
-            equations = new SortedDictionary<int, HashSet<int>>();
+            equations = new SortedDictionary<int, SortedSet<int>>();
             equations = data;
         }
         public void SendDataForm(string dataForm)

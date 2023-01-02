@@ -17,7 +17,7 @@ namespace qualifyingMasterWork
         private Tuple<int, int> edgeFromTextbox;
         private string[] edgesFromTextbox;
         private string dataFormName;
-        private HashSet<Tuple<int, int>> commutativeDiagram;
+        private SortedSet<Tuple<int, int>> commutativeDiagram;
         private int numOfVertexesInEachPart;
         private string problemName;
         private string[] vertexInEdges;
@@ -78,7 +78,7 @@ namespace qualifyingMasterWork
                 e.Handled = true;
             }
         }
-        private HashSet<Tuple<int, int>> FillCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        private SortedSet<Tuple<int, int>> FillCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
         {
             edgesFromTextbox = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
             for (int i = 0; i < edgesFromTextbox.Length; i++)
@@ -101,7 +101,7 @@ namespace qualifyingMasterWork
         {
             if (CheckDataFromManualInput())
             {
-                commutativeDiagram = new HashSet<Tuple<int, int>>();
+                commutativeDiagram = new SortedSet<Tuple<int, int>>();
                 FillCommutativeDiagram(commutativeDiagram);
                 switch (problemName)
                 {

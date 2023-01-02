@@ -11,7 +11,7 @@ namespace qualifyingMasterWork
         readonly Form22 form22;
         readonly Form23 form23;
         private string dataFormName;
-        private HashSet<Tuple<int, int>> commutativeDiagram;
+        private SortedSet<Tuple<int, int>> commutativeDiagram;
         private int[,] matrix;
         private string output;
         private string problemName;
@@ -90,9 +90,9 @@ namespace qualifyingMasterWork
             result = result.Remove(result.Length - 2);
             result += ".";
         }
-        public void SendData(HashSet<Tuple<int, int>> data)
+        public void SendData(SortedSet<Tuple<int, int>> data)
         {
-            commutativeDiagram = new HashSet<Tuple<int, int>>();
+            commutativeDiagram = new SortedSet<Tuple<int, int>>();
             commutativeDiagram = data;
         }
         public void SendDataForm(string dataForm)

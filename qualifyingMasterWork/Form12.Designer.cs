@@ -35,7 +35,6 @@
             this.Next = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Back = new System.Windows.Forms.Button();
-            this.Data = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Size
@@ -94,20 +93,11 @@
             this.Back.UseVisualStyleBackColor = true;
             this.Back.Click += new System.EventHandler(this.Back_Click);
             // 
-            // Data
-            // 
-            this.Data.AutoSize = true;
-            this.Data.Location = new System.Drawing.Point(300, 50);
-            this.Data.Name = "Data";
-            this.Data.Size = new System.Drawing.Size(0, 16);
-            this.Data.TabIndex = 79;
-            // 
             // Form12
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 353);
-            this.Controls.Add(this.Data);
             this.Controls.Add(this.Size);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Generate);
@@ -131,6 +121,5 @@
         private System.Windows.Forms.Button Next;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Back;
-        private System.Windows.Forms.Label Data;
     }
 }

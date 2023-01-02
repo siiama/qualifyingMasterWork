@@ -12,7 +12,7 @@ namespace qualifyingMasterWork
         readonly Form18 form18;
         readonly Form19 form19;
         readonly Form23 form23;
-        private SortedDictionary<int, HashSet<int>> equations;
+        private SortedDictionary<int, SortedSet<int>> equations;
         private string problemName;
         public Form17(Form18 form18, Form19 form19)
         {
@@ -50,9 +50,9 @@ namespace qualifyingMasterWork
                 MessageBox.Show("Please choose form of data");
             }
         }
-        public void SendData(SortedDictionary<int, HashSet<int>> data)
+        public void SendData(SortedDictionary<int, SortedSet<int>> data)
         {
-            equations = new SortedDictionary<int, HashSet<int>>();
+            equations = new SortedDictionary<int, SortedSet<int>>();
             equations = data;
         }
         public void SendProblem(string problem)

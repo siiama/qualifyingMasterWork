@@ -32,7 +32,6 @@
             this.Save = new System.Windows.Forms.Button();
             this.Finish = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.Data = new System.Windows.Forms.Label();
             this.SaveFile = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
@@ -66,14 +65,6 @@
             this.label1.TabIndex = 84;
             this.label1.Text = "Result: commutative diagram";
             // 
-            // Data
-            // 
-            this.Data.AutoSize = true;
-            this.Data.Location = new System.Drawing.Point(200, 100);
-            this.Data.Name = "Data";
-            this.Data.Size = new System.Drawing.Size(0, 16);
-            this.Data.TabIndex = 89;
-            // 
             // SaveFile
             // 
             this.SaveFile.FileName = "result";
@@ -83,7 +74,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 353);
-            this.Controls.Add(this.Data);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.Finish);
             this.Controls.Add(this.label1);
@@ -101,7 +91,6 @@
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.Button Finish;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label Data;
         private System.Windows.Forms.SaveFileDialog SaveFile;
     }
 }

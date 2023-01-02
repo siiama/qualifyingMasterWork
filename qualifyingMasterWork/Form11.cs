@@ -17,7 +17,7 @@ namespace qualifyingMasterWork
         readonly Form23 form23;
         private string dataFormName;
         private bool chooseFileClicked = false;
-        private HashSet<Tuple<int, int>> commutativeDiagram;
+        private SortedSet<Tuple<int, int>> commutativeDiagram;
         private Tuple<int, int> edgeFromFile;
         private string[] edgesFromFile;
         private string fileData;
@@ -82,7 +82,7 @@ namespace qualifyingMasterWork
             File.Text = System.IO.Path.GetFileName(fileName);
             chooseFileClicked = true;
         }
-        private HashSet<Tuple<int, int>> FillCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        private SortedSet<Tuple<int, int>> FillCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
         {
             edgesFromFile = fileData.Substring(0, fileData.IndexOf('.')).Split(';');
             for (int i = 0; i < edgesFromFile.Length; i++)
@@ -109,7 +109,7 @@ namespace qualifyingMasterWork
                 {
                     if (CheckDataFromFile())
                     {
-                        commutativeDiagram = new HashSet<Tuple<int, int>>();
+                        commutativeDiagram = new SortedSet<Tuple<int, int>>();
                         FillCommutativeDiagram(commutativeDiagram);
                         switch (problemName)
                         {

@@ -10,7 +10,7 @@ namespace qualifyingMasterWork
         readonly Form15 form15;
         readonly Form16 form16;
         readonly Form23 form23;
-        private SortedDictionary<int, HashSet<int>> equations;
+        private SortedDictionary<int, SortedSet<int>> equations;
         private int[,] matrix;
         private int numOfEquations;
         private string output;
@@ -22,7 +22,7 @@ namespace qualifyingMasterWork
             this.form23 = form23;
             SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)
+        private SortedDictionary<int, SortedSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, SortedSet<int>> equations)
         {
             for (int i = 0; i < numOfEquations; i++)
             {
@@ -31,7 +31,7 @@ namespace qualifyingMasterWork
                 {
                     element[j] = matrix[i, j];
                 }
-                HashSet<int> equation = new HashSet<int>();
+                SortedSet<int> equation = new SortedSet<int>();
                 for (int j = 0; j < element.Length; j++)
                 {
                     if (element[j] == 1)
@@ -63,7 +63,7 @@ namespace qualifyingMasterWork
         private void Form15_Load(object sender, EventArgs e)
         {
             numOfEquations = matrix.GetLength(0);
-            equations = new SortedDictionary<int, HashSet<int>>();
+            equations = new SortedDictionary<int, SortedSet<int>>();
             FillEquations(numOfEquations, equations);
             ShowEquations(equations);
         }
@@ -75,10 +75,10 @@ namespace qualifyingMasterWork
             string filename = SaveFile.FileName;
             System.IO.File.WriteAllText(filename, result);
         }
-        private void SaveEquations(SortedDictionary<int, HashSet<int>> equations)
+        private void SaveEquations(SortedDictionary<int, SortedSet<int>> equations)
         {
             result = "";
-            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
+            foreach (KeyValuePair<int, SortedSet<int>> equation in equations)
             {
                 result += "f_" + (equation.Key + 1).ToString() + ": ";
                 foreach (int value in equation.Value)
@@ -104,10 +104,10 @@ namespace qualifyingMasterWork
         {
             problemName = problem;
         }
-        private void ShowEquations(SortedDictionary<int, HashSet<int>> equations)
+        private void ShowEquations(SortedDictionary<int, SortedSet<int>> equations)
         {
             output = "";
-            foreach (KeyValuePair<int, HashSet<int>> equation in equations)
+            foreach (KeyValuePair<int, SortedSet<int>> equation in equations)
             {
                 output += "f_" + (equation.Key + 1).ToString() + " = (   ";
                 foreach (int value in equation.Value)
