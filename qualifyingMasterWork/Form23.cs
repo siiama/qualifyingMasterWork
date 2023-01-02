@@ -43,16 +43,19 @@ namespace qualifyingMasterWork
         public string SolveFindingProbabilitiesOfSystemStates()
         {
             //system of equations
+            //value of every vertex
             return result;
         }
         public string SolveFindingTheMinimumWeightSpanningTree()
         {
             //commutative diagram
+            //minimum spanning tree
             return result;
         }
         public string SolveFindingTheShortestPath()
         {
             //matrix
+            //minimal way from every vertex to every other
             return result;
         }
         private void Form23_Load(object sender, EventArgs e)

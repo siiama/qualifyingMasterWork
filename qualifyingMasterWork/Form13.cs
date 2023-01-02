@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -33,9 +34,18 @@ namespace qualifyingMasterWork
             form10.SendProblem(problemName);
             form10.ShowDialog();
         }
+        private void Data_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsLetter(e.KeyChar) && e.KeyChar != Convert.ToChar(8)
+                && e.KeyChar != Convert.ToChar(13) && e.KeyChar != Convert.ToChar(32) && e.KeyChar != Convert.ToChar(44)
+                && e.KeyChar != Convert.ToChar(45) && e.KeyChar != Convert.ToChar(46) && e.KeyChar != Convert.ToChar(59))
+            {
+                e.Handled = true;
+            }
+        }
         private HashSet<Tuple<int, int>> FillCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
         {
-            edgesFromTextbox = Data.Text.Split(';');
+            edgesFromTextbox = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
             for (int i = 0; i < edgesFromTextbox.Length; i++)
             {
                 string edgesElements = edgesFromTextbox[i];
@@ -53,17 +63,18 @@ namespace qualifyingMasterWork
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            string[] edges = Data.Text.Split(';');
+            string[] edges = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
             int maxNumOfElementsInLeftPart = 0;
             int maxNumOfElementsInRightPart = 0;
             for (int i = 0; i < edges.Length; i++)
             {
-                var charsToRemove = new string[] { " ", ".", "g", "x", "_" };
+                var charsToRemove = new string[] { " ", ".", "_" };
                 string edgesElements = edges[i];
                 foreach (var c in charsToRemove)
                 {
                     edgesElements = edgesElements.Replace(c, string.Empty);
                 }
+                edgesElements = Regex.Replace(edgesElements, "[A-Za-z]", string.Empty);
                 edgesElements = edgesElements.Replace(Environment.NewLine, string.Empty);
                 string[] edge = edgesElements.Split(',');
                 if ((Convert.ToInt32(edge[0]) - 1) > maxNumOfElementsInLeftPart)

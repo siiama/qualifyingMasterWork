@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing.Drawing2D;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -36,26 +37,37 @@ namespace qualifyingMasterWork
             form06.SendProblem(problemName);
             form06.ShowDialog();
         }
+        private void Data_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsLetter(e.KeyChar) && e.KeyChar != Convert.ToChar(8)
+                && e.KeyChar != Convert.ToChar(13) && e.KeyChar != Convert.ToChar(32) && e.KeyChar != Convert.ToChar(44)
+                && e.KeyChar != Convert.ToChar(45) && e.KeyChar != Convert.ToChar(46) && e.KeyChar != Convert.ToChar(58)
+                && e.KeyChar != Convert.ToChar(59))
+            {
+                e.Handled = true;
+            }
+        }
         private SortedDictionary<int, HashSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, HashSet<int>> equations)
         {
             equationFromTextbox = new string[numOfEquations];
-            equationFromTextbox = Data.Text.Split(';');
+            equationFromTextbox = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
             for (int i = 0; i < numOfEquations; i++)
             {
-                var charsToRemove = new string[] { " ", ".", "f", "x", "_" };
+                var charsToRemove = new string[] { " ", "." };
                 string equationElements = equationFromTextbox[i];
                 foreach (var c in charsToRemove)
                 {
                     equationElements = equationElements.Replace(c, string.Empty);
                 }
+                equationElements = Regex.Replace(equationElements, "[A-Za-z]", string.Empty);
                 equationElements = equationElements.Replace(Environment.NewLine, string.Empty);
                 elementInRow = equationElements.Split(':');
-                functionFromTextbox = Convert.ToInt32(elementInRow[0]) - 1;
+                functionFromTextbox = Convert.ToInt32(elementInRow[0].Substring(elementInRow[0].IndexOf('_') + 1)) - 1;
                 argumentsFromTextbox = new HashSet<int>();
                 argumentFromTextbox = elementInRow[1].Split(',');
                 for (int j = 0; j < argumentFromTextbox.Length; j++)
                 {
-                    argumentsFromTextbox.Add(Convert.ToInt32(argumentFromTextbox[j]) - 1);
+                    argumentsFromTextbox.Add(Convert.ToInt32(argumentFromTextbox[j].Substring(argumentFromTextbox[j].IndexOf('_') + 1)) - 1);
                 }
                 equations.Add(functionFromTextbox, argumentsFromTextbox);
             }
@@ -63,22 +75,22 @@ namespace qualifyingMasterWork
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            numOfEquations = Data.Text.Split(';').Length;
+            numOfEquations = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';').Length;
             string[] equation = new string[numOfEquations];
-            equation = Data.Text.Split(';');
+            equation = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
             int maxNumOfElements = 0;
             for (int i = 0; i < equation.Length; i++)
             {
-                var charsToRemove = new string[] { ",", " ", ".", ":", "f", "x", "_" };
+                var charsToRemove = new string[] { " ", ".", "f", "x", "_" };
                 string equationElements = equation[i];
                 foreach (var c in charsToRemove)
                 {
                     equationElements = equationElements.Replace(c, string.Empty);
                 }
                 equationElements = equationElements.Replace(Environment.NewLine, string.Empty);
-                if ((equationElements.Length - 1) > maxNumOfElements)
+                if ((equationElements.Split(':')[1].Split(',').Length) > maxNumOfElements)
                 {
-                    maxNumOfElements = equationElements.Length - 1;
+                    maxNumOfElements = equationElements.Split(':')[1].Split(',').Length;
                 }
             }
             if (numOfEquations >= maxNumOfElements)

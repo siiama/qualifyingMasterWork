@@ -31,10 +31,19 @@ namespace qualifyingMasterWork
             form02.SendProblem(problemName);
             form02.ShowDialog();
         }
+        private void Data_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8) && e.KeyChar != Convert.ToChar(13)
+                && e.KeyChar != Convert.ToChar(32) && e.KeyChar != Convert.ToChar(44) && e.KeyChar != Convert.ToChar(45)
+                && e.KeyChar != Convert.ToChar(46) && e.KeyChar != Convert.ToChar(59))
+            {
+                e.Handled = true;
+            }
+        }
         private int[,] FillMatrix(int[,] matrix)
         {
             row = new string[matrix.GetLength(0)];
-            row = Data.Text.Split(';');
+            row = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
             for (int i = 0; i < row.Length; i++)
             {
                 elementInRow = new string[matrix.GetLength(1)];
@@ -53,15 +62,16 @@ namespace qualifyingMasterWork
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            var charsToRemove = new string[] { ",", " ", ";", "." };
-            string matrixNumbers = Data.Text;
+            var charsToRemove = new string[] { " ", "." };
+            string matrixNumbers = Data.Text.Substring(0, Data.Text.IndexOf('.'));
             foreach (var c in charsToRemove)
             {
                 matrixNumbers = matrixNumbers.Replace(c, string.Empty);
             }
+            matrixNumbers = matrixNumbers.Replace(";", ",");
             matrixNumbers = matrixNumbers.Replace(Environment.NewLine, string.Empty);
-            sizeOfMatrix = Data.Text.Split(';').Length;
-            if (matrixNumbers.Length == sizeOfMatrix * sizeOfMatrix)
+            sizeOfMatrix = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';').Length;
+            if (matrixNumbers.Split(',').Length == sizeOfMatrix * sizeOfMatrix)
             {
                 matrix = new int[sizeOfMatrix, sizeOfMatrix];
                 FillMatrix(matrix);
