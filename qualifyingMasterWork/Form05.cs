@@ -31,6 +31,27 @@ namespace qualifyingMasterWork
             form02.SendProblem(problemName);
             form02.ShowDialog();
         }
+        private bool CheckDataFromManualInput()
+        {
+            var charsToRemove = new string[] { " ", "." };
+            string matrixNumbers = Data.Text.Substring(0, Data.Text.IndexOf('.'));
+            foreach (var c in charsToRemove)
+            {
+                matrixNumbers = matrixNumbers.Replace(c, string.Empty);
+            }
+            matrixNumbers = matrixNumbers.Replace(";", ",");
+            matrixNumbers = matrixNumbers.Replace(Environment.NewLine, string.Empty);
+            sizeOfMatrix = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';').Length;
+            if (matrixNumbers.Split(',').Length != sizeOfMatrix * sizeOfMatrix)
+            {
+                MessageBox.Show("Your matrix is not square!");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         private void Data_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && e.KeyChar != Convert.ToChar(8) && e.KeyChar != Convert.ToChar(13)
@@ -52,6 +73,7 @@ namespace qualifyingMasterWork
                 {
                     row[i] = row[i].Replace(c, string.Empty);
                 }
+                row[i] = row[i].Replace(Environment.NewLine, string.Empty);
                 elementInRow = row[i].Split(',');
                 for (int j = 0; j < elementInRow.Length; j++)
                 {
@@ -62,16 +84,7 @@ namespace qualifyingMasterWork
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            var charsToRemove = new string[] { " ", "." };
-            string matrixNumbers = Data.Text.Substring(0, Data.Text.IndexOf('.'));
-            foreach (var c in charsToRemove)
-            {
-                matrixNumbers = matrixNumbers.Replace(c, string.Empty);
-            }
-            matrixNumbers = matrixNumbers.Replace(";", ",");
-            matrixNumbers = matrixNumbers.Replace(Environment.NewLine, string.Empty);
-            sizeOfMatrix = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';').Length;
-            if (matrixNumbers.Split(',').Length == sizeOfMatrix * sizeOfMatrix)
+            if (CheckDataFromManualInput())
             {
                 matrix = new int[sizeOfMatrix, sizeOfMatrix];
                 FillMatrix(matrix);
@@ -109,10 +122,6 @@ namespace qualifyingMasterWork
                         form14.ShowDialog();
                         break;
                 }
-            }
-            else
-            {
-                MessageBox.Show("Incorrect data!");
             }
         }
         public void SendDataForm(string dataForm)

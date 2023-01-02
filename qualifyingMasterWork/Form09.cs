@@ -37,6 +37,37 @@ namespace qualifyingMasterWork
             form06.SendProblem(problemName);
             form06.ShowDialog();
         }
+        private bool CheckDataFromManualInput()
+        {
+            numOfEquations = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';').Length;
+            string[] equation = new string[numOfEquations];
+            equation = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
+            int maxNumOfElements = 0;
+            for (int i = 0; i < equation.Length; i++)
+            {
+                var charsToRemove = new string[] { " ", ".", "_" };
+                string equationElements = equation[i];
+                foreach (var c in charsToRemove)
+                {
+                    equationElements = equationElements.Replace(c, string.Empty);
+                }
+                equationElements = Regex.Replace(equationElements, "[A-Za-z]", string.Empty);
+                equationElements = equationElements.Replace(Environment.NewLine, string.Empty);
+                if ((equationElements.Split(':')[1].Split(',').Length) > maxNumOfElements)
+                {
+                    maxNumOfElements = equationElements.Split(':')[1].Split(',').Length;
+                }
+            }
+            if (numOfEquations < maxNumOfElements)
+            {
+                MessageBox.Show("Number of equations can not be less then number of variables!");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         private void Data_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!Char.IsDigit(e.KeyChar) && !Char.IsLetter(e.KeyChar) && e.KeyChar != Convert.ToChar(8)
@@ -75,25 +106,7 @@ namespace qualifyingMasterWork
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            numOfEquations = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';').Length;
-            string[] equation = new string[numOfEquations];
-            equation = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
-            int maxNumOfElements = 0;
-            for (int i = 0; i < equation.Length; i++)
-            {
-                var charsToRemove = new string[] { " ", ".", "f", "x", "_" };
-                string equationElements = equation[i];
-                foreach (var c in charsToRemove)
-                {
-                    equationElements = equationElements.Replace(c, string.Empty);
-                }
-                equationElements = equationElements.Replace(Environment.NewLine, string.Empty);
-                if ((equationElements.Split(':')[1].Split(',').Length) > maxNumOfElements)
-                {
-                    maxNumOfElements = equationElements.Split(':')[1].Split(',').Length;
-                }
-            }
-            if (numOfEquations >= maxNumOfElements)
+            if (CheckDataFromManualInput())
             {
                 equations = new SortedDictionary<int, HashSet<int>>();
                 FillEquations(numOfEquations, equations);
@@ -131,10 +144,6 @@ namespace qualifyingMasterWork
                         form17.ShowDialog();
                         break;
                 }
-            }
-            else
-            {
-                MessageBox.Show("Incorrect data!");
             }
         }
         public void SendDataForm(string dataForm)

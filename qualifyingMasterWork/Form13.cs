@@ -34,34 +34,7 @@ namespace qualifyingMasterWork
             form10.SendProblem(problemName);
             form10.ShowDialog();
         }
-        private void Data_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (!Char.IsDigit(e.KeyChar) && !Char.IsLetter(e.KeyChar) && e.KeyChar != Convert.ToChar(8)
-                && e.KeyChar != Convert.ToChar(13) && e.KeyChar != Convert.ToChar(32) && e.KeyChar != Convert.ToChar(44)
-                && e.KeyChar != Convert.ToChar(45) && e.KeyChar != Convert.ToChar(46) && e.KeyChar != Convert.ToChar(59))
-            {
-                e.Handled = true;
-            }
-        }
-        private HashSet<Tuple<int, int>> FillCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
-        {
-            edgesFromTextbox = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
-            for (int i = 0; i < edgesFromTextbox.Length; i++)
-            {
-                string edgesElements = edgesFromTextbox[i];
-                var charsToRemove = new string[] { " ", ".", "g", "x", "_" };
-                foreach (var c in charsToRemove)
-                {
-                    edgesElements = edgesElements.Replace(c, string.Empty);
-                }
-                edgesElements = edgesElements.Replace(Environment.NewLine, string.Empty);
-                vertexInEdges = edgesElements.Split(',');
-                edgeFromTextbox = new Tuple<int, int> (Convert.ToInt32(vertexInEdges[0]) - 1, Convert.ToInt32(vertexInEdges[1]) - 1);
-                commutativeDiagram.Add(edgeFromTextbox);
-            }
-            return commutativeDiagram;
-        }
-        private void Next_Click(object sender, EventArgs e)
+        private bool CheckDataFromManualInput()
         {
             string[] edges = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
             int maxNumOfElementsInLeftPart = 0;
@@ -86,7 +59,47 @@ namespace qualifyingMasterWork
                     maxNumOfElementsInRightPart = Convert.ToInt32(edge[1]) - 1;
                 }
             }
-            if (maxNumOfElementsInLeftPart >= maxNumOfElementsInRightPart)
+            if (maxNumOfElementsInLeftPart < maxNumOfElementsInRightPart)
+            {
+                MessageBox.Show("Number of vertexes in left part can not be less\nthen number of vertexes in rigth part!");
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+        private void Data_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!Char.IsDigit(e.KeyChar) && !Char.IsLetter(e.KeyChar) && e.KeyChar != Convert.ToChar(8)
+                && e.KeyChar != Convert.ToChar(13) && e.KeyChar != Convert.ToChar(32) && e.KeyChar != Convert.ToChar(44)
+                && e.KeyChar != Convert.ToChar(45) && e.KeyChar != Convert.ToChar(46) && e.KeyChar != Convert.ToChar(59))
+            {
+                e.Handled = true;
+            }
+        }
+        private HashSet<Tuple<int, int>> FillCommutativeDiagram(HashSet<Tuple<int, int>> commutativeDiagram)
+        {
+            edgesFromTextbox = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
+            for (int i = 0; i < edgesFromTextbox.Length; i++)
+            {
+                string edgesElements = edgesFromTextbox[i];
+                var charsToRemove = new string[] { " ", ".", "_" };
+                foreach (var c in charsToRemove)
+                {
+                    edgesElements = edgesElements.Replace(c, string.Empty);
+                }
+                edgesElements = Regex.Replace(edgesElements, "[A-Za-z]", string.Empty);
+                edgesElements = edgesElements.Replace(Environment.NewLine, string.Empty);
+                vertexInEdges = edgesElements.Split(',');
+                edgeFromTextbox = new Tuple<int, int> (Convert.ToInt32(vertexInEdges[0]) - 1, Convert.ToInt32(vertexInEdges[1]) - 1);
+                commutativeDiagram.Add(edgeFromTextbox);
+            }
+            return commutativeDiagram;
+        }
+        private void Next_Click(object sender, EventArgs e)
+        {
+            if (CheckDataFromManualInput())
             {
                 commutativeDiagram = new HashSet<Tuple<int, int>>();
                 FillCommutativeDiagram(commutativeDiagram);
@@ -124,10 +137,6 @@ namespace qualifyingMasterWork
                         form20.ShowDialog();
                         break;
                 }
-            }
-            else
-            {
-                MessageBox.Show("Incorrect data!");
             }
         }
         public void SendDataForm(string dataForm)
