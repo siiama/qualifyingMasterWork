@@ -46,7 +46,7 @@ namespace qualifyingMasterWork
                     Form.ActiveForm.Visible = false;
                     Form23 form23 = new Form23();
                     form23.SendDataForm(dataFormName);
-                    form23.SendSystemOfEquationsData(equations);
+                    form23.SendCommutativeDiagramData(commutativeDiagram);
                     form23.SendProblem(problemName);
                     form23.ShowDialog();
                     break;
@@ -95,7 +95,7 @@ namespace qualifyingMasterWork
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
             foreach (Tuple<int, int, int> edge in commutativeDiagram)
             {
-                graph.AddEdge("g_" + Convert.ToString(edge.Item1 + 1), "x_" + Convert.ToString(edge.Item2 + 1));
+                graph.AddEdge("g_" + Convert.ToString(edge.Item1 + 1), "x_" + Convert.ToString(edge.Item2 + 1)).LabelText = Convert.ToString(edge.Item3);
                 Microsoft.Msagl.Drawing.Node g = graph.FindNode("g_" + Convert.ToString(edge.Item1 + 1));
                 g.Attr.FillColor = Microsoft.Msagl.Drawing.Color.MintCream;
                 Microsoft.Msagl.Drawing.Node x = graph.FindNode("x_" + Convert.ToString(edge.Item2 + 1));

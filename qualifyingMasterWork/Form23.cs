@@ -23,14 +23,19 @@ namespace qualifyingMasterWork
         }
         public string SaveSolveFindingTheMinimumWeightSpanningTree(SortedSet<Tuple<int, int, int>> minimumSpanningTree)
         {
-            result = "";
+            /*result = "";
             foreach (Tuple<int, int, int> edge in minimumSpanningTree)
             {
                 result += "g_" + (edge.Item1 + 1) + ", x_" + (edge.Item2 + 1) + ", w_" + edge.Item3 + ";\n";
             }
             result = result.Remove(result.Length - 2);
-            result += ".";
-            return result;
+            result += ".";*/
+            int sum = 0;
+            foreach (Tuple<int, int, int> edge in minimumSpanningTree)
+            {
+                sum += edge.Item3;
+            }
+            return Convert.ToString(sum);
         }
         public void SendCommutativeDiagramData(SortedSet<Tuple<int, int, int>> commutativeDiagramData)
         {
@@ -57,10 +62,10 @@ namespace qualifyingMasterWork
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
             foreach (Tuple<int, int, int> edge in minimumSpanningTree)
             {
-                graph.AddEdge("g_" + Convert.ToString(edge.Item1 + 1), "x_" + Convert.ToString(edge.Item2 + 1));
-                Microsoft.Msagl.Drawing.Node g = graph.FindNode("g_" + Convert.ToString(edge.Item1 + 1));
+                graph.AddEdge(Convert.ToString(edge.Item1 + 1), Convert.ToString(edge.Item2 + 1)).LabelText = Convert.ToString(edge.Item3);
+                Microsoft.Msagl.Drawing.Node g = graph.FindNode(Convert.ToString(edge.Item1 + 1));
                 g.Attr.FillColor = Microsoft.Msagl.Drawing.Color.MintCream;
-                Microsoft.Msagl.Drawing.Node x = graph.FindNode("x_" + Convert.ToString(edge.Item2 + 1));
+                Microsoft.Msagl.Drawing.Node x = graph.FindNode(Convert.ToString(edge.Item2 + 1));
                 x.Attr.FillColor = Microsoft.Msagl.Drawing.Color.MintCream;
             }
             viewer.Graph = graph;
@@ -84,7 +89,7 @@ namespace qualifyingMasterWork
             }
             int firstVertex = random.Next(vertexes.Min, vertexes.Max);
             SortedSet<int> vertexesFromSpanningTree = new SortedSet<int> { firstVertex };
-            while (!vertexes.Equals(vertexesFromSpanningTree))
+            while (vertexesFromSpanningTree.Count != vertexes.Count)
             {
                 SortedSet<Tuple<int, int, int>> edges = new SortedSet<Tuple<int, int, int>>();
                 foreach (int vertex in vertexesFromSpanningTree)

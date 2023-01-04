@@ -53,7 +53,7 @@ namespace qualifyingMasterWork
                     Form.ActiveForm.Visible = false;
                     Form23 form23 = new Form23();
                     form23.SendDataForm(dataFormName);
-                    form23.SendSystemOfEquationsData(equations);
+                    form23.SendMatrixData(matrix);
                     form23.SendProblem(problemName);
                     form23.ShowDialog();
                     break;
