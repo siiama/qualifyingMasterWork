@@ -14,7 +14,7 @@ namespace qualifyingMasterWork
         readonly Form22 form22;
         readonly Form23 form23;
         private string dataFormName;
-        private SortedSet<Tuple<int, int>> commutativeDiagram;
+        private SortedSet<Tuple<int, int, int>> commutativeDiagram;
         private bool generateClicked = false;
         private int numOfVertexesInEachPart;
         private string output;
@@ -33,7 +33,7 @@ namespace qualifyingMasterWork
             form10.SendProblem(problemName);
             form10.ShowDialog();
         }
-        private SortedSet<Tuple<int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, SortedSet<Tuple<int, int>> commutativeDiagram)
+        private SortedSet<Tuple<int, int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, SortedSet<Tuple<int, int, int>> commutativeDiagram)
         {
             Random random = new Random();
             for (int i = 0; i < numOfVertexesInEachPart; i++)
@@ -44,7 +44,7 @@ namespace qualifyingMasterWork
                     element[j] = random.Next(0, 2);
                     if (element[j] == 1)
                     {
-                        Tuple<int, int> edge = new Tuple<int, int>(i, j);
+                        Tuple<int, int, int> edge = new Tuple<int, int, int>(i, j, random.Next(0, 10));
                         commutativeDiagram.Add(edge);
                     }
                 }
@@ -60,7 +60,7 @@ namespace qualifyingMasterWork
             else if (Convert.ToInt32(Size.Text) > 1)
             {
                 numOfVertexesInEachPart = Convert.ToInt32(Size.Text);
-                commutativeDiagram = new SortedSet<Tuple<int, int>>();
+                commutativeDiagram = new SortedSet<Tuple<int, int, int>>();
                 FillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
                 this.Controls.Remove(viewer);
                 ShowCommutativeDiagram(commutativeDiagram);
@@ -123,10 +123,10 @@ namespace qualifyingMasterWork
         {
             problemName = problem;
         }
-        private void ShowCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
+        private void ShowCommutativeDiagram(SortedSet<Tuple<int, int, int>> commutativeDiagram)
         {
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            foreach (Tuple<int, int> edge in commutativeDiagram)
+            foreach (Tuple<int, int, int> edge in commutativeDiagram)
             {
                 graph.AddEdge("g_" + Convert.ToString(edge.Item1 + 1), "x_" + Convert.ToString(edge.Item2 + 1));
                 Microsoft.Msagl.Drawing.Node g = graph.FindNode("g_" + Convert.ToString(edge.Item1 + 1));

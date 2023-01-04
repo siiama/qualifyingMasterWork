@@ -38,7 +38,14 @@ namespace qualifyingMasterWork
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    matrix[i, j] = random.Next(0, 2);
+                    matrix[i, j] = random.Next(-1, 1);
+                }
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (matrix[i, j] == 0)
+                    {
+                        matrix[i, j] = random.Next(0, 10);
+                    }
                 }
             }
             return matrix;

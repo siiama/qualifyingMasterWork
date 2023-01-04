@@ -11,7 +11,7 @@ namespace qualifyingMasterWork
         readonly Form19 form19;
         readonly Form23 form23;
         private string dataFormName;
-        private SortedDictionary<int, SortedSet<int>> equations;
+        private SortedDictionary<int, SortedSet<Tuple<int, int>>> equations;
         private int[,] matrix;
         private string output;
         private string problemName;
@@ -25,22 +25,19 @@ namespace qualifyingMasterWork
         }
         private int[,] FillMatrix(int[,] matrix)
         {
-            foreach (KeyValuePair<int, SortedSet<int>> equation in equations)
-            {
-                int function = equation.Key;
-                foreach (int argument in equation.Value)
-                {
-                    matrix[function, argument] = 1;
-                }
-            }
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    if (matrix[i, j] != 1)
-                    {
-                        matrix[i, j] = 0;
-                    }
+                    matrix[i, j] = -1;
+                }
+            }
+            foreach (KeyValuePair<int, SortedSet<Tuple<int, int>>> equation in equations)
+            {
+                int function = equation.Key;
+                foreach (Tuple<int, int> argument in equation.Value)
+                {
+                    matrix[function, argument.Item1] = argument.Item2;
                 }
             }
             return matrix;
@@ -92,9 +89,9 @@ namespace qualifyingMasterWork
             result = result.Remove(result.Length - 2);
             result += ".";
         }
-        public void SendData(SortedDictionary<int, SortedSet<int>> data)
+        public void SendData(SortedDictionary<int, SortedSet<Tuple<int, int>>> data)
         {
-            equations = new SortedDictionary<int, SortedSet<int>>();
+            equations = new SortedDictionary<int, SortedSet<Tuple<int, int>>>();
             equations = data;
         }
         public void SendDataForm(string dataForm)

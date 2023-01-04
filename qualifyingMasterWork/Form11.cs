@@ -17,8 +17,8 @@ namespace qualifyingMasterWork
         readonly Form23 form23;
         private string dataFormName;
         private bool chooseFileClicked = false;
-        private SortedSet<Tuple<int, int>> commutativeDiagram;
-        private Tuple<int, int> edgeFromFile;
+        private SortedSet<Tuple<int, int, int>> commutativeDiagram;
+        private Tuple<int, int, int> edgeFromFile;
         private string[] edgesFromFile;
         private string fileData;
         private string fileName;
@@ -82,7 +82,7 @@ namespace qualifyingMasterWork
             File.Text = System.IO.Path.GetFileName(fileName);
             chooseFileClicked = true;
         }
-        private SortedSet<Tuple<int, int>> FillCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
+        private SortedSet<Tuple<int, int, int>> FillCommutativeDiagram(SortedSet<Tuple<int, int, int>> commutativeDiagram)
         {
             edgesFromFile = fileData.Substring(0, fileData.IndexOf('.')).Split(';');
             for (int i = 0; i < edgesFromFile.Length; i++)
@@ -96,7 +96,7 @@ namespace qualifyingMasterWork
                 edgesElements = Regex.Replace(edgesElements, "[A-Za-z]", string.Empty);
                 edgesElements = edgesElements.Replace(Environment.NewLine, string.Empty);
                 vertexInEdges = edgesElements.Split(',');
-                edgeFromFile = new Tuple<int, int>(Convert.ToInt32(vertexInEdges[0]) - 1, Convert.ToInt32(vertexInEdges[1]) - 1);
+                edgeFromFile = new Tuple<int, int, int>(Convert.ToInt32(vertexInEdges[0]) - 1, Convert.ToInt32(vertexInEdges[1]) - 1, Convert.ToInt32(vertexInEdges[2]));
                 commutativeDiagram.Add(edgeFromFile);
             }
             return commutativeDiagram;
@@ -109,7 +109,7 @@ namespace qualifyingMasterWork
                 {
                     if (CheckDataFromFile())
                     {
-                        commutativeDiagram = new SortedSet<Tuple<int, int>>();
+                        commutativeDiagram = new SortedSet<Tuple<int, int, int>>();
                         FillCommutativeDiagram(commutativeDiagram);
                         switch (problemName)
                         {

@@ -14,10 +14,10 @@ namespace qualifyingMasterWork
         readonly Form21 form21;
         readonly Form22 form22;
         readonly Form23 form23;
-        private Tuple<int, int> edgeFromTextbox;
+        private Tuple<int, int, int> edgeFromTextbox;
         private string[] edgesFromTextbox;
         private string dataFormName;
-        private SortedSet<Tuple<int, int>> commutativeDiagram;
+        private SortedSet<Tuple<int, int, int>> commutativeDiagram;
         private int numOfVertexesInEachPart;
         private string problemName;
         private string[] vertexInEdges;
@@ -78,7 +78,7 @@ namespace qualifyingMasterWork
                 e.Handled = true;
             }
         }
-        private SortedSet<Tuple<int, int>> FillCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
+        private SortedSet<Tuple<int, int, int>> FillCommutativeDiagram(SortedSet<Tuple<int, int, int>> commutativeDiagram)
         {
             edgesFromTextbox = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
             for (int i = 0; i < edgesFromTextbox.Length; i++)
@@ -92,7 +92,7 @@ namespace qualifyingMasterWork
                 edgesElements = Regex.Replace(edgesElements, "[A-Za-z]", string.Empty);
                 edgesElements = edgesElements.Replace(Environment.NewLine, string.Empty);
                 vertexInEdges = edgesElements.Split(',');
-                edgeFromTextbox = new Tuple<int, int> (Convert.ToInt32(vertexInEdges[0]) - 1, Convert.ToInt32(vertexInEdges[1]) - 1);
+                edgeFromTextbox = new Tuple<int, int, int> (Convert.ToInt32(vertexInEdges[0]) - 1, Convert.ToInt32(vertexInEdges[1]) - 1, Convert.ToInt32(vertexInEdges[2]));
                 commutativeDiagram.Add(edgeFromTextbox);
             }
             return commutativeDiagram;
@@ -101,7 +101,7 @@ namespace qualifyingMasterWork
         {
             if (CheckDataFromManualInput())
             {
-                commutativeDiagram = new SortedSet<Tuple<int, int>>();
+                commutativeDiagram = new SortedSet<Tuple<int, int, int>>();
                 FillCommutativeDiagram(commutativeDiagram);
                 switch (problemName)
                 {

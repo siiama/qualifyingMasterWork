@@ -17,10 +17,10 @@ namespace qualifyingMasterWork
         readonly Form23 form23;
         private string dataFormName;
         private string[] argumentFromFile;
-        private SortedSet<int> argumentsFromFile;
+        private SortedSet<Tuple<int, int>> argumentsFromFile;
         private bool chooseFileClicked = false;
         private string[] elementInRow;
-        private SortedDictionary<int, SortedSet<int>> equations;
+        private SortedDictionary<int, SortedSet<Tuple<int, int>>> equations;
         private string fileData;
         private string fileName;
         private int functionFromFile;
@@ -81,7 +81,7 @@ namespace qualifyingMasterWork
             File.Text = System.IO.Path.GetFileName(fileName);
             chooseFileClicked = true;
         }
-        private SortedDictionary<int, SortedSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, SortedSet<int>> equations)
+        private SortedDictionary<int, SortedSet<Tuple<int, int>>> FillEquations(int numOfEquations, SortedDictionary<int, SortedSet<Tuple<int, int>>> equations)
         {
             equationFromFile = new string[numOfEquations];
             equationFromFile = fileData.Substring(0, fileData.IndexOf('.')).Split(';');
@@ -97,11 +97,12 @@ namespace qualifyingMasterWork
                 equationElements = equationElements.Replace(Environment.NewLine, string.Empty);
                 elementInRow = equationElements.Split(':');
                 functionFromFile = Convert.ToInt32(elementInRow[0].Substring(elementInRow[0].IndexOf('_') + 1)) - 1;
-                argumentsFromFile = new SortedSet<int>();
+                argumentsFromFile = new SortedSet<Tuple<int, int>>();
                 argumentFromFile = elementInRow[1].Split(',');
                 for (int j = 0; j < argumentFromFile.Length; j++)
                 {
-                    argumentsFromFile.Add(Convert.ToInt32(argumentFromFile[j].Substring(argumentFromFile[j].IndexOf('_') + 1)) - 1);
+                    Tuple<int, int> argument = new Tuple<int, int>(Convert.ToInt32(argumentFromFile[j].Substring(argumentFromFile[j].IndexOf('_') + 1)) - 1, Convert.ToInt32(argumentFromFile[j].Substring(0, argumentFromFile[j].IndexOf('_'))));
+                    argumentsFromFile.Add(argument);
                 }
                 equations.Add(functionFromFile, argumentsFromFile);
             }
@@ -116,7 +117,7 @@ namespace qualifyingMasterWork
                     if (CheckDataFromFile())
                     {
                         numOfEquations = fileData.Split('\n').Length;
-                        equations = new SortedDictionary<int, SortedSet<int>>();
+                        equations = new SortedDictionary<int, SortedSet<Tuple<int, int>>>();
                         FillEquations(numOfEquations, equations);
                         switch (problemName)
                         {

@@ -16,11 +16,11 @@ namespace qualifyingMasterWork
         readonly Form19 form19;
         readonly Form23 form23;
         private string[] argumentFromTextbox;
-        private SortedSet<int> argumentsFromTextbox;
+        private SortedSet<Tuple<int, int>> argumentsFromTextbox;
         private string dataFormName;
         private string[] equationFromTextbox;
         private int functionFromTextbox;
-        private SortedDictionary<int, SortedSet<int>> equations;
+        private SortedDictionary<int, SortedSet<Tuple<int, int>>> equations;
         private int numOfEquations;
         private string problemName;
         private string[] elementInRow;
@@ -78,7 +78,7 @@ namespace qualifyingMasterWork
                 e.Handled = true;
             }
         }
-        private SortedDictionary<int, SortedSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, SortedSet<int>> equations)
+        private SortedDictionary<int, SortedSet<Tuple<int, int>>> FillEquations(int numOfEquations, SortedDictionary<int, SortedSet<Tuple<int, int>>> equations)
         {
             equationFromTextbox = new string[numOfEquations];
             equationFromTextbox = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
@@ -94,11 +94,12 @@ namespace qualifyingMasterWork
                 equationElements = equationElements.Replace(Environment.NewLine, string.Empty);
                 elementInRow = equationElements.Split(':');
                 functionFromTextbox = Convert.ToInt32(elementInRow[0].Substring(elementInRow[0].IndexOf('_') + 1)) - 1;
-                argumentsFromTextbox = new SortedSet<int>();
+                argumentsFromTextbox = new SortedSet<Tuple<int, int>>();
                 argumentFromTextbox = elementInRow[1].Split(',');
                 for (int j = 0; j < argumentFromTextbox.Length; j++)
                 {
-                    argumentsFromTextbox.Add(Convert.ToInt32(argumentFromTextbox[j].Substring(argumentFromTextbox[j].IndexOf('_') + 1)) - 1);
+                    Tuple<int, int> argument = new Tuple<int, int>(Convert.ToInt32(argumentFromTextbox[j].Substring(argumentFromTextbox[j].IndexOf('_') + 1)) - 1, Convert.ToInt32(argumentFromTextbox[j].Substring(0, argumentFromTextbox[j].IndexOf('_'))));
+                    argumentsFromTextbox.Add(argument);
                 }
                 equations.Add(functionFromTextbox, argumentsFromTextbox);
             }
@@ -108,7 +109,7 @@ namespace qualifyingMasterWork
         {
             if (CheckDataFromManualInput())
             {
-                equations = new SortedDictionary<int, SortedSet<int>>();
+                equations = new SortedDictionary<int, SortedSet<Tuple<int, int>>>();
                 FillEquations(numOfEquations, equations);
                 switch (problemName)
                 {

@@ -12,7 +12,7 @@ namespace qualifyingMasterWork
         readonly Form21 form21;
         readonly Form22 form22;
         readonly Form23 form23;
-        private SortedSet<Tuple<int, int>> commutativeDiagram;
+        private SortedSet<Tuple<int, int, int>> commutativeDiagram;
         private string problemName;
         public Form20(Form21 form21, Form22 form22)
         {
@@ -50,9 +50,9 @@ namespace qualifyingMasterWork
                 MessageBox.Show("Please choose form of data");
             }
         }
-        public void SendData(SortedSet<Tuple<int, int>> data)
+        public void SendData(SortedSet<Tuple<int, int, int>> data)
         {
-            commutativeDiagram = new SortedSet<Tuple<int, int>>();
+            commutativeDiagram = new SortedSet<Tuple<int, int, int>>();
             commutativeDiagram = data;
         }
         public void SendProblem(string problem)

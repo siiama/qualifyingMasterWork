@@ -7,10 +7,10 @@ namespace qualifyingMasterWork
     public partial class Form23 : Form
     {
         private string dataFormName;
-        private SortedSet<Tuple<int, int>> commutativeDiagram;
+        private SortedSet<Tuple<int, int, int>> commutativeDiagram;
         private int[,] matrix;
         private string problemName;
-        private SortedDictionary<int, SortedSet<int>> equations;
+        private SortedDictionary<int, SortedSet<Tuple<int, int>>> equations;
         public string result;
         public Form23()
         {
@@ -20,7 +20,7 @@ namespace qualifyingMasterWork
         {
             Form.ActiveForm.Visible = false;
         }
-        public void SendCommutativeDiagramData(SortedSet<Tuple<int, int>> commutativeDiagramData)
+        public void SendCommutativeDiagramData(SortedSet<Tuple<int, int, int>> commutativeDiagramData)
         {
             commutativeDiagram = commutativeDiagramData;
         }
@@ -32,7 +32,7 @@ namespace qualifyingMasterWork
         {
             matrix = matrixData;
         }
-        public void SendSystemOfEquationsData(SortedDictionary<int, SortedSet<int>> equationsData)
+        public void SendSystemOfEquationsData(SortedDictionary<int, SortedSet<Tuple<int, int>>> equationsData)
         {
             equations = equationsData;
         }
@@ -48,6 +48,19 @@ namespace qualifyingMasterWork
         }
         public string SolveFindingTheMinimumWeightSpanningTree()
         {
+            Random random = new Random();
+            SortedSet<int> vertexes = new SortedSet<int>();
+            foreach (Tuple<int, int, int> edge in commutativeDiagram)
+            {
+                vertexes.Add(edge.Item1);
+            }
+            int firstVertex = random.Next(vertexes.Min, vertexes.Max);
+            SortedSet<int> vertexesFromSpanningTree = new SortedSet<int> { firstVertex };
+            while (!vertexes.Equals(vertexesFromSpanningTree))
+            {
+                //find edges
+            }
+
             //commutative diagram
             //minimum spanning tree
             return result;

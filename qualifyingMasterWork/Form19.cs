@@ -10,8 +10,8 @@ namespace qualifyingMasterWork
         readonly Form19 form19;
         readonly Form23 form23;
         private string dataFormName;
-        private SortedSet<Tuple<int, int>> commutativeDiagram;
-        private SortedDictionary<int, SortedSet<int>> equations;
+        private SortedSet<Tuple<int, int, int>> commutativeDiagram;
+        private SortedDictionary<int, SortedSet<Tuple<int, int>>> equations;
         private string output;
         private string problemName;
         private string result;
@@ -22,14 +22,14 @@ namespace qualifyingMasterWork
             this.form23 = form23;
             SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
-        private SortedSet<Tuple<int, int>> FillCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
+        private SortedSet<Tuple<int, int, int>> FillCommutativeDiagram(SortedSet<Tuple<int, int, int>> commutativeDiagram)
         {
-            foreach (KeyValuePair<int, SortedSet<int>> equation in equations)
+            foreach (KeyValuePair<int, SortedSet<Tuple<int, int>>> equation in equations)
             {
                 int function = equation.Key;
-                foreach (int argument in equation.Value)
+                foreach (Tuple<int, int> argument in equation.Value)
                 {
-                    Tuple<int, int> edge = new Tuple<int, int>(function, argument);
+                    Tuple<int, int, int> edge = new Tuple<int, int, int>(function, argument.Item1, argument.Item2);
                     commutativeDiagram.Add(edge);
                 }
             }
@@ -54,7 +54,7 @@ namespace qualifyingMasterWork
         }
         private void Form19_Load(object sender, EventArgs e)
         {
-            commutativeDiagram = new SortedSet<Tuple<int, int>>();
+            commutativeDiagram = new SortedSet<Tuple<int, int, int>>();
             FillCommutativeDiagram(commutativeDiagram);
             this.Controls.Remove(viewer);
             ShowCommutativeDiagram(commutativeDiagram);
@@ -67,19 +67,19 @@ namespace qualifyingMasterWork
             string filename = SaveFile.FileName;
             System.IO.File.WriteAllText(filename, result);
         }
-        private void SaveCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
+        private void SaveCommutativeDiagram(SortedSet<Tuple<int, int, int>> commutativeDiagram)
         {
             result = "";
-            foreach (Tuple<int, int> edge in commutativeDiagram)
+            foreach (Tuple<int, int, int> edge in commutativeDiagram)
             {
-                result += "g_" + (edge.Item1 + 1) + ", x_" + (edge.Item2 + 1) + ";\n";
+                result += "g_" + (edge.Item1 + 1) + ", x_" + (edge.Item2 + 1) + ", w_" + edge.Item3 + ";\n";
             }
             result = result.Remove(result.Length - 2);
             result += ".";
         }
-        public void SendData(SortedDictionary<int, SortedSet<int>> data)
+        public void SendData(SortedDictionary<int, SortedSet<Tuple<int, int>>> data)
         {
-            equations = new SortedDictionary<int, SortedSet<int>>();
+            equations = new SortedDictionary<int, SortedSet<Tuple<int, int>>>();
             equations = data;
         }
         public void SendDataForm(string dataForm)
@@ -90,10 +90,10 @@ namespace qualifyingMasterWork
         {
             problemName = problem;
         }
-        private void ShowCommutativeDiagram(SortedSet<Tuple<int, int>> commutativeDiagram)
+        private void ShowCommutativeDiagram(SortedSet<Tuple<int, int, int>> commutativeDiagram)
         {
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            foreach (Tuple<int, int> edge in commutativeDiagram)
+            foreach (Tuple<int, int, int> edge in commutativeDiagram)
             {
                 graph.AddEdge("g_" + Convert.ToString(edge.Item1 + 1), "x_" + Convert.ToString(edge.Item2 + 1));
                 Microsoft.Msagl.Drawing.Node g = graph.FindNode("g_" + Convert.ToString(edge.Item1 + 1));

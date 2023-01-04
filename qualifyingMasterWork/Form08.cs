@@ -15,8 +15,8 @@ namespace qualifyingMasterWork
         readonly Form23 form23;
         private string dataFormName;
         private int[] element;
-        private SortedSet<int> equation;
-        private SortedDictionary<int, SortedSet<int>> equations;
+        private SortedSet<Tuple<int, int>> equation;
+        private SortedDictionary<int, SortedSet<Tuple<int, int>>> equations;
         private bool generateClicked = false;
         private int numOfEquations;
         private string output;
@@ -34,7 +34,7 @@ namespace qualifyingMasterWork
             form06.SendProblem(problemName);
             form06.ShowDialog();
         }
-        private SortedDictionary<int, SortedSet<int>> FillEquations(int numOfEquations, SortedDictionary<int, SortedSet<int>> equations)
+        private SortedDictionary<int, SortedSet<Tuple<int, int>>> FillEquations(int numOfEquations, SortedDictionary<int, SortedSet<Tuple<int, int>>> equations)
         {
             Random random = new Random();
             for (int i = 0; i < numOfEquations; i++)
@@ -44,12 +44,13 @@ namespace qualifyingMasterWork
                 {
                     element[j] = random.Next(0, 2);
                 }
-                equation = new SortedSet<int>();
+                equation = new SortedSet<Tuple<int, int>>();
                 for (int j = 0; j < element.Length; j++)
                 {
                     if (element[j] == 1)
                     {
-                        equation.Add(j);
+                        Tuple<int, int> argument = new Tuple<int, int>(j, random.Next(0, 10));
+                        equation.Add(argument);
                     }
                 }
                 equations.Add(i, equation);
@@ -65,7 +66,7 @@ namespace qualifyingMasterWork
             else if (Convert.ToInt32(Size.Text) > 1)
             {
                 numOfEquations = Convert.ToInt32(Size.Text);
-                equations = new SortedDictionary<int, SortedSet<int>>();
+                equations = new SortedDictionary<int, SortedSet<Tuple<int, int>>>();
                 FillEquations(numOfEquations, equations);
                 ShowEquations(equations);
                 generateClicked = true;
@@ -127,15 +128,15 @@ namespace qualifyingMasterWork
         {
             problemName = problem;
         }
-        private void ShowEquations(SortedDictionary<int, SortedSet<int>> equations)
+        private void ShowEquations(SortedDictionary<int, SortedSet<Tuple<int, int>>> equations)
         {
             output = "";
-            foreach (KeyValuePair<int, SortedSet<int>> equation in equations)
+            foreach (KeyValuePair<int, SortedSet<Tuple<int, int>>> equation in equations)
             {
                 output += "f_" + (equation.Key+1).ToString() + " = (   ";
-                foreach (int value in equation.Value)
+                foreach (Tuple<int, int> argument in equation.Value)
                 {
-                    output += "x_" + (value + 1) + "   ";
+                    output += argument.Item2 + "x_" + (argument.Item1 + 1) + "   ";
                 }
                 output += ")\n";
             }

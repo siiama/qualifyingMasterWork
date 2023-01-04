@@ -72,7 +72,7 @@
             this.Data.Name = "Data";
             this.Data.Size = new System.Drawing.Size(150, 150);
             this.Data.TabIndex = 76;
-            this.Data.Text = "f_1 : x_1, x_2;\r\nf_2 : x_2.";
+            this.Data.Text = "f_1 : 1 x_1, 3 x_2;\r\nf_2 : 2 x_1.";
             // 
             // Form09
             // 

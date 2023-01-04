@@ -11,7 +11,7 @@ namespace qualifyingMasterWork
         readonly Form22 form22;
         readonly Form23 form23;
         private string dataFormName;
-        private SortedSet<Tuple<int, int>> commutativeDiagram;
+        private SortedSet<Tuple<int, int, int>> commutativeDiagram;
         private int[,] matrix;
         private string output;
         private string problemName;
@@ -25,21 +25,18 @@ namespace qualifyingMasterWork
         }
         private int[,] FillMatrix(int[,] matrix)
         {
-            foreach (Tuple<int, int> edge in commutativeDiagram)
+            for (int i=0; i<matrix.GetLength(0); i++)
+            {
+                for (int j=0; j<matrix.GetLength(1); j++)
+                {
+                    matrix[i, j] = -1;
+                }
+            }
+            foreach (Tuple<int, int, int> edge in commutativeDiagram)
             {
                 int i = edge.Item1;
                 int j = edge.Item2;
-                matrix[i, j] = 1;
-            }
-            for (int i = 0; i < matrix.GetLength(0); i++)
-            {
-                for (int j = 0; j < matrix.GetLength(1); j++)
-                {
-                    if (matrix[i, j] != 1)
-                    {
-                        matrix[i, j] = 0;
-                    }
-                }
+                matrix[i, j] = edge.Item3;
             }
             return matrix;
         }
@@ -90,9 +87,9 @@ namespace qualifyingMasterWork
             result = result.Remove(result.Length - 2);
             result += ".";
         }
-        public void SendData(SortedSet<Tuple<int, int>> data)
+        public void SendData(SortedSet<Tuple<int, int, int>> data)
         {
-            commutativeDiagram = new SortedSet<Tuple<int, int>>();
+            commutativeDiagram = new SortedSet<Tuple<int, int, int>>();
             commutativeDiagram = data;
         }
         public void SendDataForm(string dataForm)
