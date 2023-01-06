@@ -12,6 +12,7 @@ namespace qualifyingMasterWork
         private string problemName;
         private SortedDictionary<int, SortedSet<Tuple<int, int>>> equations;
         public string result;
+        private SortedSet<Tuple<int, int>> vertexes;
         Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
         public Form23()
         {
@@ -44,6 +45,10 @@ namespace qualifyingMasterWork
         public void SendDataForm(string dataForm)
         {
             dataFormName = dataForm;
+        }
+        public void SendDataVertexesWeights(SortedSet<Tuple<int, int>> dataVertexes)
+        {
+            vertexes = dataVertexes;
         }
         public void SendMatrixData(int[,] matrixData)
         {

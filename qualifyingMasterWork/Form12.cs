@@ -19,6 +19,7 @@ namespace qualifyingMasterWork
         private int numOfVertexesInEachPart;
         private string output;
         private string problemName;
+        private SortedSet<Tuple<int, int>> vertexes;
         Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
         public Form12(Form20 form20)
         {
@@ -51,6 +52,16 @@ namespace qualifyingMasterWork
             }
             return commutativeDiagram;
         }
+        private SortedSet<Tuple<int, int>> FillCommutativeDiagramVertexesWeights(int numOfVertexesInEachPart, SortedSet<Tuple<int, int>> vertexes)
+        {
+            Random random = new Random();
+            for (int i = 0; i < numOfVertexesInEachPart; i++)
+            {
+                Tuple<int, int> vertex = new Tuple<int, int>(i, random.Next(0, 10));
+                vertexes.Add(vertex);
+            }
+            return vertexes;
+        }
         private void Generate_Click(object sender, EventArgs e)
         {
             if (Size.Text == "")
@@ -62,6 +73,8 @@ namespace qualifyingMasterWork
                 numOfVertexesInEachPart = Convert.ToInt32(Size.Text);
                 commutativeDiagram = new SortedSet<Tuple<int, int, int>>();
                 FillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
+                vertexes = new SortedSet<Tuple<int, int>>();
+                FillCommutativeDiagramVertexesWeights(numOfVertexesInEachPart, vertexes);
                 this.Controls.Remove(viewer);
                 ShowCommutativeDiagram(commutativeDiagram);
                 generateClicked = true;
@@ -82,6 +95,7 @@ namespace qualifyingMasterWork
                         Form21 form21_ = new Form21(form23);
                         form21_.SendData(commutativeDiagram);
                         form21_.SendDataForm(dataFormName);
+                        form21_.SendDataVertexesWeights(vertexes);
                         form21_.SendProblem(problemName);
                         form21_.ShowDialog();
                         break;
@@ -90,6 +104,7 @@ namespace qualifyingMasterWork
                         Form22 form22_ = new Form22(form23);
                         form22_.SendData(commutativeDiagram);
                         form22_.SendDataForm(dataFormName);
+                        form22_.SendDataVertexesWeights(vertexes);
                         form22_.SendProblem(problemName);
                         form22_.ShowDialog();
                         break;
@@ -97,6 +112,7 @@ namespace qualifyingMasterWork
                         Form.ActiveForm.Visible = false;
                         Form23 form23_ = new Form23();
                         form23_.SendDataForm(dataFormName);
+                        form23_.SendDataVertexesWeights(vertexes);
                         form23_.SendCommutativeDiagramData(commutativeDiagram);
                         form23_.SendProblem(problemName);
                         form23_.ShowDialog();
@@ -105,6 +121,7 @@ namespace qualifyingMasterWork
                         Form.ActiveForm.Visible = false;
                         Form20 form20 = new Form20(form21, form22);
                         form20.SendData(commutativeDiagram);
+                        form20.SendDataVertexesWeights(vertexes);
                         form20.SendProblem(problemName);
                         form20.ShowDialog();
                         break;

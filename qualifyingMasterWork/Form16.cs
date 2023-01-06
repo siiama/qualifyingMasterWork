@@ -16,6 +16,7 @@ namespace qualifyingMasterWork
         private string output;
         private string problemName;
         private string result;
+        private SortedSet<Tuple<int, int>> vertexes;
         Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
         public Form16(Form23 form23)
         {
@@ -49,6 +50,7 @@ namespace qualifyingMasterWork
                     Form.ActiveForm.Visible = false;
                     Form23 form23 = new Form23();
                     form23.SendDataForm(dataFormName);
+                    form23.SendDataVertexesWeights(vertexes);
                     form23.SendCommutativeDiagramData(commutativeDiagram);
                     form23.SendProblem(problemName);
                     form23.ShowDialog();
@@ -89,6 +91,10 @@ namespace qualifyingMasterWork
         public void SendDataForm(string dataForm)
         {
             dataFormName = dataForm;
+        }
+        public void SendDataVertexesWeights(SortedSet<Tuple<int, int>> dataVertexes)
+        {
+            vertexes = dataVertexes;
         }
         public void SendProblem(string problem)
         {

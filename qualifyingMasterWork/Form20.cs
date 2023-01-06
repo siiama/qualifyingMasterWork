@@ -14,6 +14,7 @@ namespace qualifyingMasterWork
         readonly Form23 form23;
         private SortedSet<Tuple<int, int, int>> commutativeDiagram;
         private string problemName;
+        private SortedSet<Tuple<int, int>> vertexes;
         public Form20(Form21 form21, Form22 form22)
         {
             InitializeComponent();
@@ -34,6 +35,7 @@ namespace qualifyingMasterWork
                 Form.ActiveForm.Visible = false;
                 Form21 form21 = new Form21(form23);
                 form21.SendData(commutativeDiagram);
+                form21.SendDataVertexesWeights(vertexes);
                 form21.SendProblem(problemName);
                 form21.ShowDialog();
             }
@@ -42,6 +44,7 @@ namespace qualifyingMasterWork
                 Form.ActiveForm.Visible = false;
                 Form22 form22 = new Form22(form23);
                 form22.SendData(commutativeDiagram);
+                form22.SendDataVertexesWeights(vertexes);
                 form22.SendProblem(problemName);
                 form22.ShowDialog();
             }
@@ -54,6 +57,10 @@ namespace qualifyingMasterWork
         {
             commutativeDiagram = new SortedSet<Tuple<int, int, int>>();
             commutativeDiagram = data;
+        }
+        public void SendDataVertexesWeights(SortedSet<Tuple<int, int>> dataVertexes)
+        {
+            vertexes = dataVertexes;
         }
         public void SendProblem(string problem)
         {

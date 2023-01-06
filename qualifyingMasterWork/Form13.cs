@@ -21,6 +21,10 @@ namespace qualifyingMasterWork
         private int numOfVertexesInEachPart;
         private string problemName;
         private string[] vertexInEdges;
+        private SortedSet<Tuple<int, int>> vertexes;
+        private Tuple<int, int> vertexFromTextbox;
+        private string[] vertexesFromTextbox;
+        private string[] weightsOfVertexes;
         public Form13(Form20 form20)
         {
             InitializeComponent();
@@ -97,12 +101,33 @@ namespace qualifyingMasterWork
             }
             return commutativeDiagram;
         }
+        private SortedSet<Tuple<int, int>> FillCommutativeDiagramVertexesWeights(SortedSet<Tuple<int, int>> vertexes)
+        {
+            vertexesFromTextbox = Data.Text.Substring(Data.Text.IndexOf('.')).Split(';');
+            for (int i = 0; i < vertexesFromTextbox.Length; i++)
+            {
+                string vertexesWeigths = vertexesFromTextbox[i];
+                var charsToRemove = new string[] { " ", ".", "_" };
+                foreach (var c in charsToRemove)
+                {
+                    vertexesWeigths = vertexesWeigths.Replace(c, string.Empty);
+                }
+                vertexesWeigths = Regex.Replace(vertexesWeigths, "[A-Za-z]", string.Empty);
+                vertexesWeigths = vertexesWeigths.Replace(Environment.NewLine, string.Empty);
+                weightsOfVertexes = vertexesWeigths.Split(',');
+                vertexFromTextbox = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, Convert.ToInt32(weightsOfVertexes[1]));
+                vertexes.Add(vertexFromTextbox);
+            }
+            return vertexes;
+        }
         private void Next_Click(object sender, EventArgs e)
         {
             if (CheckDataFromManualInput())
             {
                 commutativeDiagram = new SortedSet<Tuple<int, int, int>>();
                 FillCommutativeDiagram(commutativeDiagram);
+                vertexes = new SortedSet<Tuple<int, int>>();
+                FillCommutativeDiagramVertexesWeights(vertexes);
                 switch (problemName)
                 {
                     case "Finding the shortest path":
@@ -110,6 +135,7 @@ namespace qualifyingMasterWork
                         Form21 form21_ = new Form21(form23);
                         form21_.SendData(commutativeDiagram);
                         form21_.SendDataForm(dataFormName);
+                        form21_.SendDataVertexesWeights(vertexes);
                         form21_.SendProblem(problemName);
                         form21_.ShowDialog();
                         break;
@@ -118,6 +144,7 @@ namespace qualifyingMasterWork
                         Form22 form22_ = new Form22(form23);
                         form22_.SendData(commutativeDiagram);
                         form22_.SendDataForm(dataFormName);
+                        form22_.SendDataVertexesWeights(vertexes);
                         form22_.SendProblem(problemName);
                         form22_.ShowDialog();
                         break;
@@ -125,6 +152,7 @@ namespace qualifyingMasterWork
                         Form.ActiveForm.Visible = false;
                         Form23 form23_ = new Form23();
                         form23_.SendDataForm(dataFormName);
+                        form23_.SendDataVertexesWeights(vertexes);
                         form23_.SendCommutativeDiagramData(commutativeDiagram);
                         form23_.SendProblem(problemName);
                         form23_.ShowDialog();
@@ -133,6 +161,7 @@ namespace qualifyingMasterWork
                         Form.ActiveForm.Visible = false;
                         Form20 form20 = new Form20(form21, form22);
                         form20.SendData(commutativeDiagram);
+                        form20.SendDataVertexesWeights(vertexes);
                         form20.SendProblem(problemName);
                         form20.ShowDialog();
                         break;

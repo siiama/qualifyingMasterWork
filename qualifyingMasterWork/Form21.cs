@@ -17,6 +17,7 @@ namespace qualifyingMasterWork
         private string problemName;
         private int sizeOfMatrix;
         private string result;
+        private SortedSet<Tuple<int, int>> vertexes;
         public Form21(Form23 form23)
         {
             InitializeComponent();
@@ -51,6 +52,7 @@ namespace qualifyingMasterWork
                     Form.ActiveForm.Visible = false;
                     Form23 form23 = new Form23();
                     form23.SendDataForm(dataFormName);
+                    form23.SendDataVertexesWeights(vertexes);
                     form23.SendMatrixData(matrix);
                     form23.SendProblem(problemName);
                     form23.ShowDialog();
@@ -86,6 +88,13 @@ namespace qualifyingMasterWork
             }
             result = result.Remove(result.Length - 2);
             result += ".";
+            result += "\n";
+            foreach (Tuple<int, int> vertex in vertexes)
+            {
+                result += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
         }
         public void SendData(SortedSet<Tuple<int, int, int>> data)
         {
@@ -95,6 +104,10 @@ namespace qualifyingMasterWork
         public void SendDataForm(string dataForm)
         {
             dataFormName = dataForm;
+        }
+        public void SendDataVertexesWeights(SortedSet<Tuple<int, int>> dataVertexes)
+        {
+            vertexes = dataVertexes;
         }
         public void SendProblem(string problem)
         {
@@ -110,6 +123,11 @@ namespace qualifyingMasterWork
                     output += matrix[i, j].ToString() + "   ";
                 }
                 output += "\n";
+            }
+            output += "\n";
+            foreach (Tuple<int, int> vertex in vertexes)
+            {
+                output += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
             }
             Data.Text = output;
         }

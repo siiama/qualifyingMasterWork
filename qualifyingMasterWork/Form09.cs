@@ -24,6 +24,10 @@ namespace qualifyingMasterWork
         private int numOfEquations;
         private string problemName;
         private string[] elementInRow;
+        private SortedSet<Tuple<int, int>> vertexes;
+        private Tuple<int, int> vertexFromTextbox;
+        private string[] vertexesFromTextbox;
+        private string[] weightsOfVertexes;
         public Form09(Form17 form17)
         {
             InitializeComponent();
@@ -105,12 +109,33 @@ namespace qualifyingMasterWork
             }
             return equations;
         }
+        private SortedSet<Tuple<int, int>> FillEquationsVertexesWeights(SortedSet<Tuple<int, int>> vertexes)
+        {
+            vertexesFromTextbox = Data.Text.Substring(Data.Text.IndexOf('.')).Split(';');
+            for (int i = 0; i < vertexesFromTextbox.Length; i++)
+            {
+                string vertexesWeigths = vertexesFromTextbox[i];
+                var charsToRemove = new string[] { " ", ".", "_" };
+                foreach (var c in charsToRemove)
+                {
+                    vertexesWeigths = vertexesWeigths.Replace(c, string.Empty);
+                }
+                vertexesWeigths = Regex.Replace(vertexesWeigths, "[A-Za-z]", string.Empty);
+                vertexesWeigths = vertexesWeigths.Replace(Environment.NewLine, string.Empty);
+                weightsOfVertexes = vertexesWeigths.Split(',');
+                vertexFromTextbox = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, Convert.ToInt32(weightsOfVertexes[1]));
+                vertexes.Add(vertexFromTextbox);
+            }
+            return vertexes;
+        }
         private void Next_Click(object sender, EventArgs e)
         {
             if (CheckDataFromManualInput())
             {
                 equations = new SortedDictionary<int, SortedSet<Tuple<int, int>>>();
                 FillEquations(numOfEquations, equations);
+                vertexes = new SortedSet<Tuple<int, int>>();
+                FillEquationsVertexesWeights(vertexes);
                 switch (problemName)
                 {
                     case "Finding the shortest path":
@@ -118,6 +143,7 @@ namespace qualifyingMasterWork
                         Form18 form18_ = new Form18(form23);
                         form18_.SendData(equations);
                         form18_.SendDataForm(dataFormName);
+                        form18_.SendDataVertexesWeights(vertexes);
                         form18_.SendProblem(problemName);
                         form18_.ShowDialog();
                         break;
@@ -126,6 +152,7 @@ namespace qualifyingMasterWork
                         Form23 form23_ = new Form23();
                         form23_.SendSystemOfEquationsData(equations);
                         form23_.SendDataForm(dataFormName);
+                        form23_.SendDataVertexesWeights(vertexes);
                         form23_.SendProblem(problemName);
                         form23_.ShowDialog();
                         break;
@@ -134,6 +161,7 @@ namespace qualifyingMasterWork
                         Form19 form19_ = new Form19(form23);
                         form19_.SendData(equations);
                         form19_.SendDataForm(dataFormName);
+                        form19_.SendDataVertexesWeights(vertexes);
                         form19_.SendProblem(problemName);
                         form19_.ShowDialog();
                         break;
@@ -141,6 +169,7 @@ namespace qualifyingMasterWork
                         Form.ActiveForm.Visible = false;
                         Form17 form17 = new Form17(form18, form19);
                         form17.SendData(equations);
+                        form17.SendDataVertexesWeights(vertexes);
                         form17.SendProblem(problemName);
                         form17.ShowDialog();
                         break;

@@ -21,6 +21,7 @@ namespace qualifyingMasterWork
         private int numOfEquations;
         private string output;
         private string problemName;
+        private SortedSet<Tuple<int, int>> vertexes;
         public Form08(Form17 form17)
         {
             InitializeComponent();
@@ -57,6 +58,16 @@ namespace qualifyingMasterWork
             }
             return equations;
         }
+        private SortedSet<Tuple<int, int>> FillEquationsVertexesWeights(int numOfEquations, SortedSet<Tuple<int, int>> vertexes)
+        {
+            Random random = new Random();
+            for (int i = 0; i < numOfEquations; i++)
+            {
+                Tuple<int, int> vertex = new Tuple<int, int>(i, random.Next(0, 10));
+                vertexes.Add(vertex);
+            }
+            return vertexes;
+        }
         private void Generate_Click(object sender, EventArgs e)
         {
             if (Size.Text == "")
@@ -68,6 +79,8 @@ namespace qualifyingMasterWork
                 numOfEquations = Convert.ToInt32(Size.Text);
                 equations = new SortedDictionary<int, SortedSet<Tuple<int, int>>>();
                 FillEquations(numOfEquations, equations);
+                vertexes = new SortedSet<Tuple<int, int>>();
+                FillEquationsVertexesWeights(numOfEquations, vertexes);
                 ShowEquations(equations);
                 generateClicked = true;
             }
@@ -87,6 +100,7 @@ namespace qualifyingMasterWork
                         Form18 form18_ = new Form18(form23);
                         form18_.SendData(equations);
                         form18_.SendDataForm(dataFormName);
+                        form18_.SendDataVertexesWeights(vertexes);
                         form18_.SendProblem(problemName);
                         form18_.ShowDialog();
                         break;
@@ -95,6 +109,7 @@ namespace qualifyingMasterWork
                         Form23 form23_ = new Form23();
                         form23_.SendSystemOfEquationsData(equations);
                         form23_.SendDataForm(dataFormName);
+                        form23_.SendDataVertexesWeights(vertexes);
                         form23_.SendProblem(problemName);
                         form23_.ShowDialog();
                         break;
@@ -103,6 +118,7 @@ namespace qualifyingMasterWork
                         Form19 form19_ = new Form19(form23);
                         form19_.SendData(equations);
                         form19_.SendDataForm(dataFormName);
+                        form19_.SendDataVertexesWeights(vertexes);
                         form19_.SendProblem(problemName);
                         form19_.ShowDialog();
                         break;
@@ -110,6 +126,7 @@ namespace qualifyingMasterWork
                         Form.ActiveForm.Visible = false;
                         Form17 form17 = new Form17(form18, form19);
                         form17.SendData(equations);
+                        form17.SendDataVertexesWeights(vertexes);
                         form17.SendProblem(problemName);
                         form17.ShowDialog();
                         break;
@@ -139,6 +156,11 @@ namespace qualifyingMasterWork
                     output += argument.Item2 + "x_" + (argument.Item1 + 1) + "   ";
                 }
                 output += ")\n";
+            }
+            output += "\n";
+            foreach (Tuple<int, int> vertex in vertexes)
+            {
+                output += "v_" + (vertex.Item1 + 1).ToString() + " - w_" + (vertex.Item2).ToString() + "\n";
             }
             Data.Text = output;
         }

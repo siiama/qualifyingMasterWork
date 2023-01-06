@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -18,6 +19,7 @@ namespace qualifyingMasterWork
         private string output;
         private string problemName;
         private int sizeOfMatrix;
+        private SortedSet<Tuple<int, int>> vertexes;
         public Form04(Form14 form14)
         {
             InitializeComponent();
@@ -50,6 +52,16 @@ namespace qualifyingMasterWork
             }
             return matrix;
         }
+        private SortedSet<Tuple<int, int>> FillMatrixVertexesWeights(SortedSet<Tuple<int, int>> vertexes)
+        {
+            Random random = new Random();
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                Tuple<int, int> vertex = new Tuple<int, int>(i, random.Next(0, 10));
+                vertexes.Add(vertex);
+            }
+            return vertexes;
+        }
         private void Generate_Click(object sender, EventArgs e)
         {
             if (Size.Text == "")
@@ -60,7 +72,9 @@ namespace qualifyingMasterWork
             {
                 sizeOfMatrix = Convert.ToInt32(Size.Text);
                 matrix = new int[sizeOfMatrix, sizeOfMatrix];
+                vertexes = new SortedSet<Tuple<int, int>>();
                 FillMatrix(matrix);
+                FillMatrixVertexesWeights(vertexes);
                 ShowMatix(matrix);
                 generateClicked = true;
             }
@@ -79,6 +93,7 @@ namespace qualifyingMasterWork
                         Form.ActiveForm.Visible = false;
                         Form23 form23_ = new Form23();
                         form23_.SendDataForm(dataFormName);
+                        form23_.SendDataVertexesWeights(vertexes);
                         form23_.SendMatrixData(matrix);
                         form23_.SendProblem(problemName);
                         form23_.ShowDialog();
@@ -88,6 +103,7 @@ namespace qualifyingMasterWork
                         Form15 form15_ = new Form15(form23);
                         form15_.SendData(matrix);
                         form15_.SendDataForm(dataFormName);
+                        form15_.SendDataVertexesWeights(vertexes);
                         form15_.SendProblem(problemName);
                         form15_.ShowDialog();
                         break;
@@ -96,6 +112,7 @@ namespace qualifyingMasterWork
                         Form16 form16_ = new Form16(form23);
                         form16_.SendData(matrix);
                         form16_.SendDataForm(dataFormName);
+                        form16_.SendDataVertexesWeights(vertexes);
                         form16_.SendProblem(problemName);
                         form16_.ShowDialog();
                         break;
@@ -103,6 +120,7 @@ namespace qualifyingMasterWork
                         Form.ActiveForm.Visible = false;
                         Form14 form14 = new Form14(form15, form16);
                         form14.SendData(matrix);
+                        form14.SendDataVertexesWeights(vertexes);
                         form14.SendProblem(problemName);
                         form14.ShowDialog();
                         break;
@@ -131,6 +149,11 @@ namespace qualifyingMasterWork
                     output += matrix[i, j].ToString() + "   ";
                 }
                 output += "\n";
+            }
+            output += "\n";
+            foreach (Tuple<int, int> vertex in vertexes)
+            {
+                output += "v_" + (vertex.Item1 + 1).ToString() + " - w_" + (vertex.Item2).ToString() + "\n";
             }
             Data.Text = output;
         }
