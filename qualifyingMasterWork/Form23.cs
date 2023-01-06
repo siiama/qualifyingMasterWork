@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Deployment.Application;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -24,13 +25,6 @@ namespace qualifyingMasterWork
         }
         public string SaveSolveFindingTheMinimumWeightSpanningTree(SortedSet<Tuple<int, int, int>> minimumSpanningTree)
         {
-            /*result = "";
-            foreach (Tuple<int, int, int> edge in minimumSpanningTree)
-            {
-                result += "g_" + (edge.Item1 + 1) + ", x_" + (edge.Item2 + 1) + ", w_" + edge.Item3 + ";\n";
-            }
-            result = result.Remove(result.Length - 2);
-            result += ".";*/
             int sum = 0;
             foreach (Tuple<int, int, int> edge in minimumSpanningTree)
             {
@@ -77,10 +71,85 @@ namespace qualifyingMasterWork
             this.SuspendLayout();
             this.Controls.Add(viewer);
         }
+        public double SolveDeterminant(int[,] matrixOfEquationCoefficients)
+        {
+            double determinant = 0;
+            if (matrixOfEquationCoefficients.GetLength(0) == 1)
+            {
+                determinant = matrixOfEquationCoefficients[0, 0];
+                return determinant;
+            }
+            else if (matrixOfEquationCoefficients.GetLength(0) == 2)
+            {
+                //formula
+                return determinant;
+            }
+            else if (matrixOfEquationCoefficients.GetLength(0) > 2)
+            {
+                //recursion
+            }
+            return determinant;
+        }
         public string SolveFindingProbabilitiesOfSystemStates()
         {
-            //system of equations
-            //value of every vertex
+            int numOfSystemStates = equations.Count;
+            int[,] matrixOfEquationCoefficients = new int[numOfSystemStates, numOfSystemStates];
+            for (int i=0; i<matrixOfEquationCoefficients.GetLength(0); i++)
+            {
+                for (int j=0; j<matrixOfEquationCoefficients.GetLength(1); j++)
+                {
+                    //matrixOfEquationCoefficients[i, j] = 
+                }
+            }
+            double delta = SolveDeterminant(matrixOfEquationCoefficients);
+            int[,] matrixOfCoefficientsX = new int[numOfSystemStates, numOfSystemStates];
+            double[] delta_x = new double[numOfSystemStates];
+            for (int i=0; i<delta_x.GetLength(0); i++)
+            {
+                matrixOfCoefficientsX = matrixOfEquationCoefficients;
+                for (int j = 0; j < matrixOfCoefficientsX.GetLength(0); j++)
+                {
+                    for (int k = 0; k < matrixOfCoefficientsX.GetLength(1); k++)
+                    {
+                        if (i == k)
+                        {
+                            //matrixOfCoefficientsX[j, k] = 
+                        }
+                    }
+                }
+                delta_x[i] = SolveDeterminant(matrixOfCoefficientsX);
+            }
+            bool determined = false;
+            bool compatible = true;
+            if (delta != 0)
+            {
+                determined = true;
+            }
+            for (int i = 0; i < numOfSystemStates; i++)
+            {
+                if (delta_x[i] != 0)
+                {
+                    compatible = false;
+                }
+            }
+            if (determined)
+            {
+                double[] x = new double[numOfSystemStates];
+                for (int i=0; i<numOfSystemStates; i++)
+                {
+                    x[i] = delta_x[i] / delta;
+                    result += "x_" + i + " = " + x[i] + ", ";
+                }
+            }
+            else if (compatible)
+            {
+                //many
+                result = "infinitely many solutions. One of them: ";
+            }
+            else
+            {
+                result = "no solution";
+            }
             return result;
         }
         public SortedSet<Tuple<int, int, int>> SolveFindingTheMinimumWeightSpanningTree()
