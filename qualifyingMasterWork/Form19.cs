@@ -78,6 +78,13 @@ namespace qualifyingMasterWork
             }
             result = result.Remove(result.Length - 2);
             result += ".";
+            result += "\n";
+            foreach (Tuple<int, int> vertex in vertexes)
+            {
+                result += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
         }
         public void SendData(SortedDictionary<int, SortedSet<Tuple<int, int>>> data)
         {
