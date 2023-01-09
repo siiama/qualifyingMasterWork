@@ -119,13 +119,14 @@
   </resheader>
   <data name="label1.Text" xml:space="preserve">
     <value>WELCOME!
-This app allows you to switch
-between 3 different forms of data:
+This app allows you to solve
+3 different optimisation problems
+according to data that you have.
+If you don't want to solve problems you can
+just switch between 3 different forms of data:
 - matrix;
 - system of equations;
 - commutative diagram.
-Every time you get proper data,
-you can save it to use later.
 GOOD LUCK!</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
