@@ -139,7 +139,7 @@ namespace qualifyingMasterWork
                 {
                     if (CheckDataFromFile())
                     {
-                        numOfEquations = fileData.Split('\n').Length;
+                        numOfEquations = fileData.Substring(0, fileData.IndexOf('.')).Split(';').Length;
                         equations = new SortedDictionary<int, SortedSet<Tuple<int, int>>>();
                         FillEquations(numOfEquations, equations);
                         vertexes = new SortedSet<Tuple<int, int>>();

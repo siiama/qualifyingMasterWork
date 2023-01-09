@@ -74,6 +74,7 @@ namespace qualifyingMasterWork
         public double SolveDeterminant(int[,] matrixOfEquationCoefficients)
         {
             double determinant = 0;
+            int s = 1;
             if (matrixOfEquationCoefficients.GetLength(0) == 1)
             {
                 determinant = matrixOfEquationCoefficients[0, 0];
@@ -81,12 +82,36 @@ namespace qualifyingMasterWork
             }
             else if (matrixOfEquationCoefficients.GetLength(0) == 2)
             {
-                //formula
+                determinant = matrixOfEquationCoefficients[0, 0] * matrixOfEquationCoefficients[1, 1] -
+                              matrixOfEquationCoefficients[1, 0] * matrixOfEquationCoefficients[0, 1];
                 return determinant;
             }
             else if (matrixOfEquationCoefficients.GetLength(0) > 2)
             {
-                //recursion
+                int[,] newMatrixOfEquationCoefficients = new int[matrixOfEquationCoefficients.GetLength(0) - 1, matrixOfEquationCoefficients.GetLength(1) - 1];
+                for (int i=0; i< matrixOfEquationCoefficients.GetLength(0); i++)
+                {
+                    int subElementJ = 0;
+                    int subElementK = 0;
+                    for (int j=0; j< matrixOfEquationCoefficients.GetLength(0); j++)
+                    {
+                        for (int k =0; k< matrixOfEquationCoefficients.GetLength(1); k++)
+                        {
+                            if (j!=i && k!=0)
+                            {
+                                newMatrixOfEquationCoefficients[subElementJ, subElementK] = matrixOfEquationCoefficients[j, k];
+                                subElementK++;
+                                if (subElementK == newMatrixOfEquationCoefficients.GetLength(1))
+                                {
+                                    subElementJ++;
+                                    subElementK = 0;
+                                }
+                            }
+                        }
+                    }
+                    determinant += s * matrixOfEquationCoefficients[i, 0] * SolveDeterminant(newMatrixOfEquationCoefficients);
+                    s *= -1; 
+                }
             }
             return determinant;
         }
@@ -98,24 +123,36 @@ namespace qualifyingMasterWork
             {
                 for (int j=0; j<matrixOfEquationCoefficients.GetLength(1); j++)
                 {
-                    //matrixOfEquationCoefficients[i, j] = 
+                    matrixOfEquationCoefficients[i, j] = 0;
+                }
+            }
+            foreach (KeyValuePair<int, SortedSet<Tuple<int, int>>> equation in equations)
+            {
+                int function = equation.Key;
+                foreach (Tuple<int, int> argument in equation.Value)
+                {
+                    matrixOfEquationCoefficients[function, argument.Item1] = argument.Item2;
                 }
             }
             double delta = SolveDeterminant(matrixOfEquationCoefficients);
             int[,] matrixOfCoefficientsX = new int[numOfSystemStates, numOfSystemStates];
             double[] delta_x = new double[numOfSystemStates];
+            if (vertexes.Count == 0)
+            {
+                MessageBox.Show("You have not input vertexes weights!");
+            }
             for (int i=0; i<delta_x.GetLength(0); i++)
             {
-                matrixOfCoefficientsX = matrixOfEquationCoefficients;
-                for (int j = 0; j < matrixOfCoefficientsX.GetLength(0); j++)
+                for (int j=0; j< matrixOfCoefficientsX.GetLength(0); j++)
                 {
-                    for (int k = 0; k < matrixOfCoefficientsX.GetLength(1); k++)
+                    for (int k=0; k<matrixOfCoefficientsX.GetLength(1); k++)
                     {
-                        if (i == k)
-                        {
-                            //matrixOfCoefficientsX[j, k] = 
-                        }
+                        matrixOfCoefficientsX[j,k] = matrixOfEquationCoefficients[j,k];
                     }
+                }
+                foreach (Tuple<int, int> vertex in vertexes)
+                {
+                    matrixOfCoefficientsX[vertex.Item1, i] = vertex.Item2;
                 }
                 delta_x[i] = SolveDeterminant(matrixOfCoefficientsX);
             }
@@ -138,17 +175,22 @@ namespace qualifyingMasterWork
                 for (int i=0; i<numOfSystemStates; i++)
                 {
                     x[i] = delta_x[i] / delta;
-                    result += "x_" + i + " = " + x[i] + ", ";
+                    result += "x_" + i + " = " + String.Format("{0:0.00}", x[i]) + ", ";
                 }
+                result = result.Remove(result.Length - 2);
+                result += ".";
             }
             else if (compatible)
             {
-                //many
-                result = "infinitely many solutions. One of them: ";
+                result += "infinitely many solutions. One of them: ";
+                for (int i = 0; i < numOfSystemStates; i++)
+                {
+                    result += "x_" + i + " = 0, ";
+                }
             }
             else
             {
-                result = "no solution";
+                result += "no solution";
             }
             return result;
         }
