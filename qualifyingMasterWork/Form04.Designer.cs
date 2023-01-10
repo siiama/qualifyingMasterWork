@@ -43,6 +43,7 @@
             // Size
             // 
             this.Size.Location = new System.Drawing.Point(100, 100);
+            this.Size.MaxLength = 2;
             this.Size.Name = "Size";
             this.Size.Size = new System.Drawing.Size(22, 22);
             this.Size.TabIndex = 64;

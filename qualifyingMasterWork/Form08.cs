@@ -52,7 +52,7 @@ namespace qualifyingMasterWork
                 {
                     if (element[j] == 1)
                     {
-                        Tuple<int, int> argument = new Tuple<int, int>(j, random.Next(0, 10));
+                        Tuple<int, int> argument = new Tuple<int, int>(j, random.Next(0, numOfEquations));
                         equation.Add(argument);
                     }
                 }
@@ -65,7 +65,7 @@ namespace qualifyingMasterWork
             Random random = new Random();
             for (int i = 0; i < numOfEquations; i++)
             {
-                Tuple<int, int> vertex = new Tuple<int, int>(i, random.Next(0, 10));
+                Tuple<int, int> vertex = new Tuple<int, int>(i, random.Next(0, numOfEquations));
                 vertexes.Add(vertex);
             }
             return vertexes;

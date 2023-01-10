@@ -47,7 +47,7 @@ namespace qualifyingMasterWork
                     element[j] = random.Next(0, 2);
                     if (element[j] == 1)
                     {
-                        Tuple<int, int, int> edge = new Tuple<int, int, int>(i, j, random.Next(0, 10));
+                        Tuple<int, int, int> edge = new Tuple<int, int, int>(i, j, random.Next(0, numOfVertexesInEachPart));
                         commutativeDiagram.Add(edge);
                     }
                 }
@@ -59,7 +59,7 @@ namespace qualifyingMasterWork
             Random random = new Random();
             for (int i = 0; i < numOfVertexesInEachPart; i++)
             {
-                Tuple<int, int> vertex = new Tuple<int, int>(i, random.Next(0, 10));
+                Tuple<int, int> vertex = new Tuple<int, int>(i, random.Next(0, numOfVertexesInEachPart));
                 vertexes.Add(vertex);
             }
             return vertexes;
