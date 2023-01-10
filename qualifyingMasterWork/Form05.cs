@@ -113,6 +113,7 @@ namespace qualifyingMasterWork
             }
             else
             {
+                vertexes.Clear();
                 for (int i = 0; i < sizeOfMatrix; i++)
                 {
                     vertexes.Add(new Tuple<int, int>(i, 0));

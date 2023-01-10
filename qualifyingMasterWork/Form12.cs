@@ -182,8 +182,8 @@ namespace qualifyingMasterWork
                 x.Attr.FillColor = Microsoft.Msagl.Drawing.Color.MintCream;
             }
             viewer.Graph = graph;
-            //viewer.Location = new System.Drawing.Point(200, 0);
-            //viewer.Size = new System.Drawing.Size(350, 300);
+            viewer.Location = new System.Drawing.Point(250, 0);
+            viewer.Size = new System.Drawing.Size(350, 300);
             this.SuspendLayout();
             this.Controls.Add(viewer);
         }

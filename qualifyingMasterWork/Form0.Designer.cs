@@ -36,7 +36,7 @@
             // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(150, 250);
+            this.Start.Location = new System.Drawing.Point(140, 250);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(100, 30);
             this.Start.TabIndex = 2;
@@ -48,7 +48,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(2, 30);
+            this.label1.Location = new System.Drawing.Point(0, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(345, 200);
             this.label1.TabIndex = 3;
@@ -57,7 +57,7 @@
             // 
             // Exit
             // 
-            this.Exit.Location = new System.Drawing.Point(150, 300);
+            this.Exit.Location = new System.Drawing.Point(140, 300);
             this.Exit.Name = "Exit";
             this.Exit.Size = new System.Drawing.Size(100, 30);
             this.Exit.TabIndex = 4;

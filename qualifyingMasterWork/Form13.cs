@@ -126,9 +126,9 @@ namespace qualifyingMasterWork
             }
             else
             {
+                vertexes.Clear();
                 for (int i = 0; i < numOfVertexesInEachPart; i++)
                 {
-                    vertexes.Clear();
                     vertexes.Add(new Tuple<int, int>(i, 0));
                 }
             }
