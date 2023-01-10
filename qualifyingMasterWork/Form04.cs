@@ -16,6 +16,7 @@ namespace qualifyingMasterWork
         private string dataFormName;
         private bool generateClicked = false;
         private int[,] matrix;
+        private string result;
         private string output;
         private string problemName;
         private int sizeOfMatrix;
@@ -24,6 +25,7 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
             this.form14 = form14;
+            SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
         private void Back_Click(object sender, EventArgs e)
         {
@@ -130,6 +132,43 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please generate data");
             }
+        }
+        private void Save_Click(object sender, EventArgs e)
+        {
+            if (generateClicked == true)
+            {
+                if (SaveFile.ShowDialog() == DialogResult.Cancel)
+                    return;
+                SaveMatrix();
+                string filename = SaveFile.FileName;
+                System.IO.File.WriteAllText(filename, result);
+            }
+            else
+            {
+                MessageBox.Show("Please generate data");
+            }
+        }
+        private void SaveMatrix()
+        {
+            result = "";
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    result += matrix[i, j].ToString() + ", ";
+                }
+                result = result.Remove(result.Length - 2);
+                result += ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
+            result += "\n";
+            foreach (Tuple<int, int> vertex in vertexes)
+            {
+                result += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
         }
         public void SendDataForm(string dataForm)
         {

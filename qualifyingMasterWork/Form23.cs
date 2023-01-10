@@ -56,7 +56,7 @@ namespace qualifyingMasterWork
         {
             problemName = problem;
         }
-        public void ShowSolveFindingProbabilitiesOfSystemStates(SortedSet<Tuple<int, int, int>> minimumSpanningTree)
+        public void ShowSolveFindingTheMinimumWeightSpanningTree(SortedSet<Tuple<int, int, int>> minimumSpanningTree)
         {
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
             foreach (Tuple<int, int, int> edge in minimumSpanningTree)
@@ -265,7 +265,7 @@ namespace qualifyingMasterWork
                     break;
                 case "Finding the minimum weight spanning tree":
                     SortedSet<Tuple<int, int, int>> solve = SolveFindingTheMinimumWeightSpanningTree();
-                    ShowSolveFindingProbabilitiesOfSystemStates(solve);
+                    ShowSolveFindingTheMinimumWeightSpanningTree(solve);
                     Solution.Text = SaveSolveFindingTheMinimumWeightSpanningTree(solve);
                     break;
             }

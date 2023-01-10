@@ -19,12 +19,14 @@ namespace qualifyingMasterWork
         private int numOfVertexesInEachPart;
         private string output;
         private string problemName;
+        private string result;
         private SortedSet<Tuple<int, int>> vertexes;
         Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
         public Form12(Form20 form20)
         {
             InitializeComponent();
             this.form20 = form20;
+            SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
         private void Back_Click(object sender, EventArgs e)
         {
@@ -130,6 +132,34 @@ namespace qualifyingMasterWork
             else
             {
                 MessageBox.Show("Please generate data");
+            }
+        }
+        private void SaveCommutativeDiagram(SortedSet<Tuple<int, int, int>> commutativeDiagram)
+        {
+            result = "";
+            foreach (Tuple<int, int, int> edge in commutativeDiagram)
+            {
+                result += "g_" + (edge.Item1 + 1) + ", x_" + (edge.Item2 + 1) + ", w_" + edge.Item3 + ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
+            result += "\n";
+            foreach (Tuple<int, int> vertex in vertexes)
+            {
+                result += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
+        }
+        private void Save_Click(object sender, EventArgs e)
+        {
+            if (generateClicked == true)
+            {
+                if (SaveFile.ShowDialog() == DialogResult.Cancel)
+                    return;
+                SaveCommutativeDiagram(commutativeDiagram);
+                string filename = SaveFile.FileName;
+                System.IO.File.WriteAllText(filename, result);
             }
         }
         public void SendDataForm(string dataForm)

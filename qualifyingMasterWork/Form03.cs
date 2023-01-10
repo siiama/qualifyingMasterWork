@@ -95,19 +95,29 @@ namespace qualifyingMasterWork
         private SortedSet<Tuple<int, int>> FillMatrixVertexesWeights(SortedSet<Tuple<int, int>> vertexes)
         {
             vertexesFromFile = fileData.Substring(fileData.IndexOf('.')).Split(';');
-            for (int i = 0; i < vertexesFromFile.Length; i++)
+            if (vertexesFromFile.Length == sizeOfMatrix)
             {
-                string vertexesWeigths = vertexesFromFile[i];
-                var charsToRemove = new string[] { " ", ".", "_" };
-                foreach (var c in charsToRemove)
+                for (int i = 0; i < vertexesFromFile.Length; i++)
                 {
-                    vertexesWeigths = vertexesWeigths.Replace(c, string.Empty);
+                    string vertexesWeigths = vertexesFromFile[i];
+                    var charsToRemove = new string[] { " ", ".", "_" };
+                    foreach (var c in charsToRemove)
+                    {
+                        vertexesWeigths = vertexesWeigths.Replace(c, string.Empty);
+                    }
+                    vertexesWeigths = Regex.Replace(vertexesWeigths, "[A-Za-z]", string.Empty);
+                    vertexesWeigths = vertexesWeigths.Replace(Environment.NewLine, string.Empty);
+                    weightsOfVertexes = vertexesWeigths.Split(',');
+                    vertexFromFile = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, Convert.ToInt32(weightsOfVertexes[1]));
+                    vertexes.Add(vertexFromFile);
                 }
-                vertexesWeigths = Regex.Replace(vertexesWeigths, "[A-Za-z]", string.Empty);
-                vertexesWeigths = vertexesWeigths.Replace(Environment.NewLine, string.Empty);
-                weightsOfVertexes = vertexesWeigths.Split(',');
-                vertexFromFile = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, Convert.ToInt32(weightsOfVertexes[1]));
-                vertexes.Add(vertexFromFile);
+            }
+            else
+            {
+                for (int i = 0; i < sizeOfMatrix; i++)
+                {
+                    vertexes.Add(new Tuple<int, int>(i, 0));
+                }
             }
             return vertexes;
         }

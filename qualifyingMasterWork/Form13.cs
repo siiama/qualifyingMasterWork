@@ -20,6 +20,7 @@ namespace qualifyingMasterWork
         private SortedSet<Tuple<int, int, int>> commutativeDiagram;
         private int numOfVertexesInEachPart;
         private string problemName;
+        private string result;
         private string[] vertexInEdges;
         private SortedSet<Tuple<int, int>> vertexes;
         private Tuple<int, int> vertexFromTextbox;
@@ -29,6 +30,7 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
             this.form20 = form20;
+            SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
         private void Back_Click(object sender, EventArgs e)
         {
@@ -54,13 +56,13 @@ namespace qualifyingMasterWork
                 edgesElements = Regex.Replace(edgesElements, "[A-Za-z]", string.Empty);
                 edgesElements = edgesElements.Replace(Environment.NewLine, string.Empty);
                 string[] edge = edgesElements.Split(',');
-                if ((Convert.ToInt32(edge[0]) - 1) > maxNumOfElementsInLeftPart)
+                if (Convert.ToInt32(edge[0]) > maxNumOfElementsInLeftPart)
                 {
-                    maxNumOfElementsInLeftPart = Convert.ToInt32(edge[0]) - 1;
+                    maxNumOfElementsInLeftPart = Convert.ToInt32(edge[0]);
                 }
-                if ((Convert.ToInt32(edge[1]) - 1) > maxNumOfElementsInRightPart)
+                if (Convert.ToInt32(edge[1]) > maxNumOfElementsInRightPart)
                 {
-                    maxNumOfElementsInRightPart = Convert.ToInt32(edge[1]) - 1;
+                    maxNumOfElementsInRightPart = Convert.ToInt32(edge[1]);
                 }
             }
             if (maxNumOfElementsInLeftPart < maxNumOfElementsInRightPart)
@@ -70,6 +72,7 @@ namespace qualifyingMasterWork
             }
             else
             {
+                numOfVertexesInEachPart = maxNumOfElementsInLeftPart;
                 return true;
             }
         }
@@ -104,19 +107,30 @@ namespace qualifyingMasterWork
         private SortedSet<Tuple<int, int>> FillCommutativeDiagramVertexesWeights(SortedSet<Tuple<int, int>> vertexes)
         {
             vertexesFromTextbox = Data.Text.Substring(Data.Text.IndexOf('.')).Split(';');
-            for (int i = 0; i < vertexesFromTextbox.Length; i++)
+            if (vertexesFromTextbox.Length == numOfVertexesInEachPart)
             {
-                string vertexesWeigths = vertexesFromTextbox[i];
-                var charsToRemove = new string[] { " ", ".", "_" };
-                foreach (var c in charsToRemove)
+                for (int i = 0; i < vertexesFromTextbox.Length; i++)
                 {
-                    vertexesWeigths = vertexesWeigths.Replace(c, string.Empty);
+                    string vertexesWeigths = vertexesFromTextbox[i];
+                    var charsToRemove = new string[] { " ", ".", "_" };
+                    foreach (var c in charsToRemove)
+                    {
+                        vertexesWeigths = vertexesWeigths.Replace(c, string.Empty);
+                    }
+                    vertexesWeigths = Regex.Replace(vertexesWeigths, "[A-Za-z]", string.Empty);
+                    vertexesWeigths = vertexesWeigths.Replace(Environment.NewLine, string.Empty);
+                    weightsOfVertexes = vertexesWeigths.Split(',');
+                    vertexFromTextbox = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, Convert.ToInt32(weightsOfVertexes[1]));
+                    vertexes.Add(vertexFromTextbox);
                 }
-                vertexesWeigths = Regex.Replace(vertexesWeigths, "[A-Za-z]", string.Empty);
-                vertexesWeigths = vertexesWeigths.Replace(Environment.NewLine, string.Empty);
-                weightsOfVertexes = vertexesWeigths.Split(',');
-                vertexFromTextbox = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, Convert.ToInt32(weightsOfVertexes[1]));
-                vertexes.Add(vertexFromTextbox);
+            }
+            else
+            {
+                for (int i = 0; i < numOfVertexesInEachPart; i++)
+                {
+                    vertexes.Clear();
+                    vertexes.Add(new Tuple<int, int>(i, 0));
+                }
             }
             return vertexes;
         }
@@ -166,6 +180,38 @@ namespace qualifyingMasterWork
                         form20.ShowDialog();
                         break;
                 }
+            }
+        }
+        private void SaveCommutativeDiagram(SortedSet<Tuple<int, int, int>> commutativeDiagram)
+        {
+            result = "";
+            foreach (Tuple<int, int, int> edge in commutativeDiagram)
+            {
+                result += "g_" + (edge.Item1 + 1) + ", x_" + (edge.Item2 + 1) + ", w_" + edge.Item3 + ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
+            result += "\n";
+            foreach (Tuple<int, int> vertex in vertexes)
+            {
+                result += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
+        }
+        private void Save_Click(object sender, EventArgs e)
+        {
+            if (CheckDataFromManualInput())
+            {
+                commutativeDiagram = new SortedSet<Tuple<int, int, int>>();
+                FillCommutativeDiagram(commutativeDiagram);
+                vertexes = new SortedSet<Tuple<int, int>>();
+                FillCommutativeDiagramVertexesWeights(vertexes);
+                if (SaveFile.ShowDialog() == DialogResult.Cancel)
+                    return;
+                SaveCommutativeDiagram(commutativeDiagram);
+                string filename = SaveFile.FileName;
+                System.IO.File.WriteAllText(filename, result);
             }
         }
         public void SendDataForm(string dataForm)

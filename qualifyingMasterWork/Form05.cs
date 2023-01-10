@@ -18,6 +18,7 @@ namespace qualifyingMasterWork
         private string[] elementInRow;
         private int[,] matrix;
         private string problemName;
+        private string result;
         private string[] row;
         private int sizeOfMatrix;
         private SortedSet<Tuple<int, int>> vertexes;
@@ -28,6 +29,7 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
             this.form14 = form14;
+            SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
         private void Back_Click(object sender, EventArgs e)
         {
@@ -92,19 +94,29 @@ namespace qualifyingMasterWork
         private SortedSet<Tuple<int, int>> FillMatrixVertexesWeights(SortedSet<Tuple<int, int>> vertexes)
         {
             vertexesFromTextbox = Data.Text.Substring(Data.Text.IndexOf('.')).Split(';');
-            for (int i = 0; i < vertexesFromTextbox.Length; i++)
+            if (vertexesFromTextbox.Length == sizeOfMatrix)
             {
-                string vertexesWeigths = vertexesFromTextbox[i];
-                var charsToRemove = new string[] { " ", ".", "_" };
-                foreach (var c in charsToRemove)
+                for (int i = 0; i < vertexesFromTextbox.Length; i++)
                 {
-                    vertexesWeigths = vertexesWeigths.Replace(c, string.Empty);
+                    string vertexesWeigths = vertexesFromTextbox[i];
+                    var charsToRemove = new string[] { " ", ".", "_" };
+                    foreach (var c in charsToRemove)
+                    {
+                        vertexesWeigths = vertexesWeigths.Replace(c, string.Empty);
+                    }
+                    vertexesWeigths = Regex.Replace(vertexesWeigths, "[A-Za-z]", string.Empty);
+                    vertexesWeigths = vertexesWeigths.Replace(Environment.NewLine, string.Empty);
+                    weightsOfVertexes = vertexesWeigths.Split(',');
+                    vertexFromTextbox = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, Convert.ToInt32(weightsOfVertexes[1]));
+                    vertexes.Add(vertexFromTextbox);
                 }
-                vertexesWeigths = Regex.Replace(vertexesWeigths, "[A-Za-z]", string.Empty);
-                vertexesWeigths = vertexesWeigths.Replace(Environment.NewLine, string.Empty);
-                weightsOfVertexes = vertexesWeigths.Split(',');
-                vertexFromTextbox = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, Convert.ToInt32(weightsOfVertexes[1]));
-                vertexes.Add(vertexFromTextbox);
+            }
+            else
+            {
+                for (int i = 0; i < sizeOfMatrix; i++)
+                {
+                    vertexes.Add(new Tuple<int, int>(i, 0));
+                }
             }
             return vertexes;
         }
@@ -155,6 +167,43 @@ namespace qualifyingMasterWork
                         break;
                 }
             }
+        }
+        private void Save_Click(object sender, EventArgs e)
+        {
+            if (CheckDataFromManualInput())
+            {
+                matrix = new int[sizeOfMatrix, sizeOfMatrix];
+                FillMatrix(matrix);
+                vertexes = new SortedSet<Tuple<int, int>>();
+                FillMatrixVertexesWeights(vertexes);
+                if (SaveFile.ShowDialog() == DialogResult.Cancel)
+                    return;
+                SaveMatrix();
+                string filename = SaveFile.FileName;
+                System.IO.File.WriteAllText(filename, result);
+            }
+        }
+        private void SaveMatrix()
+        {
+            result = "";
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    result += matrix[i, j].ToString() + ", ";
+                }
+                result = result.Remove(result.Length - 2);
+                result += ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
+            result += "\n";
+            foreach (Tuple<int, int> vertex in vertexes)
+            {
+                result += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
         }
         public void SendDataForm(string dataForm)
         {

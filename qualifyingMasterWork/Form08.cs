@@ -21,11 +21,13 @@ namespace qualifyingMasterWork
         private int numOfEquations;
         private string output;
         private string problemName;
+        private string result;
         private SortedSet<Tuple<int, int>> vertexes;
         public Form08(Form17 form17)
         {
             InitializeComponent();
             this.form17 = form17;
+            SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
         private void Back_Click(object sender, EventArgs e)
         {
@@ -136,6 +138,40 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("Please generate data");
             }
+        }
+        private void Save_Click(object sender, EventArgs e)
+        {
+            if (generateClicked == true)
+            {
+                if (SaveFile.ShowDialog() == DialogResult.Cancel)
+                    return;
+                SaveEquations(equations);
+                string filename = SaveFile.FileName;
+                System.IO.File.WriteAllText(filename, result);
+            }
+        }
+        private void SaveEquations(SortedDictionary<int, SortedSet<Tuple<int, int>>> equations)
+        {
+            result = "";
+            foreach (KeyValuePair<int, SortedSet<Tuple<int, int>>> equation in equations)
+            {
+                result += "f_" + (equation.Key + 1).ToString() + ": ";
+                foreach (Tuple<int, int> argument in equation.Value)
+                {
+                    result += argument.Item2 + " x_" + (argument.Item1 + 1) + ", ";
+                }
+                result = result.Remove(result.Length - 2);
+                result += ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
+            result += "\n";
+            foreach (Tuple<int, int> vertex in vertexes)
+            {
+                result += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
         }
         public void SendDataForm(string dataForm)
         {

@@ -23,6 +23,7 @@ namespace qualifyingMasterWork
         private SortedDictionary<int, SortedSet<Tuple<int, int>>> equations;
         private int numOfEquations;
         private string problemName;
+        private string result;
         private string[] elementInRow;
         private SortedSet<Tuple<int, int>> vertexes;
         private Tuple<int, int> vertexFromTextbox;
@@ -32,6 +33,7 @@ namespace qualifyingMasterWork
         {
             InitializeComponent();
             this.form17 = form17;
+            SaveFile.Filter = "Text files(*.txt)|*.txt|All files(*.*)|*.*";
         }
         private void Back_Click(object sender, EventArgs e)
         {
@@ -112,19 +114,29 @@ namespace qualifyingMasterWork
         private SortedSet<Tuple<int, int>> FillEquationsVertexesWeights(SortedSet<Tuple<int, int>> vertexes)
         {
             vertexesFromTextbox = Data.Text.Substring(Data.Text.IndexOf('.')).Split(';');
-            for (int i = 0; i < vertexesFromTextbox.Length; i++)
+            if (vertexesFromTextbox.Length == numOfEquations)
             {
-                string vertexesWeigths = vertexesFromTextbox[i];
-                var charsToRemove = new string[] { " ", ".", "_" };
-                foreach (var c in charsToRemove)
+                for (int i = 0; i < vertexesFromTextbox.Length; i++)
                 {
-                    vertexesWeigths = vertexesWeigths.Replace(c, string.Empty);
+                    string vertexesWeigths = vertexesFromTextbox[i];
+                    var charsToRemove = new string[] { " ", ".", "_" };
+                    foreach (var c in charsToRemove)
+                    {
+                        vertexesWeigths = vertexesWeigths.Replace(c, string.Empty);
+                    }
+                    vertexesWeigths = Regex.Replace(vertexesWeigths, "[A-Za-z]", string.Empty);
+                    vertexesWeigths = vertexesWeigths.Replace(Environment.NewLine, string.Empty);
+                    weightsOfVertexes = vertexesWeigths.Split(',');
+                    vertexFromTextbox = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, Convert.ToInt32(weightsOfVertexes[1]));
+                    vertexes.Add(vertexFromTextbox);
                 }
-                vertexesWeigths = Regex.Replace(vertexesWeigths, "[A-Za-z]", string.Empty);
-                vertexesWeigths = vertexesWeigths.Replace(Environment.NewLine, string.Empty);
-                weightsOfVertexes = vertexesWeigths.Split(',');
-                vertexFromTextbox = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, Convert.ToInt32(weightsOfVertexes[1]));
-                vertexes.Add(vertexFromTextbox);
+            }
+            else
+            {
+                for (int i = 0; i < numOfEquations; i++)
+                {
+                    vertexes.Add(new Tuple<int, int>(i, 0));
+                }
             }
             return vertexes;
         }
@@ -175,6 +187,44 @@ namespace qualifyingMasterWork
                         break;
                 }
             }
+        }
+        private void Save_Click(object sender, EventArgs e)
+        {
+            if (CheckDataFromManualInput())
+            {
+                equations = new SortedDictionary<int, SortedSet<Tuple<int, int>>>();
+                FillEquations(numOfEquations, equations);
+                vertexes = new SortedSet<Tuple<int, int>>();
+                FillEquationsVertexesWeights(vertexes);
+                if (SaveFile.ShowDialog() == DialogResult.Cancel)
+                    return;
+                SaveEquations(equations);
+                string filename = SaveFile.FileName;
+                System.IO.File.WriteAllText(filename, result);
+            }
+        }
+        private void SaveEquations(SortedDictionary<int, SortedSet<Tuple<int, int>>> equations)
+        {
+            result = "";
+            foreach (KeyValuePair<int, SortedSet<Tuple<int, int>>> equation in equations)
+            {
+                result += "f_" + (equation.Key + 1).ToString() + ": ";
+                foreach (Tuple<int, int> argument in equation.Value)
+                {
+                    result += argument.Item2 + " x_" + (argument.Item1 + 1) + ", ";
+                }
+                result = result.Remove(result.Length - 2);
+                result += ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
+            result += "\n";
+            foreach (Tuple<int, int> vertex in vertexes)
+            {
+                result += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
         }
         public void SendDataForm(string dataForm)
         {

@@ -35,11 +35,13 @@
             this.Next = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Back = new System.Windows.Forms.Button();
+            this.Save = new System.Windows.Forms.Button();
+            this.SaveFile = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // Size
             // 
-            this.Size.Location = new System.Drawing.Point(100, 125);
+            this.Size.Location = new System.Drawing.Point(100, 100);
             this.Size.Name = "Size";
             this.Size.Size = new System.Drawing.Size(22, 22);
             this.Size.TabIndex = 78;
@@ -47,7 +49,7 @@
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(50, 125);
+            this.label2.Location = new System.Drawing.Point(50, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 16);
             this.label2.TabIndex = 72;
@@ -55,7 +57,7 @@
             // 
             // Generate
             // 
-            this.Generate.Location = new System.Drawing.Point(50, 175);
+            this.Generate.Location = new System.Drawing.Point(50, 150);
             this.Generate.Name = "Generate";
             this.Generate.Size = new System.Drawing.Size(100, 30);
             this.Generate.TabIndex = 76;
@@ -93,11 +95,26 @@
             this.Back.UseVisualStyleBackColor = true;
             this.Back.Click += new System.EventHandler(this.Back_Click);
             // 
+            // Save
+            // 
+            this.Save.Location = new System.Drawing.Point(50, 200);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(100, 30);
+            this.Save.TabIndex = 82;
+            this.Save.Text = "Save";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
+            // 
+            // SaveFile
+            // 
+            this.SaveFile.FileName = "commutative_diagram";
+            // 
             // Form12
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 353);
+            this.Controls.Add(this.Save);
             this.Controls.Add(this.Size);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Generate);
@@ -121,5 +138,7 @@
         private System.Windows.Forms.Button Next;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Back;
+        private System.Windows.Forms.Button Save;
+        private System.Windows.Forms.SaveFileDialog SaveFile;
     }
 }
