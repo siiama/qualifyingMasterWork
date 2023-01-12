@@ -75,6 +75,7 @@
             this.Data.Size = new System.Drawing.Size(150, 150);
             this.Data.TabIndex = 76;
             this.Data.Text = "f_1 : 1 x_1, 3 x_2;\r\nf_2 : 2 x_1.";
+            this.Data.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Data_KeyPress);
             // 
             // Save
             // 
