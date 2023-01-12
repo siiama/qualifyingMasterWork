@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Deployment.Application;
 using System.Windows.Forms;
 
@@ -21,6 +22,7 @@ namespace qualifyingMasterWork
         }
         private void Finish_Click(object sender, EventArgs e)
         {
+            Data.Visible = false;
             Form.ActiveForm.Visible = false;
         }
         public string SaveSolveFindingTheMinimumWeightSpanningTree(SortedSet<Tuple<int, int, int>> minimumSpanningTree)
@@ -247,10 +249,139 @@ namespace qualifyingMasterWork
             }
             return minimumSpanningTree;
         }
+        public bool AllVertexesAreVisited(bool[] vertexIsVisited)
+        {
+            bool allVertexesAreVisited = true;
+            for (int i = 0; i < vertexIsVisited.Length; i++)
+            {
+                if (vertexIsVisited[i] == false)
+                {
+                    allVertexesAreVisited = false;
+                }
+            }
+            if (allVertexesAreVisited)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public int[] FindWaysFromOneVertexByDijkstra (int vertex, int[] waysFromOneVertex)
+        {
+            int[] vertexesLabels = new int[matrix.GetLength(0)];
+            for (int i = 0; i < vertexesLabels.Length; i++)
+            {
+                vertexesLabels[i] = int.MaxValue;
+            }
+            vertexesLabels[vertex] = 0;
+            bool[] vertexIsVisited = new bool[matrix.GetLength(0)];
+            for (int i = 0; i < vertexIsVisited.Length; i++)
+            {
+                vertexIsVisited[i] = false;
+            }
+            while (!AllVertexesAreVisited(vertexIsVisited))
+            {
+                int vertexWithMinLabel = 0;
+                int minLabel = int.MaxValue;
+                for (int i = 0; i < vertexIsVisited.Length; i++)
+                {
+                    if (vertexIsVisited[i] == false)
+                    {
+                        if (vertexesLabels[i] < minLabel)
+                        {
+                            minLabel = vertexesLabels[i];
+                            vertexWithMinLabel = i;
+                        }
+                    }
+                }
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (matrix[vertexWithMinLabel, j] != (-1) && vertexIsVisited[j] == false)
+                    {
+                        int way = vertexesLabels[vertexWithMinLabel] + matrix[vertexWithMinLabel, j];
+                        if (way < vertexesLabels[j])
+                        {
+                            vertexesLabels[j] = way;
+                        }
+                        waysFromOneVertex[j] = vertexesLabels[j];
+                    }
+                }
+                vertexIsVisited[vertexWithMinLabel] = true;
+            }
+            return waysFromOneVertex;
+        }
+        public bool FindCycleWithNegativeWeight ()
+        {
+            //
+            return false;
+        }
+        public int[,] ChangeVertexesWeightsByBellmanFord()
+        {
+            //
+            return matrix;
+        }
+        public int[,] FindWaysBetweenAllVertexesByDjohnson(int[,] ways)
+        {
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                int[] waysFromOneVertex = new int[matrix.GetLength(0)];
+                waysFromOneVertex = FindWaysFromOneVertexByDijkstra(i, waysFromOneVertex);
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    ways[i, j] = waysFromOneVertex[j];
+                }
+            }
+            DataTable dataTable = new DataTable();
+            for (int j = 0; j < matrix.GetLength(1); j++)
+            {
+                dataTable.Columns.Add((j+1).ToString());
+            }
+            DataRow dataRow;
+            for (int i=0; i<matrix.GetLength(0); i++)
+            {
+                dataRow = dataTable.NewRow();
+                for (int j=0; j<matrix.GetLength(1); j++)
+                {
+                    dataRow[j] = ways[i, j];
+                }
+                dataTable.Rows.Add(dataRow);
+            }
+            Data.DataSource = dataTable;
+            Data.Visible = true;
+            return ways;
+        }
         public string SolveFindingTheShortestPath()
         {
-            //matrix
-            //minimal way from every vertex to every other
+            int[,] ways = new int[matrix.GetLength(0), matrix.GetLength(0)];
+            bool hasNegativeValue = false;
+            for (int i=0; i<matrix.GetLength(0); i++)
+            {
+                for (int j=0; j<matrix.GetLength(1); j++)
+                {
+                    if (matrix[i, j] < -1)
+                    {
+                        hasNegativeValue = true;
+                    }
+                }
+            }
+            if (hasNegativeValue == false)
+            {
+                FindWaysBetweenAllVertexesByDjohnson(ways);
+            }
+            else
+            {
+                if (!FindCycleWithNegativeWeight())
+                {
+                    ChangeVertexesWeightsByBellmanFord();
+                    FindWaysBetweenAllVertexesByDjohnson(ways);
+                }
+                else
+                {
+                    result += "no solution";
+                }
+            }
             return result;
         }
         private void Form23_Load(object sender, EventArgs e)

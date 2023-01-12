@@ -40,6 +40,8 @@
             this.Time = new System.Windows.Forms.Label();
             this.Memory = new System.Windows.Forms.Label();
             this.Solution = new System.Windows.Forms.Label();
+            this.Data = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.Data)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -137,12 +139,26 @@
             this.Solution.Size = new System.Drawing.Size(0, 16);
             this.Solution.TabIndex = 18;
             // 
+            // Data
+            // 
+            this.Data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.Data.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.Data.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Data.Location = new System.Drawing.Point(300, 50);
+            this.Data.Name = "Data";
+            this.Data.RowHeadersWidth = 51;
+            this.Data.RowTemplate.Height = 24;
+            this.Data.Size = new System.Drawing.Size(440, 255);
+            this.Data.TabIndex = 19;
+            this.Data.Visible = false;
+            // 
             // Form23
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(807, 378);
+            this.Controls.Add(this.Data);
             this.Controls.Add(this.Solution);
             this.Controls.Add(this.Memory);
             this.Controls.Add(this.Time);
@@ -159,6 +175,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Switch";
             this.Load += new System.EventHandler(this.Form23_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.Data)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,5 +194,6 @@
         private System.Windows.Forms.Label Time;
         private System.Windows.Forms.Label Memory;
         private System.Windows.Forms.Label Solution;
+        private System.Windows.Forms.DataGridView Data;
     }
 }
