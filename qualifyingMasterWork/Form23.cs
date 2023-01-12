@@ -355,33 +355,8 @@ namespace qualifyingMasterWork
         public string SolveFindingTheShortestPath()
         {
             int[,] ways = new int[matrix.GetLength(0), matrix.GetLength(0)];
-            bool hasNegativeValue = false;
-            for (int i=0; i<matrix.GetLength(0); i++)
-            {
-                for (int j=0; j<matrix.GetLength(1); j++)
-                {
-                    if (matrix[i, j] < -1)
-                    {
-                        hasNegativeValue = true;
-                    }
-                }
-            }
-            if (hasNegativeValue == false)
-            {
-                FindWaysBetweenAllVertexesByDjohnson(ways);
-            }
-            else
-            {
-                if (!FindCycleWithNegativeWeight())
-                {
-                    ChangeVertexesWeightsByBellmanFord();
-                    FindWaysBetweenAllVertexesByDjohnson(ways);
-                }
-                else
-                {
-                    result += "no solution";
-                }
-            }
+            FindWaysBetweenAllVertexesByDjohnson(ways);
+            result = "presented in table";
             return result;
         }
         private void Form23_Load(object sender, EventArgs e)
