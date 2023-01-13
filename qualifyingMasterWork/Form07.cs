@@ -51,6 +51,8 @@ namespace qualifyingMasterWork
             string[] equation = new string[numOfEquations];
             equation = fileData.Substring(0, fileData.IndexOf('.')).Split(';');
             int maxNumOfElements = 0;
+            bool hasNegativeWeight = false;
+            bool wrongFunctionBeforeColon = false;
             for (int i = 0; i < equation.Length; i++)
             {
                 var charsToRemove = new string[] { " ", ".", "_" };
@@ -65,10 +67,28 @@ namespace qualifyingMasterWork
                 {
                     maxNumOfElements = equationElements.Split(':')[1].Split(',').Length;
                 }
+                if (equationElements.Contains("-"))
+                {
+                    hasNegativeWeight = true;
+                }
+                if ((equationElements.Split(':')[0].Split(',').Length > 1))
+                {
+                    wrongFunctionBeforeColon = true;
+                }
             }
             if (numOfEquations < maxNumOfElements)
             {
-                MessageBox.Show("Number of equations can not be less then number of variables!");
+                MessageBox.Show("Number of equations can not be\nless then number of variables!");
+                return false;
+            }
+            else if (hasNegativeWeight)
+            {
+                MessageBox.Show("Equations can not have\nnegative coefficients!");
+                return false;
+            }
+            else if (wrongFunctionBeforeColon)
+            {
+                MessageBox.Show("Each equation must have one function!");
                 return false;
             }
             else
@@ -117,6 +137,7 @@ namespace qualifyingMasterWork
             vertexesFromFile = fileData.Substring(fileData.IndexOf('.')).Split(';');
             if (vertexesFromFile.Length == numOfEquations)
             {
+                bool hasNegativeWeight = false;
                 for (int i = 0; i < vertexesFromFile.Length; i++)
                 {
                     string vertexesWeigths = vertexesFromFile[i];
@@ -128,8 +149,18 @@ namespace qualifyingMasterWork
                     vertexesWeigths = Regex.Replace(vertexesWeigths, "[A-Za-z]", string.Empty);
                     vertexesWeigths = vertexesWeigths.Replace(Environment.NewLine, string.Empty);
                     weightsOfVertexes = vertexesWeigths.Split(',');
-                    vertexFromFile = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, Convert.ToInt32(weightsOfVertexes[1]));
+                    int weight = Convert.ToInt32(weightsOfVertexes[1]);
+                    if (Convert.ToInt32(weightsOfVertexes[1]) < 0)
+                    {
+                        weight = 0;
+                        hasNegativeWeight = true;
+                    }
+                    vertexFromFile = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, weight);
                     vertexes.Add(vertexFromFile);
+                }
+                if (hasNegativeWeight)
+                {
+                    MessageBox.Show("Some vertexes weights were negative\nand were replaced with 0");
                 }
             }
             else
@@ -139,6 +170,7 @@ namespace qualifyingMasterWork
                 {
                     vertexes.Add(new Tuple<int, int>(i, 0));
                 }
+                MessageBox.Show("You did not provide vertexes weights\nso they all will be 0");
             }
             return vertexes;
         }

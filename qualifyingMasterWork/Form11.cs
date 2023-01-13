@@ -48,6 +48,8 @@ namespace qualifyingMasterWork
             string[] edges = fileData.Substring(0, fileData.IndexOf('.')).Split(';');
             int maxNumOfElementsInLeftPart = 0;
             int maxNumOfElementsInRightPart = 0;
+            bool hasNegativeWeight = false;
+            bool wrongEdge = false;
             for (int i = 0; i < edges.Length; i++)
             {
                 var charsToRemove = new string[] { " ", ".", "_" };
@@ -58,6 +60,14 @@ namespace qualifyingMasterWork
                 }
                 edgesElements = Regex.Replace(edgesElements, "[A-Za-z]", string.Empty);
                 edgesElements = edgesElements.Replace(Environment.NewLine, string.Empty);
+                if (edgesElements.Contains("-"))
+                {
+                    hasNegativeWeight = true;
+                }
+                if (edgesElements.Length > 3)
+                {
+                    wrongEdge = true;
+                }
                 string[] edge = edgesElements.Split(',');
                 if (Convert.ToInt32(edge[0]) > maxNumOfElementsInLeftPart)
                 {
@@ -71,6 +81,16 @@ namespace qualifyingMasterWork
             if (maxNumOfElementsInLeftPart < maxNumOfElementsInRightPart)
             {
                 MessageBox.Show("Number of vertexes in left part can not be less\nthen number of vertexes in right part!");
+                return false;
+            }
+            else if (hasNegativeWeight)
+            {
+                MessageBox.Show("Commutative diagram can not have\nnegative values!");
+                return false;
+            }
+            else if (wrongEdge)
+            {
+                MessageBox.Show("Wrong number of edges elements!");
                 return false;
             }
             else
@@ -112,6 +132,7 @@ namespace qualifyingMasterWork
             vertexesFromFile = fileData.Substring(fileData.IndexOf('.')).Split(';');
             if (vertexesFromFile.Length == numOfVertexesInEachPart)
             {
+                bool hasNegativeWeight = false;
                 for (int i = 0; i < vertexesFromFile.Length; i++)
                 {
                     string vertexesWeigths = vertexesFromFile[i];
@@ -123,8 +144,18 @@ namespace qualifyingMasterWork
                     vertexesWeigths = Regex.Replace(vertexesWeigths, "[A-Za-z]", string.Empty);
                     vertexesWeigths = vertexesWeigths.Replace(Environment.NewLine, string.Empty);
                     weightsOfVertexes = vertexesWeigths.Split(',');
-                    vertexFromFile = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, Convert.ToInt32(weightsOfVertexes[1]));
+                    int weight = Convert.ToInt32(weightsOfVertexes[1]);
+                    if (Convert.ToInt32(weightsOfVertexes[1]) < 0)
+                    {
+                        weight = 0;
+                        hasNegativeWeight = true;
+                    }
+                    vertexFromFile = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, weight);
                     vertexes.Add(vertexFromFile);
+                }
+                if (hasNegativeWeight)
+                {
+                    MessageBox.Show("Some vertexes weights were negative\nand were replaced with 0");
                 }
             }
             else
@@ -134,6 +165,7 @@ namespace qualifyingMasterWork
                 {
                     vertexes.Add(new Tuple<int, int>(i, 0));
                 }
+                MessageBox.Show("You did not provide vertexes weights\nso they all will be 0");
             }
             return vertexes;
         }

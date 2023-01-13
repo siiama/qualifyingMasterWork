@@ -49,6 +49,7 @@ namespace qualifyingMasterWork
             string[] equation = new string[numOfEquations];
             equation = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';');
             int maxNumOfElements = 0;
+            bool wrongFunctionBeforeColon = false;
             for (int i = 0; i < equation.Length; i++)
             {
                 var charsToRemove = new string[] { " ", ".", "_" };
@@ -63,10 +64,19 @@ namespace qualifyingMasterWork
                 {
                     maxNumOfElements = equationElements.Split(':')[1].Split(',').Length;
                 }
+                if ((equationElements.Split(':')[0].Split(',').Length > 1))
+                {
+                    wrongFunctionBeforeColon = true;
+                }
             }
             if (numOfEquations < maxNumOfElements)
             {
                 MessageBox.Show("Number of equations can not be less then number of variables!");
+                return false;
+            }
+            else if (wrongFunctionBeforeColon)
+            {
+                MessageBox.Show("Each equation must have one function!");
                 return false;
             }
             else
@@ -78,8 +88,7 @@ namespace qualifyingMasterWork
         {
             if (!Char.IsDigit(e.KeyChar) && !Char.IsLetter(e.KeyChar) && e.KeyChar != Convert.ToChar(8)
                 && e.KeyChar != Convert.ToChar(13) && e.KeyChar != Convert.ToChar(32) && e.KeyChar != Convert.ToChar(44)
-                && e.KeyChar != Convert.ToChar(45) && e.KeyChar != Convert.ToChar(46) && e.KeyChar != Convert.ToChar(58)
-                && e.KeyChar != Convert.ToChar(59))
+                && e.KeyChar != Convert.ToChar(46) && e.KeyChar != Convert.ToChar(58) && e.KeyChar != Convert.ToChar(59))
             {
                 e.Handled = true;
             }
@@ -138,6 +147,7 @@ namespace qualifyingMasterWork
                 {
                     vertexes.Add(new Tuple<int, int>(i, 0));
                 }
+                MessageBox.Show("You did not provide vertexes weights\nso they all will be 0");
             }
             return vertexes;
         }

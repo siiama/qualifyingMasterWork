@@ -50,9 +50,25 @@ namespace qualifyingMasterWork
             matrixNumbers = matrixNumbers.Replace(";", ",");
             matrixNumbers = matrixNumbers.Replace(Environment.NewLine, string.Empty);
             sizeOfMatrix = Data.Text.Substring(0, Data.Text.IndexOf('.')).Split(';').Length;
+            bool hasNegativeWeight = false;
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    if (matrix[i, j] < -1)
+                    {
+                        hasNegativeWeight = true;
+                    }
+                }
+            }
             if (matrixNumbers.Split(',').Length != sizeOfMatrix * sizeOfMatrix)
             {
                 MessageBox.Show("Your matrix is not square!");
+                return false;
+            }
+            else if (hasNegativeWeight)
+            {
+                MessageBox.Show("Edges can not have\nnegative weights!");
                 return false;
             }
             else
@@ -96,6 +112,7 @@ namespace qualifyingMasterWork
             vertexesFromTextbox = Data.Text.Substring(Data.Text.IndexOf('.')).Split(';');
             if (vertexesFromTextbox.Length == sizeOfMatrix)
             {
+                bool hasNegativeWeight = false;
                 for (int i = 0; i < vertexesFromTextbox.Length; i++)
                 {
                     string vertexesWeigths = vertexesFromTextbox[i];
@@ -107,8 +124,18 @@ namespace qualifyingMasterWork
                     vertexesWeigths = Regex.Replace(vertexesWeigths, "[A-Za-z]", string.Empty);
                     vertexesWeigths = vertexesWeigths.Replace(Environment.NewLine, string.Empty);
                     weightsOfVertexes = vertexesWeigths.Split(',');
-                    vertexFromTextbox = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, Convert.ToInt32(weightsOfVertexes[1]));
+                    int weight = Convert.ToInt32(weightsOfVertexes[1]);
+                    if (Convert.ToInt32(weightsOfVertexes[1]) < 0)
+                    {
+                        weight = 0;
+                        hasNegativeWeight = true;
+                    }
+                    vertexFromTextbox = new Tuple<int, int>(Convert.ToInt32(weightsOfVertexes[0]) - 1, weight);
                     vertexes.Add(vertexFromTextbox);
+                }
+                if (hasNegativeWeight)
+                {
+                    MessageBox.Show("Some vertexes weights were negative\nand were replaced with 0");
                 }
             }
             else
@@ -118,6 +145,7 @@ namespace qualifyingMasterWork
                 {
                     vertexes.Add(new Tuple<int, int>(i, 0));
                 }
+                MessageBox.Show("You did not provide vertexes weights\nso they all will be 0");
             }
             return vertexes;
         }
