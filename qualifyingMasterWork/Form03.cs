@@ -53,11 +53,20 @@ namespace qualifyingMasterWork
             matrixNumbers = matrixNumbers.Replace(Environment.NewLine, string.Empty);
             sizeOfMatrix = fileData.Substring(0, fileData.IndexOf('.')).Split(';').Length;
             bool hasNegativeWeight = false;
-            for (int i=0; i<matrix.GetLength(0); i++)
+            row = new string[sizeOfMatrix];
+            row = fileData.Substring(0, fileData.IndexOf('.')).Split(';');
+            for (int i = 0; i < row.Length; i++)
             {
-                for (int j=0; j< matrix.GetLength(1); j++)
+                elementInRow = new string[sizeOfMatrix];
+                foreach (var c in charsToRemove)
                 {
-                    if (matrix[i, j] < -1)
+                    row[i] = row[i].Replace(c, string.Empty);
+                }
+                row[i] = row[i].Replace(Environment.NewLine, string.Empty);
+                elementInRow = row[i].Split(',');
+                for (int j = 0; j < elementInRow.Length; j++)
+                {
+                    if (Convert.ToInt32(elementInRow[j]) < -1)
                     {
                         hasNegativeWeight = true;
                     }
@@ -156,10 +165,10 @@ namespace qualifyingMasterWork
             {
                 if (!string.IsNullOrEmpty(fileData))
                 {
-                    matrix = new int[sizeOfMatrix, sizeOfMatrix];
-                    FillMatrix(matrix);
                     if (CheckDataFromFile())
                     {
+                        matrix = new int[sizeOfMatrix, sizeOfMatrix];
+                        FillMatrix(matrix);
                         vertexes = new SortedSet<Tuple<int, int>>();
                         FillMatrixVertexesWeights(vertexes);
                         switch (problemName)
