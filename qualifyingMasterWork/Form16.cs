@@ -109,20 +109,27 @@ namespace qualifyingMasterWork
         }
         private void ShowCommutativeDiagram(SortedSet<Tuple<int, int, int>> commutativeDiagram)
         {
-            Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
-            foreach (Tuple<int, int, int> edge in commutativeDiagram)
+            if (commutativeDiagram.Count > 100)
             {
-                graph.AddEdge("g_" + Convert.ToString(edge.Item1 + 1), "x_" + Convert.ToString(edge.Item2 + 1)).LabelText = Convert.ToString(edge.Item3);
-                Microsoft.Msagl.Drawing.Node g = graph.FindNode("g_" + Convert.ToString(edge.Item1 + 1));
-                g.Attr.FillColor = Microsoft.Msagl.Drawing.Color.MintCream;
-                Microsoft.Msagl.Drawing.Node x = graph.FindNode("x_" + Convert.ToString(edge.Item2 + 1));
-                x.Attr.FillColor = Microsoft.Msagl.Drawing.Color.MintCream;
+                Data.Text = "data is too big. Please save it to watch.";
             }
-            viewer.Graph = graph;
-            viewer.Location = new System.Drawing.Point(200, 0);
-            viewer.Size = new System.Drawing.Size(350, 300);
-            this.SuspendLayout();
-            this.Controls.Add(viewer);
+            else
+            {
+                Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
+                foreach (Tuple<int, int, int> edge in commutativeDiagram)
+                {
+                    graph.AddEdge("g_" + Convert.ToString(edge.Item1 + 1), "x_" + Convert.ToString(edge.Item2 + 1)).LabelText = Convert.ToString(edge.Item3);
+                    Microsoft.Msagl.Drawing.Node g = graph.FindNode("g_" + Convert.ToString(edge.Item1 + 1));
+                    g.Attr.FillColor = Microsoft.Msagl.Drawing.Color.MintCream;
+                    Microsoft.Msagl.Drawing.Node x = graph.FindNode("x_" + Convert.ToString(edge.Item2 + 1));
+                    x.Attr.FillColor = Microsoft.Msagl.Drawing.Color.MintCream;
+                }
+                viewer.Graph = graph;
+                viewer.Location = new System.Drawing.Point(200, 0);
+                viewer.Size = new System.Drawing.Size(350, 300);
+                this.SuspendLayout();
+                this.Controls.Add(viewer);
+            }
         }
     }
 }

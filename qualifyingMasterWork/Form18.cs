@@ -118,18 +118,25 @@ namespace qualifyingMasterWork
         private void ShowMatrix(int[,] matrix)
         {
             output = "";
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            if (matrix.GetLength(0) > 100)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+                output += "data is too big. Please save it to watch.";
+            }
+            else
+            {
+                for (int i = 0; i < matrix.GetLength(0); i++)
                 {
-                    output += matrix[i, j].ToString() + "   ";
+                    for (int j = 0; j < matrix.GetLength(1); j++)
+                    {
+                        output += matrix[i, j].ToString() + "   ";
+                    }
+                    output += "\n";
                 }
                 output += "\n";
-            }
-            output += "\n";
-            foreach (Tuple<int, int> vertex in vertexes)
-            {
-                output += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+                foreach (Tuple<int, int> vertex in vertexes)
+                {
+                    output += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+                }
             }
             Data.Text = output;
         }

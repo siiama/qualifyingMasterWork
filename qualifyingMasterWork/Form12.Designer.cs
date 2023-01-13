@@ -37,6 +37,7 @@
             this.Back = new System.Windows.Forms.Button();
             this.Save = new System.Windows.Forms.Button();
             this.SaveFile = new System.Windows.Forms.SaveFileDialog();
+            this.Data = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Size
@@ -110,12 +111,21 @@
             // 
             this.SaveFile.FileName = "commutative_diagram";
             // 
+            // Data
+            // 
+            this.Data.AutoSize = true;
+            this.Data.Location = new System.Drawing.Point(300, 50);
+            this.Data.Name = "Data";
+            this.Data.Size = new System.Drawing.Size(0, 16);
+            this.Data.TabIndex = 83;
+            // 
             // Form12
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(807, 378);
+            this.Controls.Add(this.Data);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.Size);
             this.Controls.Add(this.label2);
@@ -142,5 +152,6 @@
         private System.Windows.Forms.Button Back;
         private System.Windows.Forms.Button Save;
         private System.Windows.Forms.SaveFileDialog SaveFile;
+        private System.Windows.Forms.Label Data;
     }
 }

@@ -33,6 +33,7 @@
             this.Finish = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.SaveFile = new System.Windows.Forms.SaveFileDialog();
+            this.Data = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // Save
@@ -69,12 +70,21 @@
             // 
             this.SaveFile.FileName = "result";
             // 
+            // Data
+            // 
+            this.Data.AutoSize = true;
+            this.Data.Location = new System.Drawing.Point(300, 50);
+            this.Data.Name = "Data";
+            this.Data.Size = new System.Drawing.Size(0, 16);
+            this.Data.TabIndex = 87;
+            // 
             // Form19
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(742, 378);
+            this.Controls.Add(this.Data);
             this.Controls.Add(this.Save);
             this.Controls.Add(this.Finish);
             this.Controls.Add(this.label1);
@@ -93,5 +103,6 @@
         private System.Windows.Forms.Button Finish;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SaveFileDialog SaveFile;
+        private System.Windows.Forms.Label Data;
     }
 }

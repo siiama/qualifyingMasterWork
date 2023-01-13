@@ -121,19 +121,26 @@ namespace qualifyingMasterWork
         private void ShowEquations(SortedDictionary<int, SortedSet<Tuple<int, int>>> equations)
         {
             output = "";
-            foreach (KeyValuePair<int, SortedSet<Tuple<int, int>>> equation in equations)
+            if (equations.Count > 100)
             {
-                output += "f_" + (equation.Key + 1).ToString() + " = (   ";
-                foreach (Tuple<int, int> argument in equation.Value)
-                {
-                    output += argument.Item2 + " x_" + (argument.Item1 + 1) + "   ";
-                }
-                output += ")\n";
+                output += "data is too big. Please save it to watch.";
             }
-            output += "\n";
-            foreach (Tuple<int, int> vertex in vertexes)
+            else
             {
-                output += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+                foreach (KeyValuePair<int, SortedSet<Tuple<int, int>>> equation in equations)
+                {
+                    output += "f_" + (equation.Key + 1).ToString() + " = (   ";
+                    foreach (Tuple<int, int> argument in equation.Value)
+                    {
+                        output += argument.Item2 + " x_" + (argument.Item1 + 1) + "   ";
+                    }
+                    output += ")\n";
+                }
+                output += "\n";
+                foreach (Tuple<int, int> vertex in vertexes)
+                {
+                    output += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+                }
             }
             Data.Text = output;
         }
