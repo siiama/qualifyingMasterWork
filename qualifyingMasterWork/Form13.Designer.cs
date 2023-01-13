@@ -33,6 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.Back = new System.Windows.Forms.Button();
             this.Data = new System.Windows.Forms.TextBox();
+            this.Save = new System.Windows.Forms.Button();
+            this.SaveFile = new System.Windows.Forms.SaveFileDialog();
             this.SuspendLayout();
             // 
             // Next
@@ -72,13 +74,29 @@
             this.Data.Name = "Data";
             this.Data.Size = new System.Drawing.Size(150, 150);
             this.Data.TabIndex = 82;
-            this.Data.Text = "g_1, x_1;\r\ng_2, x_1;\r\ng_2, x_2.";
+            this.Data.Text = "g_1, x_1, w_1;\r\ng_1, x_2, w_3;\r\ng_2, x_1, w_2.";
+            this.Data.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Data_KeyPress);
+            // 
+            // Save
+            // 
+            this.Save.Location = new System.Drawing.Point(225, 100);
+            this.Save.Name = "Save";
+            this.Save.Size = new System.Drawing.Size(100, 30);
+            this.Save.TabIndex = 83;
+            this.Save.Text = "Save";
+            this.Save.UseVisualStyleBackColor = true;
+            this.Save.Click += new System.EventHandler(this.Save_Click);
+            // 
+            // SaveFile
+            // 
+            this.SaveFile.FileName = "commutative_diagram";
             // 
             // Form13
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(382, 353);
+            this.Controls.Add(this.Save);
             this.Controls.Add(this.Data);
             this.Controls.Add(this.Next);
             this.Controls.Add(this.label1);
@@ -97,5 +115,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Back;
         private System.Windows.Forms.TextBox Data;
+        private System.Windows.Forms.Button Save;
+        private System.Windows.Forms.SaveFileDialog SaveFile;
     }
 }
