@@ -156,10 +156,10 @@ namespace qualifyingMasterWork
             {
                 if (!string.IsNullOrEmpty(fileData))
                 {
+                    matrix = new int[sizeOfMatrix, sizeOfMatrix];
+                    FillMatrix(matrix);
                     if (CheckDataFromFile())
                     {
-                        matrix = new int[sizeOfMatrix, sizeOfMatrix];
-                        FillMatrix(matrix);
                         vertexes = new SortedSet<Tuple<int, int>>();
                         FillMatrixVertexesWeights(vertexes);
                         switch (problemName)

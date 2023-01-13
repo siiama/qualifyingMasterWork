@@ -64,11 +64,11 @@ namespace qualifyingMasterWork
                 {
                     hasNegativeWeight = true;
                 }
-                if (edgesElements.Length > 3)
+                string[] edge = edgesElements.Split(',');
+                if (edge.Length > 3)
                 {
                     wrongEdge = true;
                 }
-                string[] edge = edgesElements.Split(',');
                 if (Convert.ToInt32(edge[0]) > maxNumOfElementsInLeftPart)
                 {
                     maxNumOfElementsInLeftPart = Convert.ToInt32(edge[0]);

@@ -88,7 +88,8 @@ namespace qualifyingMasterWork
         {
             if (!Char.IsDigit(e.KeyChar) && !Char.IsLetter(e.KeyChar) && e.KeyChar != Convert.ToChar(8)
                 && e.KeyChar != Convert.ToChar(13) && e.KeyChar != Convert.ToChar(32) && e.KeyChar != Convert.ToChar(44)
-                && e.KeyChar != Convert.ToChar(46) && e.KeyChar != Convert.ToChar(58) && e.KeyChar != Convert.ToChar(59))
+                && e.KeyChar != Convert.ToChar(46) && e.KeyChar != Convert.ToChar(58) && e.KeyChar != Convert.ToChar(59)
+                && e.KeyChar != Convert.ToChar(95))
             {
                 e.Handled = true;
             }

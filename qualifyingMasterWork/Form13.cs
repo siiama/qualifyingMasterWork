@@ -56,11 +56,11 @@ namespace qualifyingMasterWork
                 }
                 edgesElements = Regex.Replace(edgesElements, "[A-Za-z]", string.Empty);
                 edgesElements = edgesElements.Replace(Environment.NewLine, string.Empty);
-                if (edgesElements.Length > 3)
+                string[] edge = edgesElements.Split(',');
+                if (edge.Length > 3)
                 {
                     wrongEdge = true;
                 }
-                string[] edge = edgesElements.Split(',');
                 if (Convert.ToInt32(edge[0]) > maxNumOfElementsInLeftPart)
                 {
                     maxNumOfElementsInLeftPart = Convert.ToInt32(edge[0]);
@@ -90,7 +90,7 @@ namespace qualifyingMasterWork
         {
             if (!Char.IsDigit(e.KeyChar) && !Char.IsLetter(e.KeyChar) && e.KeyChar != Convert.ToChar(8)
                 && e.KeyChar != Convert.ToChar(13) && e.KeyChar != Convert.ToChar(32) && e.KeyChar != Convert.ToChar(44)
-                && e.KeyChar != Convert.ToChar(46) && e.KeyChar != Convert.ToChar(59))
+                && e.KeyChar != Convert.ToChar(46) && e.KeyChar != Convert.ToChar(59) && e.KeyChar != Convert.ToChar(95))
             {
                 e.Handled = true;
             }
