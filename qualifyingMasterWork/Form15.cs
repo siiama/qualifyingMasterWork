@@ -8,9 +8,7 @@ namespace qualifyingMasterWork
     public partial class Form15 : Form
     {
         private string dataFormName;
-        readonly Form15 form15;
-        readonly Form16 form16;
-        readonly Form23 form23;
+        private readonly Form23 form23;
         private SortedDictionary<int, SortedSet<Tuple<int, int>>> equations;
         private int[,] matrix;
         private int numOfEquations;

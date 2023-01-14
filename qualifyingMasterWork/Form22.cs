@@ -8,8 +8,6 @@ namespace qualifyingMasterWork
 {
     public partial class Form22 : Form
     {
-        readonly Form21 form21;
-        readonly Form22 form22;
         readonly Form23 form23;
         private string dataFormName;
         private SortedSet<Tuple<int, int, int>> commutativeDiagram;

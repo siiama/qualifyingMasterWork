@@ -8,8 +8,6 @@ namespace qualifyingMasterWork
 {
     public partial class Form21 : Form
     {
-        readonly Form21 form21;
-        readonly Form22 form22;
         readonly Form23 form23;
         private string dataFormName;
         private SortedSet<Tuple<int, int, int>> commutativeDiagram;
@@ -28,9 +26,9 @@ namespace qualifyingMasterWork
         }
         private int[,] FillMatrix(int[,] matrix)
         {
-            for (int i=0; i<matrix.GetLength(0); i++)
+            for (int i = 0; i < matrix.GetLength(0); i++)
             {
-                for (int j=0; j<matrix.GetLength(1); j++)
+                for (int j = 0; j < matrix.GetLength(1); j++)
                 {
                     matrix[i, j] = -1;
                 }

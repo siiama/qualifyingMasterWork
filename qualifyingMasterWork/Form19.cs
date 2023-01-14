@@ -7,13 +7,10 @@ namespace qualifyingMasterWork
 {
     public partial class Form19 : Form
     {
-        readonly Form18 form18;
-        readonly Form19 form19;
         readonly Form23 form23;
         private string dataFormName;
         private SortedSet<Tuple<int, int, int>> commutativeDiagram;
         private SortedDictionary<int, SortedSet<Tuple<int, int>>> equations;
-        private string output;
         private string problemName;
         private string result;
         private long time;

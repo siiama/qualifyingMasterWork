@@ -17,11 +17,10 @@ namespace qualifyingMasterWork
         private SortedSet<Tuple<int, int, int>> commutativeDiagram;
         private bool generateClicked = false;
         private int numOfVertexesInEachPart;
-        private string output;
         private string problemName;
         private string result;
         private SortedSet<Tuple<int, int>> vertexes;
-        Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+        readonly Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
         public Form12(Form20 form20)
         {
             InitializeComponent();

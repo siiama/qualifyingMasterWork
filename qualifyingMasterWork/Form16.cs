@@ -8,18 +8,15 @@ namespace qualifyingMasterWork
     public partial class Form16 : Form
     {
         private string dataFormName;
-        readonly Form15 form15;
-        readonly Form16 form16;
-        readonly Form23 form23;
+        private readonly Form23 form23;
         private SortedSet<Tuple<int, int, int>> commutativeDiagram;
         private int[,] matrix;
         private int numOfVertexesInEachPart;
-        private string output;
         private string problemName;
         private string result;
         private long time;
         private SortedSet<Tuple<int, int>> vertexes;
-        Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+        readonly Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
         public Form16(Form23 form23)
         {
             InitializeComponent();
@@ -28,9 +25,9 @@ namespace qualifyingMasterWork
         }
         private SortedSet<Tuple<int, int, int>> FillCommutativeDiagram(int numOfVertexesInEachPart, SortedSet<Tuple<int, int, int>> commutativeDiagram)
         {
-            for (int i=0; i<numOfVertexesInEachPart; i++)
+            for (int i = 0; i < numOfVertexesInEachPart; i++)
             {
-                for (int j=0; j<numOfVertexesInEachPart; j++)
+                for (int j = 0; j < numOfVertexesInEachPart; j++)
                 {
                     if (matrix[i, j] != -1)
                     {

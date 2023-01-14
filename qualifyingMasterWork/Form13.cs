@@ -109,7 +109,7 @@ namespace qualifyingMasterWork
                 edgesElements = Regex.Replace(edgesElements, "[A-Za-z]", string.Empty);
                 edgesElements = edgesElements.Replace(Environment.NewLine, string.Empty);
                 vertexInEdges = edgesElements.Split(',');
-                edgeFromTextbox = new Tuple<int, int, int> (Convert.ToInt32(vertexInEdges[0]) - 1, Convert.ToInt32(vertexInEdges[1]) - 1, Convert.ToInt32(vertexInEdges[2]));
+                edgeFromTextbox = new Tuple<int, int, int>(Convert.ToInt32(vertexInEdges[0]) - 1, Convert.ToInt32(vertexInEdges[1]) - 1, Convert.ToInt32(vertexInEdges[2]));
                 commutativeDiagram.Add(edgeFromTextbox);
             }
             return commutativeDiagram;

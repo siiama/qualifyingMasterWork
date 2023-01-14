@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing.Drawing2D;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -166,7 +165,7 @@ namespace qualifyingMasterWork
             else
             {
                 vertexes.Clear();
-                for (int i=0; i<numOfEquations; i++)
+                for (int i = 0; i < numOfEquations; i++)
                 {
                     vertexes.Add(new Tuple<int, int>(i, 0));
                 }

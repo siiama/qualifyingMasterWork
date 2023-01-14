@@ -161,7 +161,7 @@ namespace qualifyingMasterWork
         }
         private void Next_Click(object sender, EventArgs e)
         {
-            if(chooseFileClicked == true)
+            if (chooseFileClicked == true)
             {
                 if (!string.IsNullOrEmpty(fileData))
                 {

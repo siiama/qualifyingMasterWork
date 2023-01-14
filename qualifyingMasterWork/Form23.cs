@@ -13,10 +13,10 @@ namespace qualifyingMasterWork
         private int[,] matrix;
         private string problemName;
         private SortedDictionary<int, SortedSet<Tuple<int, int>>> equations;
-        public string result;
+        private string result;
         public long time;
         private SortedSet<Tuple<int, int>> vertexes;
-        Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+        readonly Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
         public Form23()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace qualifyingMasterWork
             Data.Visible = false;
             Form.ActiveForm.Visible = false;
         }
-        public string SaveSolveFindingTheMinimumWeightSpanningTree(SortedSet<Tuple<int, int, int>> minimumSpanningTree)
+        private string SaveSolveFindingTheMinimumWeightSpanningTree(SortedSet<Tuple<int, int, int>> minimumSpanningTree)
         {
             int sum = 0;
             foreach (Tuple<int, int, int> edge in minimumSpanningTree)
@@ -63,7 +63,7 @@ namespace qualifyingMasterWork
         {
             problemName = problem;
         }
-        public void ShowSolveFindingTheMinimumWeightSpanningTree(SortedSet<Tuple<int, int, int>> minimumSpanningTree)
+        private void ShowSolveFindingTheMinimumWeightSpanningTree(SortedSet<Tuple<int, int, int>> minimumSpanningTree)
         {
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
             foreach (Tuple<int, int, int> edge in minimumSpanningTree)
@@ -80,7 +80,7 @@ namespace qualifyingMasterWork
             this.SuspendLayout();
             this.Controls.Add(viewer);
         }
-        public double SolveDeterminant(int[,] matrixOfEquationCoefficients)
+        private double SolveDeterminant(int[,] matrixOfEquationCoefficients)
         {
             double determinant = 0;
             int s = 1;
@@ -98,15 +98,15 @@ namespace qualifyingMasterWork
             else if (matrixOfEquationCoefficients.GetLength(0) > 2)
             {
                 int[,] newMatrixOfEquationCoefficients = new int[matrixOfEquationCoefficients.GetLength(0) - 1, matrixOfEquationCoefficients.GetLength(1) - 1];
-                for (int i=0; i< matrixOfEquationCoefficients.GetLength(0); i++)
+                for (int i = 0; i < matrixOfEquationCoefficients.GetLength(0); i++)
                 {
                     int subElementJ = 0;
                     int subElementK = 0;
-                    for (int j=0; j< matrixOfEquationCoefficients.GetLength(0); j++)
+                    for (int j = 0; j < matrixOfEquationCoefficients.GetLength(0); j++)
                     {
-                        for (int k =0; k< matrixOfEquationCoefficients.GetLength(1); k++)
+                        for (int k = 0; k < matrixOfEquationCoefficients.GetLength(1); k++)
                         {
-                            if (j!=i && k!=0)
+                            if (j != i && k != 0)
                             {
                                 newMatrixOfEquationCoefficients[subElementJ, subElementK] = matrixOfEquationCoefficients[j, k];
                                 subElementK++;
@@ -119,18 +119,18 @@ namespace qualifyingMasterWork
                         }
                     }
                     determinant += s * matrixOfEquationCoefficients[i, 0] * SolveDeterminant(newMatrixOfEquationCoefficients);
-                    s *= -1; 
+                    s *= -1;
                 }
             }
             return determinant;
         }
-        public string SolveFindingProbabilitiesOfSystemStates()
+        private string SolveFindingProbabilitiesOfSystemStates()
         {
             int numOfSystemStates = equations.Count;
             int[,] matrixOfEquationCoefficients = new int[numOfSystemStates, numOfSystemStates];
-            for (int i=0; i<matrixOfEquationCoefficients.GetLength(0); i++)
+            for (int i = 0; i < matrixOfEquationCoefficients.GetLength(0); i++)
             {
-                for (int j=0; j<matrixOfEquationCoefficients.GetLength(1); j++)
+                for (int j = 0; j < matrixOfEquationCoefficients.GetLength(1); j++)
                 {
                     matrixOfEquationCoefficients[i, j] = 0;
                 }
@@ -150,13 +150,13 @@ namespace qualifyingMasterWork
             {
                 MessageBox.Show("You have not input vertexes weights!");
             }
-            for (int i=0; i<delta_x.GetLength(0); i++)
+            for (int i = 0; i < delta_x.GetLength(0); i++)
             {
-                for (int j=0; j< matrixOfCoefficientsX.GetLength(0); j++)
+                for (int j = 0; j < matrixOfCoefficientsX.GetLength(0); j++)
                 {
-                    for (int k=0; k<matrixOfCoefficientsX.GetLength(1); k++)
+                    for (int k = 0; k < matrixOfCoefficientsX.GetLength(1); k++)
                     {
-                        matrixOfCoefficientsX[j,k] = matrixOfEquationCoefficients[j,k];
+                        matrixOfCoefficientsX[j, k] = matrixOfEquationCoefficients[j, k];
                     }
                 }
                 foreach (Tuple<int, int> vertex in vertexes)
@@ -181,7 +181,7 @@ namespace qualifyingMasterWork
             if (determined)
             {
                 double[] x = new double[numOfSystemStates];
-                for (int i=0; i<numOfSystemStates; i++)
+                for (int i = 0; i < numOfSystemStates; i++)
                 {
                     x[i] = delta_x[i] / delta;
                     result += "x_" + i + " = " + String.Format("{0:0.00}", x[i]) + ", ";
@@ -203,7 +203,7 @@ namespace qualifyingMasterWork
             }
             return result;
         }
-        public SortedSet<Tuple<int, int, int>> SolveFindingTheMinimumWeightSpanningTree()
+        private SortedSet<Tuple<int, int, int>> SolveFindingTheMinimumWeightSpanningTree()
         {
             SortedSet<Tuple<int, int, int>> minimumSpanningTree = new SortedSet<Tuple<int, int, int>>();
             Random random = new Random();
@@ -233,7 +233,7 @@ namespace qualifyingMasterWork
                         }
                     }
                 }
-                Tuple<int, int, int> edgeWithMinWeight = new Tuple<int, int, int>(-1,-1, int.MaxValue);
+                Tuple<int, int, int> edgeWithMinWeight = new Tuple<int, int, int>(-1, -1, int.MaxValue);
                 foreach (Tuple<int, int, int> edge in edges)
                 {
                     if (edge.Item3 < edgeWithMinWeight.Item3)
@@ -254,7 +254,7 @@ namespace qualifyingMasterWork
             }
             return minimumSpanningTree;
         }
-        public bool AllVertexesAreVisited(bool[] vertexIsVisited)
+        private bool AllVertexesAreVisited(bool[] vertexIsVisited)
         {
             bool allVertexesAreVisited = true;
             for (int i = 0; i < vertexIsVisited.Length; i++)
@@ -273,7 +273,7 @@ namespace qualifyingMasterWork
                 return false;
             }
         }
-        public int[] FindWaysFromOneVertexByDijkstra (int vertex, int[] waysFromOneVertex)
+        private int[] FindWaysFromOneVertexByDijkstra(int vertex, int[] waysFromOneVertex)
         {
             int[] vertexesLabels = new int[matrix.GetLength(0)];
             for (int i = 0; i < vertexesLabels.Length; i++)
@@ -317,17 +317,7 @@ namespace qualifyingMasterWork
             }
             return waysFromOneVertex;
         }
-        public bool FindCycleWithNegativeWeight ()
-        {
-            //
-            return false;
-        }
-        public int[,] ChangeVertexesWeightsByBellmanFord()
-        {
-            //
-            return matrix;
-        }
-        public int[,] FindWaysBetweenAllVertexesByDjohnson(int[,] ways)
+        private int[,] FindWaysBetweenAllVertexesByDjohnson(int[,] ways)
         {
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
@@ -341,13 +331,13 @@ namespace qualifyingMasterWork
             DataTable dataTable = new DataTable();
             for (int j = 0; j < matrix.GetLength(1); j++)
             {
-                dataTable.Columns.Add((j+1).ToString());
+                dataTable.Columns.Add((j + 1).ToString());
             }
             DataRow dataRow;
-            for (int i=0; i<matrix.GetLength(0); i++)
+            for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 dataRow = dataTable.NewRow();
-                for (int j=0; j<matrix.GetLength(1); j++)
+                for (int j = 0; j < matrix.GetLength(1); j++)
                 {
                     dataRow[j] = ways[i, j];
                 }
@@ -357,7 +347,7 @@ namespace qualifyingMasterWork
             Data.Visible = true;
             return ways;
         }
-        public string SolveFindingTheShortestPath()
+        private string SolveFindingTheShortestPath()
         {
             int[,] ways = new int[matrix.GetLength(0), matrix.GetLength(0)];
             FindWaysBetweenAllVertexesByDjohnson(ways);
