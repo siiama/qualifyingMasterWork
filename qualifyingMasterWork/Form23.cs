@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Deployment.Application;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -14,6 +14,7 @@ namespace qualifyingMasterWork
         private string problemName;
         private SortedDictionary<int, SortedSet<Tuple<int, int>>> equations;
         public string result;
+        public long time;
         private SortedSet<Tuple<int, int>> vertexes;
         Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
         public Form23()
@@ -53,6 +54,10 @@ namespace qualifyingMasterWork
         public void SendSystemOfEquationsData(SortedDictionary<int, SortedSet<Tuple<int, int>>> equationsData)
         {
             equations = equationsData;
+        }
+        public void SendTime(long timeValue)
+        {
+            time = timeValue;
         }
         public void SendProblem(string problem)
         {
@@ -361,20 +366,28 @@ namespace qualifyingMasterWork
         }
         private void Form23_Load(object sender, EventArgs e)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             Problem.Text = problemName;
             DataForm.Text = dataFormName;
             switch (problemName)
             {
                 case "Finding the shortest path":
                     Solution.Text = SolveFindingTheShortestPath();
+                    stopwatch.Stop();
+                    Time.Text = Convert.ToString(time + stopwatch.ElapsedMilliseconds + " msec");
                     break;
                 case "Finding probabilities of system states":
                     Solution.Text = SolveFindingProbabilitiesOfSystemStates();
+                    stopwatch.Stop();
+                    Time.Text = Convert.ToString(time + stopwatch.ElapsedMilliseconds + " msec");
                     break;
                 case "Finding the minimum weight spanning tree":
                     SortedSet<Tuple<int, int, int>> solve = SolveFindingTheMinimumWeightSpanningTree();
                     ShowSolveFindingTheMinimumWeightSpanningTree(solve);
                     Solution.Text = SaveSolveFindingTheMinimumWeightSpanningTree(solve);
+                    stopwatch.Stop();
+                    Time.Text = Convert.ToString(time + stopwatch.ElapsedMilliseconds + " msec");
                     break;
             }
         }

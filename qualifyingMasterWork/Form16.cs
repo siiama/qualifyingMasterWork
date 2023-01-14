@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -16,6 +17,7 @@ namespace qualifyingMasterWork
         private string output;
         private string problemName;
         private string result;
+        private long time;
         private SortedSet<Tuple<int, int>> vertexes;
         Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
         public Form16(Form23 form23)
@@ -53,15 +55,20 @@ namespace qualifyingMasterWork
                     form23.SendDataVertexesWeights(vertexes);
                     form23.SendCommutativeDiagramData(commutativeDiagram);
                     form23.SendProblem(problemName);
+                    form23.SendTime(time);
                     form23.ShowDialog();
                     break;
             }
         }
         private void Form16_Load(object sender, EventArgs e)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             numOfVertexesInEachPart = matrix.GetLength(0);
             commutativeDiagram = new SortedSet<Tuple<int, int, int>>();
             FillCommutativeDiagram(numOfVertexesInEachPart, commutativeDiagram);
+            stopwatch.Stop();
+            time = stopwatch.ElapsedMilliseconds;
             this.Controls.Remove(viewer);
             ShowCommutativeDiagram(commutativeDiagram);
         }

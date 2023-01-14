@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -17,6 +18,7 @@ namespace qualifyingMasterWork
         private string problemName;
         private int sizeOfMatrix;
         private string result;
+        private long time;
         private SortedSet<Tuple<int, int>> vertexes;
         public Form21(Form23 form23)
         {
@@ -55,15 +57,20 @@ namespace qualifyingMasterWork
                     form23.SendDataVertexesWeights(vertexes);
                     form23.SendMatrixData(matrix);
                     form23.SendProblem(problemName);
+                    form23.SendTime(time);
                     form23.ShowDialog();
                     break;
             }
         }
         private void Form21_Load(object sender, EventArgs e)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             sizeOfMatrix = commutativeDiagram.Max(v => v.Item1) + 1;
             matrix = new int[sizeOfMatrix, sizeOfMatrix];
             FillMatrix(matrix);
+            stopwatch.Stop();
+            time = stopwatch.ElapsedMilliseconds;
             ShowMatrix(matrix);
         }
         private void Save_Click(object sender, EventArgs e)

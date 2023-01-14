@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace qualifyingMasterWork
@@ -16,6 +17,7 @@ namespace qualifyingMasterWork
         private string output;
         private string problemName;
         private string result;
+        private long time;
         private SortedSet<Tuple<int, int>> vertexes;
         public Form15(Form23 form23)
         {
@@ -58,6 +60,7 @@ namespace qualifyingMasterWork
                     form23.SendDataForm(dataFormName);
                     form23.SendDataVertexesWeights(vertexes);
                     form23.SendSystemOfEquationsData(equations);
+                    form23.SendTime(time);
                     form23.SendProblem(problemName);
                     form23.ShowDialog();
                     break;
@@ -65,9 +68,13 @@ namespace qualifyingMasterWork
         }
         private void Form15_Load(object sender, EventArgs e)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             numOfEquations = matrix.GetLength(0);
             equations = new SortedDictionary<int, SortedSet<Tuple<int, int>>>();
             FillEquations(numOfEquations, equations);
+            stopwatch.Stop();
+            time = stopwatch.ElapsedMilliseconds;
             ShowEquations(equations);
         }
         private void Save_Click(object sender, EventArgs e)

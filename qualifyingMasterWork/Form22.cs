@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -17,6 +18,7 @@ namespace qualifyingMasterWork
         private string output;
         private string problemName;
         private string result;
+        private long time;
         private SortedSet<Tuple<int, int>> vertexes;
         public Form22(Form23 form23)
         {
@@ -58,15 +60,20 @@ namespace qualifyingMasterWork
                     form23.SendDataVertexesWeights(vertexes);
                     form23.SendSystemOfEquationsData(equations);
                     form23.SendProblem(problemName);
+                    form23.SendTime(time);
                     form23.ShowDialog();
                     break;
             }
         }
         private void Form22_Load(object sender, EventArgs e)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             numOfVertexesInEachPart = commutativeDiagram.Max(v => v.Item1) + 1;
             equations = new SortedDictionary<int, SortedSet<Tuple<int, int>>>();
             FillEquations(numOfVertexesInEachPart, equations);
+            stopwatch.Stop();
+            time = stopwatch.ElapsedMilliseconds;
             ShowEquations(equations);
         }
         private void Save_Click(object sender, EventArgs e)
