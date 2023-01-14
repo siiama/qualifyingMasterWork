@@ -34,11 +34,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.Problem = new System.Windows.Forms.Label();
             this.DataForm = new System.Windows.Forms.Label();
             this.Time = new System.Windows.Forms.Label();
-            this.Memory = new System.Windows.Forms.Label();
             this.Solution = new System.Windows.Forms.Label();
             this.Data = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.Data)).BeginInit();
@@ -90,15 +88,6 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Time:";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(50, 240);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(59, 16);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Memory:";
-            // 
             // Problem
             // 
             this.Problem.AutoSize = true;
@@ -122,14 +111,6 @@
             this.Time.Name = "Time";
             this.Time.Size = new System.Drawing.Size(0, 16);
             this.Time.TabIndex = 16;
-            // 
-            // Memory
-            // 
-            this.Memory.AutoSize = true;
-            this.Memory.Location = new System.Drawing.Point(125, 240);
-            this.Memory.Name = "Memory";
-            this.Memory.Size = new System.Drawing.Size(0, 16);
-            this.Memory.TabIndex = 17;
             // 
             // Solution
             // 
@@ -160,11 +141,9 @@
             this.ClientSize = new System.Drawing.Size(807, 378);
             this.Controls.Add(this.Data);
             this.Controls.Add(this.Solution);
-            this.Controls.Add(this.Memory);
             this.Controls.Add(this.Time);
             this.Controls.Add(this.DataForm);
             this.Controls.Add(this.Problem);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -188,11 +167,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label Problem;
         private System.Windows.Forms.Label DataForm;
         private System.Windows.Forms.Label Time;
-        private System.Windows.Forms.Label Memory;
         private System.Windows.Forms.Label Solution;
         private System.Windows.Forms.DataGridView Data;
     }
