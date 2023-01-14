@@ -15,7 +15,7 @@ namespace qualifyingMasterWork
         private string result;
         private long time;
         private SortedSet<Tuple<int, int>> vertexes;
-        Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+        readonly Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
         public Form19(Form23 form23)
         {
             InitializeComponent();
