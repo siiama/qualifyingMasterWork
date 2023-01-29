@@ -12,8 +12,9 @@ namespace qualifyingMasterWork
         readonly Form18 form18;
         readonly Form19 form19;
         readonly Form23 form23;
-        private SortedDictionary<int, SortedSet<int>> equations;
+        private SortedDictionary<int, SortedSet<Tuple<int, int>>> equations;
         private string problemName;
+        private SortedSet<Tuple<int, int>> vertexes;
         public Form17(Form18 form18, Form19 form19)
         {
             InitializeComponent();
@@ -34,6 +35,7 @@ namespace qualifyingMasterWork
                 Form.ActiveForm.Visible = false;
                 Form18 form18 = new Form18(form23);
                 form18.SendData(equations);
+                form18.SendDataVertexesWeights(vertexes);
                 form18.SendProblem(problemName);
                 form18.ShowDialog();
             }
@@ -42,6 +44,7 @@ namespace qualifyingMasterWork
                 Form.ActiveForm.Visible = false;
                 Form19 form19 = new Form19(form23);
                 form19.SendData(equations);
+                form19.SendDataVertexesWeights(vertexes);
                 form19.SendProblem(problemName);
                 form19.ShowDialog();
             }
@@ -50,10 +53,14 @@ namespace qualifyingMasterWork
                 MessageBox.Show("Please choose form of data");
             }
         }
-        public void SendData(SortedDictionary<int, SortedSet<int>> data)
+        public void SendData(SortedDictionary<int, SortedSet<Tuple<int, int>>> data)
         {
-            equations = new SortedDictionary<int, SortedSet<int>>();
+            equations = new SortedDictionary<int, SortedSet<Tuple<int, int>>>();
             equations = data;
+        }
+        public void SendDataVertexesWeights(SortedSet<Tuple<int, int>> dataVertexes)
+        {
+            vertexes = dataVertexes;
         }
         public void SendProblem(string problem)
         {

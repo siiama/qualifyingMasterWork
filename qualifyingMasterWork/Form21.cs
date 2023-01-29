@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -7,16 +8,16 @@ namespace qualifyingMasterWork
 {
     public partial class Form21 : Form
     {
-        readonly Form21 form21;
-        readonly Form22 form22;
         readonly Form23 form23;
         private string dataFormName;
-        private SortedSet<Tuple<int, int>> commutativeDiagram;
+        private SortedSet<Tuple<int, int, int>> commutativeDiagram;
         private int[,] matrix;
         private string output;
         private string problemName;
         private int sizeOfMatrix;
         private string result;
+        private long time;
+        private SortedSet<Tuple<int, int>> vertexes;
         public Form21(Form23 form23)
         {
             InitializeComponent();
@@ -25,21 +26,18 @@ namespace qualifyingMasterWork
         }
         private int[,] FillMatrix(int[,] matrix)
         {
-            foreach (Tuple<int, int> edge in commutativeDiagram)
-            {
-                int i = edge.Item1;
-                int j = edge.Item2;
-                matrix[i, j] = 1;
-            }
             for (int i = 0; i < matrix.GetLength(0); i++)
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    if (matrix[i, j] != 1)
-                    {
-                        matrix[i, j] = 0;
-                    }
+                    matrix[i, j] = -1;
                 }
+            }
+            foreach (Tuple<int, int, int> edge in commutativeDiagram)
+            {
+                int i = edge.Item1;
+                int j = edge.Item2;
+                matrix[i, j] = edge.Item3;
             }
             return matrix;
         }
@@ -54,17 +52,23 @@ namespace qualifyingMasterWork
                     Form.ActiveForm.Visible = false;
                     Form23 form23 = new Form23();
                     form23.SendDataForm(dataFormName);
-                    form23.SendCommutativeDiagramData(commutativeDiagram);
+                    form23.SendDataVertexesWeights(vertexes);
+                    form23.SendMatrixData(matrix);
                     form23.SendProblem(problemName);
+                    form23.SendTime(time);
                     form23.ShowDialog();
                     break;
             }
         }
         private void Form21_Load(object sender, EventArgs e)
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             sizeOfMatrix = commutativeDiagram.Max(v => v.Item1) + 1;
             matrix = new int[sizeOfMatrix, sizeOfMatrix];
             FillMatrix(matrix);
+            stopwatch.Stop();
+            time = stopwatch.ElapsedMilliseconds;
             ShowMatrix(matrix);
         }
         private void Save_Click(object sender, EventArgs e)
@@ -89,15 +93,26 @@ namespace qualifyingMasterWork
             }
             result = result.Remove(result.Length - 2);
             result += ".";
+            result += "\n";
+            foreach (Tuple<int, int> vertex in vertexes)
+            {
+                result += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+            }
+            result = result.Remove(result.Length - 2);
+            result += ".";
         }
-        public void SendData(SortedSet<Tuple<int, int>> data)
+        public void SendData(SortedSet<Tuple<int, int, int>> data)
         {
-            commutativeDiagram = new SortedSet<Tuple<int, int>>();
+            commutativeDiagram = new SortedSet<Tuple<int, int, int>>();
             commutativeDiagram = data;
         }
         public void SendDataForm(string dataForm)
         {
             dataFormName = dataForm;
+        }
+        public void SendDataVertexesWeights(SortedSet<Tuple<int, int>> dataVertexes)
+        {
+            vertexes = dataVertexes;
         }
         public void SendProblem(string problem)
         {
@@ -106,13 +121,25 @@ namespace qualifyingMasterWork
         private void ShowMatrix(int[,] matrix)
         {
             output = "";
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            if (matrix.GetLength(0) > 100)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+                output += "data is too big. Please save it to watch.";
+            }
+            else
+            {
+                for (int i = 0; i < matrix.GetLength(0); i++)
                 {
-                    output += matrix[i, j].ToString() + "   ";
+                    for (int j = 0; j < matrix.GetLength(1); j++)
+                    {
+                        output += matrix[i, j].ToString() + "   ";
+                    }
+                    output += "\n";
                 }
                 output += "\n";
+                foreach (Tuple<int, int> vertex in vertexes)
+                {
+                    output += "v_" + (vertex.Item1 + 1).ToString() + ", w_" + (vertex.Item2).ToString() + ";\n";
+                }
             }
             Data.Text = output;
         }
